@@ -24,10 +24,10 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "2.3.2",
-    "draft-js": "0.10.0",
+    "draft-js": "0.11.7",
     "draft-js-export-html": "1.4.1",
     "draft-js-import-html": "1.4.1",
-    "@floating-ui/react": "0.27.8",
+    "@floating-ui/react": "0.27.12",
     "moment": "2.29.4",
     "react-datepicker": "4.8.0",
     "react-popper": "2.3.0",
@@ -35,8 +35,8 @@
     "lexical": "^0.11.1"
   },
   "peerDependencies": {
-    "prop-types": "^15.0.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "prop-types": ">=15.0.0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   }
 }
