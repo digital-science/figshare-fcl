@@ -8,6 +8,10 @@
   }
 }
 
+a {
+  text-decoration: underline;
+}
+
 a,
 button {
   appearance: none;
@@ -50,10 +54,6 @@ button {
     color: var(--color-button-tertiary-label_disabled);
     background: var(--color-button-tertiary-background_disabled);
   }
-}
-
-a:not([href^="mailto:"]) {
-  text-decoration: underline;
 }
 
 input[type="text"],
