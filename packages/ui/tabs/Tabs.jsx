@@ -197,7 +197,7 @@ export function TabOverflow({ elements }) {
         className={styles.tabOverflowButton}
         innerRef={refs.setReference}
         theme="secondaryAlt"
-        tooltip="Show more tabs"
+        tooltip="View additional tabs"
         {...getReferenceProps()}
       >
         <More />
@@ -210,7 +210,7 @@ export function TabOverflow({ elements }) {
             style={floatingStyles}
             {...getFloatingProps()}
           >
-            {elements.map((el) => {
+            {elements.map((el, i) => {
               const isActive = el.props.active ?? (el.props.value !== undefined && tab === el.props.value);
               const onClickWithClose = (event) => {
                 const onClick = el.props.onClick ?? onTabClick;
@@ -224,7 +224,7 @@ export function TabOverflow({ elements }) {
 
               return (
                 <li
-                  key={el.props.value}
+                  key={el.props.value ?? i}
                   className={styles.tabOverflowItem}
                 >
                   <Button
