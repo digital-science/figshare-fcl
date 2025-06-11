@@ -1,5 +1,5 @@
 import { withTests } from "@storybook/addon-jest";
-import "@figshare/fcl/styles/index.css";
+import "@digital-science/figshare-fcl/styles/index.css";
 
 import "./styles/index.css";
 

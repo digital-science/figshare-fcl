@@ -24,25 +24,25 @@ The package is provided through the GitHub packages registry; in order to be abl
 
 You can now install the components package to your project's `node_modules`:
 ```
-npm install --save @figshare/fcl
+npm install --save @digital-science/figshare-fcl
 ```
 
 The sources are provided as is, and the components need to be passed through your projects `build/transpilation pipeline` as a transpiled distribution is not provided.
 
 If you're using Webpack, you can configure your Babel loader rules to `include node_modules/@figshare` in the transpilation process. Our components are provided as class components with `es6` class features such as `statics` and `class properties`, so you may need to allow these features in your `babelrc` file. See `@babel/proposal-class-properties`.
 
-Stylesheets are imported using `css-modules` so you might have to configure your pipeline to support them. The library exposes rules and variables through the `index.css` file available in `@figshare/fcl/styles/`. Import it in your project entry point:
+Stylesheets are imported using `css-modules` so you might have to configure your pipeline to support them. The library exposes rules and variables through the `index.css` file available in `@digital-science/figshare-fcl/styles/`. Import it in your project entry point:
 
 ```
-import "@figshare/fcl/styles/index.css"
+import "@digital-science/figshare-fcl/styles/index.css"
 ```
 
-We recommend setting a custom `css-module` name generation rule for class names defined for files inside `node_modules/@figshare/fcl` to `fcl-[name]-[local]`:
+We recommend setting a custom `css-module` name generation rule for class names defined for files inside `node_modules/@digital-science/figshare-fcl` to `fcl-[name]-[local]`:
 
 ```js
 // webpack loader example:
 {
-    test: "**/@figshare/fcl/**.css"
+    test: "**/@digital-science/figshare-fcl/**.css"
     use: [{
     loader: "css-loader",
     options: {
@@ -62,8 +62,8 @@ This will allow you to easily reference and target FCL component `classnames` in
 To use components simply import them from the package. You can find examples in the stories folder or on the documentation site (see below).
 
 ```jsx
-import { Button, IconButton } "@figshare/fcl/button"
-import Calendar "@figshare/fcl/icons/calendar";
+import { Button, IconButton } "@digital-science/figshare-fcl/button"
+import Calendar "@digital-science/figshare-fcl/icons/calendar";
 
 // render
 <Button onClick={...}>A Button</Button>

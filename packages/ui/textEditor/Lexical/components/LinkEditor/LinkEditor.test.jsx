@@ -1,7 +1,7 @@
 import Enzyme, { mount } from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import React from "react";
-import { OverlayContent, OverlayFooter } from "@figshare/fcl/overlay";
+import { OverlayContent, OverlayFooter } from "@digital-science/figshare-fcl/overlay";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 
 import defaultTheme from "../../themes/DefaultTheme";

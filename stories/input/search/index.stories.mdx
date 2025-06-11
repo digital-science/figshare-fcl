@@ -1,7 +1,7 @@
 
 import { useState, useCallback } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import SearchInput from "@figshare/fcl/input/search";
+import SearchInput from "@digital-science/figshare-fcl/input/search";
 
 <Meta 
   title="UI/Inputs/Search" 
@@ -49,8 +49,8 @@ Allows users to type in a search query and submit that query to search for resul
 Can be imported standalone or as a variation of the `Input` component:
 
 ```jsx
-import SearchInput from "@figshare/fcl/input/search";
-import Input from "@figshare/fcl/input";
+import SearchInput from "@digital-science/figshare-fcl/input/search";
+import Input from "@digital-science/figshare-fcl/input";
 
 const Query = ({ handleQuerySubmission }) => {
     const [query, setQuery] = useState("");

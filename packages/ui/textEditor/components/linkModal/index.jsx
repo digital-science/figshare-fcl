@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { Button } from "@figshare/fcl/button";
+import { Button } from "@digital-science/figshare-fcl/button";
 
 import { findEntityType } from "../../utils";
 

@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { Tabs, TabsList, Tab, TabsPanel, TabEntry } from "@figshare/fcl/tabs";
-import { Button } from "@figshare/fcl/button";
-import Edit from "@figshare/fcl/icons/react/Edit";
+import { Tabs, TabsList, Tab, TabsPanel, TabEntry } from "@digital-science/figshare-fcl/tabs";
+import { Button } from "@digital-science/figshare-fcl/button";
+import Edit from "@digital-science/figshare-fcl/icons/react/Edit";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
 const tab = "map";
@@ -78,13 +78,13 @@ The component will show tabs in the space that it is given. It will show tabs th
   }}
 </Story>
 
-The component can be imported from `@figshare/fcl/tabs`.
+The component can be imported from `@digital-science/figshare-fcl/tabs`.
 See examples below on how add tabs to your pages.
 
 
 ```jsx
 import React from "react";
-import { Tabs } from "@figshare/fcl/tabs";
+import { Tabs } from "@digital-science/figshare-fcl/tabs";
 
 // Tab state is managed internally by the Tabs component
 function TabsWithRootComponentAndUnmanagedState() {
@@ -180,7 +180,7 @@ function TabsWithoutRootComponent() {
 }
 
 // Using individually imported components from the set
-import { TabsList, Tab, TabsPanel, TabEntry } from "@figshare/fcl/tabs";
+import { TabsList, Tab, TabsPanel, TabEntry } from "@digital-science/figshare-fcl/tabs";
 
 function IndividuallyImportedComponents() {
   const [tab, setTab] = useState("map");

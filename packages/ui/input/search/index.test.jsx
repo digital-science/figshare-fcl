@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "@figshare/fcl/button";
+import { IconButton } from "@digital-science/figshare-fcl/button";
 import { shallow } from "enzyme";
 
 import SearchForm from "./index";
