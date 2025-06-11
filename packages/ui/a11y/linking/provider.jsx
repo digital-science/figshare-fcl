@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import isFunction from "@figshare/fcl/helpers/utils/isFunction";
+import isFunction from "@digital-science/figshare-fcl/helpers/utils/isFunction";
 
 import Context from "./context";
 import { mutations, reading } from "./storage";

@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import React from "react";
-import Eye from "@figshare/fcl/icons/eye/visible/medium";
-import Info from "@figshare/fcl/icons/info/medium";
-import Warning from "@figshare/fcl/icons/warning/medium";
+import Eye from "@digital-science/figshare-fcl/icons/eye/visible/medium";
+import Info from "@digital-science/figshare-fcl/icons/info/medium";
+import Warning from "@digital-science/figshare-fcl/icons/warning/medium";
 
 import styles from "./note.css";
 

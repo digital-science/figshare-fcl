@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Info from "@figshare/fcl/icons/info/medium";
-import { Button, IconButton, GenericButton} from "@figshare/fcl/button";
+import Info from "@digital-science/figshare-fcl/icons/info/medium";
+import { Button, IconButton, GenericButton} from "@digital-science/figshare-fcl/button";
 
-import { Toggletip, Trigger, Content, UncontrolledToggletip } from "@figshare/fcl/toggletip";
+import { Toggletip, Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
 import styles from "./index.stories.css";
 
 <Meta
@@ -77,7 +77,7 @@ The component is a composite of a `Manager - Trigger - Content` set similar to o
 and can be imported from:
 
 ```jsx
-import Toggletip, { Trigger, Content } from "@figshare/fcl/toggletip";
+import Toggletip, { Trigger, Content } from "@digital-science/figshare-fcl/toggletip";
 
 function MyToggletip() {
   const [isVisible, setIsVisible] = useState(false);
@@ -117,7 +117,7 @@ function MyToggletip() {
 We also export an `uncontrolled` version of the component for convenience, where we do not need to explicity control the visibility state:
 
 ```jsx
-import { Trigger, Content, UncontrolledToggletip } from "@figshare/fcl/toggletip";
+import { Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
 
 function MyUncontrolledToggletip() {
   return (

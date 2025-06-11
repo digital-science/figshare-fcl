@@ -1,9 +1,9 @@
 import React, { useState, useRef, useMemo, useContext, createContext, useCallback, Children, useEffect } from "react";
 import { array, any, bool, func, string, number, node, oneOfType } from "prop-types";
 import classnames from "classnames";
-import { Button } from "@figshare/fcl/button";
-import RenderSwitch from "@figshare/fcl/renderSwitch";
-import { useControllableState } from "@figshare/fcl/helpers/useControllableState";
+import { Button } from "@digital-science/figshare-fcl/button";
+import RenderSwitch from "@digital-science/figshare-fcl/renderSwitch";
+import { useControllableState } from "@digital-science/figshare-fcl/helpers/useControllableState";
 import {
   useFloating, autoUpdate,
   useInteractions,

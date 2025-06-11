@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { Alerts, pushAlert, clearAlerts } from "@figshare/fcl/alerts";
-import { Button } from "@figshare/fcl/button";
+import { Alerts, pushAlert, clearAlerts } from "@digital-science/figshare-fcl/alerts";
+import { Button } from "@digital-science/figshare-fcl/button";
 
 <Meta
   title="UI/Alerts/Alerts"
@@ -79,14 +79,14 @@ The module exports utilities to easily dispatch such events.
   }}
 </Story>
 
-The component and utilities can be imported from `@figshare/fcl/alerts`.
+The component and utilities can be imported from `@digital-science/figshare-fcl/alerts`.
 See the example below on how to register a alerts component and `push` or `clear` alerts for it.
 
 
 ```jsx
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import TextInput from "@figshare/fcl/input/text";
-import { Alerts, pushAlert, clearAlerts } from "@figshare/fcl/alerts";
+import TextInput from "@digital-science/figshare-fcl/input/text";
+import { Alerts, pushAlert, clearAlerts } from "@digital-science/figshare-fcl/alerts";
 
 function AlertsExample() {
   const [description, setDescription] = useState("");

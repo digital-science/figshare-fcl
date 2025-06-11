@@ -20,7 +20,7 @@ export default class IconButton extends Component {
     /**
       Icon component button label.
       Must be a functional or class component.
-      For example you can use the icon components provided in `@figshare/fcl/icons`.
+      For example you can use the icon components provided in `@digital-science/figshare-fcl/icons`.
      */
     Icon: PropTypes.elementType.isRequired,
     /**

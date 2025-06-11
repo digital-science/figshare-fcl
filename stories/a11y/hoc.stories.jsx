@@ -1,6 +1,10 @@
 import React from "react";
-import { Button } from "@figshare/fcl/button";
-import { LinkingProvider, withLinkingObject, withLinkingReference } from "@figshare/fcl/a11y/linking/index";
+import { Button } from "@digital-science/figshare-fcl/button";
+import {
+  LinkingProvider,
+  withLinkingObject,
+  withLinkingReference,
+} from "@digital-science/figshare-fcl/a11y/linking/index";
 
 // eslint-disable-next-line css-modules/no-unused-class
 import styles from "./storybook.stories.css";

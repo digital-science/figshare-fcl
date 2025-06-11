@@ -3,12 +3,12 @@ import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { useCallback, useContext, useEffect, useState } from "react";
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Button } from "@figshare/fcl/button";
-import { OverlayContent, OverlayFooter, OverlayHeader } from "@figshare/fcl/overlay";
-import { OverlayContext } from "@figshare/fcl/overlay/overlay";
-import Input from "@figshare/fcl/input";
-import GoToLinkLarge from "@figshare/fcl/icons/goToLink/large";
-import LinkUnlinked from "@figshare/fcl/icons/link/unlinked";
+import { Button } from "@digital-science/figshare-fcl/button";
+import { OverlayContent, OverlayFooter, OverlayHeader } from "@digital-science/figshare-fcl/overlay";
+import { OverlayContext } from "@digital-science/figshare-fcl/overlay/overlay";
+import Input from "@digital-science/figshare-fcl/input";
+import GoToLinkLarge from "@digital-science/figshare-fcl/icons/goToLink/large";
+import LinkUnlinked from "@digital-science/figshare-fcl/icons/link/unlinked";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 import { getSelectedNode, sanitizeUrl, makeURLAbsolute } from "./utils";

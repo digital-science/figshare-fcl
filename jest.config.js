@@ -30,7 +30,7 @@ module.exports = {
   moduleNameMapper: {
     "\\.css$": require.resolve("identity-obj-proxy"),
     "file-loader!*": "<rootDir>/scripts/tests/fileTransformer.js",
-    "@figshare/fcl/(.*)": "@figshare/fcl/$1",
+    "@digital-science/figshare-fcl/(.*)": "@digital-science/figshare-fcl/$1",
   },
   testEnvironment: "jsdom",
 };

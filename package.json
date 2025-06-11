@@ -1,5 +1,5 @@
 {
-  "name": "@figshare/fcl-documentation",
+  "name": "@digital-science/figshare-fcl-documentation",
   "description": "Figshare components library (FCL) for research repositories",
   "engines": {
     "node": ">=10.0.0"
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/figshare/fcl.git"
+    "url": "git+https://github.com/digital-science/figshare-fcl.git"
   },
   "keywords": [
     "figshare",
@@ -107,7 +107,7 @@
     "worker-loader": "3.0.8"
   },
   "dependencies": {
-    "@figshare/fcl": "file:./packages/ui",
+    "@digital-science/figshare-fcl": "file:./packages/ui",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "core-js": "3.26.1",
     "regenerator-runtime": "0.13.11"

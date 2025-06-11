@@ -1,8 +1,8 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 
-import uncontrollable from "@figshare/fcl/helpers/uncontrollable";
-import DatePickerComponent from "@figshare/fcl/input/date/index";
-import InputComponent from '@figshare/fcl/input/index';
+import uncontrollable from "@digital-science/figshare-fcl/helpers/uncontrollable";
+import DatePickerComponent from "@digital-science/figshare-fcl/input/date/index";
+import InputComponent from '@digital-science/figshare-fcl/input/index';
 
 export const DatePicker = uncontrollable(
   DatePickerComponent,
@@ -56,8 +56,8 @@ Allows users to select a date value from an associated calendar or to type in a 
 
 Can be imported individually or referenced as a variation of the `Input` component:
 ```jsx
-import DatePicker from "@figshare/fcl/input/date";
-import Input from "@figshare/fcl/input";
+import DatePicker from "@digital-science/figshare-fcl/input/date";
+import Input from "@digital-science/figshare-fcl/input";
 
 <DatePicker onChange={(date) => {}} />
 <Input type="date" onChange={(date) => {}} />
@@ -86,8 +86,8 @@ import Input from "@figshare/fcl/input";
 
 ```jsx
 import React from "react";
-import DatePicker from "@figshare/fcl/input/date";
-import Input from "@figshare/fcl/input";
+import DatePicker from "@digital-science/figshare-fcl/input/date";
+import Input from "@digital-science/figshare-fcl/input";
 
 class Example extends React.Component {
   state = {

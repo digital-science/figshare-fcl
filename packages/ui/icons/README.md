@@ -14,4 +14,4 @@ A collection of icons, implemented as react components, to be used in react-base
 
 [coverage]: https://img.shields.io/badge/code_coverage-100%25-brightgreen?logo=jest "jest code coverage"
 
-[figshare]: https://img.shields.io/badge/-%40figshare%2Ficons-blue?logo=npm&style=for-the-badge "@figshare/fcl/icons"
+[figshare]: https://img.shields.io/badge/-%40figshare%2Ficons-blue?logo=npm&style=for-the-badge "@digital-science/figshare-fcl/icons"

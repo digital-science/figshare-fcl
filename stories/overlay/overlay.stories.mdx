@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import { Meta, Canvas, Story, ArgsTable } from "@storybook/addon-docs/blocks";
-import {Button, GenericButton} from '@figshare/fcl/button';
-import {Input} from '@figshare/fcl/input';
-import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@figshare/fcl/overlay";
-import Toggletip, { Trigger, Content, UncontrolledToggletip } from "@figshare/fcl/toggletip";
+import {Button, GenericButton} from '@digital-science/figshare-fcl/button';
+import {Input} from '@digital-science/figshare-fcl/input';
+import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@digital-science/figshare-fcl/overlay";
+import Toggletip, { Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
 
 import style from './overlay.stories.css';
 
@@ -161,7 +161,7 @@ and ensure appropriate spacing between the structure elements.
 The component set can be imported from `fcl/overlay`:
 
 ```jsx
-import { Overlay, OverlayHeader, OverlayFooter, OverlayContent } from "@figshare/fcl/overlay";
+import { Overlay, OverlayHeader, OverlayFooter, OverlayContent } from "@digital-science/figshare-fcl/overlay";
 
 function MyOverlay({ onSave }) {
   const [opened, setOpened] = useState("");
@@ -216,7 +216,7 @@ function MyOverlay({ onSave }) {
 </Canvas>
 
 ```jsx
-import { Overlay, OverlayHeader, OverlayFooter, OverlayContent } from "@figshare/fcl/overlay";
+import { Overlay, OverlayHeader, OverlayFooter, OverlayContent } from "@digital-science/figshare-fcl/overlay";
 
 export const MoreContent = () => {
   const content = useMemo(() =>  (Array.from(new Array(20), (v, i) => 

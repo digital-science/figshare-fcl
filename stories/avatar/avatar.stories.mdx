@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { Avatar } from "@figshare/fcl/avatar";
-import { Button } from "@figshare/fcl/button";
+import { Avatar } from "@digital-science/figshare-fcl/avatar";
+import { Button } from "@digital-science/figshare-fcl/button";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
 
@@ -45,13 +45,13 @@ Will fallback to showing the initials if the avatar image could not be loaded.
   }}
 </Story>
 
-The component can be imported from `@figshare/fcl/avatar`.
+The component can be imported from `@digital-science/figshare-fcl/avatar`.
 See the example below on how add an avatar to your pages.
 
 
 ```jsx
 import React from "react";
-import { Avatar } from "@figshare/fcl/avatar";
+import { Avatar } from "@digital-science/figshare-fcl/avatar";
 
 function AvatarExample() {
     return (

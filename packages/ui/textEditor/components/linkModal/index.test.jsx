@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { EditorState } from "draft-js";
-import { Button } from "@figshare/fcl/button";
+import { Button } from "@digital-science/figshare-fcl/button";
 
 import { onConvertHTMLtoDraft } from "../../utils";
 
