@@ -98,4 +98,4 @@ You can also build a static version of the documentation and serve it later by r
 [storybook-url]: https://storybook.js.org/
 
 [ui]: https://img.shields.io/badge/-%40figshare%2Ffcl-blue?logo=npm "@digital-science/figshare-fcl"
-[ui-url]: https://github.com/figshare/fcl/packages/1
+[ui-url]: https://github.com/digital-science/figshare-fcl/packages/1

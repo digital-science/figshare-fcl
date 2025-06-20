@@ -46,9 +46,9 @@
   "author": "Digital Science",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/figshare/fcl/issues"
+    "url": "https://github.com/digital-science/figshare-fcl/issues"
   },
-  "homepage": "https://github.com/figshare/fcl#readme",
+  "homepage": "https://github.com/digital-science/figshare-fcl#readme",
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@babel/eslint-parser": "7.16.5",
