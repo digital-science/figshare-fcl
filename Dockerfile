@@ -1,6 +1,6 @@
 ARG registry=942286566325.dkr.ecr.eu-west-1.amazonaws.com
 FROM ${registry}/figshare/debian:11 AS development
-LABEL org.opencontainers.image.source https://github.com/figshare/fcl
+LABEL org.opencontainers.image.source https://github.com/digital-science/figshare-fcl
 
 ENV ENV=production
 ENV TERM=xterm
