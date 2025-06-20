@@ -8,6 +8,10 @@
   }
 }
 
+button {
+  text-decoration: none;
+}
+
 a {
   text-decoration: underline;
 }
@@ -21,8 +25,6 @@ button {
 
   margin: 0;
   padding: 0;
-
-  text-decoration: none;
 
   color: var(--color-button-tertiary-label);
   border: 0 none transparent;
