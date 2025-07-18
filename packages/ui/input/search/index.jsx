@@ -44,6 +44,12 @@ export default class SearchInput extends PureComponent {
      Search action http method.
      */
     method: PropTypes.string,
+
+    /**
+    * The search icon button type
+    */
+    searchButtonType: PropTypes.oneOf(["submit", "button"]),
+
     /**
      Controls the size variant of the input.
      */
@@ -79,12 +85,17 @@ export default class SearchInput extends PureComponent {
     value: undefined,
     onChange: undefined,
     onSubmit: undefined,
+    searchButtonType: "submit",
   }
 
   state = { isInputFocused: false }
 
   render() {
-    const { className, disabled, error, label, value, method, size, theme, action, onSubmit, ...props } = this.props;
+    const {
+      className, disabled, error, label,
+      value, method, size, theme, action,
+      searchButtonType, onSubmit, ...props
+    } = this.props;
     const { isInputFocused } = this.state;
     const SubmitIcon = iconSizes.submit[size];
 
@@ -120,8 +131,15 @@ export default class SearchInput extends PureComponent {
           onFocus={this.onFocus}
         />
         {this.renderClearIcon()}
-        <IconButton Icon={SubmitIcon} data-search-url={`/search?q=${value}`} size={size} theme="tertiary" type="submit">
-          Search
+        <IconButton
+          Icon={SubmitIcon}
+          data-search-url={`/search?q=${value}`}
+          size={size}
+          tabIndex={searchButtonType === "button" ? -1 : undefined}
+          theme="tertiary"
+          type={searchButtonType}
+        >
+          {searchButtonType === "button" ? "" : "Search"}
         </IconButton>
       </form>
     );
