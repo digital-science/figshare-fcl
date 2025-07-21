@@ -28,6 +28,8 @@ export function Tabs({ children, value, defaultValue, onChange }) {
   const [tab, setTab] = useControllableState({ value, defaultValue, onChange });
 
   const onTabClick = useCallback((e) => {
+    e.preventDefault?.();
+
     setTab(e.target.getAttribute("data-value"));
   }, [setTab]);
 
@@ -62,23 +64,25 @@ function sumUp(indices, widths) {
 
 export function TabsList({ children, className, ...rest }) {
   const info = useRef({ scrollWidth: 0, isSet: false, widths: [], shown: [], hidden: [], children });
-  const [indices, setIndices] = useState({ shown: Object.keys(Children.toArray(children)), hidden: [] });
+  const childrenList = useMemo(() => Children.toArray(children), [children]);
+  const [indices, setIndices] = useState({ shown: Object.keys(childrenList), hidden: [] });
   const showToggle = !!indices.hidden.length;
   const visibleListRef = useRef(null);
   const hiddenListRef = useRef(null);
 
   useEffect(() => {
     info.current.children = children;
-  }, [children]);
+    info.current.childrenList = childrenList;
+  }, [children, childrenList]);
 
   const onResize = useCallback(debounce(() => {
     const visibleList = visibleListRef.current ?? { scrollWidth: 0, clientWidth: 0 };
     const hiddenList = hiddenListRef.current ?? { childNodes: [] };
     const { scrollWidth, clientWidth } = visibleList;
-    const { children: rclist } = info.current;
+    const { childrenList: rclist } = info.current;
 
     if (scrollWidth <= clientWidth || rclist.length <= 1) {
-      setIndices({ shown: Object.keys(Children.toArray(rclist)), hidden: [] });
+      setIndices({ shown: Object.keys(rclist), hidden: [] });
 
       return;
     }
@@ -90,7 +94,7 @@ export function TabsList({ children, className, ...rest }) {
 
     const { widths } = info.current;
 
-    const all = Object.keys(Children.toArray(rclist));
+    const all = Object.keys(rclist);
     let hidden = [];
     let total = sumUp(all, widths) + info.current.totals.toggle;
     const shown = [];
@@ -136,8 +140,8 @@ export function TabsList({ children, className, ...rest }) {
       role="tablist"
       {...rest}
     >
-      {indices.shown.map((i) => <React.Fragment key={i}>{children[i]}</React.Fragment>)}
-      {showToggle && <TabOverflow elements={indices.hidden.map((i) => children[i])} />}
+      {indices.shown.map((i) => <React.Fragment key={i}>{childrenList[i]}</React.Fragment>)}
+      {showToggle && <TabOverflow elements={indices.hidden.map((i) => childrenList[i])} />}
       <div
         ref={hiddenListRef}
         aria-hidden="true"

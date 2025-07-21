@@ -43,6 +43,7 @@
 
   text-decoration: none;
   word-break: keep-all;
+  justify-content: center;
 
   color: var(--tab-color);
   border: 1px solid var(--tab-border-color);
