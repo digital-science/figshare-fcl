@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
-import { bool, func, string } from "prop-types";
+import { any, bool, func, string } from "prop-types";
 
 import styles from "./index.css";
 
@@ -67,9 +67,9 @@ Radio.propTypes = {
    */
   id: string,
   /**
-    * Label text for the button.
+    * Label for the button.
   */
-  label: string,
+  label: any,
   /**
    * The name of the input
   */
