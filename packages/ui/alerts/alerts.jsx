@@ -1,5 +1,5 @@
 import React from "react";
-import { string, bool, array } from "prop-types";
+import { string, bool, array, func } from "prop-types";
 import classnames from "classnames";
 
 import { IconButton } from "../button";
@@ -58,6 +58,11 @@ export class Alerts extends React.PureComponent {
       * If true, content will also be visually centered.
     */
     noTypeIcon: bool,
+
+    /**
+     * Optional event handler for the dismiss event
+     */
+    onDismiss: func,
   }
 
   static defaultProps = {
@@ -68,6 +73,7 @@ export class Alerts extends React.PureComponent {
     noTypeIcon: false,
     initialMessages: undefined,
     margin: true,
+    onDismiss: undefined,
   }
 
   state = { messages: this.props.initialMessages ?? [], id: this.props.id }
@@ -224,8 +230,10 @@ export class Alerts extends React.PureComponent {
 
   onHideAlert = (alert) => () => {
     const { id: componentChannel } = this.state;
+    const { onDismiss } = this.props;
 
     popAlert(componentChannel, alert.id);
+    onDismiss?.(alert);
   }
 
   clearExistingTicket(id) {
