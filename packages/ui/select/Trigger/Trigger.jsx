@@ -6,7 +6,6 @@ import ChevronDown from "../../icons/chevron/down/medium";
 import ChevronDownSmall from "../../icons/chevron/down/small";
 import ChevronDownLarge from "../../icons/chevron/down/large";
 import Cancel from "../../icons/cancel/medium.jsx";
-import { Content, Trigger as TooltipTrigger, UncontrolledTooltip as Tooltip } from "../../tooltip/index.jsx";
 import { Toggle } from "../../dropdown";
 import { Button } from "../../button";
 import withRef from "../../helpers/withRef.jsx";
@@ -77,6 +76,7 @@ export class Trigger extends Component {
       setTriggerRef,
       variant,
       onClear,
+      iconSize,
       ...buttonProps
     } = this.props;
     const { size } = this.context;
@@ -85,6 +85,18 @@ export class Trigger extends Component {
       style.trigger,
       { [style.error]: error },
       variants[variant].trigger,
+      className,
+    ];
+
+    const Icon = variants[variant].arrow || Icons[iconSize];
+    const carretClassName = [
+      style.caret,
+      variants[variant].icon,
+      {
+        [style["caret-small"]]: size === "S" || iconSize === "small",
+        [style["caret-medium"]]: size === "M" || iconSize === "medium",
+        [style["caret-large"]]: size === "L" || iconSize === "large",
+      },
       className,
     ];
 
@@ -102,76 +114,28 @@ export class Trigger extends Component {
             className={classnames(classNames)}
           >
             <span className={classnames(style.text, variants[variant].text)}>{children}</span>
-
-            {onClear &&
-              <Tooltip hideDelay={0}>
-                {this.renderClearTooltip}
-              </Tooltip>}
-
-            <Tooltip hideDelay={0}>
-              {this.renderShowTooltip}
-            </Tooltip>
+            {onClear && (
+              <Button
+                {...props}
+                className={classnames(style.tooltipButton, style.clear)}
+                tooltip="Clear selection"
+                onClick={this.onClear}
+              >
+                <Cancel className={style.icon} />
+              </Button>
+            )}
+            <Button
+              className={style.tooltipButton}
+              tooltip="Show options"
+              {...props}
+            >
+              <Icon className={classnames(carretClassName)} />
+            </Button>
           </Button>
         </div>
       </div>
     );
   }
-
-  renderShowTooltip = () => (
-    <>
-      <TooltipTrigger>
-        {this.renderShowTrigger}
-      </TooltipTrigger>
-      <Content placement="top" strategy="fixed">
-        {this.renderShowContent}
-      </Content>
-    </>
-  )
-
-  renderClearTooltip = () => (
-    <>
-      <TooltipTrigger>
-        {this.renderClearTrigger}
-      </TooltipTrigger>
-      <Content placement="top" strategy="fixed">
-        {this.renderClearContent}
-      </Content>
-    </>
-  )
-
-  renderShowTrigger = ({ ...props }) => {
-    const { variant, className, iconSize } = this.props;
-    const { size } = this.context;
-
-    const Icon = variants[variant].arrow || Icons[iconSize];
-    const carretClassName = [
-      style.caret,
-      variants[variant].icon,
-      {
-        [style["caret-small"]]: size === "S" || iconSize === "small",
-        [style["caret-medium"]]: size === "M" || iconSize === "medium",
-        [style["caret-large"]]: size === "L" || iconSize === "large",
-      },
-      className,
-    ];
-
-    return (
-      <Button
-        className={style.tooltipButton}
-        {...props}
-      >
-        <Icon className={classnames(carretClassName)} />
-      </Button>);
-  }
-
-  renderClearTrigger = ({ ...props }) => (
-    <Button {...props} className={classnames(style.tooltipButton, style.clear)} onClick={this.onClear}>
-      <Cancel className={style.icon} />
-    </Button>);
-
-  renderClearContent = ({ ...props }) => <div {...props} className={style.tooltip}>Clear selection</div>;
-
-  renderShowContent = ({ ...props }) => <div {...props} className={style.tooltip}>Show options</div>;
 
   onClear = (event) => {
     const { onClear, id } = this.props;
@@ -189,5 +153,3 @@ export const TriggerWithRef = withRef(Trigger);
 TriggerWithRef.displayName = "TriggerWithRef";
 
 export default TriggerWithRef;
-
-

@@ -27,7 +27,7 @@
     text-decoration: none;
 
     color: var(--color-typography-primary);
-    border: 2px solid var(--color-branding-figTurquoise);
+    border: 2px solid var(--color-border-active);
     outline: none;
     background: var(--color-layout-primary-background);
     box-shadow: none;
@@ -164,10 +164,6 @@
 
 .icon {
   fill: var(--color-icon-secondary);
-}
-
-.tooltip {
-  white-space: nowrap;
 }
 
 .trigger[disabled] > .tooltipButton {
