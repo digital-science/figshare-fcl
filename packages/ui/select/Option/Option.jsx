@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { Component, createRef } from "react";
 
 import { Button } from "../../button";
-import Checkmark from "../../icons/checkMark/medium.jsx";
+import Checkmark from "../../input/checkbox/components/checkmark.jsx";
 import Context from "../context.js";
 
 import { debounce } from "./utils.js";
