@@ -48,6 +48,9 @@
 }
 
 .input {
+  font-size: var(--typography-M-fontSize);
+  line-height: var(--typography-M-lineHeight);
+
   overflow: hidden;
 
   width: 100%;
