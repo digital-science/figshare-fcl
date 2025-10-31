@@ -35,6 +35,9 @@
   position: relative;
 
   display: flex;
+  align-items: center;
+
+  gap: calc(2 * var(--gridSize));
 
   padding: calc(2 * var(--gridSize)) calc(5 * var(--gridSize));
 
@@ -86,7 +89,7 @@
 }
 
 .hidden {
-  position: absolute;
+  position: fixed;
 
   display: flex;
   visibility: hidden;

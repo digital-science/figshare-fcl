@@ -28,8 +28,8 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
 
   const fullName = useMemo(() => `${firstName} ${lastName}`.trim(), [firstName, lastName]);
   const initialsStr = useMemo(() => {
-    const a = firstName[0] || "";
-    const b = lastName[0] || "";
+    const a = firstName?.[0] ?? "";
+    const b = lastName?.[0] ?? "";
 
     return `${a}${b}`;
   }, [firstName, lastName]);
