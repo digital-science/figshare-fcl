@@ -124,7 +124,7 @@ export class Content extends Component {
   }
 
   onSearch = (search) => {
-    const searchValue = search.target.value;
+    const searchValue = search?.target?.value;
     this.setState({ search: searchValue });
     this.context.onSearch(searchValue);
   }
