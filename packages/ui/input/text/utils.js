@@ -11,9 +11,15 @@ const LTR =
 
 const RTL_REGEX = new RegExp(`^[^${LTR}]*[${RTL}]`);
 const LTR_REGEX = new RegExp(`^[^${RTL}]*[${LTR}]`);
+const RTL_CHECK = new RegExp(`[${RTL}]`);
+const LTR_CHECK = new RegExp(`[${LTR}]`);
 
 
 export const getTextDirection = (text) => {
+  if (RTL_CHECK.test(text) && LTR_CHECK.test(text)) {
+    return null;
+  }
+
   if (RTL_REGEX.test(text)) {
     return "rtl";
   }
