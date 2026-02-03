@@ -49,16 +49,12 @@ module.exports = ({ config: defaultConfig }) => {
     module: {
       ...defaultConfig.module,
       rules: [
-        {
-          test: /\.worker\.js$/,
-          use: { loader: require.resolve("worker-loader") },
-        },
         ...rules,
         {
           // eslint-disable-next-line max-len
           test: /.*__files__\/.*(?<!\.(pdf|js|jsx|svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|mp4|webm|wav|mp3|m4a|aac|oga))$/,
-          loader: require.resolve("file-loader"),
-          query: { name: "static/media/[name].[hash:8].[ext]" },
+          type: "asset/resource",
+          generator: { filename: "static/media/[name].[hash:8][ext]" },
         },
       ],
     },
