@@ -1,5 +1,14 @@
 module.exports = {
   stories: ["../stories/**/*.stories.@(js|jsx|mdx|mjs|mjsx)"],
+  core: {
+    builder: {
+      name: "webpack5",
+      options: {
+        fsCache: true,
+        lazyCompilation: true,
+      },
+    },
+  },
   addons: [
     {
       name: "@storybook/addon-docs", options: {

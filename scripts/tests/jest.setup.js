@@ -2,16 +2,44 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Enzyme from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import nodeCrypto from "crypto";
+import { webcrypto } from "crypto";
 
 
 Enzyme.configure({ adapter: new Adapter() });
 
-window.crypto = {
-  getRandomValues(buffer) {
-    return nodeCrypto.randomFillSync(buffer);
-  },
-};
+if (!global.crypto) {
+  global.crypto = webcrypto;
+}
+
+class MockIntersectionObserver {
+  constructor(callback) {
+    this.callback = callback;
+    this.elements = new Set();
+  }
+
+  observe(element) {
+    this.elements.add(element);
+    this.callback([{
+      isIntersecting: true,
+      target: element,
+      time: Date.now(),
+    }]);
+  }
+
+  unobserve(element) {
+    this.elements.delete(element);
+  }
+
+  disconnect() {
+    this.elements.clear();
+  }
+
+  takeRecords() {
+    return [];
+  }
+}
+
+global.IntersectionObserver = MockIntersectionObserver;
 
 jest.mock(
   "@popperjs/core",
