@@ -3,7 +3,7 @@
     "stylelint-config-standard",
     "stylelint-config-css-modules"
   ],
-  "plugins": ["stylelint-a11y", "stylelint-order"],
+  "plugins": ["stylelint-order"],
   "rules": {
     "alpha-value-notation": null,
     "custom-property-pattern": null,
@@ -31,16 +31,6 @@
       }
     ],
     "value-keyword-case": ["lower", { "ignoreProperties": ["composes"], "severity": "error" }],
-    "a11y/media-prefers-reduced-motion": true,
-    "a11y/no-outline-none": true,
-    "a11y/selector-pseudo-class-focus": true,
-    "a11y/font-size-is-readable": [true, { "severity": "warning" }],
-    "a11y/line-height-is-vertical-rhythmed": [true, { "severity": "warning" }],
-    "a11y/no-display-none": [true, { "severity": "warning" }],
-    "a11y/no-spread-text": [true, { "severity": "warning" }],
-    "a11y/no-obsolete-attribute": [true, { "severity": "warning" }],
-    "a11y/no-obsolete-element": [true, { "severity": "warning" }],
-    "a11y/no-text-align-justify": [true, { "severity": "warning" }],
     "order/order": [
       "custom-properties",
       "dollar-variables",

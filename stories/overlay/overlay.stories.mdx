@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Meta, Canvas, Story, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Story, ArgTypes } from "@storybook/blocks";
 import {Button, GenericButton} from '@digital-science/figshare-fcl/button';
 import {Input} from '@digital-science/figshare-fcl/input';
 import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@digital-science/figshare-fcl/overlay";
@@ -191,22 +191,22 @@ function MyOverlay({ onSave }) {
 <br/>
 
 ### Overlay
-<ArgsTable of={Overlay} />
+<ArgTypes of={Overlay} />
 
 ### OverlayHeader
-<ArgsTable of={OverlayHeader} />
+<ArgTypes of={OverlayHeader} />
 
 ### OverlayContent
-<ArgsTable of={OverlayContent} />
+<ArgTypes of={OverlayContent} />
 
 ### OverlayFooter
-<ArgsTable of={OverlayFooter} />
+<ArgTypes of={OverlayFooter} />
 
 ### OverlayFooter.Primary
-<ArgsTable of={PrimaryActions} />
+<ArgTypes of={PrimaryActions} />
 
 ### OverlayFooter.Secondary
-<ArgsTable of={SecondaryActions} />
+<ArgTypes of={SecondaryActions} />
 
 
 ## Examples

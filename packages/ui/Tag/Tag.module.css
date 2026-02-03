@@ -1,0 +1,69 @@
+.tag {
+  --tag-color: #3b3e55;
+  --tag-background: #f1f1f3;
+  --tag-border-radius: calc(0.5 * var(--gridSize));
+
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px;
+
+  display: inline-flex;
+  flex-direction: row;
+
+  max-width: fit-content;
+  padding: calc(0.5 * var(--gridSize)) calc(2 * var(--gridSize));
+
+  white-space: nowrap;
+
+  color: var(--tag-color);
+  border-radius: var(--tag-border-radius);
+  background-color: var(--tag-background);
+  fill: var(--tag-color);
+  gap: var(--gridSize);
+  align-items: center;
+  justify-content: center;
+}
+
+.tag > span::first-letter {
+  text-transform: uppercase;
+}
+
+.pill {
+  --tag-border-radius: calc(2 * var(--gridSize));
+}
+
+.tag[data-color="neutral"] {
+  --tag-color: #3b3e55;
+  --tag-background: #f1f1f3;
+}
+
+.tag[data-color="blue"] {
+  --tag-color: #3955a7;
+  --tag-background: rgba(0, 94, 189, 0.06);
+}
+
+.tag[data-color="green"] {
+  --tag-color: #026735;
+  --tag-background: #eff7f3;
+}
+
+.tag[data-color="green-filled"] {
+  --tag-color: #eff7f3;
+  --tag-background: #048143;
+}
+
+.tag[data-color="orange"] {
+  --tag-color: #b05302;
+  --tag-background: #fdf6ef;
+}
+
+.tag[data-color="red"] {
+  --tag-color: #ae241a;
+  --tag-background: #fdf2f1;
+}
+
+.tag[data-color="purple"] {
+  --tag-color: #6645ae;
+  --tag-background: #f7f4fd;
+}

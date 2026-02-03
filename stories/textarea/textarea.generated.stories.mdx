@@ -1,0 +1,75 @@
+import { useState, useCallback } from 'react';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
+import Textarea from "@digital-science/figshare-fcl/textarea";
+
+<Meta
+  title="UI/Textarea"
+  component={Textarea}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    },
+  }}
+/>
+
+# Textarea
+---
+
+- [Overview](#overview)
+- [Props](#props-table)
+- [Examples](#examples)
+
+## Overview
+
+The `Textarea` component — displays error feedback, can be disabled, is a controlled component.
+
+<Story
+  name="Textarea"
+  parameters={{
+    layout: "centered",
+    jest: ["ui/textarea"],
+  }}
+>
+  {() => {
+    const [value, setValue] = useState("initial value");
+    const handleChange = useCallback((event) => {
+      setValue(event.target.value);
+    }, []);
+    return (
+      <Textarea
+        value={value}
+        onChange={handleChange}
+      ></Textarea>
+    );
+  }}
+</Story>
+
+Can be imported from:
+
+```jsx
+import Textarea from "@digital-science/figshare-fcl/textarea";
+
+<Textarea />
+```
+
+## Props Table
+<ArgTypes of={Textarea} />
+
+## Examples
+
+### Error state
+
+<Canvas>
+  <Textarea
+    error={true}
+  />
+</Canvas>
+
+### Disabled state
+
+<Canvas>
+  <Textarea
+    disabled={true}
+  />
+</Canvas>

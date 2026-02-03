@@ -1,0 +1,133 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
+import { Alerts } from "@digital-science/figshare-fcl/alerts";
+
+<Meta
+  title="UI/Alerts"
+  component={Alerts}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    },
+  }}
+/>
+
+# Alerts
+---
+
+- [Overview](#overview)
+- [Props](#props-table)
+- [Examples](#examples)
+
+## Overview
+
+The `Alerts` component — supports `isFixed`, `isToast`, `margin`, `noTypeIcon` modes.
+
+<Story
+  name="Alerts"
+  parameters={{
+    layout: "centered",
+    jest: ["ui/alerts"],
+  }}
+>
+  <Alerts
+  id="demo-component"
+  initialMessages={[{ id: "msg-1", type: "success", content: "Operation completed successfully." }, { id: "msg-2", type: "error", content: "Something went wrong.", title: "Error" }, { id: "msg-3", type: "warning", content: "This action cannot be undone." }, { id: "msg-4", type: "info", content: "Your session expires in 5 minutes." }]}
+/>
+</Story>
+
+Can be imported from:
+
+```jsx
+import { Alerts } from "@digital-science/figshare-fcl/alerts";
+
+<Alerts
+  id="demo-component"
+></Alerts>
+```
+
+## Props Table
+<ArgTypes of={Alerts} />
+
+## Examples
+
+### Default
+
+<Canvas>
+  <Alerts
+    id="demo-component"
+    initialMessages={[{ id: "msg-1", type: "success", content: "Operation completed successfully." }, { id: "msg-2", type: "error", content: "Something went wrong.", title: "Error" }, { id: "msg-3", type: "warning", content: "This action cannot be undone." }, { id: "msg-4", type: "info", content: "Your session expires in 5 minutes." }]}
+  />
+</Canvas>
+
+### Fixed
+
+Fixed alerts appear at the top of the viewport and overlay page content. Click the button to trigger one.
+
+<Canvas>
+  <Story name="Fixed">
+    {() => {
+      const [show, setShow] = useState(false);
+      return (
+        <>
+          <button onClick={() => setShow(s => !s)}>
+            {show ? 'Hide' : 'Show'} fixed alert
+          </button>
+          <Alerts
+            key={String(show)}
+            id="demo-fixed"
+            isFixed={true}
+            initialMessages={show ? [{ id: "msg-1", type: "info", content: "This alert is fixed at the top of the viewport." }] : []}
+          />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+### Toast
+
+Toast alerts float above page content. Click the button to trigger one.
+
+<Canvas>
+  <Story name="Toast">
+    {() => {
+      const [show, setShow] = useState(false);
+      return (
+        <>
+          <button onClick={() => setShow(s => !s)}>
+            {show ? 'Hide' : 'Show'} toast alert
+          </button>
+          <Alerts
+            key={String(show)}
+            id="demo-toast"
+            isToast={true}
+            initialMessages={show ? [{ id: "msg-1", type: "success", content: "Toast notification triggered successfully." }] : []}
+          />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+### Margin
+
+<Canvas>
+  <Alerts
+    id="demo-component"
+    initialMessages={[{ id: "msg-1", type: "success", content: "Operation completed successfully." }, { id: "msg-2", type: "error", content: "Something went wrong.", title: "Error" }, { id: "msg-3", type: "warning", content: "This action cannot be undone." }, { id: "msg-4", type: "info", content: "Your session expires in 5 minutes." }]}
+    margin={true}
+  />
+</Canvas>
+
+### Without Type Icon
+
+<Canvas>
+  <Alerts
+    id="demo-component"
+    initialMessages={[{ id: "msg-1", type: "success", content: "Operation completed successfully." }, { id: "msg-2", type: "error", content: "Something went wrong.", title: "Error" }, { id: "msg-3", type: "warning", content: "This action cannot be undone." }, { id: "msg-4", type: "info", content: "Your session expires in 5 minutes." }]}
+    noTypeIcon={true}
+  />
+</Canvas>
+

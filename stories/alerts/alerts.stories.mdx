@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
 import { Alerts, pushAlert, clearAlerts } from "@digital-science/figshare-fcl/alerts";
 import { Button } from "@digital-science/figshare-fcl/button";
 
@@ -150,7 +150,7 @@ To push an alert to a registered `Alerts` channel, use the `pushAlert` function:
 ```
 
 ## Props Table
-<ArgsTable of={Alerts} />
+<ArgTypes of={Alerts} />
 
 ## Examples
 <Canvas>

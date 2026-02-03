@@ -1,0 +1,245 @@
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
+import { Button } from "@digital-science/figshare-fcl/newButton";
+import Home from "@digital-science/figshare-fcl/icons/react/Home";
+
+<Meta
+  title="UI/NewButton"
+  component={Button}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Button (new)
+---
+
+- [Overview](#overview)
+- [Props](#props-table)
+- [Kind](#kind)
+- [Emphasis](#emphasis)
+- [States](#states)
+- [With Icon](#with-icon)
+- [With Tooltip](#with-tooltip)
+- [As Link](#as-link)
+
+## Overview
+
+New button component, based on `data-*` attributes instead of CSS classes.
+Supports `kind`, `em` (emphasis) variants, loading state, tooltip and rendering as a link.
+
+<Story
+  name="Button"
+  parameters={{ layout: "centered" }}
+>
+  <Button onClick={() => {}}>
+    <Button.Label>Click me</Button.Label>
+  </Button>
+</Story>
+
+Poate fi importat din:
+
+```jsx
+import { Button } from "@digital-science/figshare-fcl/newButton";
+
+<Button kind="primary" em="high" onClick={() => {}}>
+  <Button.Label>Label</Button.Label>
+</Button>
+```
+
+## Props Table
+<ArgTypes of={Button} />
+
+---
+
+## Kind
+
+The 4 `kind` variants: `primary`, `secondary`, `tertiary`, `inverted`.
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary">
+      <Button.Label>Primary</Button.Label>
+    </Button>
+    <Button kind="secondary">
+      <Button.Label>Secondary</Button.Label>
+    </Button>
+    <Button kind="tertiary">
+      <Button.Label>Tertiary</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+<Canvas style={{ background: "#1e1e1e" }}>
+  <Button kind="inverted">
+    <Button.Label>Inverted</Button.Label>
+  </Button>
+</Canvas>
+
+---
+
+## Emphasis
+
+The `em` prop controls the visual emphasis: `high`, `low`, `success`, `danger`.
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary" em="high">
+      <Button.Label>Primary / High</Button.Label>
+    </Button>
+    <Button kind="primary" em="success">
+      <Button.Label>Primary / Success</Button.Label>
+    </Button>
+    <Button kind="primary" em="danger">
+      <Button.Label>Primary / Danger</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="secondary" em="high">
+      <Button.Label>Secondary / High</Button.Label>
+    </Button>
+    <Button kind="secondary" em="low">
+      <Button.Label>Secondary / Low</Button.Label>
+    </Button>
+    <Button kind="secondary" em="success">
+      <Button.Label>Secondary / Success</Button.Label>
+    </Button>
+    <Button kind="secondary" em="danger">
+      <Button.Label>Secondary / Danger</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="tertiary" em="high">
+      <Button.Label>Tertiary / High</Button.Label>
+    </Button>
+    <Button kind="tertiary" em="low">
+      <Button.Label>Tertiary / Low</Button.Label>
+    </Button>
+    <Button kind="tertiary" em="danger">
+      <Button.Label>Tertiary / Danger</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+---
+
+## States
+
+### Disabled
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary" disabled={true}>
+      <Button.Label>Primary</Button.Label>
+    </Button>
+    <Button kind="secondary" disabled={true}>
+      <Button.Label>Secondary</Button.Label>
+    </Button>
+    <Button kind="tertiary" disabled={true}>
+      <Button.Label>Tertiary</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+### Loading
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary" loading={true}>
+      <Button.Label>Saving...</Button.Label>
+    </Button>
+    <Button kind="secondary" loading={true}>
+      <Button.Label>Loading...</Button.Label>
+    </Button>
+    <Button kind="primary" loading={<Button.Loading spinner="right" text="Processing" />}>
+      <Button.Label>Processing</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+---
+
+## With Icon
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary">
+      <Button.Icon asChild={true}><Home /></Button.Icon>
+      <Button.Label>Icon left</Button.Label>
+    </Button>
+    <Button kind="primary">
+      <Button.Label>Icon right</Button.Label>
+      <Button.Icon asChild={true}><Home /></Button.Icon>
+    </Button>
+    <Button kind="secondary" span="icon" aria-label="Home">
+      <Button.Icon asChild={true}><Home /></Button.Icon>
+    </Button>
+  </div>
+</Canvas>
+
+---
+
+## With Tooltip
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary" tooltip="This is a tooltip">
+      <Button.Label>Hover me</Button.Label>
+    </Button>
+    <Button kind="secondary" span="icon" aria-label="Home" tooltip="Go home">
+      <Button.Icon asChild={true}><Home /></Button.Icon>
+    </Button>
+    <Button
+      kind="secondary"
+      tooltip="Tooltip with a close button"
+      tooltipOptions={{ showTooltipClose: true, interactive: true }}
+    >
+      <Button.Label>Tooltip with close</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+---
+
+## As Link
+
+When the `href` prop is provided, the button renders as an `<a>` element.
+
+<Canvas>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <Button kind="primary" href="https://figshare.com" target="_blank" rel="noopener noreferrer">
+      <Button.Label>Link primary</Button.Label>
+    </Button>
+    <Button kind="tertiary" href="https://figshare.com" target="_blank" rel="noopener noreferrer">
+      <Button.Label>Link tertiary</Button.Label>
+    </Button>
+  </div>
+</Canvas>
+
+---
+
+## Span (width)
+
+The `span` prop controls the button width.
+
+<Canvas>
+  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+    <Button kind="primary" span="full">
+      <Button.Label>span="full"</Button.Label>
+    </Button>
+    <Button kind="secondary" span="fit">
+      <Button.Label>span="fit"</Button.Label>
+    </Button>
+    <Button kind="tertiary" span="content">
+      <Button.Label>span="content"</Button.Label>
+    </Button>
+  </div>
+</Canvas>

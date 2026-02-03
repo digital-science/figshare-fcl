@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import { FieldError } from "@digital-science/figshare-fcl/fieldError";
 import { GenericButton } from "@digital-science/figshare-fcl/button";
@@ -89,7 +89,7 @@ Usually tied to inputs or other form fields in order to show various validation 
 
 ```jsx
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import { FieldError } from "@digital-science/figshare-fcl/fieldError";
 
@@ -153,7 +153,7 @@ export function ValidatedTextField() {
 ```
 
 ## Props Table
-<ArgsTable of={FieldError} />
+<ArgTypes of={FieldError} />
 
 ## Examples
 <Canvas>

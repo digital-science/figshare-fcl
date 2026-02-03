@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import Checkbox from "@digital-science/figshare-fcl/input/checkbox";
 import Input from "@digital-science/figshare-fcl/input";
@@ -33,7 +33,8 @@ Also comes with a switch variation to more clearly represent a `toggle` action t
     layout: "centered",
     jest: ["ui/input"],
   }}
->{() => {
+>
+  {() => {
     const [checks, setChecks] = useState({
       one: false,
       two: true,
@@ -100,7 +101,7 @@ function Checks() {
 ```
 
 ## Props Table
-<ArgsTable of={Checkbox} />
+<ArgTypes of={Checkbox} />
 
 ## Examples
 <Canvas>

@@ -37,3 +37,5 @@ export const note = ({ type = "note", label, children }) => {
     </div>
   );
 };
+
+export default { title: "Helpers/Note", includeStories: [] };

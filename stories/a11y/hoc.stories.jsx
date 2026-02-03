@@ -55,3 +55,5 @@ export const HigherOrderContainersShowcase = () => (
     </div>
   </div>
 );
+
+export default { title: "Utils/A11y/hoc", includeStories: [] };

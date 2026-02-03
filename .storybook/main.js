@@ -1,28 +1,31 @@
 module.exports = {
   stories: ["../stories/**/*.stories.@(js|jsx|mdx|mjs|mjsx)"],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {
+      fastRefresh: false,
+      strictMode: true,
+      builder: {
+        fsCache: true,
+        lazyCompilation: true,
+      },
+    },
+  },
   addons: [
     {
       name: "@storybook/addon-docs", options: {
         configureJSX: true,
-        babelOptions: {},
         sourceLoaderOptions: null,
         transcludeMarkdown: true,
       },
     },
     "@storybook/addon-essentials",
-    "@storybook/addon-jest",
-    "storybook-addon-designs",
+    "@storybook/addon-interactions",
+    "@storybook/addon-a11y",
   ],
-  reactOptions: {
-    fastRefresh: true,
-    strictMode: true,
-  },
   features: { modernInlineRender: true },
   /**
-   * new storybook@6.5.x webpack5 settings include babel-loader default rules for mdx and other files
-   * setting them through the "babel" config property will ignore some of those default rules.
-   * the setting and parsing below will set loose to false based on the existing way,
-   * but for most rules that include the loader.
+   * storybook@7.x webpack5 settings — disable loose mode on babel-loader rules
    */
   webpackFinal: (config) => {
     function disableLooseSetting(pluginOrPreset) {
