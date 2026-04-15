@@ -67,11 +67,17 @@ export default class RootCloseListener extends Component {
     const ownNode = this.containerNode;
     const currentNode = event.target;
 
+    // mark the next click as captured in this handler.
+    // the onClick handler should only take into consideration clicks that were not captured here.
+    // it should disregard others as they might have been stopped from propagating and this.preventClose
+    // would not have a correctly parsed value.
+    this.captured = true;
     this.preventClose = hasModifierKeys || !isLeftClick || contains(currentNode, ownNode);
   }
 
   onClick = (event) => {
-    if (!this.preventClose) {
+    if (!this.preventClose && this.captured) {
+      this.captured = false;
       this.props.onClose(event);
     }
   }

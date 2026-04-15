@@ -82,7 +82,7 @@ export class DropdownMenu extends Component {
   onClose = (event) => {
     const { onToggle } = this.props.dropdownContext;
 
-    onToggle(event, false);
+    onToggle(event, { isVisible: false });
   }
 
   getBoundary = () => {
