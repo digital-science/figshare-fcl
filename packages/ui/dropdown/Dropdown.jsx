@@ -95,17 +95,19 @@ export default class Dropdown extends Component {
     return { context: { ...context, toggleNode: node } };
   });
 
-  onToggle = (event, forceVisible = null) => {
+  onToggle = (event, modifiers) => {
     const { isVisible, onToggle } = this.props;
+    const forcedVisibility = typeof modifiers === "object" && typeof modifiers?.isVisible === "boolean";
+    const forcedIsVisibleValue = forcedVisibility ? modifiers.isVisible : null;
 
-    if (forceVisible && activeDropdownInstance && activeDropdownInstance !== this) {
+    if (forcedIsVisibleValue && activeDropdownInstance && activeDropdownInstance !== this) {
       activeDropdownInstance.props.onToggle(event, { isVisible: false });
     }
 
     // react-17 propagation fix
     event?.stopPropagation?.();
 
-    onToggle(event, { isVisible: forceVisible !== null ? forceVisible : !isVisible });
+    onToggle(event, { isVisible: forcedVisibility ? forcedIsVisibleValue : !isVisible });
   };
 
   onKeyDown = (event) => {
@@ -120,7 +122,7 @@ export default class Dropdown extends Component {
           this.focusSelectableNeighbour(target, -1);
         } else {
           this._focusLast = true;
-          this.onToggle(event, true);
+          this.onToggle(event, { isVisible: true });
         }
 
         break;
@@ -131,7 +133,7 @@ export default class Dropdown extends Component {
           this.focusSelectableNeighbour(target, 1);
         } else {
           this._focusLast = false;
-          this.onToggle(event, true);
+          this.onToggle(event, { isVisible: true });
         }
 
         break;
@@ -152,7 +154,7 @@ export default class Dropdown extends Component {
       case "Escape":
       case "Tab":
         if (isVisible) {
-          this.onToggle(event, false);
+          this.onToggle(event, { isVisible: false });
         }
 
         break;
