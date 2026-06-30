@@ -1,10 +1,5 @@
-import { withTests } from "@storybook/addon-jest";
 import "@digital-science/figshare-fcl/styles/index.css";
-
 import "./styles/index.css";
-
-import results from "../.jest-results.json";
-
 
 export const parameters = {
   layout: "fullscreen",
@@ -29,7 +24,3 @@ export const parameters = {
   },
   controls: { expanded: true },
 };
-
-export const decorators = [
-  withTests({ results, filesExt: "" }),
-];

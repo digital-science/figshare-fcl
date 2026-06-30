@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Meta, Canvas, Story, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas,  ArgTypes } from "@storybook/addon-docs/blocks";
 import {Button, GenericButton} from '@digital-science/figshare-fcl/button';
 import {Input} from '@digital-science/figshare-fcl/input';
 import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@digital-science/figshare-fcl/overlay";
@@ -124,15 +124,7 @@ export const Example = ({ children }) => {
 Used to render different flavours of overlays, from form overlays to confirmation modals.
 Use this component when you have separate, complex or information rich interactions to show to the user as part of a main flow.
 
-<Story 
-  name="Overlay"
-  parameters={{
-    layout: "centered",
-    args: {
-      background: "confirmation"
-    }
-  }}
->
+
   {({ background }) => {
     const [opened, setOpened] = useState("");
     return (
@@ -154,7 +146,7 @@ Use this component when you have separate, complex or information rich interacti
       </>
     )
   }}
-</Story>
+
 
 Comes with a set of helper components to easily define it's content structure, 
 and ensure appropriate spacing between the structure elements.
@@ -191,22 +183,22 @@ function MyOverlay({ onSave }) {
 <br/>
 
 ### Overlay
-<ArgsTable of={Overlay} />
+<ArgTypes of={Overlay} />
 
 ### OverlayHeader
-<ArgsTable of={OverlayHeader} />
+<ArgTypes of={OverlayHeader} />
 
 ### OverlayContent
-<ArgsTable of={OverlayContent} />
+<ArgTypes of={OverlayContent} />
 
 ### OverlayFooter
-<ArgsTable of={OverlayFooter} />
+<ArgTypes of={OverlayFooter} />
 
 ### OverlayFooter.Primary
-<ArgsTable of={PrimaryActions} />
+<ArgTypes of={PrimaryActions} />
 
 ### OverlayFooter.Secondary
-<ArgsTable of={SecondaryActions} />
+<ArgTypes of={SecondaryActions} />
 
 
 ## Examples

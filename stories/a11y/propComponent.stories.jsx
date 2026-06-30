@@ -56,3 +56,5 @@ export const PropComponentShowcase = () => (
     </div>
   </div>
 );
+
+export default {};

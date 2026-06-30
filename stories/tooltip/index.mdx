@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import { Button, GenericButton } from "@digital-science/figshare-fcl/button";
 import Info from "@digital-science/figshare-fcl/icons/info/medium";
 
@@ -25,12 +25,7 @@ import styles from "./index.stories.css";
 A component that can be used to show a focusable, persistable tooltip tied to a any type of target node.
 The persistent tooltip will get revealed when users hover on the target or focus on it. 
 
-<Story
-  name="Tooltip"
-  parameters={{
-    layout: "centered",
-  }}
->
+
   {() => {
     const [isVisible, setIsVisible] = useState(false);
     const onToggle = useCallback(() => {
@@ -56,7 +51,7 @@ The persistent tooltip will get revealed when users hover on the target or focus
       </>
     );
   }}
-</Story>
+
 
 <br />
 

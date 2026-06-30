@@ -93,3 +93,5 @@ export const FunctionChildrenShowcase = () => (
     </div>
   </div>
 );
+
+export default {};

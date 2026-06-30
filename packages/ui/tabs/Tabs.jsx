@@ -28,12 +28,7 @@ export function Tabs({ children, value, defaultValue, onChange }) {
   const [tab, setTab] = useControllableState({ value, defaultValue, onChange });
 
   const onTabClick = useCallback((e) => {
-    const newTab = e?.currentTarget?.getAttribute?.("data-value");
-
-    if (newTab) {
-      setTab(newTab);
-    }
-
+    setTab(e.target.getAttribute("data-value"));
   }, [setTab]);
 
   const context = useMemo(() => {

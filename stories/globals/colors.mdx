@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import styles from "./colors.stories.css";
 
 
@@ -362,24 +362,10 @@ And reference the variables in your css files:
 
 Click on a color tile to copy the variable name to your clipboard.
 
-export const figmaFile = "YKkIGgDGEk4WRjSFHZQdK1il/00.Atomic-components?node-id=971%3A30";
 
-<Story
-  name="Definition"
-  parameters={{
-    design: {
-      type: "figma",
-      url: `https://www.figma.com/file/${figmaFile}`,
-    },
-    backgrounds: {
-      default: "gray",
-      values: [{ name: "gray", value: "#f3f3f3" }],
-    },
-  }}
->
   {() => {
     return (
       <Colors />
     );
   }}
-</Story>
+

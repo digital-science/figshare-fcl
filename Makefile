@@ -10,6 +10,11 @@ DOCKER_TESTS_PARAMS:=
 
 install:
 	npm install
+	npm install --no-save --force eslint@7.32.0 stylelint@14.3.0 eslint-plugin-css-modules@2.11.0\
+		 eslint-plugin-import@2.25.2 eslint-plugin-jest@26.0.0 eslint-plugin-jsx-a11y@6.5.1\
+		 eslint-plugin-react@7.28.0 @babel/core@7.26.0 @babel/eslint-parser@7.26.5\
+		 @babel/eslint-plugin@7.25.9 stylelint-a11y@1.2.3 stylelint-config-css-modules@2.3.0\
+		 stylelint-config-standard@24.0.0 stylelint-order@5.0.0
 .PHONY: install
 
 svg_react:

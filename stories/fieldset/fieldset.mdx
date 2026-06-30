@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import Radio from "@digital-science/figshare-fcl/input/radio";
 import { Button } from "@digital-science/figshare-fcl/button";
 import { Fieldset, Legend, Items } from "@digital-science/figshare-fcl/fieldset";
@@ -30,13 +30,7 @@ Usually Radio or Checkbox groups of inputs should be wrapped in a Fieldset to de
 
 Legends are styled to look like Labels for a field or can be visually hidden.
 
-<Story
-  name="Fieldset"
-  parameters={{
-    layout: "centered",
-    jest: ["ui/input"],
-  }}
->{() => {
+{() => {
     const items = [
       {name: "radio-group", value: "1", label: "Option"},
       {name: "radio-group", value: "2", label: "Option - Disabled", disabled: true},
@@ -94,7 +88,7 @@ Legends are styled to look like Labels for a field or can be visually hidden.
       </div>
     )
   }}
-</Story>
+
 
 All Fieldset components can be imported from:
 
@@ -186,13 +180,13 @@ function CustomizableFieldset() {
 
 ## Props Table
 ### Fieldset
-<ArgsTable of={Fieldset} />
+<ArgTypes of={Fieldset} />
 
 ### Legend
-<ArgsTable of={Legend} />
+<ArgTypes of={Legend} />
 
 ### Items
-<ArgsTable of={Items} />
+<ArgTypes of={Items} />
 
 ## Examples
 <Canvas>

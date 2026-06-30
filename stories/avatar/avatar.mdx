@@ -1,9 +1,28 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import { Avatar } from "@digital-science/figshare-fcl/avatar";
 import { Button } from "@digital-science/figshare-fcl/button";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
+
+export const Default = () => (
+  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div>
+        <Avatar firstName="John" lastName="Doe" />
+        <span>Avatar without image</span>
+      </div>
+      <div>
+        <Avatar firstName="John" lastName="Doe" url={image} />
+        <span>Avatar with valid image</span>
+      </div>
+      <div>
+        <Avatar firstName="John" lastName="Doe" url={imageWithTransparentBackground} />
+        <span>Avatar with transparent background image</span>
+      </div>
+    </div>
+  </div>
+);
 
 <Meta
   title="UI/Avatar"
@@ -27,13 +46,8 @@ import imageWithTransparentBackground from "../../assets/avatar-transparent-back
 An user avatar display component, that can show an existing avatar or the user\'s initials, if provided an URL and a first and last name.
 Will fallback to showing the initials if the avatar image could not be loaded.
 
-<Story
-  name="Avatar"
-  parameters={{
-    layout: "centered",
-  }}
->
-  {() => {
+<div>
+  {(() => {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
@@ -42,8 +56,9 @@ Will fallback to showing the initials if the avatar image could not be loaded.
         </div>
       </div>
     )
-  }}
-</Story>
+  })()}
+</div>
+
 
 The component can be imported from `@digital-science/figshare-fcl/avatar`.
 See the example below on how add an avatar to your pages.
@@ -68,24 +83,7 @@ function AvatarExample() {
 ```
 
 ## Props Table
-<ArgsTable of={Avatar} />
+<ArgTypes of={Avatar} />
 
 ## Examples
-<Canvas>
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div>
-          <Avatar firstName="John" lastName="Doe" />
-          <span>Avatar without image</span>
-        </div>
-        <div>
-          <Avatar firstName="John" lastName="Doe" url={image} />
-          <span>Avatar with valid image</span>
-        </div>
-        <div>        
-          <Avatar firstName="John" lastName="Doe" url={imageWithTransparentBackground} />
-          <span>Avatar with trasparent background</span>
-        </div>
-      </div>
-    </div>
-</Canvas>
+<Canvas of={Default} />

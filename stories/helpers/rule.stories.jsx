@@ -65,3 +65,5 @@ export const rule = ({ id, children }) => {
     </div>
   );
 };
+
+export default {};

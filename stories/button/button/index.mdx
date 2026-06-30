@@ -1,4 +1,3 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Home from "@digital-science/figshare-fcl/icons/home/medium";
 import Button from "@digital-science/figshare-fcl/button/button";
 
@@ -25,17 +24,11 @@ import Button from "@digital-science/figshare-fcl/button/button";
 Basic button component. Allows users to trigger actions by interacting with the button by mouse or keyboard.
 Comes with different variations depending on the type of action we want to emphasise to the user.
 
-<Story
-  name="Button"
-  parameters={{
-    layout: "centered",
-    jest: ["ui/button/button"],
-  }}
->
+
   <Button tooltip="This button has a tooltip.">
     Click me!
   </Button>
-</Story>
+
 
 Can be imported from:
 
@@ -59,7 +52,7 @@ import { Button } from "@digital-science/figshare-fcl/button";
 ```
 
 ## Props Table
-<ArgsTable of={Button} />
+<ArgTypes of={Button} />
 *Accepts additional properties that can be supplied to a BaseButton component.*
 
 ## Examples
