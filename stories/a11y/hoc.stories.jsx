@@ -55,3 +55,5 @@ export const HigherOrderContainersShowcase = () => (
     </div>
   </div>
 );
+
+export default {};

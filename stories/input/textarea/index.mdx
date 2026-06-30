@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import Textarea from "@digital-science/figshare-fcl/textarea";
 
 export const ControlledTextarea = (props) => {
@@ -32,13 +32,7 @@ export const ControlledTextarea = (props) => {
 
 Textarea input. Useful for inputing large volume text, or text that is required to span multiple lines.
 
-<Story 
-  name="Textarea" 
-  parameters={{
-    layout: "centered",
-    jest: ["ui/textarea"],
-  }}
->
+
   {() => {
     const [value, setValue] = useState("");
     const onChange = useCallback((event) => {
@@ -46,7 +40,7 @@ Textarea input. Useful for inputing large volume text, or text that is required 
     }, [setValue]);
     return (<Textarea placeholder="Input text..." value={value} onChange={onChange} />);
   }}
-</Story>
+
 
 The component can be imported from:
 
@@ -63,7 +57,7 @@ function ControlledTextarea() {
 ```
 ## Props Table
 
-<ArgsTable of={Textarea} />
+<ArgTypes of={Textarea} />
 Remaining set properties are desturctured and passed to the component node*
 
 ## Examples

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import { FieldError } from "@digital-science/figshare-fcl/fieldError";
 import { GenericButton } from "@digital-science/figshare-fcl/button";
@@ -53,12 +53,7 @@ export const validate = (value, at) => {
 
 A field error component. Used to visually show error messages for form fields.
 
-<Story
-  name="FieldError"
-  parameters={{
-    layout: "centered",
-  }}
->
+
   {() => {
     const [value, setValue] = useState("");
     const [errors, setErrors] = useState([]);
@@ -83,13 +78,13 @@ A field error component. Used to visually show error messages for form fields.
       </div>
     )
   }}
-</Story>
+
 
 Usually tied to inputs or other form fields in order to show various validation errors or messages. Focus or fill in the input to trigger validations and show any potential field errors.
 
 ```jsx
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import { FieldError } from "@digital-science/figshare-fcl/fieldError";
 
@@ -153,7 +148,7 @@ export function ValidatedTextField() {
 ```
 
 ## Props Table
-<ArgsTable of={FieldError} />
+<ArgTypes of={FieldError} />
 
 ## Examples
 <Canvas>

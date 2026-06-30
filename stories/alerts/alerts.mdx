@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import { Alerts, pushAlert, clearAlerts } from "@digital-science/figshare-fcl/alerts";
 import { Button } from "@digital-science/figshare-fcl/button";
 
@@ -26,12 +26,7 @@ An inline alerts manager component. Holds a list of alert message entries and re
 Messages can be added or removed by dispatching `"form-alerts:message"` type events.
 The module exports utilities to easily dispatch such events.
 
-<Story
-  name="Alerts"
-  parameters={{
-    layout: "centered",
-  }}
->
+
   {() => {
     const [fixed, setFixed] = useState(false);
     const [noTypeIcon, setNoTypeIcon] = useState(false);
@@ -77,7 +72,7 @@ The module exports utilities to easily dispatch such events.
       </div>
     )
   }}
-</Story>
+
 
 The component and utilities can be imported from `@digital-science/figshare-fcl/alerts`.
 See the example below on how to register a alerts component and `push` or `clear` alerts for it.
@@ -150,7 +145,7 @@ To push an alert to a registered `Alerts` channel, use the `pushAlert` function:
 ```
 
 ## Props Table
-<ArgsTable of={Alerts} />
+<ArgTypes of={Alerts} />
 
 ## Examples
 <Canvas>

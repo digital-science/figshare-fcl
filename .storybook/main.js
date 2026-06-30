@@ -1,67 +1,79 @@
+const path = require("path");
+const postcssConfig = require("./postcss.config.js");
+
 module.exports = {
-  stories: ["../stories/**/*.stories.@(js|jsx|mdx|mjs|mjsx)"],
-  core: {
-    builder: {
-      name: "webpack5",
-      options: {
-        fsCache: true,
-        lazyCompilation: true,
-      },
-    },
-  },
-  addons: [
-    {
-      name: "@storybook/addon-docs", options: {
-        configureJSX: true,
-        babelOptions: {},
-        sourceLoaderOptions: null,
-        transcludeMarkdown: true,
-      },
-    },
-    "@storybook/addon-essentials",
-    "@storybook/addon-jest",
-    "storybook-addon-designs",
+  stories: [
+    "../stories/**/*.stories.@(js|jsx|mjs|mjsx)",
+    "../stories/**/*.mdx",
   ],
-  reactOptions: {
-    fastRefresh: true,
-    strictMode: true,
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: { fsCache: true, lazyCompilation: true },
   },
-  features: { modernInlineRender: true },
-  /**
-   * new storybook@6.5.x webpack5 settings include babel-loader default rules for mdx and other files
-   * setting them through the "babel" config property will ignore some of those default rules.
-   * the setting and parsing below will set loose to false based on the existing way,
-   * but for most rules that include the loader.
-   */
+  addons: ["@storybook/addon-docs"],
+  staticDirs: ["./"],
   webpackFinal: (config) => {
-    function disableLooseSetting(pluginOrPreset) {
-      if (Array.isArray(pluginOrPreset) && pluginOrPreset[1].loose) {
-        pluginOrPreset[1].loose = false;
+    const cssRuleToLookFor = /\.css$/.toString();
+
+    const rules = config.module.rules.map((rule) => {
+      if (rule.test?.toString() === cssRuleToLookFor) {
+        return {
+          ...rule,
+          use: [
+            require.resolve("style-loader"),
+            {
+              loader: require.resolve("css-loader"),
+              options: {
+                importLoaders: 1,
+                modules: { localIdentName: "[name]-[local]-[hash:base64:5]" },
+                sourceMap: true,
+              },
+            },
+            {
+              loader: require.resolve("postcss-loader"),
+              options: {
+                postcssOptions: {
+                  plugins: postcssConfig(["node_modules"], { isDebug: true })(),
+                  config: false,
+                },
+                sourceMap: true,
+              },
+            },
+          ],
+        };
       }
-    }
-
-    function simpleGet(object, path) {
-      return path.split(".").reduce((result, key) => {
-        if (result !== undefined) {
-          return result[key];
-        }
-
-        return undefined;
-      }, object);
-    }
-
-    config.module.rules.forEach((rule) => {
-      const loader = simpleGet(rule, "use.0.loader") || "";
-      const matches = loader.includes("babel-loader");
-
-      if (matches) {
-        const options = simpleGet(rule, "use.0.options") || {};
-
-        (options.plugins || []).forEach(disableLooseSetting);
-        (options.presets || []).forEach(disableLooseSetting);
-      }
+      return rule;
     });
 
-    return Promise.resolve(config);
+    return {
+      ...config,
+      resolve: { ...config.resolve, modules: ["node_modules", path.resolve(__dirname, "../packages/ui/node_modules")] },
+      module: {
+        ...config.module,
+        rules: [
+          ...rules,
+          {
+            test: /\.[jt]sx?$/,
+            exclude: /node_modules/,
+            use: {
+              loader: require.resolve("babel-loader"),
+              options: {
+                cacheDirectory: true,
+                presets: [
+                  require.resolve("@babel/preset-env"),
+                  require.resolve("@babel/preset-react"),
+                ],
+              },
+            },
+          },
+          {
+            // eslint-disable-next-line max-len
+            test: /.*__files__\/.*(?<!\.(pdf|js|jsx|svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|mp4|webm|wav|mp3|m4a|aac|oga))$/,
+            type: "asset/resource",
+            generator: { filename: "static/media/[name].[hash:8][ext]" },
+          },
+        ],
+      },
+    };
   },
 };

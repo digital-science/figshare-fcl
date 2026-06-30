@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import Radio from "@digital-science/figshare-fcl/input/radio";
 import Input from "@digital-science/figshare-fcl/input";
 
@@ -24,13 +24,7 @@ import Input from "@digital-science/figshare-fcl/input";
 
 A radio button component. Allows users to select a single state from multiple options.
 
-<Story
-  name="Radio"
-  parameters={{
-    layout: "centered",
-    jest: ["ui/input"],
-  }}
->{() => {
+{() => {
     const items = [
       {name: "radio-group", value: "1", label: "Option"},
       {name: "radio-group", value: "2", label: "Option - Disabled", disabled: true},
@@ -65,7 +59,7 @@ A radio button component. Allows users to select a single state from multiple op
       </div>
     )
   }}
-</Story>
+
 
 Can be imported directly or referenced as the default `Input` component variation:
 
@@ -111,7 +105,7 @@ function Checks() {
 ```
 
 ## Props Table
-<ArgsTable of={Radio} />
+<ArgTypes of={Radio} />
 
 ## Examples
 <Canvas>

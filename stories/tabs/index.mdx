@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import { Tabs, TabsList, Tab, TabsPanel, TabEntry } from "@digital-science/figshare-fcl/tabs";
 import { Button } from "@digital-science/figshare-fcl/button";
 import Edit from "@digital-science/figshare-fcl/icons/react/Edit";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
-const tab = "map";
-const onTab = () => {};
+export const tab = "map";
+export const onTab = () => {};
 
 <Meta
   title="UI/Tabs"
@@ -31,12 +31,7 @@ A component set to render Tabs and their contents in an application.
 Can manage it's own state and notify of tab changes, and can switch between content entries as tabs change.
 The component will show tabs in the space that it is given. It will show tabs that do not fit, if any, in a dropdown.
 
-<Story
-  name="Tabs"
-  parameters={{
-    layout: "centered",
-  }}
->
+
   {() => {
     const [tab, setTab] = useState("map");
     const onClickTab = useCallback((e) => { setTab(e.target.getAttribute("data-value")); }, [setTab]);
@@ -76,7 +71,7 @@ The component will show tabs in the space that it is given. It will show tabs th
       </div>
     )
   }}
-</Story>
+
 
 The component can be imported from `@digital-science/figshare-fcl/tabs`.
 See examples below on how add tabs to your pages.
@@ -210,27 +205,27 @@ function IndividuallyImportedComponents() {
 A root component that provides a context for managing tabs.
 Values can be controlled by providing the `value` and `onChange(newTabValue)` props.
 It can be used optionally, as you can make use of TabsList + Tab and TabsPanel + TabEntry and manage them in the owner component.
-<ArgsTable of={Tabs} />
+<ArgTypes of={Tabs} />
 
 ### TabsList (Tabs.List)
 A container component for Tab items.
-<ArgsTable of={TabsList} />
+<ArgTypes of={TabsList} />
 
 ### Tab (Tabs.Tab)
 A Tab button component.
-<ArgsTable of={Tab} />
+<ArgTypes of={Tab} />
 
 ### TabsPanel (Tabs.Panel / Tabs.Content)
 A Content Switch component that renders a `role="tabpanel"` node. 
 It can accept an active value or reads it from a TabsContext.
 Manages switching between TabEntry components inside it based on that value.
-<ArgsTable of={TabsPanel} />
+<ArgTypes of={TabsPanel} />
 
 ### TabEntry  (Tabs.Entry)
 A virtual tab entry component. Renders no html.
 It reads an active `value` from the parent TabsPanel and will render it's content in case it matches it's own value.
 Can accept a `function` as `children` to lazily evaluate it's contents only if needed.
-<ArgsTable of={TabEntry} />
+<ArgTypes of={TabEntry} />
 
 ## Examples
 

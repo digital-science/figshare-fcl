@@ -137,3 +137,5 @@ class DirectConsumerAccess extends Component {
 }
 
 export const ConsumerShowcase = withA11y(DirectConsumerAccess);
+
+export default {};

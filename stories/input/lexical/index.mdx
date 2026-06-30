@@ -1,4 +1,3 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
 import {useState,useEffect} from 'react';
 
 import { Button } from "@digital-science/figshare-fcl/button";
@@ -34,13 +33,7 @@ export const canvasStyle = {
 A textarea which allows users to input more complex HTML markup text. 
 Users can mark portions or the whole content as paragraphs, headings or emphasise or underline text in various ways.
 
-<Story 
-  name="TextEditor" 
-  parameters={{
-    layout: "centered",
-    jest: ["ui/textEditor/Lexical"],
-  }}
->
+
   {() => {
       const [text, setText] = useState("<h2>My list</h2><ol><li>Two</li><li>Three</li></ol>");
       const [singleRow, setSingleRow] = useState(false);
@@ -67,7 +60,7 @@ Users can mark portions or the whole content as paragraphs, headings or emphasis
                 </div>
             </div>);
   }}
-</Story>
+
 
 The component can be imported from:
 
@@ -88,7 +81,7 @@ class MyTextEditor extends React.Component {
 
 ## Props Table
 
-<ArgsTable of={Editor} />
+<ArgTypes of={Editor} />
 
 ## Examples
 

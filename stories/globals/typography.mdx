@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import styles from "./typography.stories.css";
 
 <Meta 
@@ -12,8 +12,6 @@ import styles from "./typography.stories.css";
   }}
 />
 
-export const figmaFile = "YKkIGgDGEk4WRjSFHZQdK1il/00.Atomic-components?node-id=971%3A31";
-
 # Typography
 ---
 - [Overview](#overview)
@@ -24,9 +22,7 @@ It will expose appropriate css variables for typography definitions as well.
 
 ## Overview
 
-<Story
-  name="Definition"
->
+
   {() => {
     return (
       <div className={styles.container}>
@@ -54,7 +50,7 @@ It will expose appropriate css variables for typography definitions as well.
       </div>
     );
   }}
-</Story>
+
 
 You can import the typography styling in your code:
 ```jsx
@@ -104,9 +100,7 @@ And reference the variables in your css files:
 
 ## Showcase
 
-<Story
-  name="Showcase"
->
+
   {() => {
     return (
       <article className={styles.container}>
@@ -237,4 +231,4 @@ And reference the variables in your css files:
       </article>
     );
   }}
-</Story>
+

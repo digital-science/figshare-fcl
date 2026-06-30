@@ -8,3 +8,5 @@ const getAll = () => [...a, ...aa, ...aaa].reduce((result, item) => {
 }, {});
 
 export const all = getAll();
+
+export default {};

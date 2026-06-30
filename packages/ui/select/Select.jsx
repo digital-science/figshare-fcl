@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { Component, createRef } from "react";
 
 import FigshareLoader from "../icons/figshare/logo.jsx";
-import Button from "../button";
+import { Button } from "../button";
 import { Dropdown } from "../dropdown";
 import withRef from "../helpers/withRef.jsx";
 
