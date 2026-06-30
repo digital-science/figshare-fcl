@@ -15,7 +15,7 @@
     "test": "jest",
     "test:generateJSON": "jest --json --outputFile=.jest-results.json || true",
     "prestorybook": "npm run test:generateJSON",
-    "storybook": "NODE_ENV=development start-storybook -p 9001 -c .storybook",
+    "storybook": "NODE_ENV=development NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 9001 -c .storybook",
     "prestorybook:build": "npm run prestorybook && rm -rf build",
     "storybook:build": "NODE_ENV=production build-storybook -c .storybook -o build"
   },
