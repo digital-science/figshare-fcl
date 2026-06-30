@@ -1,4 +1,3 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 
 import styles from "./index.stories.css";
 
@@ -31,12 +30,7 @@ import EmbedTitle from "@digital-science/figshare-fcl/icons/presentation/embedTi
 import Ribbon from "@digital-science/figshare-fcl/icons/presentation/ribbon";
 import Publications from "@digital-science/figshare-fcl/icons/presentation/publications";
 
-<Story 
-  name="Presentation"
-  parameters={{
-    layout: "centered",
-  }}
->
+
   <Quote className={styles.icon} />
   <Project className={styles.icon} />
   <Collection className={styles.icon} />
@@ -51,7 +45,7 @@ import Publications from "@digital-science/figshare-fcl/icons/presentation/publi
   <EmbedTitle className={styles.icon} />
   <Ribbon className={styles.icon} />
   <Publications className={styles.icon} />
-</Story>
+
 
 ```jsx
 import Quote from "@digital-science/figshare-fcl/icons/presentation/quote";

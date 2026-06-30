@@ -1,4 +1,3 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import Input from "@digital-science/figshare-fcl/input";
 
@@ -23,15 +22,9 @@ import Input from "@digital-science/figshare-fcl/input";
 
 A text input component. Allows users to type in and store text values.
 
-<Story 
-  name="Text" 
-  parameters={{
-    layout: "centered",
-    jest: ["ui/input"],
-  }}
->
+
   <TextInput placeholder="Input text..." onChange={(event) => {}} />
-</Story>
+
 
 Can be imported directly or referenced as the default `Input` component variation:
 
@@ -50,7 +43,7 @@ function TextInputs() {
 ```
 
 ## Props Table
-<ArgsTable of={TextInput} />
+<ArgTypes of={TextInput} />
 
 ## Examples
 <Canvas>

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import Checkbox from "@digital-science/figshare-fcl/input/checkbox";
 import Input from "@digital-science/figshare-fcl/input";
@@ -27,13 +27,7 @@ A checkbox component. Allows users to toggle the selection of a particular value
 Represented as a checkbox by default, with an optional label.
 Also comes with a switch variation to more clearly represent a `toggle` action to the user.
 
-<Story 
-  name="Checkbox" 
-  parameters={{
-    layout: "centered",
-    jest: ["ui/input"],
-  }}
->{() => {
+{() => {
     const [checks, setChecks] = useState({
       one: false,
       two: true,
@@ -60,7 +54,7 @@ Also comes with a switch variation to more clearly represent a `toggle` action t
       </>
     )
   }}
-</Story>
+
 
 Can be imported directly or referenced as the default `Input` component variation:
 
@@ -100,7 +94,7 @@ function Checks() {
 ```
 
 ## Props Table
-<ArgsTable of={Checkbox} />
+<ArgTypes of={Checkbox} />
 
 ## Examples
 <Canvas>

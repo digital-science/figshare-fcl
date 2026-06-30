@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classnames from "classnames";
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
 import { Select, Option } from "../../packages/ui/select";
 import { Button } from "@digital-science/figshare-fcl/button";
 
@@ -25,13 +25,7 @@ import { Button } from "@digital-science/figshare-fcl/button";
 ## Overview
 Basic Select component.
 
-<Story
- name="Select"
- parameters={{
-  layout: "centered",
-  jest: ["ui/Select"],
- }}
->
+
  {() => {
   return(
     <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
@@ -45,7 +39,7 @@ Basic Select component.
     </div>
   );
  }}
-</Story>
+
 
 The component can be imported from `@digital-science/figshare-fcl/Select`.
 
@@ -69,7 +63,7 @@ const SelectExample = () => {
 
 ## Props
 
-<ArgsTable of={Select} />
+<ArgTypes of={Select} />
 
 ## Examples
 
