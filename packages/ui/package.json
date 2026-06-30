@@ -38,5 +38,9 @@
     "prop-types": "^15.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
+  },
+  "overrides": {
+    "immutable": "3.8.3",
+    "node-fetch": "2.6.7"
   }
 }
