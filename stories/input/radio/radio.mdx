@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import Radio from "@digital-science/figshare-fcl/input/radio";
 import Input from "@digital-science/figshare-fcl/input";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta
   title="UI/Inputs/Radio"
@@ -24,6 +25,7 @@ import Input from "@digital-science/figshare-fcl/input";
 
 A radio button component. Allows users to select a single state from multiple options.
 
+<Cover kind={"story"}>
 {() => {
     const items = [
       {name: "radio-group", value: "1", label: "Option"},
@@ -59,6 +61,7 @@ A radio button component. Allows users to select a single state from multiple op
       </div>
     )
   }}
+</Cover>
 
 
 Can be imported directly or referenced as the default `Input` component variation:
@@ -108,7 +111,7 @@ function Checks() {
 <ArgTypes of={Radio} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
   <div style={{width: "300px", display: "flex", flexDirection: "column", gap: "12px" }}>
     <Radio name="examples-radio-set-one-1" checked={false} label={"Option"} value={"1"} />
     <Radio name="examples-radio-set-one-2" checked={true} label={"Option Two"} value={"2"} />
@@ -117,4 +120,4 @@ function Checks() {
     <Radio name="examples-radio-set-one-5" checked={false} error={true} label={"Option Five - Error"} value={"5"} />
     <Radio name="examples-radio-set-one-6" checked={true} error={true} label={"Some options have labels that will break to other lines."} value={"6"} />
   </div>
-</Canvas>
+</Cover>

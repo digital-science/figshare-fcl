@@ -2,6 +2,7 @@
 import uncontrollable from "@digital-science/figshare-fcl/helpers/uncontrollable";
 import DatePickerComponent from "@digital-science/figshare-fcl/input/date/index";
 import InputComponent from '@digital-science/figshare-fcl/input/index';
+import { Cover } from "../../story-utils/Cover";
 
 export const DatePicker = uncontrollable(
   DatePickerComponent,
@@ -45,7 +46,9 @@ Date picker input component with calendar.
 Allows users to select a date value from an associated calendar or to type in a date value in the input, following a specified date format.
 
 
+<Cover kind={"story"}>
   <DatePicker selectedDate={new Date()} onChange={(date) => {}} />
+</Cover>
 
 
 Can be imported individually or referenced as a variation of the `Input` component:
@@ -61,7 +64,7 @@ import Input from "@digital-science/figshare-fcl/input";
 <ArgTypes of={DatePickerComponent} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
   <div style={canvasStyle}>
     <p>Basic, with selected date</p>
     <DatePicker selectedDate={new Date()} />
@@ -76,7 +79,7 @@ import Input from "@digital-science/figshare-fcl/input";
     <p>Custom placeholder</p>
     <DatePicker placeholder="Select Date" />
   </div>
-</Canvas>
+</Cover>
 
 ```jsx
 import React from "react";

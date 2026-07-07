@@ -1,5 +1,6 @@
 import Home from "@digital-science/figshare-fcl/icons/home/medium";
 import Button from "@digital-science/figshare-fcl/button/button";
+import { Cover } from "../../story-utils/Cover";
 
 
 <Meta 
@@ -25,9 +26,11 @@ Basic button component. Allows users to trigger actions by interacting with the 
 Comes with different variations depending on the type of action we want to emphasise to the user.
 
 
+<Cover kind={"story"}>
   <Button tooltip="This button has a tooltip.">
     Click me!
   </Button>
+</Cover>
 
 
 Can be imported from:
@@ -57,7 +60,7 @@ import { Button } from "@digital-science/figshare-fcl/button";
 
 ## Examples
 
-<Canvas>
+<Cover kind={"card"}>
 <div style={{ display: "flex", flexWrap: "wrap", gap: "calc(4 * var(--gridSize))"}}>
   <Button theme="primary" tooltip="Tooltip text">
     Primary
@@ -241,9 +244,10 @@ import { Button } from "@digital-science/figshare-fcl/button";
     Tertiary Alt (L)
   </Button>
 </div>
-</Canvas>
+</Cover>
 
-<Canvas style={{ background: "black"}}>
+<Cover kind={"card"}>
+<div style={{ background: "black"}}>
 <div style={{ display: "flex", flexWrap: "wrap", gap: "calc(4 * var(--gridSize))"}}>
   <Button theme="inverted" tooltip="Tooltip text" size="S">
     Inverted (S)
@@ -284,4 +288,5 @@ import { Button } from "@digital-science/figshare-fcl/button";
     Inverted (L)
   </Button>
 </div>
-</Canvas>
+</div>
+</Cover>

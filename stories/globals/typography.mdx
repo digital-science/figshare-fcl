@@ -1,6 +1,7 @@
 import classnames from "classnames";
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import styles from "./typography.stories.css";
+import { Cover } from "../story-utils/Cover";
 
 <Meta 
   title="Global Styles/Typography" 
@@ -23,6 +24,7 @@ It will expose appropriate css variables for typography definitions as well.
 ## Overview
 
 
+<Cover kind={"story"}>
   {() => {
     return (
       <div className={styles.container}>
@@ -50,6 +52,7 @@ It will expose appropriate css variables for typography definitions as well.
       </div>
     );
   }}
+</Cover>
 
 
 You can import the typography styling in your code:
@@ -100,7 +103,7 @@ And reference the variables in your css files:
 
 ## Showcase
 
-
+<Cover kind={"story"}>
   {() => {
     return (
       <article className={styles.container}>
@@ -231,4 +234,4 @@ And reference the variables in your css files:
       </article>
     );
   }}
-
+</Cover>

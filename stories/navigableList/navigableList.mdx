@@ -1,4 +1,5 @@
 import NavigableList from "@digital-science/figshare-fcl/helpers/navigableList";
+import { Cover } from "../story-utils/Cover";
 
 export const containerStyle = {
   margin: "calc(3 * var(--gridSize))",
@@ -52,6 +53,7 @@ Use *Left and Right Arrow* keys to navigate between focusable elements for `"hor
 or *Up and Down Arrow* keys for `"vertical"` `navigationType`s.
 
 
+<Cover kind={"story"}>
   {() => {
     const containerStyle = {
       margin: "calc(3 * var(--gridSize))",
@@ -75,6 +77,7 @@ or *Up and Down Arrow* keys for `"vertical"` `navigationType`s.
       </NavigableList>
     );
   }}
+</Cover>
 
 
 The component can be imported from:
@@ -123,16 +126,16 @@ Remaining set properties are desturctured and passed to the component node*
 
 ### Horizontal NavigableList
 
-<Canvas>
+<Cover kind={"card"}>
   <NavigableList navigationType="horizontal" containerStyle={containerStyle}>
     {renderContent}
   </NavigableList>
-</Canvas>
+</Cover>
 
 ### Vertical NavigableList
 
-<Canvas>
+<Cover kind={"card"}>
   <NavigableList navigationType="vertical" containerStyle={verticalContainerStyle}>
     {renderContent}
   </NavigableList>
-</Canvas>
+</Cover>

@@ -1,9 +1,10 @@
 import { useState, useMemo } from "react";
-import { Meta, Canvas,  ArgTypes } from "@storybook/addon-docs/blocks";
+import { Meta, ArgTypes } from "@storybook/addon-docs";
 import {Button, GenericButton} from '@digital-science/figshare-fcl/button';
 import {Input} from '@digital-science/figshare-fcl/input';
 import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@digital-science/figshare-fcl/overlay";
 import Toggletip, { Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
+import { Cover } from "../story-utils/Cover";
 
 import style from './overlay.stories.css';
 
@@ -125,6 +126,7 @@ Used to render different flavours of overlays, from form overlays to confirmatio
 Use this component when you have separate, complex or information rich interactions to show to the user as part of a main flow.
 
 
+<Cover kind={"story"}>
   {({ background }) => {
     const [opened, setOpened] = useState("");
     return (
@@ -146,7 +148,7 @@ Use this component when you have separate, complex or information rich interacti
       </>
     )
   }}
-
+</Cover>
 
 Comes with a set of helper components to easily define it's content structure, 
 and ensure appropriate spacing between the structure elements.
@@ -203,9 +205,9 @@ function MyOverlay({ onSave }) {
 
 ## Examples
 
-<Canvas>
+<Cover kind={"card"}>
   <Example />
-</Canvas>
+</Cover>
 
 ```jsx
 import { Overlay, OverlayHeader, OverlayFooter, OverlayContent } from "@digital-science/figshare-fcl/overlay";

@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import { FieldError } from "@digital-science/figshare-fcl/fieldError";
 import { GenericButton } from "@digital-science/figshare-fcl/button";
+import { Cover } from "../story-utils/Cover";
 
 export const schema = [
   { type: "required", value: "string", at: ["blur"], message: "This field is required."  }, 
@@ -54,6 +55,7 @@ export const validate = (value, at) => {
 A field error component. Used to visually show error messages for form fields.
 
 
+<Cover kind={"story"}>
   {() => {
     const [value, setValue] = useState("");
     const [errors, setErrors] = useState([]);
@@ -78,6 +80,7 @@ A field error component. Used to visually show error messages for form fields.
       </div>
     )
   }}
+</Cover>
 
 
 Usually tied to inputs or other form fields in order to show various validation errors or messages. Focus or fill in the input to trigger validations and show any potential field errors.
@@ -151,7 +154,7 @@ export function ValidatedTextField() {
 <ArgTypes of={FieldError} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
     <div style={{display: "flex", flexDirection: "column", gap: "18px"}}>
       <code>size="small"</code>
       <FieldError error={undefined} field="title" />
@@ -173,4 +176,4 @@ export function ValidatedTextField() {
         <FieldError error={{ at: "submit/publish", message: <><span>Cannot publish with missing information. </span><GenericButton>Publish anyway.</GenericButton></>, id: "resources.required" }} field="resources" fullWidth={true}/>
       </div>
     </div>
-</Canvas>
+</Cover>

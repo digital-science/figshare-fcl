@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import { Tabs, TabsList, Tab, TabsPanel, TabEntry } from "@digital-science/figshare-fcl/tabs";
 import { Button } from "@digital-science/figshare-fcl/button";
 import Edit from "@digital-science/figshare-fcl/icons/react/Edit";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
+import { Cover } from "../story-utils/Cover";
 export const tab = "map";
 export const onTab = () => {};
 
@@ -32,6 +33,7 @@ Can manage it's own state and notify of tab changes, and can switch between cont
 The component will show tabs in the space that it is given. It will show tabs that do not fit, if any, in a dropdown.
 
 
+<Cover kind={"story"}>
   {() => {
     const [tab, setTab] = useState("map");
     const onClickTab = useCallback((e) => { setTab(e.target.getAttribute("data-value")); }, [setTab]);
@@ -71,7 +73,7 @@ The component will show tabs in the space that it is given. It will show tabs th
       </div>
     )
   }}
-
+</Cover>
 
 The component can be imported from `@digital-science/figshare-fcl/tabs`.
 See examples below on how add tabs to your pages.
@@ -231,7 +233,7 @@ Can accept a `function` as `children` to lazily evaluate it's contents only if n
 
 Using Tabs root component without managing state and with a disabled fourth tab.
 
-<Canvas>
+<Cover kind={"card"}>
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
     <Tabs>
       <Tabs.List>
@@ -253,12 +255,12 @@ Using Tabs root component without managing state and with a disabled fourth tab.
       </Tabs.Panel>
     </Tabs>
   </div>
-</Canvas>
+</Cover>
 
 Using Tabs root component with a provided `defaultValue` and an `onChange` callback.
 The fourth tab, Feed, is disabled.
 
-<Canvas>
+<Cover kind={"card"}>
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
     <Tabs defaultValue={"Groups"} onChange={(tab) => console.log("tabbed to", tab)}>
       <Tabs.List>
@@ -283,10 +285,10 @@ The fourth tab, Feed, is disabled.
       </Tabs.Panel>
     </Tabs>
   </div>
-</Canvas>
+</Cover>
 
 Using Tabs root component and fully mananging state in the owner by providing `value` and an `onChange` callback.
-<Canvas>
+<Cover kind={"card"}>
   {/*  
     const [tab, setTab] = useState("map");
     const onTab = useCallback((newTab) => setTab(newTab), []);
@@ -311,12 +313,12 @@ Using Tabs root component and fully mananging state in the owner by providing `v
       </Tabs.Panel>
     </Tabs>
   </div>
-</Canvas>
+</Cover>
 
 
 Using only visual components from the set, without a root provider and managing state in the owner.
 
-<Canvas>
+<Cover kind={"card"}>
   {/*  
     const [tab, setTab] = useState("map");
     const onTab = useCallback((event) => setTab(event.target.getAttribute("data-value")), []);
@@ -339,4 +341,4 @@ Using only visual components from the set, without a root provider and managing 
         </Tabs.Entry>
       </Tabs.Panel>
   </div>
-</Canvas>
+</Cover>
