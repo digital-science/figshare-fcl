@@ -1,9 +1,10 @@
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import Info from "@digital-science/figshare-fcl/icons/info/medium";
 import { Button, IconButton, GenericButton} from "@digital-science/figshare-fcl/button";
 
 import { Toggletip, Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
+import { Cover } from "../story-utils/Cover";
 import styles from "./index.stories.css";
 
 <Meta
@@ -34,6 +35,7 @@ The persistent tooltip will get revealed when users click on the target or focus
 If the tooltip has focusable elements, focus will cycle through those elements. Users can exit the toggletip and return to the trigger by pressing "Escape".
 
 
+<Cover kind={"story"}>
   {() => {
     const [isVisible, setIsVisible] = useState(false);
     const onToggle = useCallback(() => {
@@ -66,6 +68,7 @@ If the tooltip has focusable elements, focus will cycle through those elements. 
       </Toggletip>
     );
   }}
+</Cover>
 
 
 The component is a composite of a `Manager - Trigger - Content` set similar to other popup component implementations,

@@ -1,4 +1,5 @@
 import PasswordInput from "@digital-science/figshare-fcl/input/password";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta 
   title="UI/Inputs/Password" 
@@ -21,7 +22,9 @@ import PasswordInput from "@digital-science/figshare-fcl/input/password";
 Password input component. Allows users to safely input passwords, and to temporarily toggle visibility.
 
 
+<Cover kind={"story"}>
   <PasswordInput onChange={(event) => {}}/>
+</Cover>
 
 
 Can be imported directly or referenced as an `Input` component variation, by setting `type="password"`:
@@ -44,11 +47,11 @@ function PasswordInputs() {
 
 ## Examples
 
-<Canvas>
+<Cover kind={"card"}>
   <PasswordInput onChange={(event) => {}} onChange={(event) => {}} type="password" theme="default" placeholder="Default theme" />
   <PasswordInput onChange={(event) => {}} type="password" theme="underline" placeholder="Underline theme" />
   <PasswordInput onChange={(event) => {}} type="password" theme="default" error={true} placeholder="Default theme - error" />
   <PasswordInput onChange={(event) => {}} type="password" theme="underline" error={true} placeholder="Underline theme - error" />
   <PasswordInput onChange={(event) => {}} type="password" theme="default" disabled={true} placeholder="Default theme - disabled" />
   <PasswordInput onChange={(event) => {}} type="password" theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-</Canvas>
+</Cover>

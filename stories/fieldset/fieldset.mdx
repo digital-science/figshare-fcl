@@ -1,9 +1,10 @@
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import Radio from "@digital-science/figshare-fcl/input/radio";
 import { Button } from "@digital-science/figshare-fcl/button";
 import { Fieldset, Legend, Items } from "@digital-science/figshare-fcl/fieldset";
 import Input from "@digital-science/figshare-fcl/input";
+import { Cover } from "../story-utils/Cover";
 
 <Meta
   title="UI/Fieldset"
@@ -30,6 +31,7 @@ Usually Radio or Checkbox groups of inputs should be wrapped in a Fieldset to de
 
 Legends are styled to look like Labels for a field or can be visually hidden.
 
+<Cover kind={"story"}>
 {() => {
     const items = [
       {name: "radio-group", value: "1", label: "Option"},
@@ -88,6 +90,7 @@ Legends are styled to look like Labels for a field or can be visually hidden.
       </div>
     )
   }}
+</Cover>
 
 
 All Fieldset components can be imported from:
@@ -189,7 +192,7 @@ function CustomizableFieldset() {
 <ArgTypes of={Items} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
   <div style={{display: "flex", flexDirection: "column", gap: "18px" }}>
   <Fieldset>
     <Legend type="primary">
@@ -229,4 +232,4 @@ function CustomizableFieldset() {
     </Items>
   </Fieldset>
   </div>
-</Canvas>
+</Cover>

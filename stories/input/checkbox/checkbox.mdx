@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import Checkbox from "@digital-science/figshare-fcl/input/checkbox";
 import Input from "@digital-science/figshare-fcl/input";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta 
   title="UI/Inputs/Checkbox" 
@@ -27,6 +28,7 @@ A checkbox component. Allows users to toggle the selection of a particular value
 Represented as a checkbox by default, with an optional label.
 Also comes with a switch variation to more clearly represent a `toggle` action to the user.
 
+<Cover kind={"story"}>
 {() => {
     const [checks, setChecks] = useState({
       one: false,
@@ -54,6 +56,7 @@ Also comes with a switch variation to more clearly represent a `toggle` action t
       </>
     )
   }}
+</Cover>
 
 
 Can be imported directly or referenced as the default `Input` component variation:
@@ -97,7 +100,7 @@ function Checks() {
 <ArgTypes of={Checkbox} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
   <div style={{display: "flex", alignItems: "center", gap: "18px"}}>
   <Checkbox id="one" checked={false} onChange={(event) => undefined} />
   <Checkbox id="two" checked={true} onChange={(event) => undefined} >Labeled</Checkbox>
@@ -108,4 +111,4 @@ function Checks() {
   <Checkbox variant="switch" id="three" checked={false} onChange={(event) => undefined} />
   <Checkbox variant="switch" id="four" checked={true} onChange={(event) => undefined} >Labeled</Checkbox>
   </div>
-</Canvas>
+</Cover>

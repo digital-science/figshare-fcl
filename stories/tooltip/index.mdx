@@ -1,9 +1,10 @@
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import { Button, GenericButton } from "@digital-science/figshare-fcl/button";
 import Info from "@digital-science/figshare-fcl/icons/info/medium";
 
 import { Content, Trigger, UncontrolledTooltip as Tooltip } from "@digital-science/figshare-fcl/tooltip";
+import { Cover } from "../story-utils/Cover";
 import styles from "./index.stories.css";
 
 <Meta
@@ -26,6 +27,7 @@ A component that can be used to show a focusable, persistable tooltip tied to a 
 The persistent tooltip will get revealed when users hover on the target or focus on it. 
 
 
+<Cover kind={"story"}>
   {() => {
     const [isVisible, setIsVisible] = useState(false);
     const onToggle = useCallback(() => {
@@ -51,6 +53,7 @@ The persistent tooltip will get revealed when users hover on the target or focus
       </>
     );
   }}
+</Cover>
 
 
 <br />

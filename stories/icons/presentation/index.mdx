@@ -1,5 +1,6 @@
 
 import styles from "./index.stories.css";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta 
   title="Icons"
@@ -30,7 +31,7 @@ import EmbedTitle from "@digital-science/figshare-fcl/icons/presentation/embedTi
 import Ribbon from "@digital-science/figshare-fcl/icons/presentation/ribbon";
 import Publications from "@digital-science/figshare-fcl/icons/presentation/publications";
 
-
+<Cover kind={"story"}>
   <Quote className={styles.icon} />
   <Project className={styles.icon} />
   <Collection className={styles.icon} />
@@ -45,8 +46,7 @@ import Publications from "@digital-science/figshare-fcl/icons/presentation/publi
   <EmbedTitle className={styles.icon} />
   <Ribbon className={styles.icon} />
   <Publications className={styles.icon} />
-
-
+</Cover>
 ```jsx
 import Quote from "@digital-science/figshare-fcl/icons/presentation/quote";
 import Project from "@digital-science/figshare-fcl/icons/presentation/project";

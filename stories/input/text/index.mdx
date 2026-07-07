@@ -1,5 +1,6 @@
 import TextInput from "@digital-science/figshare-fcl/input/text";
 import Input from "@digital-science/figshare-fcl/input";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta 
   title="UI/Inputs/Text" 
@@ -23,7 +24,9 @@ import Input from "@digital-science/figshare-fcl/input";
 A text input component. Allows users to type in and store text values.
 
 
+<Cover kind={"story"}>
   <TextInput placeholder="Input text..." onChange={(event) => {}} />
+</Cover>
 
 
 Can be imported directly or referenced as the default `Input` component variation:
@@ -46,7 +49,7 @@ function TextInputs() {
 <ArgTypes of={TextInput} />
 
 ## Examples
-<Canvas>
+<Cover kind={"card"}>
   <TextInput theme="default" placeholder="Default theme" />
   <TextInput theme="underline" placeholder="Underline theme" />
   <TextInput theme="default" error={true} placeholder="Default theme - error" />
@@ -54,4 +57,4 @@ function TextInputs() {
   <TextInput theme="default" disabled={true} placeholder="Default theme - disabled" />
   <TextInput theme="underline" disabled={true} placeholder="Underline theme - disabled" />
   <TextInput theme="default" placeholder="untitled" prefix="tb.edu.figshare/" />
-</Canvas>
+</Cover>

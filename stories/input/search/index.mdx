@@ -1,7 +1,8 @@
 
 import { useState, useCallback } from 'react';
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import SearchInput from "@digital-science/figshare-fcl/input/search";
+import { Cover } from "../../story-utils/Cover";
 
 <Meta 
   title="UI/Inputs/Search" 
@@ -27,6 +28,7 @@ Search input component.
 Allows users to type in a search query and submit that query to search for results.
 
 
+<Cover kind={"story"}>
   {() => {
     const [query, setQuery] = useState("");
     const onChange = useCallback((event) => {
@@ -38,6 +40,7 @@ Allows users to type in a search query and submit that query to search for resul
     },[]);
     return <SearchInput id="searchQuery" placeholder="Search..." value={query} onChange={onChange} onSubmit={onSubmit}/>
   }}
+</Cover>
 
 
 Can be imported standalone or as a variation of the `Input` component:
@@ -78,20 +81,20 @@ const Query = ({ handleQuerySubmission }) => {
 
 ## Examples
 
-<Canvas>
+<Cover kind={"card"}>
   <SearchInput size="S" theme="default" placeholder="Default theme" />
   <SearchInput size="S" theme="underline" placeholder="Underline theme" />
   <SearchInput size="S" theme="default" error={true} placeholder="Default theme - error" />
   <SearchInput size="S" theme="underline" error={true} placeholder="Underline theme - error" />
   <SearchInput size="S" theme="default" disabled={true} placeholder="Default theme - disabled" />
   <SearchInput size="S" theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-</Canvas>
+</Cover>
 
-<Canvas>
+<Cover kind={"card"}>
   <SearchInput size="L" theme="default" placeholder="Default theme" />
   <SearchInput size="L" theme="underline" placeholder="Underline theme" />
   <SearchInput size="L" theme="default" error={true} placeholder="Default theme - error" />
   <SearchInput size="L" theme="underline" error={true} placeholder="Underline theme - error" />
   <SearchInput size="L" theme="default" disabled={true} placeholder="Default theme - disabled" />
   <SearchInput size="L" theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-</Canvas>
+</Cover>

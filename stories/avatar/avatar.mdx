@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta,  Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes } from '@storybook/addon-docs';
 import { Avatar } from "@digital-science/figshare-fcl/avatar";
 import { Button } from "@digital-science/figshare-fcl/button";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
+import { Cover } from "../story-utils/Cover";
 
 export const Default = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -46,18 +47,16 @@ export const Default = () => (
 An user avatar display component, that can show an existing avatar or the user\'s initials, if provided an URL and a first and last name.
 Will fallback to showing the initials if the avatar image could not be loaded.
 
-<div>
-  {(() => {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
-          <Avatar firstName="John" lastName="Doe" />
-          <Avatar firstName="John" lastName="Doe" url={image} />
-        </div>
+<Cover kind={"story"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
+        <Avatar firstName="John" lastName="Doe" />
+        <Avatar firstName="John" lastName="Doe" url={image} />
       </div>
-    )
-  })()}
-</div>
+    </div>
+  )}
+</Cover>
 
 
 The component can be imported from `@digital-science/figshare-fcl/avatar`.
@@ -86,4 +85,4 @@ function AvatarExample() {
 <ArgTypes of={Avatar} />
 
 ## Examples
-<Canvas of={Default} />
+<Cover kind={"card"}><Default /></Cover>
