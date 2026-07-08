@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import * as React from "react";
 import { Overlay } from "@digital-science/figshare-fcl/overlay";
 
-import styles from "./useModal.css";
+import styles from "./useModal.module.css";
 
 
 export default function useModal() {

@@ -4,7 +4,7 @@ import { Popper } from "react-popper";
 import React, { PureComponent } from "react";
 
 import BaseButton from "./base";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 export default class GenericButton extends PureComponent {

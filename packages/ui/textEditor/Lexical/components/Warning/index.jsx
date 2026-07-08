@@ -1,7 +1,7 @@
 import React from "react";
 import { number } from "prop-types";
 
-import styles from "./Warning.css";
+import styles from "./Warning.module.css";
 
 
 export const Warning = ({ contentLength, minLength, maxLength }) => {

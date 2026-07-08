@@ -2,7 +2,7 @@ import classnames from "classnames";
 import { node, string } from "prop-types";
 import React, { Component } from "react";
 
-import style from "./overlayFooter.css";
+import style from "./overlayFooter.module.css";
 
 
 export class OverlayFooter extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 export default class ToolbarButton extends Component {

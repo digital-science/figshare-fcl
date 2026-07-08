@@ -7,7 +7,7 @@ import ArrowLeftMedium from "../../icons/arrow/left/medium";
 import Cancel from "../../icons/cancel/large";
 import { OverlayContext } from "../overlay";
 
-import styles from "./overlayHeader.css";
+import styles from "./overlayHeader.module.css";
 
 
 const CONFIRMATION_OVERLAYS = ["warning", "error", "success"];

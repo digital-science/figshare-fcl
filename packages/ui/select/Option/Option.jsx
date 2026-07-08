@@ -7,7 +7,7 @@ import Checkmark from "../../input/checkbox/components/checkmark.jsx";
 import Context from "../context.js";
 
 import { debounce } from "./utils.js";
-import style from "./Option.css";
+import style from "./Option.module.css";
 
 
 export class Option extends Component {

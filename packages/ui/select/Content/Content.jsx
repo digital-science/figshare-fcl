@@ -6,7 +6,7 @@ import { Menu } from "../../dropdown";
 import SearchInput from "../../input/search";
 import Context from "../context";
 
-import style from "./Content.css";
+import style from "./Content.module.css";
 
 
 export class Content extends Component {

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 
 import { normalizeUrl } from "./normalizeurl";
-import styles from "./base.css";
+import styles from "./base.module.css";
 
 
 const longPressDelay = 500;

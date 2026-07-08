@@ -7,7 +7,7 @@ import RenderInPortal from "../helpers/renderInPortal";
 
 import { OverlayStack } from "./overlayStack";
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from "./overlay.css";
+import styles from "./overlay.module.css";
 
 
 let OVERLAY_ID = 0;

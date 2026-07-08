@@ -3,7 +3,7 @@ import classnames from "classnames";
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
-import styles from "./spinner.css";
+import styles from "./spinner.module.css";
 
 
 export default class Spinner extends PureComponent {

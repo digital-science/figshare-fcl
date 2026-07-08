@@ -3,7 +3,7 @@ import { string, bool, node, func, any } from "prop-types";
 
 import { IconButton } from "../../../../../button";
 
-import styles from "./Tool.css";
+import styles from "./Tool.module.css";
 
 
 export function Tool({ active, disabled, label, type, group, icon, onToolSelect }) {
