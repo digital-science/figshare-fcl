@@ -1,5 +1,4 @@
 const path = require("path");
-const postcssConfig = require("./postcss.config.js");
 
 module.exports = {
   stories: [
@@ -13,45 +12,13 @@ module.exports = {
   addons: ["@storybook/addon-docs"],
   staticDirs: ["./"],
   webpackFinal: (config) => {
-    const cssRuleToLookFor = /\.css$/.toString();
-
-    const rules = config.module.rules.map((rule) => {
-      if (rule.test?.toString() === cssRuleToLookFor) {
-        return {
-          ...rule,
-          use: [
-            require.resolve("style-loader"),
-            {
-              loader: require.resolve("css-loader"),
-              options: {
-                importLoaders: 1,
-                modules: { localIdentName: "[name]-[local]-[hash:base64:5]" },
-                sourceMap: true,
-              },
-            },
-            {
-              loader: require.resolve("postcss-loader"),
-              options: {
-                postcssOptions: {
-                  plugins: postcssConfig(["node_modules"], { isDebug: true })(),
-                  config: false,
-                },
-                sourceMap: true,
-              },
-            },
-          ],
-        };
-      }
-      return rule;
-    });
-
     return {
       ...config,
       resolve: { ...config.resolve, modules: ["node_modules", path.resolve(__dirname, "../packages/ui/node_modules")] },
       module: {
         ...config.module,
         rules: [
-          ...rules,
+          ...config.module.rules,
           {
             test: /\.[jt]sx?$/,
             exclude: /node_modules/,
@@ -77,3 +44,4 @@ module.exports = {
     };
   },
 };
+
