@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=B612|B612+Mono|Roboto&display=swap");
 
-:global(:root) {
+:root {
   --fontFamily: "Arial", "Roboto", "Helvetica", "Open Sans", sans-serif;
   --fontFamilyMono: "B612 Mono", monospace;
 
