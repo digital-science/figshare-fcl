@@ -7,7 +7,7 @@ import { Popper } from "react-popper";
 import withConsumer from "../helpers/withConsumer";
 import RootCloseListener from "../helpers/rootCloseListener";
 
-import styles from "./content.css";
+import styles from "./content.module.css";
 import { Consumer } from "./context";
 import AriaDescription from "./content_aria_description";
 import AriaLabel from "./content_aria_label";

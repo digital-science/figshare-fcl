@@ -5,7 +5,7 @@ import { node, string, shape, oneOf, bool } from "prop-types";
 import Warning from "../icons/warning/medium";
 
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from "./fieldError.css";
+import styles from "./fieldError.module.css";
 
 
 export function FieldError({ error, field, fullWidth, size, className }) {

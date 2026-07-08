@@ -17,7 +17,7 @@ import More from "../icons/react/More";
 import useEventListener from "../helpers/useEventListener";
 import { debounce } from "../helpers/utils/debounce";
 
-import styles from "./Tabs.css";
+import styles from "./Tabs.module.css";
 
 
 export const TabsContext = createContext({});

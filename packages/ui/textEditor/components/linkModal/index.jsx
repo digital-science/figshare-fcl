@@ -6,7 +6,7 @@ import { Button } from "@digital-science/figshare-fcl/button";
 
 import { findEntityType } from "../../utils";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 import UnlinkIcon from "./unlink-icon";
 import OpenLinkIcon from "./open-link-icon";
 

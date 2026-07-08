@@ -12,7 +12,7 @@ import LinkUnlinked from "@digital-science/figshare-fcl/icons/link/unlinked";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 import { getSelectedNode, sanitizeUrl, makeURLAbsolute } from "./utils";
-import styles from "./LinkEditor.css";
+import styles from "./LinkEditor.module.css";
 
 
 export function LinkEditor({ onClose }) {

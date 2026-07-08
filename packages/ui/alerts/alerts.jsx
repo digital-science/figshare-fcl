@@ -11,7 +11,7 @@ import Close from "../icons/react/Close";
 import Checkmark from "../icons/react/Checkmark";
 
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from "./alerts.css";
+import styles from "./alerts.module.css";
 import { popAlert } from "./utils";
 
 

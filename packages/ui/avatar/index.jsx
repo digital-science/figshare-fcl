@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useEffect, useMemo, useState } from "re
 import { string, object } from "prop-types";
 import classnames from "classnames";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const BLANK_IMAGE = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";

@@ -11,7 +11,7 @@ import { Button } from "../../button";
 import withRef from "../../helpers/withRef.jsx";
 import Context from "../context.js";
 
-import style from "./Trigger.css";
+import style from "./Trigger.module.css";
 
 
 const variants = {

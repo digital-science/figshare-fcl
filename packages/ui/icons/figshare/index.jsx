@@ -4,7 +4,7 @@ import React, { PureComponent } from "react";
 
 import Logo from "./logo";
 import Text from "./text";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 export default class FigshareFullLogo extends PureComponent {

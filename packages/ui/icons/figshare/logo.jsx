@@ -2,7 +2,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 
-import styles from "./logo.css";
+import styles from "./logo.module.css";
 
 
 export default class FigshareLogo extends PureComponent {

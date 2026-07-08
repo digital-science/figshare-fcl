@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import GenericButton from "../genericButton";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const themes = {

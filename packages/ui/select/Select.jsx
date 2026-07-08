@@ -11,7 +11,7 @@ import Trigger from "./Trigger";
 import Content from "./Content";
 import _option from "./Option";
 import Context from "./context.js";
-import style from "./Select.css";
+import style from "./Select.module.css";
 
 
 export class Select extends Component {

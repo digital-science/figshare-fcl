@@ -6,7 +6,7 @@ import withRef from "../helpers/withRef";
 import Cancel from "../icons/cancel/medium";
 import { Button } from "../button";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const variantStyles = {

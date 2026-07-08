@@ -39,7 +39,7 @@ import { LowPriority, HighPriority, DefaultToolbarConfig } from "./constants";
 import Toolbar from "./components/Toolbar";
 import { Warning } from "./components/Warning";
 import DefaultTheme from "./themes/DefaultTheme";
-import styles from "./editor.css"; // eslint-disable-line css-modules/no-unused-class
+import styles from "./editor.module.css"; // eslint-disable-line css-modules/no-unused-class
 import { CustomTextNode } from "./nodes/CustomTextNode";
 import { definePasteCommand } from "./components/Toolbar/commands";
 
