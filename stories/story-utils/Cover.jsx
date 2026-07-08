@@ -9,10 +9,12 @@ export function Cover({ children, kind = "story", bordered = true, ...props }) {
     }
 
     if (kind.includes("card")) {
-      style.border = "1px solid #eee";
-      style.borderRadius = "6px";
+      style.border = "1px solid rgba(38, 85, 115, 0.15)";
+      style.background = "rgb(255, 255, 255)";
+      style.margin = "25px 0px 40px";
+      style.borderRadius = "4px";
+      style.boxShadow = "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px";
       style.padding = "18px 24px";
-      style.backgroundColor = "#fafafa";
     }
 
     if (kind.includes("centered")) {

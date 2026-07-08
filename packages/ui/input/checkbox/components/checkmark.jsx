@@ -5,7 +5,7 @@ import React, { PureComponent } from "react";
 import Checked from "../../../icons/checkBox/checked";
 import Unchecked from "../../../icons/checkBox/unchecked";
 
-import styles from "./checkmark.css";
+import styles from "./checkmark.module.css";
 
 
 const themes = {

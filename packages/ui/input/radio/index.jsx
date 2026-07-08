@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import classnames from "classnames";
 import { any, bool, func, string } from "prop-types";
 
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 export default function Radio(

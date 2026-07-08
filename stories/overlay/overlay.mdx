@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Meta, ArgTypes } from "@storybook/addon-docs";
+import { Meta, ArgTypes } from "@storybook/blocks";
 import {Button, GenericButton} from '@digital-science/figshare-fcl/button';
 import {Input} from '@digital-science/figshare-fcl/input';
 import { Overlay, OverlayHeader, OverlayFooter, OverlayContent, PrimaryActions, SecondaryActions } from "@digital-science/figshare-fcl/overlay";
@@ -7,6 +7,7 @@ import Toggletip, { Trigger, Content, UncontrolledToggletip } from "@digital-sci
 import { Cover } from "../story-utils/Cover";
 
 import style from './overlay.stories.css';
+
 
 export const MoreContent = () => {
   const content = useMemo(() =>  (Array.from(new Array(20), (v, i) => 

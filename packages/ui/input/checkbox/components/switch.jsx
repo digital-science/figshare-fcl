@@ -2,7 +2,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 
-import style from "./switch.css";
+import style from "./switch.module.css";
 
 
 export default class Switch extends PureComponent {

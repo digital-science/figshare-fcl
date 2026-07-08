@@ -6,7 +6,7 @@ import Indeterminate from "../../icons/indeterminate";
 
 import Checkmark from "./components/checkmark";
 import Switch from "./components/switch";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const variants = {

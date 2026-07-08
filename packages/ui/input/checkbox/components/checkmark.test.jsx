@@ -5,7 +5,7 @@ import Checked from "../../../icons/checkBox/checked";
 import Unchecked from "../../../icons/checkBox/unchecked";
 
 import Checkmark from "./checkmark";
-import style from "./checkmark.css";
+import style from "./checkmark.module.css";
 
 
 describe("<Checkmark />", () => {
