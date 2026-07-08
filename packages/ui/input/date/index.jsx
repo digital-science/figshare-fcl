@@ -11,7 +11,7 @@ import ChevronLeft from "../../icons/chevron/left/medium";
 import "./datepicker.css";
 
 import { validateDateFormat, getYearsPeriod, DEFAULT_MIN_DATE, DEFAULT_MAX_DATE } from "./utils";
-import style from "./index.css";
+import style from "./index.module.css";
 
 
 const PORTAL_ID = "datepicker-portal";

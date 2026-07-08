@@ -5,7 +5,7 @@ import classnames from "classnames";
 import { IconButton } from "../../button";
 
 import { sizes, iconSizes } from "./constants";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const themes = {

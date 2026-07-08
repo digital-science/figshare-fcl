@@ -4,6 +4,8 @@ import DatePickerComponent from "@digital-science/figshare-fcl/input/date/index"
 import InputComponent from '@digital-science/figshare-fcl/input/index';
 import { Cover } from "../../story-utils/Cover";
 
+import { Meta, ArgTypes } from "@storybook/blocks";
+
 export const DatePicker = uncontrollable(
   DatePickerComponent,
   { selectedDate: ["onChange", (_, date) => date] }

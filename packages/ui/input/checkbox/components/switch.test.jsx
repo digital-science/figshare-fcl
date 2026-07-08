@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import Switch from "./switch";
-import style from "./switch.css";
+import style from "./switch.module.css";
 
 
 describe("<Switch />", () => {

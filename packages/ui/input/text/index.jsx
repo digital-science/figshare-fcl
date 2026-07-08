@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import { getTextDirection } from "./utils";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 
 const themes = {
