@@ -77,8 +77,10 @@
     "copy-webpack-plugin": "12.0.2",
     "css-loader": "6.8.1",
     "cssnano": "5.1.15",
-    "enzyme": "3.11.0",
-    "enzyme-to-json": "3.6.2",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "12.1.5",
+    "@testing-library/user-event": "14.6.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -100,7 +102,6 @@
   },
   "dependencies": {
     "@digital-science/figshare-fcl": "file:./packages/ui",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "core-js": "3.26.1",
     "regenerator-runtime": "0.13.11"
   }

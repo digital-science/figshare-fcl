@@ -19,7 +19,7 @@ module.exports = {
   modulePaths: ["<rootDir>/packages"],
   setupFiles: ["<rootDir>/scripts/tests/jest.setup.js"],
   setupFilesAfterEnv: ["<rootDir>/scripts/tests/jsdom.setup.js"],
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  testPathIgnorePatterns: ["/node_modules/", "\\.enzyme\\.(js|jsx)$"],
   transform: {
     "^.+\\.(js|jsx)$": require.resolve("babel-jest"),
     "\\.(jpg|jpeg|png|gif)$": "<rootDir>/scripts/tests/fileTransformer.js",
