@@ -1,11 +1,4 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import Enzyme from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { webcrypto } from "crypto";
-
-
-Enzyme.configure({ adapter: new Adapter() });
 
 if (!global.crypto) {
   global.crypto = webcrypto;
