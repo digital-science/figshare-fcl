@@ -10,7 +10,7 @@ import {
 } from "@digital-science/figshare-fcl/a11y/linking/index";
 
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from "./storybook.stories.css";
+import styles from "./storybook.stories.module.css";
 
 
 const DebugComponent = withLinkingContext(({ linkingContext }) => (

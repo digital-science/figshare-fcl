@@ -3,7 +3,7 @@ import { Button } from "@digital-science/figshare-fcl/button";
 import { LinkingProvider, LinkingObject, LinkingReference } from "@digital-science/figshare-fcl/a11y/linking/index";
 
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from "./storybook.stories.css";
+import styles from "./storybook.stories.module.css";
 
 
 export const FunctionChildrenShowcase = () => (

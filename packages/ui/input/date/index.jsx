@@ -8,7 +8,7 @@ import moment from "moment";
 import ChevronRight from "../../icons/chevron/right/medium";
 import ChevronLeft from "../../icons/chevron/left/medium";
 
-import "./datepicker.css";
+import "./datepicker.module.css";
 
 import { validateDateFormat, getYearsPeriod, DEFAULT_MIN_DATE, DEFAULT_MAX_DATE } from "./utils";
 import style from "./index.module.css";
