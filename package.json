@@ -12,6 +12,7 @@
     "lint:css": "stylelint '**/*.css'",
     "lint:js": "eslint ./ --ext=js,jsx",
     "lint:staged": "lint-staged",
+    "lint:fix": "eslint ./ --ext=js,jsx --fix",
     "test": "jest",
     "test:generateJSON": "jest --json --outputFile=.jest-results.json || true",
     "storybook": "NODE_ENV=development storybook dev -p 9001",

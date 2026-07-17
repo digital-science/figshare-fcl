@@ -1,6 +1,7 @@
 import "@digital-science/figshare-fcl/styles/index.css";
 import "./styles/index.css";
 
+
 export const parameters = {
   layout: "fullscreen",
   options: {

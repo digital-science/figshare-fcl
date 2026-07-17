@@ -3,7 +3,6 @@ import { stateToHTML } from "draft-js-export-html";
 import { stateFromHTML } from "draft-js-import-html";
 
 import { DraftEntity } from "./constants";
-import { getEntityForLink } from "./entityUtils";
 import { moveSelectionToEnd } from "./selectionUtils";
 
 
@@ -85,35 +84,42 @@ export const onConvertDraftToHTML = (editorState) => {
 };
 
 export const onConvertHTMLtoDraft = (html) => {
-  let parsedHtml = html;
-
-  ALLOWED_HTML_TAGS.forEach((tag) => {
-    if (html.includes(`<${tag}>`) || html.includes(`</${tag}>`)) {
-      parsedHtml = parsedHtml.replaceAll(`<${tag}>`, `&lt;${tag}&gt;`).replaceAll(`</${tag}>`, `&lt;/${tag}&gt;`);
-    }
-  });
-
   const options = {
     customInlineFn: (element, { Entity: entity }) => {
       if (element.tagName === DraftEntity.SUB) {
+        if (element.querySelector("a")) {
+          return null;
+        }
+
         return entity(DraftEntity.SUB);
       }
 
       if (element.tagName === DraftEntity.SUP) {
+        if (element.querySelector("a")) {
+          return null;
+        }
+
         return entity(DraftEntity.SUP);
       }
 
       if (element.tagName === "A") {
-        const entityForLink = getEntityForLink(parsedHtml, element.outerHTML);
+        const parentTag = element.parentElement?.tagName;
+        let entityType = DraftEntity.LINK;
+        if (parentTag === DraftEntity.SUB) {
+          entityType = DraftEntity.LINKSUB;
+        }
+        if (parentTag === DraftEntity.SUP) {
+          entityType = DraftEntity.LINKSUP;
+        }
 
-        return entity(entityForLink, { url: element.href });
+        return entity(entityType, { url: element.href });
       }
 
       return null;
     },
   };
 
-  return stateFromHTML(parsedHtml, options);
+  return stateFromHTML(html, options);
 };
 
 // To toggle sub/superscript we insert a special character (\u0000)

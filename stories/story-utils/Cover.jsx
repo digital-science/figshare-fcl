@@ -1,39 +1,51 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export function Cover({ children, kind = "story", bordered = true, ...props }) {
+
+export function Cover({ children, kind = "story", ...props }) {
   const style = React.useMemo(() => {
-    let style = {};
+    const s = {};
 
     if (kind.includes("story")) {
-      style.padding = "12px 6px";
+      s.padding = "12px 6px";
     }
 
     if (kind.includes("card")) {
-      style.border = "1px solid rgba(38, 85, 115, 0.15)";
-      style.background = "rgb(255, 255, 255)";
-      style.margin = "25px 0px 40px";
-      style.borderRadius = "4px";
-      style.boxShadow = "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px";
-      style.padding = "18px 24px";
+      s.border = "1px solid rgba(38, 85, 115, 0.15)";
+      s.background = "rgb(255, 255, 255)";
+      s.margin = "25px 0px 40px";
+      s.borderRadius = "4px";
+      s.boxShadow = "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px";
+      s.padding = "18px 24px";
     }
 
     if (kind.includes("centered")) {
-      style.display = "flex";
-      style.gap = "12px";
-      style.flexDirection = "column";
-      style.alignItems = "center";
-      style.justifyContent = "center";
+      s.display = "flex";
+      s.gap = "12px";
+      s.flexDirection = "column";
+      s.alignItems = "center";
+      s.justifyContent = "center";
     }
 
-    return style;
+    return s;
   }, [kind]);
 
 
   return (
-    <div data-scope="cover" data-part="container" style={style}>
-      <div data-scope="cover"  data-part="content">
+    <div data-part="container" data-scope="cover" style={style}>
+      <div data-part="content" data-scope="cover">
         {typeof children === "function" ? children(props) : children}
       </div>
     </div>
   );
 }
+
+Cover.propTypes = {
+  children: PropTypes.node,
+  kind: PropTypes.string,
+};
+
+Cover.defaultProps = {
+  children: null,
+  kind: "story",
+};
