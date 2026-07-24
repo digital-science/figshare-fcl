@@ -33,7 +33,7 @@
   },
   "overrides": {
     "form-data": "4.0.6",
-    "immutable": "3.8.3",
+    "immutable": "4.3.9",
     "node-fetch": "2.6.7",
     "handlebars": "4.7.9",
     "tar": "7.5.16",
@@ -72,7 +72,7 @@
     "@storybook/react-webpack5": "8.6.14",
     "babel-jest": "29.7.0",
     "babel-loader": "9.2.1",
-    "immutable": "3.8.3",
+    "immutable": "4.3.9",
     "storybook": "8.6.14",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "copy-webpack-plugin": "12.0.2",
