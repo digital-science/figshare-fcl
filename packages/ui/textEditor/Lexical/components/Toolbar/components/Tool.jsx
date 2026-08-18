@@ -22,7 +22,8 @@ export function Tool({ active, disabled, label, type, group, icon, onToolSelect 
       onClick={onToolSelect}
     >
       {label}
-    </IconButton>);
+    </IconButton>
+  );
 }
 
 Tool.propTypes = {

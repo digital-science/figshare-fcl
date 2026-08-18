@@ -1,0 +1,35 @@
+.searchInput {
+  --clearable-input-buttons-size: calc(15 * var(--gridSize));
+  --empty-input-buttons-size: calc(7.5 * var(--gridSize));
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gridSize);
+}
+
+.searchInput div:first-of-type {
+  flex: 1 0;
+
+  width: 100%;
+}
+
+.searchInput[data-clearable="false"] input[data-part="search-input-field"] {
+  padding-right: calc(2 * var(--gridSize) + var(--empty-input-buttons-size));
+}
+
+.searchInput[data-clearable="true"] input[data-part="search-input-field"] {
+  padding-right: calc(2 * var(--gridSize) + var(--clearable-input-buttons-size));
+}
+
+.searchInputButtons {
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gridSize);
+}

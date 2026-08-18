@@ -1,0 +1,151 @@
+/* stylelint-disable no-descending-specificity */
+:global(.typography) {
+  font-family: Arial, sans-serif;
+
+  margin: 0;
+  padding: 0;
+}
+
+:global(.typography.title-1) {
+  font-size: 36px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 60px;
+}
+
+:global(.typography.title-2) {
+  font-size: 28px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 42px;
+}
+
+:global(.typography.title-3) {
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 36px;
+}
+
+:global(.typography.title-4) {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 30px;
+}
+
+:global(.typography.body) {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+}
+
+:global(.typography.body-2) {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+
+  color: var(--Typography-Disabled, #707070);
+}
+
+:global(.typography.body-3) {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+
+  color: var(--Typography-Secondary, #464646);
+}
+
+:global(.typography.label-2),
+:global(.typography.caption) {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+
+  color: var(--Typography-Tertiary, #525252);
+}
+
+:global(.typography.label-3) {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+}
+
+:global(.typography.weight-regular) {
+  font-weight: 400;
+}
+
+:global(.typography.weight-bold) {
+  font-weight: 700;
+}
+
+:global(.typography.color-primary) {
+  color: var(--Typography-Primary, #252525);
+}
+
+:global(.typography.color-secondary) {
+  color: var(--Typography-Secondary, #757575);
+}
+
+:global(.typography.color-secondary-2) {
+  color: var(--Typography-Secondary, #464646);
+}
+
+:global(.typography.color-tertiary) {
+  color: var(--Typography-Tertiary, #525252);
+}
+
+:global(.typography.color-inherit) {
+  color: inherit;
+}
+
+:global(.typography.color-initial) {
+  color: initial;
+}
+
+:global(.typography.color-currentColor) {
+  color: currentcolor;
+}
+
+:global(.typography.wrap-nowrap) {
+  white-space: nowrap;
+}
+
+:global(.typography.wrap-ellipsis) {
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+:global(.typography.wrap-break-all) {
+  overflow: hidden;
+
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+:global(.typography.text-align-center) {
+  text-align: center;
+}
+
+:global(.typography.text-align-left) {
+  text-align: left;
+}
+
+:global(.typography.text-align-right) {
+  text-align: right;
+}
+
+:global(.typography)[data-text-transform="capitalize-first-letter"]::first-letter {
+  text-transform: capitalize;
+}
+
+:global(.typography)[data-text-transform="uppercase"] {
+  text-transform: uppercase;
+}

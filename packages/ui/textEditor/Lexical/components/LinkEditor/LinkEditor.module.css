@@ -52,7 +52,7 @@
 .inputWrapper {
   display: grid;
   grid-template-columns: auto max-content;
-  grid-gap: var(--gridSize);
+  gap: var(--gridSize);
 }
 
 .linkButton {

@@ -1,0 +1,58 @@
+:global(.icon-slot) {
+  --icon-color: currentcolor;
+
+  position: relative;
+
+  display: inline-flex;
+
+  width: 16px;
+  height: 16px;
+
+  color: var(--icon-color);
+  fill: var(--icon-color);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:global(.icon-slot)[data-kind~="blend"] {
+  --icon-color: currentcolor;
+}
+
+:global(.icon-slot)[data-kind~="text"] {
+  --icon-color: var(--Typography-Color-Primary, #000);
+}
+
+:global(.icon-slot)[data-kind~="warning"] {
+  --icon-color: var(--Typography-Color-Warning, #c03830);
+}
+
+:global(.icon-slot)[data-kind~="success"] {
+  --icon-color: var(--Typography-Color-Success, #2a6347);
+}
+
+:global(.icon-slot)[data-kind~="item-type"] {
+  --icon-color: var(--Typography-Color-Secondary, #525252);
+
+  width: 40px;
+  height: 24px;
+}
+
+:global(.icon-slot)[data-kind~="item-type"][data-kind~="inactive"] {
+  --icon-color: var(--Typography-Color-Secondary-Disabled, #bbb);
+}
+
+/** Target SVGs mainly, but can be any first descendant node */
+:global(.icon-slot)[data-part="icon-slot"] > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: auto;
+  height: auto;
+
+  transform: translate(-50%, -50%);
+
+  color: inherit;
+  fill: inherit;
+}
