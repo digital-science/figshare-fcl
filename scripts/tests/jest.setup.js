@@ -35,6 +35,7 @@ class MockIntersectionObserver {
 
 global.IntersectionObserver = MockIntersectionObserver;
 
+// eslint-disable-next-line no-undef
 jest.mock(
   "@popperjs/core",
   () => {

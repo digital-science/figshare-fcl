@@ -86,35 +86,17 @@ class Content extends Component {
     );
   }
 
-    renderPopper = ({ ref }) => {
-      const { placement, tooltipContext, renderInPortal, ...props } = this.props;
-      const { isVisible, triggerNode } = tooltipContext;
+  renderPopper = ({ ref }) => {
+    const { placement, tooltipContext, renderInPortal, ...props } = this.props;
+    const { isVisible, triggerNode } = tooltipContext;
 
-      if (!renderInPortal) {
+    if (!renderInPortal) {
 
-        if (!isVisible) {
-          return null;
-        }
-
-        return (
-          <Popper
-            {...props}
-            eventsEnabled={isVisible}
-            innerRef={ref}
-            modifiers={[...modifiers, ...this.props.modifiers]}
-            placement={placement}
-            referenceElement={triggerNode}
-          >
-            {this.renderPopperContent}
-          </Popper>
-        );
-      }
-
-      if (!this.state.mounted) {
+      if (!isVisible) {
         return null;
       }
 
-      return ReactDOM.createPortal(
+      return (
         <Popper
           {...props}
           eventsEnabled={isVisible}
@@ -124,82 +106,100 @@ class Content extends Component {
           referenceElement={triggerNode}
         >
           {this.renderPopperContent}
-        </Popper>,
-        this.portal
+        </Popper>
       );
     }
 
-    renderPopperContent = ({ ref, style, placement, arrowProps, update }) => {
-      const { arrowClassName, className, tooltipContext, theme } = this.props;
-      const { ariaRole, addEventsOnContent, isVisible, onClose } = tooltipContext;
+    if (!this.state.mounted) {
+      return null;
+    }
 
-      this.popperUpdate = update;
+    return ReactDOM.createPortal(
+      <Popper
+        {...props}
+        eventsEnabled={isVisible}
+        innerRef={ref}
+        modifiers={[...modifiers, ...this.props.modifiers]}
+        placement={placement}
+        referenceElement={triggerNode}
+      >
+        {this.renderPopperContent}
+      </Popper>,
+      this.portal
+    );
+  }
 
-      let events = {};
-      if (addEventsOnContent) {
-        ({ events } = tooltipContext);
-      }
+  renderPopperContent = ({ ref, style, placement, arrowProps, update }) => {
+    const { arrowClassName, className, tooltipContext, theme } = this.props;
+    const { ariaRole, addEventsOnContent, isVisible, onClose } = tooltipContext;
 
-      const classNames = [
-        styles.container,
-        themes[theme],
-        className,
-        { [styles.hidden]: !isVisible },
-      ];
+    this.popperUpdate = update;
 
-      return (
+    let events = {};
+    if (addEventsOnContent) {
+      ({ events } = tooltipContext);
+    }
+
+    const classNames = [
+      styles.container,
+      themes[theme],
+      className,
+      { [styles.hidden]: !isVisible },
+    ];
+
+    return (
+      <div
+        ref={ref}
+        className={classnames(classNames)}
+        data-placement={placement}
+        role={ariaRole}
+        style={ { ...style } }
+        tabIndex={-1}
+        {...events}
+      >
+        {this.props.children({ onClose })}
         <div
-          ref={ref}
-          className={classnames(classNames)}
-          data-placement={placement}
-          role={ariaRole}
-          style={ { ...style } }
-          tabIndex={-1}
-          {...events}
-        >
-          {this.props.children({ onClose })}
-          <div
-            ref={arrowProps.ref}
-            className={classnames(styles.arrow, arrowClassName)}
-            role="presentation"
-            style={arrowProps.style}
-          />
-        </div>
-      );
-    }
+          ref={arrowProps.ref}
+          className={classnames(styles.arrow, arrowClassName)}
+          role="presentation"
+          style={arrowProps.style}
+        />
+      </div>
+    );
+  }
 
-    onMount = () => {
+  onMount = () => {
+    this.setPortal(document.body);
+    this.setState({ mounted: true });
+  }
+
+  onFullScreenChange = (event) => {
+    if (document.fullscreenElement) {
+      this.setPortal(event.target);
+    } else {
+      try {
+        event.target.removeChild(this.portal);
+      } catch {
+        // do nothing, the element is already gone
+      }
       this.setPortal(document.body);
-      this.setState({ mounted: true });
     }
+  }
 
-    onFullScreenChange = (event) => {
-      if (document.fullscreenElement) {
-        this.setPortal(event.target);
-      } else {
-        try {
-          event.target.removeChild(this.portal);
-        } catch {
-          // do nothing, the element is already gone
-        }
-        this.setPortal(document.body);
-      }
+  setPortal = (root) => {
+    this.portal = root.querySelector(".popper-container");
+    if (!this.portal) {
+      this.portal = document.createElement("div");
+      this.portal.classList = ["popper-container"];
+      root.appendChild(this.portal);
     }
+  }
 
-    setPortal = (root) => {
-      this.portal = root.querySelector(".popper-container");
-      if (!this.portal) {
-        this.portal = document.createElement("div");
-        this.portal.classList = ["popper-container"];
-        root.appendChild(this.portal);
-      }
+  updatePopper = () => {
+    if (this.popperUpdate) {
+      this.popperUpdate();
     }
-
-    updatePopper = () => {
-      if (this.popperUpdate) {
-        this.popperUpdate();
-      }
-    }
+  }
 
 }
 

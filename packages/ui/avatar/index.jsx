@@ -70,7 +70,8 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
         {...imageProps}
       />
       }
-    </div>);
+    </div>
+  );
 });
 
 

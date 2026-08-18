@@ -1,0 +1,70 @@
+:global(.spinner-icon) {
+  position: relative;
+
+  color: var(--Color-Typography-Primary, #252525);
+  fill: var(--Color-Typography-Primary, #252525);
+}
+
+:global(.spinner-icon)[data-blend="true"] {
+  color: currentcolor;
+  fill: currentcolor;
+}
+
+:global(.spinner-icon)[data-size="full"] {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+:global(.spinner-icon)[data-size="small"] {
+  width: 16px;
+  height: 16px;
+}
+
+:global(.spinner-icon)[data-size="medium"] {
+  width: 32px;
+  height: 32px;
+}
+
+:global(.spinner-icon)[data-size="large"] {
+  width: 48px;
+  height: 48px;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  :global(.spinner-icon) [data-part="spinner-icon"] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: auto;
+    height: auto;
+
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: none;
+    fill: currentcolor;
+  }
+}
+
+:global(.spinner-icon) [data-part="spinner-icon"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: auto;
+  height: auto;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: spinnerSpin 2s linear infinite;
+  fill: currentcolor;
+}
+
+@keyframes spinnerSpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}

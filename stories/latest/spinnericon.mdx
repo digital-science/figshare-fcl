@@ -1,0 +1,166 @@
+import { Meta, ArgTypes } from "@storybook/blocks";
+import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
+import { Cover } from "../story-utils/Cover";
+
+<Meta
+  title="UI/latest/SpinnerIcon"
+  component={SpinnerIcon}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# SpinnerIcon
+
+---
+
+- [Overview](#overview)
+- [Props](#props-table)
+- [Examples](#examples)
+
+## Overview
+
+An animated loading spinner icon component. Displays a rotating loader with configurable sizes and blend modes for use in loading states.
+
+<Cover kind={"story"}>
+  {() => (
+    <div style={{ display: "flex", gap: "24px", padding: "24px" }}>
+      <SpinnerIcon size="small" />
+      <SpinnerIcon size="medium" />
+      <SpinnerIcon size="large" />
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
+
+export default function SpinnerOverview() {
+  return (
+    <div style={{ display: "flex", gap: "24px" }}>
+      <SpinnerIcon size="small" />
+      <SpinnerIcon size="medium" />
+      <SpinnerIcon size="large" />
+    </div>
+  );
+}
+```
+
+The component can be imported from `@digital-science/figshare-fcl/latest`.
+
+## Props Table
+
+<ArgTypes of={SpinnerIcon} />
+
+## Examples
+
+### Spinner Sizes
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div>
+        <h4>Small</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="small" />
+        </div>
+      </div>
+      <div>
+        <h4>Medium</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="medium" />
+        </div>
+      </div>
+      <div>
+        <h4>Large</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="large" />
+        </div>
+      </div>
+      <div>
+        <h4>Full</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="full" />
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
+
+<SpinnerIcon size="small" />
+<SpinnerIcon size="medium" />
+<SpinnerIcon size="large" />
+<SpinnerIcon size="full" />
+```
+
+### Spinner Blend Modes
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div>
+        <h4>Default Blend</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="medium" blend={false} />
+        </div>
+      </div>
+      <div>
+        <h4>With Blend</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <SpinnerIcon size="medium" blend={true} />
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
+
+// Default blend
+<SpinnerIcon size="medium" blend={false} />
+
+// With blend
+<SpinnerIcon size="medium" blend={true} />
+```
+
+### Spinner in Loading State
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <SpinnerIcon size="small" />
+        <span>Loading data...</span>
+      </div>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <SpinnerIcon size="medium" />
+        <span>Processing request...</span>
+      </div>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <SpinnerIcon size="small" />
+        <span>Fetching results...</span>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
+
+<div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+  <SpinnerIcon size="small" />
+  <span>Loading data...</span>
+</div>
+
+<div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+  <SpinnerIcon size="medium" />
+  <span>Processing request...</span>
+</div>
+```

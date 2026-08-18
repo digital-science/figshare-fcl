@@ -1,0 +1,156 @@
+import { Meta, ArgTypes } from "@storybook/blocks";
+import { IconSlot } from "@digital-science/figshare-fcl/latest/IconSlot";
+import { Eye, Checkmark, Delete } from "@digital-science/figshare-fcl/icons/react";
+import { Cover } from "../story-utils/Cover";
+
+<Meta
+  title="UI/latest/IconSlot"
+  component={IconSlot}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# IconSlot
+
+---
+
+- [Overview](#overview)
+- [Props](#props-table)
+- [Examples](#examples)
+
+## Overview
+
+A flexible icon wrapper component for rendering icons with customizable blending and sizing. Supports passing icons as components or directly rendering icon elements.
+
+<Cover kind={"story"}>
+  {() => (
+    <div style={{ display: "flex", gap: "24px", padding: "24px" }}>
+      <IconSlot><Eye /></IconSlot>
+      <IconSlot><Checkmark /></IconSlot>
+      <IconSlot><Delete /></IconSlot>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { IconSlot } from "@digital-science/figshare-fcl/latest/IconSlot";
+import { Eye, Checkmark, Delete } from "@digital-science/figshare-fcl/icons/react";
+
+export default function IconSlotOverview() {
+  return (
+    <div style={{ display: "flex", gap: "24px" }}>
+      <IconSlot><Eye /></IconSlot>
+      <IconSlot><Checkmark /></IconSlot>
+      <IconSlot><Delete /></IconSlot>
+    </div>
+  );
+}
+```
+
+The component can be imported from `@digital-science/figshare-fcl/latest`.
+
+## Props Table
+
+<ArgTypes of={IconSlot} />
+
+## Examples
+
+### Basic IconSlot Rendering
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div>
+        <h4>Icons Rendered with IconSlot</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot><Eye /></IconSlot>
+          <IconSlot><Checkmark /></IconSlot>
+          <IconSlot><Delete /></IconSlot>
+        </div>
+      </div>
+      <div>
+        <h4>Various Icons</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot><Eye /></IconSlot>
+          <IconSlot><Checkmark /></IconSlot>
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { IconSlot } from "@digital-science/figshare-fcl/latest/IconSlot";
+import { Eye, Checkmark, Delete } from "@digital-science/figshare-fcl/icons/react";
+
+<IconSlot><Eye /></IconSlot>
+<IconSlot><Checkmark /></IconSlot>
+<IconSlot><Delete /></IconSlot>
+```
+
+### IconSlot with Different Kinds
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div>
+        <h4>Default Kind</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot kind="default"><Eye /></IconSlot>
+          <IconSlot kind="default"><Checkmark /></IconSlot>
+        </div>
+      </div>
+      <div>
+        <h4>Blend Kind</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot kind="blend"><Eye /></IconSlot>
+          <IconSlot kind="blend"><Checkmark /></IconSlot>
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { IconSlot } from "@digital-science/figshare-fcl/latest/IconSlot";
+
+<IconSlot kind="default"><Eye /></IconSlot>
+<IconSlot kind="blend"><Eye /></IconSlot>
+```
+
+### IconSlot asChild Behavior
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
+      <div>
+        <h4>asChild: true (clones child element)</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot asChild><Eye /></IconSlot>
+          <IconSlot asChild><Checkmark /></IconSlot>
+        </div>
+      </div>
+      <div>
+        <h4>asChild: false (wraps in span)</h4>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <IconSlot asChild={false}><Eye /></IconSlot>
+          <IconSlot asChild={false}><Checkmark /></IconSlot>
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+import { IconSlot } from "@digital-science/figshare-fcl/latest/IconSlot";
+
+// Clones the child element
+<IconSlot asChild><Eye /></IconSlot>
+
+// Wraps in span
+<IconSlot asChild={false}><Eye /></IconSlot>
+```

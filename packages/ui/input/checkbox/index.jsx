@@ -115,7 +115,7 @@ export default class Checkbox extends Component {
       <label className={classnames(styles.label, className)}>
         <span
           {...(variant === "checkbox" ? checkboxProps : {})}
-          checked={checked}
+          data-checked={checked}
           className={classnames(containerClassNames)}
           role={variant}
         >
