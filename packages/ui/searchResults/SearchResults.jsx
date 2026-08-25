@@ -153,6 +153,7 @@ export const SearchResults = ({
               onFocus={handleFocusSearchInput}
             />
             <div
+              id="search-results"
               className={classes}
               onScroll={handleScroll}
             >

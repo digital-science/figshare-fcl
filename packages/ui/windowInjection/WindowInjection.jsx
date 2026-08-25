@@ -9,7 +9,7 @@ export function WindowInjection({ data, globalName, isJSON = true, nonce = "" })
   }
 
   const safeValue = serialize(data, { isJSON });
-  const dataInjection = `;(function() { window.${globalName} = ${safeValue}; }());`;
+  const dataInjection = `;(function() { window[${JSON.stringify(globalName)}] = ${safeValue}; }());`;
 
   return <script dangerouslySetInnerHTML={ { __html: dataInjection } } nonce={nonce} />;
 }
