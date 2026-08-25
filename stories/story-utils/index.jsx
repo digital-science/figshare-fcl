@@ -1,1 +1,2 @@
-export * from "./Cover";
+export { Cover } from "./Cover";
+export { ValueProvider } from "./ValueProvider";

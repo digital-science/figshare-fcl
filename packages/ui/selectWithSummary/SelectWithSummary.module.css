@@ -1,0 +1,26 @@
+.option {
+  height: auto;
+  min-height: calc(6 * var(--gridSize));
+  padding-top: var(--gridSize);
+  padding-bottom: var(--gridSize);
+
+  &:focus {
+    padding-top: calc(var(--gridSize) - 2px);
+    padding-bottom: calc(var(--gridSize) - 2px);
+  }
+}
+
+.selected > span {
+  font-weight: 700;
+}
+
+.option > span {
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
+.option > svg {
+  align-self: flex-start;
+
+  fill: var(--color-icon-primary) !important;
+}

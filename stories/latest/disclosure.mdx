@@ -1,0 +1,390 @@
+import { Meta } from "@storybook/blocks";
+import Disclosure from "@digital-science/figshare-fcl/latest/Disclosure";
+import { ChevronDown } from "@digital-science/figshare-fcl/icons/react";
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { Cover } from "../story-utils/Cover";
+import { ValueProvider } from "../story-utils/ValueProvider";
+import styles from "./disclosure.stories.module.css";
+
+<Meta
+  title="UI/latest/Disclosure"
+  component={Disclosure}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Disclosure
+
+---
+
+- [Overview](#overview)
+- [Examples](#examples)
+
+## Overview
+
+A flexible disclosure/accordion component using render props. Manages visibility state for expandable content with proper ARIA attributes for accessibility.
+
+<Cover kind={"story"}>
+  {() => (
+    <ValueProvider initialValue={false}>
+      {(isOpen, setIsOpen) => (
+        <Disclosure visible={isOpen} onToggle={setIsOpen} keepMounted={false}>
+          <Disclosure.Toggle>
+            {(props) => (
+              <Button
+                {...props}
+                kind="secondary"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <Button.Label>Show Details</Button.Label>
+                <ChevronDown
+                  style={{
+                    transform: props.visible ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 200ms ease",
+                  }}
+                />
+              </Button>
+            )}
+          </Disclosure.Toggle>
+          <Disclosure.Content>
+            {(props) => (
+              <div
+                {...props}
+                className={styles.content}
+              >
+                <p>This is the disclosed content that toggles visibility.</p>
+              </div>
+            )}
+          </Disclosure.Content>
+        </Disclosure>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+The component is imported from `@digital-science/figshare-fcl/latest`.
+
+## Examples
+
+### Basic Disclosure with Button Toggle
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={false}>
+      {(isOpen, setIsOpen) => (
+        <Disclosure visible={isOpen} onToggle={setIsOpen} keepMounted={false}>
+          <Disclosure.Toggle>
+            {(props) => (
+              <Button {...props} kind="secondary">
+                <Button.Label>Toggle Content</Button.Label>
+              </Button>
+            )}
+          </Disclosure.Toggle>
+          <Disclosure.Content>
+            {(props) => (
+              <div {...props} className={styles.content}>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            )}
+          </Disclosure.Content>
+        </Disclosure>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+```jsx
+import { Disclosure } from "@digital-science/figshare-fcl/latest/Disclosure";
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { useState } from "react";
+
+export default function BasicDisclosure() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Disclosure visible={isOpen} onToggle={setIsOpen}>
+      <Disclosure.Toggle>
+        {(props) => (
+          <Button {...props} kind="secondary">
+            <Button.Label>Toggle Content</Button.Label>
+          </Button>
+        )}
+      </Disclosure.Toggle>
+      <Disclosure.Content>
+        {(props) => (
+          <div {...props}>
+            <p>This content can be shown or hidden.</p>
+          </div>
+        )}
+      </Disclosure.Content>
+    </Disclosure>
+  );
+}
+```
+
+### With Icon Rotation
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={false}>
+      {(isOpen, setIsOpen) => (
+        <Disclosure visible={isOpen} onToggle={setIsOpen} keepMounted={false}>
+          <Disclosure.Toggle>
+            {(props) => (
+              <Button
+                {...props}
+                kind="tertiary"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <ChevronDown
+                  style={{
+                    transform: props.visible ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 200ms ease",
+                    width: "16px",
+                    height: "16px",
+                  }}
+                />
+                <Button.Label>Advanced Options</Button.Label>
+              </Button>
+            )}
+          </Disclosure.Toggle>
+          <Disclosure.Content>
+            {(props) => (
+              <div {...props} className={styles.content}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  <label>
+                    <input type="checkbox" /> Option 1
+                  </label>
+                  <label>
+                    <input type="checkbox" /> Option 2
+                  </label>
+                  <label>
+                    <input type="checkbox" /> Option 3
+                  </label>
+                </div>
+              </div>
+            )}
+          </Disclosure.Content>
+        </Disclosure>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+```jsx
+import { Disclosure } from "@digital-science/figshare-fcl/latest/Disclosure";
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { ChevronDown } from "@digital-science/figshare-fcl/icons/react";
+import { useState } from "react";
+
+export default function DisclosureWithIcon() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Disclosure visible={isOpen} onToggle={setIsOpen}>
+      <Disclosure.Toggle>
+        {(props) => (
+          <Button
+            {...props}
+            kind="tertiary"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <ChevronDown
+              style={{
+                transform: props.visible ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 200ms ease",
+              }}
+            />
+            <Button.Label>Advanced Options</Button.Label>
+          </Button>
+        )}
+      </Disclosure.Toggle>
+      <Disclosure.Content>
+        {(props) => (
+          <div {...props}>
+            <p>Additional options go here.</p>
+          </div>
+        )}
+      </Disclosure.Content>
+    </Disclosure>
+  );
+}
+```
+
+### Controlled Disclosure
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={false}>
+      {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <Disclosure visible={isOpen} onToggle={setIsOpen}>
+          <Disclosure.Toggle>
+            {(props) => (
+              <Button {...props} kind="secondary">
+                <Button.Label>{isOpen ? "Hide" : "Show"} Details</Button.Label>
+              </Button>
+            )}
+          </Disclosure.Toggle>
+          <Disclosure.Content>
+            {(props) => (
+              <div {...props} className={styles.content}>
+                <p>State is controlled by parent component.</p>
+                <p>Current state: {isOpen ? "Visible" : "Hidden"}</p>
+              </div>
+            )}
+          </Disclosure.Content>
+        </Disclosure>
+        <p style={{ fontSize: "12px", color: "#666" }}>
+          Click "Toggle" or the button to control visibility
+        </p>
+      </div>
+    );
+  }}
+  </ValueProvider>
+  )}
+</Cover>
+
+```jsx
+import { Disclosure } from "@digital-science/figshare-fcl/latest/Disclosure";
+import { useState } from "react";
+
+export default function ControlledDisclosure() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Disclosure visible={isOpen} onToggle={setIsOpen}>
+        <Disclosure.Toggle>
+          {(props) => (
+            <button {...props}>
+              {isOpen ? "Hide" : "Show"} Details
+            </button>
+          )}
+        </Disclosure.Toggle>
+        <Disclosure.Content>
+          {(props) => (
+            <div {...props}>
+              <p>State is controlled by parent: {isOpen ? "open" : "closed"}</p>
+            </div>
+          )}
+        </Disclosure.Content>
+      </Disclosure>
+    </div>
+  );
+}
+```
+
+### Multiple Disclosures (FAQ Pattern)
+
+<Cover kind={"card"}>
+  {() => {
+    const questions = ["What is this?", "How do I use it?", "Is it accessible?"];
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        {questions.map((question, idx) => (
+          <ValueProvider key={idx} initialValue={false}>
+            {(isOpen, setIsOpen) => (
+              <Disclosure visible={isOpen} onToggle={setIsOpen} keepMounted={false}>
+                <Disclosure.Toggle>
+                  {(props) => (
+                    <Button
+                      {...props}
+                      kind="tertiary"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        justifyContent: "flex-start",
+                        width: "100%",
+                      }}
+                    >
+                      <ChevronDown
+                        style={{
+                          transform: props.visible ? "rotate(180deg)" : "rotate(0deg)",
+                          transition: "transform 200ms ease",
+                          width: "16px",
+                          height: "16px",
+                        }}
+                      />
+                      <Button.Label>{question}</Button.Label>
+                    </Button>
+                  )}
+                </Disclosure.Toggle>
+                <Disclosure.Content>
+                  {(props) => (
+                    <div {...props} className={styles.content}>
+                      <p>
+                        Answer to "{question}": Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit.
+                      </p>
+                    </div>
+                  )}
+                </Disclosure.Content>
+              </Disclosure>
+            )}
+          </ValueProvider>
+        ))}
+      </div>
+    );
+  }}
+</Cover>
+
+```jsx
+import { Disclosure } from "@digital-science/figshare-fcl/latest/Disclosure";
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { useState } from "react";
+
+const faqs = [
+  { q: "What is this?", a: "..." },
+  { q: "How do I use it?", a: "..." },
+  { q: "Is it accessible?", a: "..." },
+];
+
+export default function FAQDisclosure() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  return (
+    <div>
+      {faqs.map((faq, idx) => (
+        <Disclosure
+          key={idx}
+          visible={openIndex === idx}
+          onToggle={(isOpen) => setOpenIndex(isOpen ? idx : null)}
+        >
+          <Disclosure.Toggle>
+            {(props) => <Button {...props}>{faq.q}</Button>}
+          </Disclosure.Toggle>
+          <Disclosure.Content>
+            {(props) => <div {...props}>{faq.a}</div>}
+          </Disclosure.Content>
+        </Disclosure>
+      ))}
+    </div>
+  );
+}
+```

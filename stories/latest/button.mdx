@@ -227,6 +227,43 @@ The Button component exports several sub-components:
 </Button>
 ```
 
+### Inverted Buttons
+
+<Cover kind={"card"}>
+  {() => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px", backgroundColor: "#333", padding: "20px", borderRadius: "4px" }}>
+      <div>
+        <h4 style={{ color: "#fff" }}>Inverted - High Emphasis</h4>
+        <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
+          <Button kind="inverted" em="high"><Button.Label>Inverted</Button.Label></Button>
+          <Button kind="inverted" em="high" disabled><Button.Label>Disabled</Button.Label></Button>
+        </div>
+      </div>
+      <div>
+        <h4 style={{ color: "#fff" }}>Inverted - Low Emphasis</h4>
+        <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
+          <Button kind="inverted" em="low"><Button.Label>Inverted Low</Button.Label></Button>
+          <Button kind="inverted" em="low" disabled><Button.Label>Disabled</Button.Label></Button>
+        </div>
+      </div>
+    </div>
+  )}
+</Cover>
+
+```jsx
+<Button kind="inverted" em="high">
+  <Button.Label>Inverted</Button.Label>
+</Button>
+
+<Button kind="inverted" em="high" disabled>
+  <Button.Label>Disabled</Button.Label>
+</Button>
+
+<Button kind="inverted" em="low">
+  <Button.Label>Inverted Low</Button.Label>
+</Button>
+```
+
 ### Button with Icons
 
 <Cover kind={"card"}>

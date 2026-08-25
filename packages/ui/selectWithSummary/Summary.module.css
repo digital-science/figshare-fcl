@@ -1,0 +1,89 @@
+.summary {
+  margin-top: calc(2 * var(--gridSize));
+
+  list-style-type: none;
+}
+
+.item {
+  display: flex;
+
+  width: 100%;
+  padding: 0;
+  
+  cursor: pointer;
+  text-align: left;
+
+  
+  color: var(--color-typography-primary);
+
+  border: none;
+  background: none;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.5;
+  }
+}
+
+.checkmark {
+  display: flex;
+
+  margin-top: calc(-1 * var(--gridSize));
+  padding-right: var(--gridSize);
+  flex: 0 0 calc(4 * var(--gridSize));
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.loading,
+.error {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: calc(4 * var(--gridSize));
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: calc(3 * var(--gridSize));
+  height: calc(3 * var(--gridSize));
+}
+
+.error {
+  font-size: var(--typography-S-fontSize);
+  line-height: var(--typography-S-lineHeight);
+
+  color: var(--color-typography-error);
+}
+
+.retry {
+  font-weight: bold;
+
+  display: inline-block;
+
+  margin-top: var(--gridSize);
+  margin-right: auto;
+  margin-left: auto;
+
+  color: var(--color-typography-error);
+}

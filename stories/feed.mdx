@@ -1,0 +1,389 @@
+import { Meta } from "@storybook/blocks";
+import { useState } from "react";
+import { Feed } from "../packages/ui/feed";
+import { Cover, ValueProvider } from "./story-utils";
+
+<Meta
+  title="UI/Feed"
+  component={Feed}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Feed
+
+A virtualized feed component that supports infinite scroll, keyboard navigation, and multiple rendering patterns. It provides full accessibility support with ARIA attributes and keyboard shortcuts for navigating between feed items.
+
+## Features
+
+- **Infinite Scroll Detection**: Automatically triggers callbacks when scrolling near the top or bottom
+- **Keyboard Navigation**: PageUp/PageDown for item navigation, Ctrl+Home/Ctrl+End to jump to first/last item
+- **Flexible Rendering**: Support for multiple render patterns (component prop, render prop, children render function)
+- **Accessibility**: Full ARIA support with feed role, aria-posinset, and aria-setsize
+- **Cross-browser Support**: Handles Chrome zoom/scale edge cases
+
+## Basic Usage with Standard HTML Component
+
+Renders feed items using standard HTML elements with the `component` prop.
+
+<Cover kind={"card"}>
+  {() => {
+    const SIZE = 20;
+    const generateValues = (startFrom = 0) => {
+      const item = (_, index) => `Feed article ${index + startFrom + 1}`;
+      return Array.from({ length: SIZE }).map(item);
+    };
+
+    const containerStyle = {
+      margin: "calc(3 * var(--gridSize))",
+      padding: "calc(3 * var(--gridSize))",
+    };
+
+    const feedContainerStyle = {
+      height: "400px",
+      border: "1px solid #ddd",
+      overflowY: "auto",
+      backgroundColor: "#f9f9f9",
+    };
+
+    return (
+      <ValueProvider initialValue={generateValues()}>
+        {(values, setValues) => {
+          const handleBottomReached = () => {
+            setValues([...values, ...generateValues(values.length)]);
+          };
+
+          return (
+            <div style={containerStyle}>
+              <h3>Feed with standard HTML component</h3>
+              <p style={{ fontSize: "12px", color: "#666" }}>
+                Scroll down to load more items. Press PageUp/PageDown to navigate between items.
+              </p>
+              <div style={feedContainerStyle}>
+                <Feed
+                  component="div"
+                  values={values}
+                  onBottomReached={handleBottomReached}
+                  scrollContainer={undefined}
+                  scrollThreshold={200}
+                />
+              </div>
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Custom React Component
+
+Renders feed items using a custom React component with access to item data.
+
+<Cover kind={"card"}>
+  {() => {
+    function FeedItem({ item, ...props }) {
+      return (
+        <div
+          {...props}
+          style={{
+            padding: "12px",
+            margin: "8px 0",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+          role="article"
+        >
+          <strong>{item}</strong>
+          <p style={{ margin: "8px 0 0 0", fontSize: "12px", color: "#666" }}>
+            Click to interact
+          </p>
+        </div>
+      );
+    }
+
+    const SIZE = 20;
+    const generateValues = (startFrom = 0) => {
+      const item = (_, index) => `Article ${index + startFrom + 1}`;
+      return Array.from({ length: SIZE }).map(item);
+    };
+
+    const [values, setValues] = useState(() => generateValues());
+
+    const handleBottomReached = () => {
+      setValues((prevValues) => [...prevValues, ...generateValues(prevValues.length)]);
+    };
+
+    const containerStyle = {
+      margin: "calc(3 * var(--gridSize))",
+      padding: "calc(3 * var(--gridSize))",
+    };
+
+    const feedContainerStyle = {
+      height: "400px",
+      border: "1px solid #ddd",
+      overflowY: "auto",
+      backgroundColor: "#f9f9f9",
+    };
+
+    return (
+      <div style={containerStyle}>
+        <h3>Feed with custom React component</h3>
+        <p style={{ fontSize: "12px", color: "#666" }}>
+          Each item is rendered by a custom component with styling.
+        </p>
+        <div style={feedContainerStyle}>
+          <Feed
+            component={FeedItem}
+            values={values}
+            onBottomReached={handleBottomReached}
+            scrollContainer={undefined}
+            scrollThreshold={200}
+          />
+        </div>
+      </div>
+    );
+  }}
+</Cover>
+
+## Render Prop Pattern
+
+Uses a render prop function for complete control over item rendering.
+
+<Cover kind={"card"}>
+  {() => {
+    const renderItem = (item, props) => (
+      <div
+        {...props}
+        style={{
+          padding: "12px",
+          margin: "8px 0",
+          backgroundColor: "#e8f5e9",
+          borderRadius: "4px",
+        }}
+        role="article"
+      >
+        {item}
+        <a href="#" style={{ marginLeft: "12px", fontSize: "12px" }}>
+          View details
+        </a>
+      </div>
+    );
+
+    const SIZE = 20;
+    const generateValues = (startFrom = 0) => {
+      const item = (_, index) => `News item ${index + startFrom + 1}`;
+      return Array.from({ length: SIZE }).map(item);
+    };
+
+    const [values, setValues] = useState(() => generateValues());
+
+    const handleBottomReached = () => {
+      setValues((prevValues) => [...prevValues, ...generateValues(prevValues.length)]);
+    };
+
+    const containerStyle = {
+      margin: "calc(3 * var(--gridSize))",
+      padding: "calc(3 * var(--gridSize))",
+    };
+
+    const feedContainerStyle = {
+      height: "400px",
+      border: "1px solid #ddd",
+      overflowY: "auto",
+      backgroundColor: "#f9f9f9",
+    };
+
+    return (
+      <div style={containerStyle}>
+        <h3>Feed with render prop</h3>
+        <p style={{ fontSize: "12px", color: "#666" }}>
+          Use a render function for custom item rendering with full control.
+        </p>
+        <div style={feedContainerStyle}>
+          <Feed
+            render={renderItem}
+            values={values}
+            onBottomReached={handleBottomReached}
+            scrollContainer={undefined}
+            scrollThreshold={200}
+          />
+        </div>
+      </div>
+    );
+  }}
+</Cover>
+
+## Children Render Function
+
+Uses the children prop as a render function for maximum flexibility.
+
+<Cover kind={"card"}>
+  {() => {
+    const SIZE = 20;
+    const generateValues = (startFrom = 0) => {
+      const item = (_, index) => `Item ${index + startFrom + 1}`;
+      return Array.from({ length: SIZE }).map(item);
+    };
+
+    const [values, setValues] = useState(() => generateValues());
+
+    const handleBottomReached = () => {
+      setValues((prevValues) => [...prevValues, ...generateValues(prevValues.length)]);
+    };
+
+    const containerStyle = {
+      margin: "calc(3 * var(--gridSize))",
+      padding: "calc(3 * var(--gridSize))",
+    };
+
+    const feedContainerStyle = {
+      height: "400px",
+      border: "1px solid #ddd",
+      overflowY: "auto",
+      backgroundColor: "#f9f9f9",
+    };
+
+    return (
+      <div style={containerStyle}>
+        <h3>Feed with children render function</h3>
+        <p style={{ fontSize: "12px", color: "#666" }}>
+          Pass a render function as children for flexible item rendering.
+        </p>
+        <div style={feedContainerStyle}>
+          <Feed
+            values={values}
+            onBottomReached={handleBottomReached}
+            scrollContainer={undefined}
+            scrollThreshold={200}
+          >
+            {(item, props) => (
+              <div
+                {...props}
+                style={{
+                  padding: "12px",
+                  margin: "8px 0",
+                  backgroundColor: "#e1f5fe",
+                  borderRadius: "4px",
+                }}
+                role="article"
+              >
+                {item}
+                <button style={{ marginLeft: "12px", fontSize: "12px", padding: "4px 8px" }}>
+                  Action
+                </button>
+              </div>
+            )}
+          </Feed>
+        </div>
+      </div>
+    );
+  }}
+</Cover>
+
+## Loading State
+
+Demonstrates the loading state that prevents scroll detection while content is being loaded.
+
+<Cover kind={"card"}>
+  {() => {
+    const SIZE = 20;
+    const generateValues = (startFrom = 0) => {
+      const item = (_, index) => `Item ${index + startFrom + 1}`;
+      return Array.from({ length: SIZE }).map(item);
+    };
+
+    const [values, setValues] = useState(() => generateValues());
+    const [loading, setLoading] = useState(false);
+
+    const handleBottomReached = () => {
+      if (!loading) {
+        setLoading(true);
+        setTimeout(() => {
+          setValues((prevValues) => [...prevValues, ...generateValues(prevValues.length)]);
+          setLoading(false);
+        }, 1500);
+      }
+    };
+
+    const containerStyle = {
+      margin: "calc(3 * var(--gridSize))",
+      padding: "calc(3 * var(--gridSize))",
+    };
+
+    const feedContainerStyle = {
+      height: "400px",
+      border: "1px solid #ddd",
+      overflowY: "auto",
+      backgroundColor: "#f9f9f9",
+    };
+
+    return (
+      <div style={containerStyle}>
+        <h3>Feed with loading state</h3>
+        <p style={{ fontSize: "12px", color: "#666" }}>
+          Loading indicator appears while fetching new items.
+        </p>
+        <div style={feedContainerStyle}>
+          <Feed
+            component="div"
+            values={values}
+            loading={loading}
+            onBottomReached={handleBottomReached}
+            scrollContainer={undefined}
+            scrollThreshold={200}
+            style={{ padding: "12px" }}
+          />
+          {loading && (
+            <div
+              style={{
+                padding: "24px",
+                textAlign: "center",
+                color: "#666",
+                fontSize: "14px",
+                backgroundColor: "#f0f0f0",
+              }}
+            >
+              Loading more items...
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }}
+</Cover>
+
+## Props
+
+- **children** (function, optional): Render function to display each item. Signature: `(item, props) => ReactNode`
+- **className** (string, optional): CSS class to apply to the feed container
+- **component** (string | function, optional): React component or HTML element to render for each item
+- **innerRef** (function, optional): Ref callback for the feed container
+- **loading** (boolean, default: false): Set to true to disable scroll detection during data loading
+- **render** (function, optional): Render prop function to display each item. Signature: `(item, props) => ReactNode`
+- **scrollContainer** (HTMLElement, optional): Custom scroll container. Defaults to the feed element itself
+- **scrollThreshold** (number, default: 0): Distance in pixels from edges to trigger scroll callbacks
+- **values** (array, default: []): Array of items to display in the feed
+- **onBottomReached** (function): Called when user scrolls near the bottom
+- **onScroll** (function): Called on every scroll event
+- **onTopReached** (function): Called when user scrolls near the top
+
+## Keyboard Navigation
+
+- **PageUp**: Navigate to previous item
+- **PageDown**: Navigate to next item
+- **Ctrl+Home**: Jump to first item
+- **Ctrl+End**: Jump to last item
+
+## Accessibility Features
+
+- Uses semantic `role="feed"` for screen readers
+- Each item includes `aria-posinset` and `aria-setsize` for position information
+- Supports keyboard navigation for accessibility
+- Properly manages focus and focus visible states
+- Announces loading state with `aria-busy` attribute
