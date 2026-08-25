@@ -1,6 +1,6 @@
 {
   "name": "@digital-science/figshare-fcl",
-  "version": "1.6.23",
+  "version": "1.7.0",
   "description": "figshare UI components",
   "publishConfig": {
     "access": "public",
@@ -32,7 +32,8 @@
     "react-datepicker": "4.8.0",
     "react-popper": "2.3.0",
     "@lexical/react": "^0.11.1",
-    "lexical": "^0.11.1"
+    "lexical": "^0.11.1",
+    "serialize-javascript": "7.0.3"
   },
   "peerDependencies": {
     "prop-types": "^15.0.0",

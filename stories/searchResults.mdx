@@ -1,0 +1,325 @@
+import { Meta } from "@storybook/blocks";
+import SearchResults, { SearchResultItem } from "../packages/ui/searchResults";
+import { Cover, ValueProvider } from "./story-utils";
+
+<Meta
+  title="UI/SearchResults"
+  component={SearchResults}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# SearchResults
+
+A dropdown search results component with infinite scroll support, loading states, error handling, and item selection.
+
+## Basic Usage
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={{ items: [{ id: 1, value: "Option 1" }, { id: 2, value: "Option 2" }, { id: 3, value: "Option 3" }], search: "", selectedItem: null }}>
+      {(state, setState) => (
+        <div style={{ width: "450px", marginTop: "36px" }}>
+          <SearchResults
+            hasResults={state.items.length > 0}
+            placeholder="Search items..."
+            search={state.search}
+            onChangeSearchValue={(search) => setState({ ...state, search })}
+            onLoadMore={() => console.log("Load more")}
+            onSelect={(selectedItem) => setState({ ...state, selectedItem })}
+          >
+            {state.items.map((item) => (
+              <SearchResultItem key={item.id} value={item}>
+                {item.value}
+              </SearchResultItem>
+            ))}
+          </SearchResults>
+          {state.selectedItem && (
+            <div style={{ marginTop: "16px" }}>
+              Selected: {state.selectedItem.value}
+            </div>
+          )}
+        </div>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+## Loading State
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={{ selectedItem: null }}>
+      {(state, setState) => (
+        <div style={{ width: "450px", marginTop: "36px" }}>
+          <SearchResults
+            loading={true}
+            hasResults={false}
+            placeholder="Searching..."
+            onSelect={(selectedItem) => setState({ selectedItem })}
+          >
+            <></>
+          </SearchResults>
+          {state.selectedItem && (
+            <div style={{ marginTop: "16px" }}>
+              Selected: {state.selectedItem.value}
+            </div>
+          )}
+        </div>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+## Error State
+
+<Cover kind={"card"}>
+  {() => {
+    const handleRetry = () => alert("Retry clicked!");
+    return (
+      <div style={{ width: "450px", marginTop: "36px" }}>
+        <SearchResults
+          error="Failed to fetch results. Please try again."
+          hasResults={false}
+          placeholder="Search items..."
+          retry={{
+            message: "Try Again",
+            action: handleRetry,
+          }}
+          onSelect={() => {}}
+        >
+          <></>
+        </SearchResults>
+      </div>
+    );
+  }}
+</Cover>
+
+## Empty Results
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={{ search: "xyz" }}>
+      {(state, setState) => (
+        <div style={{ width: "450px", marginTop: "36px" }}>
+          <SearchResults
+            hasResults={false}
+            loading={false}
+            noResultsMessage="No items match your search"
+            placeholder="Search items..."
+            search={state.search}
+            onChangeSearchValue={(search) => setState({ search })}
+            onSelect={() => {}}
+          >
+            <></>
+          </SearchResults>
+        </div>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+## Infinite Scroll
+
+<Cover kind={"card"}>
+  {() => {
+    const initialItems = Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      value: `Option ${i + 1}`,
+    }));
+    return (
+      <ValueProvider initialValue={{ items: initialItems, search: "", loading: false, selectedItem: null }}>
+        {(state, setState) => {
+          const handleLoadMore = () => {
+            setState({ ...state, loading: true });
+            setTimeout(() => {
+              const newItems = Array.from(
+                { length: 5 },
+                (_, i) => ({
+                  id: state.items.length + i,
+                  value: `Option ${state.items.length + i + 1}`,
+                })
+              );
+              setState({ ...state, items: [...state.items, ...newItems], loading: false });
+            }, 1000);
+          };
+          return (
+            <div style={{ width: "450px", marginTop: "36px" }}>
+              <SearchResults
+                hasResults={state.items.length > 0}
+                loading={state.loading}
+                placeholder="Search items..."
+                search={state.search}
+                onChangeSearchValue={(search) => setState({ ...state, search })}
+                onLoadMore={handleLoadMore}
+                onSelect={(selectedItem) => setState({ ...state, selectedItem })}
+              >
+                {state.items.map((item) => (
+                  <SearchResultItem key={item.id} value={item}>
+                    {item.value}
+                  </SearchResultItem>
+                ))}
+              </SearchResults>
+              {state.selectedItem && (
+                <div style={{ marginTop: "16px" }}>
+                  Selected: {state.selectedItem.value}
+                </div>
+              )}
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## With Custom Styling
+
+<Cover kind={"card"}>
+  {() => (
+    <ValueProvider initialValue={{ items: [{ id: 1, value: "Premium Option", premium: true }, { id: 2, value: "Standard Option", premium: false }, { id: 3, value: "Enterprise Option", premium: true }], search: "", selectedItem: null }}>
+      {(state, setState) => (
+        <div style={{ width: "450px", marginTop: "36px" }}>
+          <SearchResults
+            hasResults={state.items.length > 0}
+            placeholder="Search options..."
+            search={state.search}
+            onChangeSearchValue={(search) => setState({ ...state, search })}
+            onLoadMore={() => console.log("Load more")}
+            onSelect={(selectedItem) => setState({ ...state, selectedItem })}
+            noResultsMessage="No options available"
+          >
+            {state.items.map((item) => (
+              <SearchResultItem key={item.id} value={item}>
+                <span>
+                  {item.value}
+                  {item.premium && (
+                    <span
+                      style={{
+                        marginLeft: "8px",
+                        fontSize: "12px",
+                        color: "#d4af37",
+                      }}
+                    >
+                      ⭐
+                    </span>
+                  )}
+                </span>
+              </SearchResultItem>
+            ))}
+          </SearchResults>
+          {state.selectedItem && (
+            <div style={{ marginTop: "16px" }}>
+              <strong>Selected:</strong> {state.selectedItem.value}
+              {state.selectedItem.premium && " (Premium)"}
+            </div>
+          )}
+        </div>
+      )}
+    </ValueProvider>
+  )}
+</Cover>
+
+## Multi-State Demo
+
+<Cover kind={"card"}>
+  {() => {
+    const initialItems = Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      value: `Item ${i + 1}`,
+    }));
+    return (
+      <ValueProvider initialValue={{ items: initialItems, search: "", selectedItem: null, demoState: "normal", loading: false, error: null }}>
+        {(state, setState) => {
+          const handleLoadMore = () => {
+            setState({ ...state, loading: true });
+            setTimeout(() => {
+              const newItems = Array.from(
+                { length: 4 },
+                (_, i) => ({
+                  id: state.items.length + i,
+                  value: `Item ${state.items.length + i + 1}`,
+                })
+              );
+              setState({ ...state, items: [...state.items, ...newItems], loading: false });
+            }, 800);
+          };
+          const triggerError = () => {
+            setState({ ...state, demoState: "error", error: "Connection failed. Unable to load results." });
+          };
+          const resetError = () => {
+            setState({ ...state, demoState: "normal", error: null });
+          };
+          return (
+            <div style={{ width: "450px" }}>
+              <div style={{ marginBottom: "16px", display: "flex", gap: "8px" }}>
+                <button onClick={() => setState({ ...state, demoState: "normal" })}>Normal</button>
+                <button onClick={() => setState({ ...state, demoState: "loading" })}>Loading</button>
+                <button onClick={triggerError}>Error</button>
+              </div>
+
+              <SearchResults
+                hasResults={state.items.length > 0 && !state.error}
+                loading={state.demoState === "loading" || state.loading}
+                error={state.demoState === "error" ? state.error : null}
+                placeholder="Search items..."
+                search={state.search}
+                onChangeSearchValue={(search) => setState({ ...state, search })}
+                onLoadMore={handleLoadMore}
+                onSelect={(selectedItem) => setState({ ...state, selectedItem })}
+                noResultsMessage="No items found"
+                retry={
+                  state.error
+                    ? {
+                        message: "Try Again",
+                        action: resetError,
+                      }
+                    : undefined
+                }
+              >
+                {state.items.map((item) => (
+                  <SearchResultItem key={item.id} value={item}>
+                    {item.value}
+                  </SearchResultItem>
+                ))}
+              </SearchResults>
+
+              {state.selectedItem && (
+                <div style={{ marginTop: "16px" }}>
+                  <strong>Selected:</strong> {state.selectedItem.value}
+                </div>
+              )}
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Props
+
+See the component's TypeScript interface for full prop documentation.
+
+## Component Features
+
+- **Search Input**: Built-in search field that triggers visibility when 3+ characters are entered
+- **Infinite Scroll**: Automatically loads more items when scrolling within 10px of bottom
+- **Loading State**: Shows animated loader while fetching data
+- **Error Handling**: Displays error messages with optional retry button
+- **Empty State**: Customizable message when no results are found
+- **Item Selection**: Click items to select them; dropdown closes automatically
+- **Context Integration**: Uses React Context for selection callbacks
+- **Keyboard Navigation**: Full keyboard accessibility support
+- **Click Outside**: Closes dropdown when clicking outside
+
+## Accessibility
+
+- Input has proper `aria-expanded` attribute
+- Items are rendered as buttons for keyboard navigation
+- Focus management included
+- Keyboard shortcuts: Escape to close, Enter to select

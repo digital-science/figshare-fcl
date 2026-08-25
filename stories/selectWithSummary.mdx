@@ -1,0 +1,430 @@
+import { Meta } from "@storybook/blocks";
+import { useState } from "react";
+import SelectWithSummary, { UncontrolledSelectWithSummary } from "../packages/ui/selectWithSummary";
+import { Cover, ValueProvider } from "./story-utils";
+
+<Meta
+  title="UI/SelectWithSummary"
+  component={SelectWithSummary}
+  parameters={{
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# SelectWithSummary
+
+A dual-state select component that combines a searchable dropdown with a summary display of selected items. It tracks both touched values and preselected options separately, supporting both controlled and uncontrolled patterns.
+
+## Features
+
+- **Dual State Tracking**: Maintains separate state for touched selections and preselected values
+- **Searchable Options**: Built-in search functionality for large option lists
+- **Summary Display**: Shows selected items as interactive list below the select
+- **Loading States**: Separate loading states for select dropdown and summary
+- **Error Handling**: Full error state support with retry actions for both select and summary
+- **Flexible Sizing**: Support for small, medium, and large variants
+- **Accessibility**: Full ARIA support and keyboard navigation
+- **Controlled & Uncontrolled**: Works with both controlled and uncontrolled patterns
+
+## Basic Usage
+
+Renders a select with summary display of chosen items.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+      { name: "Java", value: "java" },
+      { name: "Go", value: "go" },
+      { name: "Rust", value: "rust" },
+      { name: "C++", value: "cpp" },
+      { name: "C#", value: "csharp" },
+    ];
+
+    return (
+      <ValueProvider initialValue={undefined}>
+        {(value, setValue) => (
+          <div style={{ maxWidth: "400px" }}>
+            <SelectWithSummary
+              options={options}
+              value={value}
+              onChange={setValue}
+              placeholder="Choose programming languages..."
+            />
+            {value && (
+              <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+                <strong>Selected:</strong> {JSON.stringify(value)}
+              </div>
+            )}
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Searchable
+
+With integrated search functionality for filtering options.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+      { name: "Java", value: "java" },
+      { name: "Go", value: "go" },
+      { name: "Rust", value: "rust" },
+      { name: "C++", value: "cpp" },
+      { name: "C#", value: "csharp" },
+    ];
+
+    return (
+      <ValueProvider initialValue={undefined}>
+        {(value, setValue) => (
+          <div style={{ maxWidth: "400px" }}>
+            <SelectWithSummary
+              options={options}
+              value={value}
+              onChange={setValue}
+              searchable={true}
+              searchPlaceholder="Search languages..."
+              placeholder="Choose programming languages..."
+            />
+            {value && (
+              <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+                <strong>Selected ({value.length}):</strong> {value.join(", ")}
+              </div>
+            )}
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Loading State
+
+Shows loading indicator when fetching options.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={{ value: undefined, isLoading: true }}>
+        {(state, setState) => {
+          React.useEffect(() => {
+            const timer = setTimeout(() => setState({ ...state, isLoading: false }), 3000);
+            return () => clearTimeout(timer);
+          }, []);
+
+          return (
+            <div style={{ maxWidth: "400px" }}>
+              <SelectWithSummary
+                options={state.isLoading ? [] : options}
+                value={state.value}
+                onChange={(val) => setState({ ...state, value: val })}
+                loading={state.isLoading}
+                placeholder="Choose options..."
+              />
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Error State
+
+Displays error message with retry action.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={{ value: undefined, hasError: true }}>
+        {(state, setState) => {
+          const handleRetry = () => {
+            setState({ ...state, hasError: false });
+          };
+
+          return (
+            <div style={{ maxWidth: "400px" }}>
+              <SelectWithSummary
+                options={state.hasError ? [] : options}
+                value={state.value}
+                onChange={(val) => setState({ ...state, value: val })}
+                error={state.hasError}
+                loadingError={state.hasError ? "Failed to load options" : undefined}
+                retry={state.hasError ? { message: "Retry", action: handleRetry } : undefined}
+                placeholder="Choose options..."
+              />
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Preselected Values
+
+Shows suggested/preselected values in summary area.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+      { name: "Java", value: "java" },
+    ];
+
+    const preselected = [
+      { name: "Recently Used", value: "recent" },
+      { name: "Most Popular", value: "popular" },
+      { name: "Trending", value: "trending" },
+    ];
+
+    return (
+      <ValueProvider initialValue={undefined}>
+        {(value, setValue) => (
+          <div style={{ maxWidth: "400px" }}>
+            <SelectWithSummary
+              options={options}
+              value={value}
+              onChange={setValue}
+              hasInitialSummary={true}
+              summaryPreselectedValues={preselected}
+              placeholder="Choose options or browse suggestions..."
+            />
+            <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+              <strong>Current selections:</strong>
+              <p>{value && value.length > 0 ? value.join(", ") : "None selected"}</p>
+            </div>
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Summary Error
+
+Error state for the summary display with retry action.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={{ value: ["js", "ts"], summaryError: true }}>
+        {(state, setState) => {
+          const handleRetrySummary = () => {
+            setState({ ...state, summaryError: false });
+          };
+
+          return (
+            <div style={{ maxWidth: "400px" }}>
+              <SelectWithSummary
+                options={options}
+                value={state.value}
+                onChange={(val) => setState({ ...state, value: val })}
+                hasInitialSummary={true}
+                summaryErrorMessage={state.summaryError ? "Failed to load summary items" : undefined}
+                retrySummary={state.summaryError ? { message: "Retry", action: handleRetrySummary } : undefined}
+                summaryPreselectedValues={options.slice(0, 2)}
+                placeholder="Choose options..."
+              />
+            </div>
+          );
+        }}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Disabled
+
+Shows disabled state with pre-selected values.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={["js", "ts", "py"]}>
+        {(value) => (
+          <div style={{ maxWidth: "400px" }}>
+            <SelectWithSummary
+              options={options}
+              value={value}
+              onChange={() => {}}
+              disabled={true}
+              placeholder="This select is disabled"
+            />
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Size Variants
+
+Supports small, medium, and large sizes.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={{ valueS: undefined, valueM: undefined, valueL: undefined }}>
+        {(state, setState) => (
+          <div>
+            <div style={{ maxWidth: "400px", marginBottom: "30px" }}>
+              <h4>Small</h4>
+              <SelectWithSummary
+                size="S"
+                options={options}
+                value={state.valueS}
+                onChange={(val) => setState({ ...state, valueS: val })}
+                placeholder="Small select..."
+              />
+            </div>
+
+            <div style={{ maxWidth: "400px", marginBottom: "30px" }}>
+              <h4>Medium (Default)</h4>
+              <SelectWithSummary
+                size="M"
+                options={options}
+                value={state.valueM}
+                onChange={(val) => setState({ ...state, valueM: val })}
+                placeholder="Medium select..."
+              />
+            </div>
+
+            <div style={{ maxWidth: "400px" }}>
+              <h4>Large</h4>
+              <SelectWithSummary
+                size="L"
+                options={options}
+                value={state.valueL}
+                onChange={(val) => setState({ ...state, valueL: val })}
+                placeholder="Large select..."
+              />
+            </div>
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
+
+## Uncontrolled
+
+Using the uncontrolled variant with internal state management.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    const [lastValue, setLastValue] = useState(undefined);
+
+    return (
+      <div style={{ maxWidth: "400px" }}>
+        <UncontrolledSelectWithSummary
+          options={options}
+          defaultValue={["js"]}
+          onChange={(value) => {
+            setLastValue(value);
+          }}
+          placeholder="Uncontrolled select..."
+        />
+        {lastValue && (
+          <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+            <strong>Last selected:</strong> {JSON.stringify(lastValue)}
+          </div>
+        )}
+      </div>
+    );
+  }}
+</Cover>
+
+## Accessibility
+
+Properly labeled with ARIA attributes for screen readers.
+
+<Cover kind={"card"}>
+  {() => {
+    const options = [
+      { name: "JavaScript", value: "js" },
+      { name: "TypeScript", value: "ts" },
+      { name: "Python", value: "py" },
+    ];
+
+    return (
+      <ValueProvider initialValue={undefined}>
+        {(value, setValue) => (
+          <div style={{ maxWidth: "400px" }}>
+            <label htmlFor="lang-select" style={{ display: "block", marginBottom: "10px" }}>
+              Select your preferred programming languages:
+            </label>
+            <SelectWithSummary
+              id="lang-select"
+              ariaLabel="Programming languages selector"
+              options={options}
+              value={value}
+              onChange={setValue}
+              placeholder="Choose languages..."
+            />
+            {value && (
+              <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+                <strong>You selected {value.length} language(s):</strong>
+                <ul>
+                  {value.map((v) => {
+                    const opt = options.find((o) => o.value === v);
+                    return <li key={v}>{opt?.name}</li>;
+                  })}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </ValueProvider>
+    );
+  }}
+</Cover>
