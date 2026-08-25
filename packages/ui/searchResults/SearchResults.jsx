@@ -2,8 +2,9 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { useState, useRef, useCallback } from "react";
 
-import Button from "../button";
+import { Button } from "../button";
 import RootCloseListener from "../helpers/rootCloseListener";
+import { useId } from "../hooks/useId";
 
 import Context from "./context";
 // eslint-disable-next-line css-modules/no-unused-class
@@ -27,6 +28,7 @@ export const SearchResults = ({
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef(null);
   const inputRef = useRef(null);
+  const resultsId = useId();
 
   const handleScroll = useCallback((event) => {
     if (error || loading) {
@@ -147,13 +149,13 @@ export const SearchResults = ({
               value={search}
               type="text"
               role="combobox"
-              aria-controls="search-results"
+              aria-controls={resultsId}
               aria-expanded={isVisible}
               onChange={(e) => handleChangeSearchValue(e.target.value)}
               onFocus={handleFocusSearchInput}
             />
             <div
-              id="search-results"
+              id={resultsId}
               className={classes}
               onScroll={handleScroll}
             >
