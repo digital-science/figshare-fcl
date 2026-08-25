@@ -56,7 +56,7 @@ export const SelectWithSummary = React.forwardRef(({
     }
 
     return opts;
-  }, [touchedOptions, hasInitialSummary, summaryPreselectedValues]);
+  }, [touchedOptions, hasInitialSummary, summaryPreselectedValues, options]);
 
   // Render option with selection styling
   const renderOption = useCallback(({ name, value: optionValue }) => {
@@ -152,7 +152,7 @@ export const SelectWithSummary = React.forwardRef(({
         options={summaryOptions}
         retry={retrySummary}
         selectedValues={value}
-        onChange={onChange}
+        onChange={handleChange}
         onLoadMore={onLoadMoreSummary}
       />
     </div>

@@ -85,4 +85,18 @@ describe("<WindowInjection />", () => {
     const script = container.querySelector("script");
     expect(script).toBeInTheDocument();
   });
+
+  it("safely escapes globalName with special characters", () => {
+    const unsafeGlobalName = "a-b.c";
+    const { container } = render(
+      <WindowInjection data={data} globalName={unsafeGlobalName} />
+    );
+
+    const script = container.querySelector("script");
+
+    /* eslint-disable-next-line no-eval */
+    eval(script.innerHTML);
+
+    expect(window[unsafeGlobalName]).toEqual(data);
+  });
 });
