@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-boolean-value */
+
 import React from "react";
 import { node, string, oneOf } from "prop-types";
 import classnames from "classnames";

@@ -21,7 +21,8 @@ RUN apt-get install --no-install-recommends -y \
     libmariadb-dev libmariadb-dev-compat \
     libssl-dev build-essential libmagic1
 
-RUN apt-get update && apt-get install --no-install-recommends -y nodejs npm
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt-get install --no-install-recommends -y nodejs
 RUN set -ex && node -v && npm -v
 
 COPY . $projdir

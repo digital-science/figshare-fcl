@@ -1,17 +1,8 @@
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 import { Tag } from "@digital-science/figshare-fcl/latest/Tag";
-import { Cover } from "../story-utils/Cover";
+import * as TagStories from "./tag.stories.jsx";
 
-<Meta
-  title="UI/latest/Tag"
-  component={Tag}
-  parameters={{
-    viewMode: "docs",
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+<Meta of={TagStories} />
 
 # Tag
 
@@ -25,28 +16,7 @@ import { Cover } from "../story-utils/Cover";
 
 A simple tag component for labeling and categorizing content with customizable colors and optional pill shape.
 
-<Cover kind={"story"}>
-  {() => (
-  <div style={{ display: "flex", flexDirection: "column", gap: "18px", flexWrap: "wrap" }}>
-    Normal Tags:
-    <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-      <Tag color="neutral">Neutral</Tag>
-      <Tag color="blue">Blue</Tag>
-      <Tag color="green">Green</Tag>
-      <Tag color="green-filled">Green Filled</Tag>
-      <Tag color="red">Red</Tag>
-    </div>
-    As Pills:
-    <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-      <Tag pill color="neutral">Neutral</Tag>
-      <Tag pill color="blue">Blue</Tag>
-      <Tag pill color="green">Green</Tag>
-      <Tag pill color="green-filled">Green Filled</Tag>
-      <Tag pill color="red">Red</Tag>
-    </div>
-  </div>
-  )}
-</Cover>
+<Canvas of={TagStories.Overview} />
 
 ```jsx
 import { Tag } from "@digital-science/figshare-fcl/latest/Tag";
@@ -85,29 +55,7 @@ The component can be imported from `@digital-science/figshare-fcl/latest`.
 
 ### Tag Colors
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <div>
-        <h4>Standard Colors</h4>
-        <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-          <Tag color="neutral">Neutral</Tag>
-          <Tag color="blue">Blue</Tag>
-          <Tag color="green">Green</Tag>
-          <Tag color="orange">Orange</Tag>
-          <Tag color="red">Red</Tag>
-          <Tag color="purple">Purple</Tag>
-        </div>
-      </div>
-      <div>
-        <h4>Special Colors</h4>
-        <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-          <Tag color="green-filled">Green Filled</Tag>
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={TagStories.TagColors} />
 
 ```jsx
 import { Tag } from "@digital-science/figshare-fcl/latest/Tag";
@@ -126,30 +74,7 @@ import { Tag } from "@digital-science/figshare-fcl/latest/Tag";
 
 ### Pill Tags
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <div>
-        <h4>Pill Shape</h4>
-        <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-          <Tag pill color="neutral">Neutral Pill</Tag>
-          <Tag pill color="blue">Blue Pill</Tag>
-          <Tag pill color="green">Green Pill</Tag>
-          <Tag pill color="red">Red Pill</Tag>
-        </div>
-      </div>
-      <div>
-        <h4>Regular Shape</h4>
-        <div style={{ display: "flex", flexDirection: "row", gap: "12px", flexWrap: "wrap" }}>
-          <Tag color="neutral">Neutral</Tag>
-          <Tag color="blue">Blue</Tag>
-          <Tag color="green">Green</Tag>
-          <Tag color="red">Red</Tag>
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={TagStories.PillTags} />
 
 ```jsx
 import { Tag } from "@digital-science/figshare-fcl/latest/Tag";

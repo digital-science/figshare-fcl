@@ -1,20 +1,9 @@
-import Home from "@digital-science/figshare-fcl/icons/home/medium";
 import IconButton from "@digital-science/figshare-fcl/button/iconButton";
-import { Cover } from "../../story-utils/Cover";
+import * as IconButtonStories from "./index.stories.jsx";
 
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
-
-<Meta 
-  title="UI/Button/Icon Button" 
-  component={IconButton} 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={IconButtonStories} />
 
 # Icon Button
 ---
@@ -30,9 +19,7 @@ Useful for when we have limited space or a label would be redundant and an `Icon
 Comes with different variations depending on the type of action we want to emphasise to the user.
 
 
-<Cover kind={"story"}>
-  <IconButton Icon={Home}>{"This IconButton has a tooltip."}</IconButton>
-</Cover>
+<Canvas of={IconButtonStories.Overview} />
 
 
 Can be imported from:
@@ -61,20 +48,6 @@ class MyButton extends React.Component {
 
 ## Examples
 
-<Cover kind={"card"}>
-  <IconButton theme="primary" Icon={Home}>Primary</IconButton>
-  <IconButton Icon={Home} disabled={true} theme="primary">Primary (disabled)</IconButton>
-  <IconButton theme="secondary" Icon={Home}>Secondary</IconButton>
-  <IconButton Icon={Home} disabled={true} theme="secondary">Secondary (disabled)</IconButton>
-  <IconButton theme="tertiary" Icon={Home}>Tertiary</IconButton>
-  <IconButton Icon={Home} disabled={true} theme="tertiary">Tertiary (disabled)</IconButton>
-</Cover>
+<Canvas of={IconButtonStories.AllThemes} />
 
-<Cover kind={"card"}>
-  <div style={{ background: "black"}}>
-    <IconButton theme="primaryAlt" Icon={Home}>Primary Alt</IconButton>
-    <IconButton Icon={Home} disabled={true} theme="primaryAlt">Primary Alt (disabled)</IconButton>
-    <IconButton theme="secondaryAlt" Icon={Home}>Secondary Alt</IconButton>
-    <IconButton Icon={Home} disabled={true} theme="secondaryAlt">Secondary Alt (disabled)</IconButton>
-  </div>
-</Cover>
+<Canvas of={IconButtonStories.InvertedTheme} />

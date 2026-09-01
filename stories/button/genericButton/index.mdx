@@ -1,20 +1,10 @@
 import Home from "@digital-science/figshare-fcl/icons/home/medium";
 import GenericButton from "@digital-science/figshare-fcl/button/genericButton";
-import { Cover } from "../../story-utils/Cover";
+import * as GenericButtonStories from "./index.stories.jsx";
 
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
-
-<Meta 
-  title="UI/Button/Generic Button" 
-  component={GenericButton} 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={GenericButtonStories} />
 
 # Generic Button
 ---
@@ -30,9 +20,7 @@ Useful for when we want to display an action inline with text,
 or display a set of actions, close toghether or one after the other.
 
 
-<Cover kind={"story"}>
-  <GenericButton tooltip="Tooltip text">{"Click me!"}</GenericButton>
-</Cover>
+<Canvas of={GenericButtonStories.Overview} />
 
 
 

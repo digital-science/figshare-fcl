@@ -1,27 +1,9 @@
-import { useState, useCallback } from "react";
-import { Meta, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 import Textarea from "@digital-science/figshare-fcl/textarea";
-import { Cover } from "../../story-utils/Cover";
+import * as TextareaStories from "./textarea.stories.jsx";
 
 
-export const ControlledTextarea = (props) => {
-  const [value, setValue] = useState("");
-  const onChange = useCallback((event) => {
-    setValue(event.target.value);
-  }, [setValue]);
-  return (<Textarea {...props} value={value} onChange={onChange} />);
-};
-
-<Meta 
-  title="UI/Inputs/Textarea" 
-  component={Textarea}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={TextareaStories} />
 
 # Textarea
 ---
@@ -35,15 +17,7 @@ export const ControlledTextarea = (props) => {
 Textarea input. Useful for inputing large volume text, or text that is required to span multiple lines.
 
 
-<Cover kind={"story"}>
-  {() => {
-    const [value, setValue] = useState("");
-    const onChange = useCallback((event) => {
-      setValue(event.target.value);
-    }, [setValue]);
-    return (<Textarea placeholder="Input text..." value={value} onChange={onChange} />);
-  }}
-</Cover>
+<Canvas of={TextareaStories.Overview} />
 
 
 The component can be imported from:
@@ -66,11 +40,4 @@ Remaining set properties are desturctured and passed to the component node*
 
 ## Examples
 
-<Cover kind={"card"}>
-  <ControlledTextarea theme="default" placeholder="Default theme" />
-  <ControlledTextarea theme="underline" placeholder="Underline theme" />
-  <ControlledTextarea theme="default" error={true} placeholder="Default theme - error" />
-  <ControlledTextarea theme="underline" error={true} placeholder="Underline theme - error" />
-  <ControlledTextarea theme="default" disabled={true} placeholder="Default theme - disabled" />
-  <ControlledTextarea theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-</Cover>
+<Canvas of={TextareaStories.Examples} />

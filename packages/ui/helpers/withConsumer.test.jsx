@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+
 import React, { createContext } from "react";
 import PropTypes from "prop-types";
 import { render, cleanup } from "@testing-library/react";

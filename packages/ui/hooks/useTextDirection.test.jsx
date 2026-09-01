@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 import React, { useEffect } from "react";
 import { render, cleanup } from "@testing-library/react";
 

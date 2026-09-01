@@ -48,7 +48,7 @@ export default class Dropdown extends Component {
 
     if (isVisible && activeDropdownInstance !== this) {
       activeDropdownInstance?.props.onToggle(null, { isVisible: false });
-      // eslint-disable-next-line consistent-this
+
       activeDropdownInstance = this;
     } else if (!isVisible && activeDropdownInstance === this) {
       activeDropdownInstance = null;

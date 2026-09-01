@@ -1,19 +1,9 @@
 import TextInput from "@digital-science/figshare-fcl/input/text";
-import Input from "@digital-science/figshare-fcl/input";
-import { Cover } from "../../story-utils/Cover";
+import * as TextStories from "./text.stories.jsx";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 
-<Meta 
-  title="UI/Inputs/Text" 
-  component={Input} 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={TextStories} />
 
 # Text input
 ---
@@ -26,9 +16,7 @@ import { Meta, ArgTypes } from "@storybook/blocks";
 A text input component. Allows users to type in and store text values.
 
 
-<Cover kind={"story"}>
-  <TextInput placeholder="Input text..." onChange={(event) => {}} />
-</Cover>
+<Canvas of={TextStories.Overview} />
 
 
 Can be imported directly or referenced as the default `Input` component variation:
@@ -51,12 +39,4 @@ function TextInputs() {
 <ArgTypes of={TextInput} />
 
 ## Examples
-<Cover kind={"card"}>
-  <TextInput theme="default" placeholder="Default theme" />
-  <TextInput theme="underline" placeholder="Underline theme" />
-  <TextInput theme="default" error={true} placeholder="Default theme - error" />
-  <TextInput theme="underline" error={true} placeholder="Underline theme - error" />
-  <TextInput theme="default" disabled={true} placeholder="Default theme - disabled" />
-  <TextInput theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-  <TextInput theme="default" placeholder="untitled" prefix="tb.edu.figshare/" />
-</Cover>
+<Canvas of={TextStories.Examples} />

@@ -1,4 +1,4 @@
-/* eslint-disable no-inline-comments */
+
 /**
  * Decide direction by whichever script (Arabic vs Latin) appears first in the string.
  * Falls back to null if neither is present.

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { renderHook, act } from "@testing-library/react-hooks";
 import { useEffect, useLayoutEffect, useRef } from "react";
 

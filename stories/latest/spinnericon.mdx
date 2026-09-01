@@ -1,17 +1,8 @@
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
-import { Cover } from "../story-utils/Cover";
+import * as SpinnerIconStories from "./spinnericon.stories.jsx";
 
-<Meta
-  title="UI/latest/SpinnerIcon"
-  component={SpinnerIcon}
-  parameters={{
-    viewMode: "docs",
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+<Meta of={SpinnerIconStories} />
 
 # SpinnerIcon
 
@@ -25,15 +16,7 @@ import { Cover } from "../story-utils/Cover";
 
 An animated loading spinner icon component. Displays a rotating loader with configurable sizes and blend modes for use in loading states.
 
-<Cover kind={"story"}>
-  {() => (
-    <div style={{ display: "flex", gap: "24px", padding: "24px" }}>
-      <SpinnerIcon size="small" />
-      <SpinnerIcon size="medium" />
-      <SpinnerIcon size="large" />
-    </div>
-  )}
-</Cover>
+<Canvas of={SpinnerIconStories.Overview} />
 
 ```jsx
 import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
@@ -59,36 +42,7 @@ The component can be imported from `@digital-science/figshare-fcl/latest`.
 
 ### Spinner Sizes
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
-      <div>
-        <h4>Small</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="small" />
-        </div>
-      </div>
-      <div>
-        <h4>Medium</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="medium" />
-        </div>
-      </div>
-      <div>
-        <h4>Large</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="large" />
-        </div>
-      </div>
-      <div>
-        <h4>Full</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="full" />
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={SpinnerIconStories.SpinnerSizes} />
 
 ```jsx
 import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
@@ -101,24 +55,7 @@ import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
 
 ### Spinner Blend Modes
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
-      <div>
-        <h4>Default Blend</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="medium" blend={false} />
-        </div>
-      </div>
-      <div>
-        <h4>With Blend</h4>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <SpinnerIcon size="medium" blend={true} />
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={SpinnerIconStories.SpinnerBlendModes} />
 
 ```jsx
 import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
@@ -132,24 +69,7 @@ import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";
 
 ### Spinner in Loading State
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px" }}>
-      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-        <SpinnerIcon size="small" />
-        <span>Loading data...</span>
-      </div>
-      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-        <SpinnerIcon size="medium" />
-        <span>Processing request...</span>
-      </div>
-      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-        <SpinnerIcon size="small" />
-        <span>Fetching results...</span>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={SpinnerIconStories.SpinnerInLoadingState} />
 
 ```jsx
 import { SpinnerIcon } from "@digital-science/figshare-fcl/latest/SpinnerIcon";

@@ -1,0 +1,102 @@
+import React, { useState, useCallback } from "react";
+import TextInput from "@digital-science/figshare-fcl/input/text";
+import { FieldError } from "@digital-science/figshare-fcl/fieldError";
+import { GenericButton } from "@digital-science/figshare-fcl/button";
+
+import { Cover } from "../story-utils/Cover";
+
+
+const schema = [
+  { type: "required", value: "string", at: ["blur"], message: "This field is required." },
+  { type: "minlength", at: ["blur", "change"], limit: 3, message: "A minimum length of 3 characters is required." },
+];
+
+const getRuleError = (value, at, rule) => {
+  if (!rule.at.includes(at)) {
+    return undefined;
+  }
+  switch (rule.type) {
+    case "required":
+      return value === "" ? rule.message : undefined;
+    case "minlength":
+      return value.length && value.length < rule.limit ? rule.message : undefined;
+    default:
+      return undefined;
+  }
+};
+
+const validate = (value, at) => schema.reduce((errors, rule) => {
+  const message = getRuleError(value, at, rule);
+  if (message) {
+    errors.push({ at, id: rule.type, message });
+  }
+
+  return errors;
+}, []);
+
+export default {
+  title: "UI/Alerts/FieldError",
+  component: FieldError,
+  parameters: { docs: { canvas: { withToolbar: true } } },
+};
+
+export const Overview = {
+  render: () => (
+    <Cover kind={"story"}>
+      {() => {
+        const [, setValue] = useState("");
+        const [errors, setErrors] = useState([]);
+        const onChange = useCallback((event) => {
+          const newValue = event.target.value;
+          const newErrors = validate(newValue, "change");
+          setValue(newValue);
+          setErrors(newErrors);
+        }, [setValue, setErrors, validate]);
+        const onBlur = useCallback((event) => {
+          const { value: newValue } = event.target;
+          const newErrors = validate(newValue, "blur");
+          setErrors(newErrors);
+        }, [setErrors]);
+
+        return (
+          <div className="field-container" style={ { display: "flex", flexDirection: "column", width: "360px" } }>
+            <label htmlFor="form.field">Form field</label>
+            <TextInput id="form.field" name="form.field" placeholder="Input text..." error={!!errors.length} onChange={onChange} onBlur={onBlur} />
+            {errors.map((error) => (
+              <FieldError key={error.id} error={error} field="form.field" />
+            ))}
+          </div>
+        )
+      }}
+    </Cover>
+  ),
+};
+
+export const Examples = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind={"card"}>
+      <div style={ { display: "flex", flexDirection: "column", gap: "18px" } }>
+        <code>size=&quot;small&quot;</code>
+        <FieldError error={undefined} field="title" />
+        <FieldError error={ { at: "change", message: "Invalid character length", id: "description.maxlen" } } field="description" />
+        <FieldError error={ { at: "blur", message: "This field is required.", id: "references.required" } } field="references" />
+        <FieldError error={ { at: "submit/publish", message: <><span>Cannot publish with missing information. </span><GenericButton>Publish anyway.</GenericButton></>, id: "resources.required" } } field="resources" />
+        <code>size=&quot;large&quot;</code>
+        <FieldError size="large" error={ { at: "change", message: "Invalid character length", id: "description.maxlen" } } field="description" />
+        <FieldError size="large" error={ { at: "blur", message: "This field is required.", id: "references.required" } } field="references" />
+        <FieldError size="large" error={ { at: "submit/publish", message: <><span>Cannot publish with missing information. </span><GenericButton>Publish anyway.</GenericButton></>, id: "resources.required" } } field="resources" />
+        <code>full width</code>
+        <div style={ { width: "200px", border: "1px solid black" } }>
+          <FieldError error={ { at: "change", message: "Invalid character length", id: "description.maxlen" } } field="description" fullWidth={true} />
+        </div>
+        <div style={ { width: "200px", border: "1px solid black" } }>
+          <FieldError error={ { at: "blur", message: "This field is required.", id: "references.required" } } field="references" fullWidth={true} />
+        </div>
+        <div style={ { width: "200px", border: "1px solid black" } }>
+          <FieldError error={ { at: "submit/publish", message: <><span>Cannot publish with missing information. </span><GenericButton>Publish anyway.</GenericButton></>, id: "resources.required" } } field="resources" fullWidth={true} />
+        </div>
+      </div>
+    </Cover>
+  ),
+};

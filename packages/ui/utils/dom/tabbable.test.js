@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 /* eslint-disable init-declarations */
 import { getElements, findNextTabStop, findPrevTabStop } from "./tabbable";
 

@@ -1,10 +1,7 @@
-import FigshareLogo from "@digital-science/figshare-fcl/icons/figshare/logo";
-import FigshareText from "@digital-science/figshare-fcl/icons/figshare/text";
-import FigshareFullLogo from "@digital-science/figshare-fcl/icons/figshare/index";
-import { Cover } from "../story-utils/Cover";
+import * as FigshareStories from "./figshare.stories.jsx";
 
 
-import { Meta } from "@storybook/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 
 export const Container = (props) => {
   const style = {
@@ -17,15 +14,7 @@ export const Container = (props) => {
   return <div {...props} style={style} />;
 };
 
-<Meta 
-  title="Icons/Figshare" 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={FigshareStories} />
 
 # Figshare and Media
 ---
@@ -34,23 +23,7 @@ A set of icons to represent the figshare logo, social media, or third parties re
 
 ## Banner
 
-<Cover kind={"story"}>
-  <div 
-    style={{
-      display: "flex",
-      margin: "48px",
-      maxWidth: "700px",
-      flexDirection: "column",
-      justifyContent: "space-between"
-    }}
-  >
-    <FigshareLogo animate={false} grayscale={false} />
-    <br />
-    <FigshareText />
-    <br />
-    <FigshareFullLogo />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.Banner} />
 
 
 ```jsx
@@ -77,13 +50,7 @@ import FigshareFullLogo from "@digital-science/figshare-fcl/icons/figshare/index
 
 ## Bitbucket
 
-import Bitbucket from "@digital-science/figshare-fcl/icons/bitbucket/index";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <Bitbucket style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.BitbucketStory} />
 
 
 ```jsx
@@ -96,13 +63,7 @@ import Bitbucket from "@digital-science/figshare-fcl/icons/bitbucket/index";
 
 ## FTP
 
-import FTP from "@digital-science/figshare-fcl/icons/ftpIntegration/index";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <FTP style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.FTPStory} />
 
 
 ```jsx
@@ -115,13 +76,7 @@ import FTP from "@digital-science/figshare-fcl/icons/ftpIntegration/index";
 
 ## GitHub
 
-import GitHub from "@digital-science/figshare-fcl/icons/github/index";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <GitHub style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.GitHubStory} />
 
 
 ```jsx
@@ -134,13 +89,7 @@ import GitHub from "@digital-science/figshare-fcl/icons/github/index";
 
 ## GitLab
 
-import GitLab from "@digital-science/figshare-fcl/icons/gitlab/index";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <GitLab style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.GitLabStory} />
 
 
 ```jsx
@@ -153,15 +102,7 @@ import GitLab from "@digital-science/figshare-fcl/icons/gitlab/index";
 
 ## OrcID
 
-import Orcid from "@digital-science/figshare-fcl/icons/orcid/index";
-import OrcidSmall from "@digital-science/figshare-fcl/icons/orcid/small";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <Orcid style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-    <OrcidSmall style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.OrcID} />
 
 
 ```jsx
@@ -176,13 +117,7 @@ import OrcidSmall from "@digital-science/figshare-fcl/icons/orcid/small";
 
 ## Rss
 
-import Rss from "@digital-science/figshare-fcl/icons/rss/index";
-
-<Cover kind={"story"}>
-  <div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-    <Rss fill="#ee802f" style={ { width: "24px", height: "24px", margin: "0 24px" } } />
-  </div>
-</Cover>
+<Canvas of={FigshareStories.RssStory} />
 
 
 ```jsx
@@ -196,38 +131,7 @@ import Rss from "@digital-science/figshare-fcl/icons/rss/index";
 ## Social Media
 
 
-import Bluesky from "@digital-science/figshare-fcl/icons/socialMedia/bluesky";
-import Facebook from "@digital-science/figshare-fcl/icons/socialMedia/facebook";
-import Linkedin from "@digital-science/figshare-fcl/icons/socialMedia/linkedin";
-import Twitter from "@digital-science/figshare-fcl/icons/socialMedia/twitter";
-import TwitterInverted from "@digital-science/figshare-fcl/icons/socialMedia/twitter_inverted";
-import Vimeo from "@digital-science/figshare-fcl/icons/socialMedia/vimeo";
-
-<Cover kind={"story"}>
-  {() => {
-    const iconStyle = {
-      width: "30px",
-      height: "30px",
-      margin: "0 24px",
-    };
-    return (
-      <div style={{
-          display: "flex",
-          margin: "48px",
-          maxWidth: "700px",
-          alignItems: "center",
-        }}
-      >
-        <Facebook fill="#4267B2" style={iconStyle} />
-        <Bluesky fill="#4267B2" style={iconStyle} />
-        <Linkedin fill="#0072b1" style={iconStyle} />
-        <Twitter fill="#000" style={iconStyle} />
-        <TwitterInverted fill="#000" style={iconStyle} />
-        <Vimeo fill="#1AB7EA" style={iconStyle} />
-      </div>
-    );
-  }}
-</Cover>
+<Canvas of={FigshareStories.SocialMedia} />
 
 
 ```jsx
