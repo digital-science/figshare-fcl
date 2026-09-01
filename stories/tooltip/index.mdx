@@ -1,23 +1,12 @@
-import { useState, useCallback } from 'react';
-import { Meta, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes, Canvas } from '@storybook/addon-docs/blocks';
 import { Button, GenericButton } from "@digital-science/figshare-fcl/button";
 import Info from "@digital-science/figshare-fcl/icons/info/medium";
 
 import { Content, Trigger, UncontrolledTooltip as Tooltip } from "@digital-science/figshare-fcl/tooltip";
-import { Cover } from "../story-utils/Cover";
-import styles from "./index.stories.module.css";
+import * as TooltipStories from "./index.stories.jsx";
 
 
-<Meta
-  component={Tooltip}
-  title="UI/Tooltip"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={TooltipStories} />
 
 # Tooltip
 ---
@@ -28,33 +17,7 @@ A component that can be used to show a focusable, persistable tooltip tied to a 
 The persistent tooltip will get revealed when users hover on the target or focus on it. 
 
 
-<Cover kind={"story"}>
-  {() => {
-    const [isVisible, setIsVisible] = useState(false);
-    const onToggle = useCallback(() => {
-      setIsVisible((visible) => !visible);
-    });
-    return (
-      <>
-        <h3>Tooltip will be bottom</h3>
-        <Tooltip>{()=>(
-          <span>
-            <Trigger>
-              {({ ...props })=>(<div className={styles.wrapperDiv} {...props}><Button>Button trigger</Button></div>)}
-            </Trigger>
-            <Content>
-              {({ ...props }) => (
-                  <div {...props}>
-                    Tooltip content
-                  </div>)}
-            </Content>
-          </span>
-          )}
-        </Tooltip>
-      </>
-    );
-  }}
-</Cover>
+<Canvas of={TooltipStories.Overview} />
 
 
 <br />

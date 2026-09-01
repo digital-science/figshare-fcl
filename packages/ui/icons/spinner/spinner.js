@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 import classnames from "classnames";
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";

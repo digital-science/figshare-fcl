@@ -1,23 +1,13 @@
-import { useState, useCallback } from 'react';
-import { Meta, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes, Canvas } from '@storybook/addon-docs/blocks';
 import Info from "@digital-science/figshare-fcl/icons/info/medium";
 import { Button, IconButton, GenericButton} from "@digital-science/figshare-fcl/button";
 
 import { Toggletip, Trigger, Content, UncontrolledToggletip } from "@digital-science/figshare-fcl/toggletip";
-import { Cover } from "../story-utils/Cover";
 import styles from "./index.stories.module.css";
+import * as ToggletipStories from "./index.stories.jsx";
 
 
-<Meta
-  component={Toggletip}
-  title="UI/Toggletip"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={ToggletipStories} />
 
 # Toggletip
 ---
@@ -36,40 +26,7 @@ The persistent tooltip will get revealed when users click on the target or focus
 If the tooltip has focusable elements, focus will cycle through those elements. Users can exit the toggletip and return to the trigger by pressing "Escape".
 
 
-<Cover kind={"story"}>
-  {() => {
-    const [isVisible, setIsVisible] = useState(false);
-    const onToggle = useCallback(() => {
-      setIsVisible((visible) => !visible);
-    });
-    return (
-      <Toggletip isVisible={isVisible} onToggle={onToggle}>
-      {() => (
-        <span>
-          <Trigger>
-            {({ ...triggerProps }) => (
-              <div className={styles.wrapperDiv} { ...triggerProps }>
-                <Button>Button Trigger</Button>
-              </div>
-            )}
-          </Trigger>
-          <Content>
-            {() => (
-              <span> 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at turpis quis nisi sollicitudin cursus.
-                <button>Focusable element</button>
-                Morbi tincidunt posuere leo. Maecenas eu justo imperdiet, tempor magna at, tempus dui. Quisque ante augue,
-                
-                pellentesque venenatis commodo et, viverra et lectus. Etiam id vehicula dui. Quisque ac massa faucibus,
-              </span>
-              )}
-          </Content>
-        </span>
-        )}
-      </Toggletip>
-    );
-  }}
-</Cover>
+<Canvas of={ToggletipStories.Overview} />
 
 
 The component is a composite of a `Manager - Trigger - Content` set similar to other popup component implementations,

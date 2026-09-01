@@ -1,54 +1,16 @@
 
-import styles from "./index.stories.module.css";
-import { Cover } from "../../story-utils/Cover";
+import * as PresentationStories from "./index.stories.jsx";
 
-import { Meta } from "@storybook/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 
-<Meta 
-  title="Icons"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={PresentationStories} />
 
 # Presentation
 ---
 
 An icon set for "presentation" related items. Icons for items ranging from projects, to individual publications, or simple quotations. 
 
-import Quote from "@digital-science/figshare-fcl/icons/presentation/quote";
-import Project from "@digital-science/figshare-fcl/icons/presentation/project";
-import Collection from "@digital-science/figshare-fcl/icons/presentation/collection";
-import Exclamation from "@digital-science/figshare-fcl/icons/presentation/exclamation";
-import CheckMark from "@digital-science/figshare-fcl/icons/presentation/checkMark";
-import Note from "@digital-science/figshare-fcl/icons/presentation/note";
-import FTP from "@digital-science/figshare-fcl/icons/presentation/ftp";
-import EnvelopeSuccess from "@digital-science/figshare-fcl/icons/presentation/envelopeSuccess";
-import EnvelopeError from "@digital-science/figshare-fcl/icons/presentation/envelopeError";
-import EmbedCode from "@digital-science/figshare-fcl/icons/presentation/embedCode";
-import EmbedTitle from "@digital-science/figshare-fcl/icons/presentation/embedTitle";
-import Ribbon from "@digital-science/figshare-fcl/icons/presentation/ribbon";
-import Publications from "@digital-science/figshare-fcl/icons/presentation/publications";
-
-<Cover kind={"story"}>
-  <Quote className={styles.icon} />
-  <Project className={styles.icon} />
-  <Collection className={styles.icon} />
-  <Exclamation className={styles.icon} />
-  <CheckMark className={styles.icon} />
-  <Note className={styles.icon} />
-  <FTP className={styles.icon} />
-  <br />
-  <EnvelopeSuccess className={styles.icon} />
-  <EnvelopeError className={styles.icon} />
-  <EmbedCode className={styles.icon} />
-  <EmbedTitle className={styles.icon} />
-  <Ribbon className={styles.icon} />
-  <Publications className={styles.icon} />
-</Cover>
+<Canvas of={PresentationStories.Presentation} />
 ```jsx
 import Quote from "@digital-science/figshare-fcl/icons/presentation/quote";
 import Project from "@digital-science/figshare-fcl/icons/presentation/project";

@@ -1,18 +1,9 @@
 
-import styles from "./index.stories.module.css";
-import { Cover } from "../../story-utils/Cover";
+import * as ItemTypeStories from "./index.stories.jsx";
 
-import { Meta } from "@storybook/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 
-<Meta 
-  title="Icons/ItemType" 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={ItemTypeStories} />
 
 # Generic
 ---
@@ -21,11 +12,7 @@ An icon set used to visually represent article item types.
 
 ## Preprint
 
-import ItemTypePreprint from "@digital-science/figshare-fcl/icons/itemType/preprint";
-
-<Cover kind={"story"}>
-  <ItemTypePreprint className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Preprint} />
 
 ```jsx
 import ItemTypePreprint from "@digital-science/figshare-fcl/icons/itemType/preprint";
@@ -35,11 +22,7 @@ import ItemTypePreprint from "@digital-science/figshare-fcl/icons/itemType/prepr
 ---
 ## Book
 
-import ItemTypeBook from "@digital-science/figshare-fcl/icons/itemType/book";
-
-<Cover kind={"story"}>
-  <ItemTypeBook className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Book} />
 
 ```jsx
 import ItemTypeBook from "@digital-science/figshare-fcl/icons/itemType/book";
@@ -50,11 +33,7 @@ import ItemTypeBook from "@digital-science/figshare-fcl/icons/itemType/book";
 ---
 ## Software
 
-import ItemTypeSoftware from "@digital-science/figshare-fcl/icons/itemType/software";
-
-<Cover kind={"story"}>
-  <ItemTypeSoftware className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Software} />
 
 ```jsx
 import ItemTypeSoftware from "@digital-science/figshare-fcl/icons/itemType/software";
@@ -65,11 +44,7 @@ import ItemTypeSoftware from "@digital-science/figshare-fcl/icons/itemType/softw
 ---
 ## Paper
 
-import ItemTypePaper from "@digital-science/figshare-fcl/icons/itemType/paper";
-
-<Cover kind={"story"}>
-  <ItemTypePaper className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Paper} />
 
 ```jsx
 import ItemTypePaper from "@digital-science/figshare-fcl/icons/itemType/paper";
@@ -80,11 +55,7 @@ import ItemTypePaper from "@digital-science/figshare-fcl/icons/itemType/paper";
 ---
 ## Metadata
 
-import ItemTypeMetadata from "@digital-science/figshare-fcl/icons/itemType/metadata";
-
-<Cover kind={"story"}>
-  <ItemTypeMetadata className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Metadata} />
 
 ```jsx
 import ItemTypeMetadata from "@digital-science/figshare-fcl/icons/itemType/metadata";
@@ -95,11 +66,7 @@ import ItemTypeMetadata from "@digital-science/figshare-fcl/icons/itemType/metad
 ---
 ## Thesis
 
-import ItemTypeThesis from "@digital-science/figshare-fcl/icons/itemType/thesis";
-
-<Cover kind={"story"}>
-  <ItemTypeThesis className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Thesis} />
 
 ```jsx
 import ItemTypeThesis from "@digital-science/figshare-fcl/icons/itemType/thesis";
@@ -109,11 +76,7 @@ import ItemTypeThesis from "@digital-science/figshare-fcl/icons/itemType/thesis"
 ---
 ## Poster
 
-import ItemTypePoster from "@digital-science/figshare-fcl/icons/itemType/poster";
-
-<Cover kind={"story"}>
-  <ItemTypePoster className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Poster} />
 
 ```jsx
 import ItemTypePoster from "@digital-science/figshare-fcl/icons/itemType/poster";
@@ -124,11 +87,7 @@ import ItemTypePoster from "@digital-science/figshare-fcl/icons/itemType/poster"
 ---
 ## Dataset
 
-import ItemTypeDataset from "@digital-science/figshare-fcl/icons/itemType/dataset";
-
-<Cover kind={"story"}>
-  <ItemTypeDataset className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Dataset} />
 
 ```jsx
 import ItemTypeDataset from "@digital-science/figshare-fcl/icons/itemType/dataset";
@@ -139,11 +98,7 @@ import ItemTypeDataset from "@digital-science/figshare-fcl/icons/itemType/datase
 ---
 ## Media
 
-import ItemTypeMedia from "@digital-science/figshare-fcl/icons/itemType/media";
-
-<Cover kind={"story"}>
-  <ItemTypeMedia className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Media} />
 
 ```jsx
 import ItemTypeMedia from "@digital-science/figshare-fcl/icons/itemType/media";
@@ -154,11 +109,7 @@ import ItemTypeMedia from "@digital-science/figshare-fcl/icons/itemType/media";
 ---
 ## Figure
 
-import ItemTypeFigure from "@digital-science/figshare-fcl/icons/itemType/figure";
-
-<Cover kind={"story"}>
-  <ItemTypeFigure className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Figure} />
 
 ```jsx
 import ItemTypeFigure from "@digital-science/figshare-fcl/icons/itemType/figure";
@@ -169,11 +120,7 @@ import ItemTypeFigure from "@digital-science/figshare-fcl/icons/itemType/figure"
 ---
 ## Presentation
 
-import ItemTypePresentation from "@digital-science/figshare-fcl/icons/itemType/presentation";
-
-<Cover kind={"story"}>
-  <ItemTypePresentation className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Presentation} />
 
 ```jsx
 import ItemTypePresentation from "@digital-science/figshare-fcl/icons/itemType/presentation";
@@ -184,11 +131,7 @@ import ItemTypePresentation from "@digital-science/figshare-fcl/icons/itemType/p
 ---
 ## OnlineResource
 
-import ItemTypeOnlineResource from "@digital-science/figshare-fcl/icons/itemType/onlineResource";
-
-<Cover kind={"story"}>
-  <ItemTypeOnlineResource className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.OnlineResource} />
 
 ```jsx
 import ItemTypeOnlineResource from "@digital-science/figshare-fcl/icons/itemType/onlineResource";
@@ -199,11 +142,7 @@ import ItemTypeOnlineResource from "@digital-science/figshare-fcl/icons/itemType
 ---
 ## Workflow
 
-import ItemTypeWorkflow from "@digital-science/figshare-fcl/icons/itemType/workflow";
-
-<Cover kind={"story"}>
-  <ItemTypeWorkflow className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Workflow} />
 
 ```jsx
 import ItemTypeWorkflow from "@digital-science/figshare-fcl/icons/itemType/workflow";
@@ -214,11 +153,7 @@ import ItemTypeWorkflow from "@digital-science/figshare-fcl/icons/itemType/workf
 ---
 ## Performance
 
-import ItemTypePerformance from "@digital-science/figshare-fcl/icons/itemType/performance";
-
-<Cover kind={"story"}>
-  <ItemTypePerformance className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Performance} />
 
 ```jsx
 import ItemTypePerformance from "@digital-science/figshare-fcl/icons/itemType/performance";
@@ -229,11 +164,7 @@ import ItemTypePerformance from "@digital-science/figshare-fcl/icons/itemType/pe
 ---
 ## Collection
 
-import ItemTypeCollection from "@digital-science/figshare-fcl/icons/itemType/collection";
-
-<Cover kind={"story"}>
-  <ItemTypeCollection className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Collection} />
 
 ```jsx
 import ItemTypeCollection from "@digital-science/figshare-fcl/icons/itemType/collection";
@@ -244,11 +175,7 @@ import ItemTypeCollection from "@digital-science/figshare-fcl/icons/itemType/col
 ---
 ## Project
 
-import ItemTypeProject from "@digital-science/figshare-fcl/icons/itemType/project";
-
-<Cover kind={"story"}>
-  <ItemTypeProject className={styles.icon} />
-</Cover>
+<Canvas of={ItemTypeStories.Project} />
 
 ```jsx
 import ItemTypeProject from "@digital-science/figshare-fcl/icons/itemType/project";

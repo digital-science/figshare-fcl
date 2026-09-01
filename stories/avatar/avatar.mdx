@@ -1,41 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, ArgTypes } from '@storybook/blocks';
+import { Meta, ArgTypes, Canvas } from '@storybook/addon-docs/blocks';
 import { Avatar } from "@digital-science/figshare-fcl/avatar";
 import { Button } from "@digital-science/figshare-fcl/button";
-import image from "../../assets/avatar.png";
-import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
-import { Cover } from "../story-utils/Cover";
+import * as AvatarStories from "./avatar.stories.jsx";
 
-
-export const Default = () => (
-  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div>
-        <Avatar firstName="John" lastName="Doe" />
-        <span>Avatar without image</span>
-      </div>
-      <div>
-        <Avatar firstName="John" lastName="Doe" url={image} />
-        <span>Avatar with valid image</span>
-      </div>
-      <div>
-        <Avatar firstName="John" lastName="Doe" url={imageWithTransparentBackground} />
-        <span>Avatar with transparent background image</span>
-      </div>
-    </div>
-  </div>
-);
-
-<Meta
-  title="UI/Avatar"
-  component={Avatar}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-     },
-  }}
-/>
+<Meta of={AvatarStories} />
 
 # Avatar
 ---
@@ -48,16 +17,7 @@ export const Default = () => (
 An user avatar display component, that can show an existing avatar or the user\'s initials, if provided an URL and a first and last name.
 Will fallback to showing the initials if the avatar image could not be loaded.
 
-<Cover kind={"story"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
-        <Avatar firstName="John" lastName="Doe" />
-        <Avatar firstName="John" lastName="Doe" url={image} />
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={AvatarStories.Overview} />
 
 
 The component can be imported from `@digital-science/figshare-fcl/avatar`.
@@ -86,4 +46,4 @@ function AvatarExample() {
 <ArgTypes of={Avatar} />
 
 ## Examples
-<Cover kind={"card"}><Default /></Cover>
+<Canvas of={AvatarStories.Examples} />

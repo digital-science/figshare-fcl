@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+
 import moment from "moment";
 
 import { validateDateFormat, getInputType, getYearsPeriod } from "./utils";

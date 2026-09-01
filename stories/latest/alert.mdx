@@ -1,17 +1,8 @@
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
-import { Cover } from "../story-utils/Cover";
+import * as AlertStories from "./alert.stories.jsx";
 
-<Meta
-  title="UI/latest/Alert"
-  component={Alert}
-  parameters={{
-    viewMode: "docs",
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+<Meta of={AlertStories} />
 
 # Alert
 
@@ -26,16 +17,7 @@ import { Cover } from "../story-utils/Cover";
 
 A versatile alert component for displaying messages with different types (info, warning, error, success, notice), variants (solid, translucent), and dismissible options.
 
-<Cover kind={"story"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <Alert type="info" title="Information" message="This is an informational alert" persistent />
-      <Alert type="success" title="Success" message="The operation completed successfully" persistent />
-      <Alert type="warning" title="Warning" message="Please review this warning message" persistent />
-      <Alert type="error" title="Error" message="An error occurred" persistent />
-    </div>
-  )}
-</Cover>
+<Canvas of={AlertStories.Overview} />
 
 ```jsx
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
@@ -71,32 +53,7 @@ The Alert component exports several sub-components:
 
 ### Alert Types
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <div>
-        <h4>Info Alert</h4>
-        <Alert type="info" title="Information" message="This is an informational message" persistent />
-      </div>
-      <div>
-        <h4>Success Alert</h4>
-        <Alert type="success" title="Success" message="Your operation completed successfully" persistent />
-      </div>
-      <div>
-        <h4>Warning Alert</h4>
-        <Alert type="warning" title="Warning" message="Please pay attention to this warning" persistent />
-      </div>
-      <div>
-        <h4>Error Alert</h4>
-        <Alert type="error" title="Error" message="An error has occurred" persistent />
-      </div>
-      <div>
-        <h4>Notice Alert</h4>
-        <Alert type="notice" title="Notice" message="This is a notice message" persistent />
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={AlertStories.AlertTypes} />
 
 ```jsx
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
@@ -110,26 +67,7 @@ import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
 
 ### Alert Variants
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <div>
-        <h4>Translucent Variant (Default)</h4>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert type="info" variant="translucent" title="Info" message="Translucent variant" persistent />
-          <Alert type="success" variant="translucent" title="Success" message="Translucent variant" persistent />
-        </div>
-      </div>
-      <div>
-        <h4>Solid Variant</h4>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert type="info" variant="solid" title="Info" message="Solid variant" persistent />
-          <Alert type="success" variant="solid" title="Success" message="Solid variant" persistent />
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={AlertStories.AlertVariants} />
 
 ```jsx
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
@@ -143,28 +81,7 @@ import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
 
 ### Alert Content Options
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <div>
-        <h4>Title Only</h4>
-        <Alert type="info" title="Information Alert" persistent />
-      </div>
-      <div>
-        <h4>Message Only</h4>
-        <Alert type="success" message="Operation completed successfully" persistent />
-      </div>
-      <div>
-        <h4>Title and Message</h4>
-        <Alert type="warning" title="Warning" message="Please review this warning message carefully" persistent />
-      </div>
-      <div>
-        <h4>With Padding</h4>
-        <Alert type="error" title="Error" message="An error has occurred" padded persistent />
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={AlertStories.AlertContentOptions} />
 
 ```jsx
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
@@ -184,22 +101,7 @@ import { Alert } from "@digital-science/figshare-fcl/latest/Alert";
 
 ### Dismissible Alerts
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <div>
-        <h4>Dismissible Alert</h4>
-        <Alert 
-          type="info" 
-          title="Closeable Alert" 
-          message="This alert can be dismissed by clicking the close button" 
-          persistent={false}
-          onClose={() => alert("Alert closed")}
-        />
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={AlertStories.DismissibleAlerts} />
 
 ```jsx
 import { Alert } from "@digital-science/figshare-fcl/latest/Alert";

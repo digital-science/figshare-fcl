@@ -1,5 +1,5 @@
 /* eslint-disable init-declarations */
-/* eslint-disable no-unused-vars */
+
 import { renderHook, act } from "@testing-library/react-hooks";
 import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "utils/dom";
 

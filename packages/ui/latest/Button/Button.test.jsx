@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 import React from "react";
 import { render, cleanup, screen, fireEvent } from "@testing-library/react";
 

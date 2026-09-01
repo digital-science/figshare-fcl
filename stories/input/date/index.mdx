@@ -1,39 +1,10 @@
 
-import uncontrollable from "@digital-science/figshare-fcl/helpers/uncontrollable";
 import DatePickerComponent from "@digital-science/figshare-fcl/input/date/index";
-import InputComponent from '@digital-science/figshare-fcl/input/index';
-import { Cover } from "../../story-utils/Cover";
+import * as DateStories from "./date.stories.jsx";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 
-export const DatePicker = uncontrollable(
-  DatePickerComponent,
-  { selectedDate: ["onChange", (_, date) => date] }
-);
-
-export const Input = uncontrollable(
-  InputComponent,
-  { selectedDate: ["onChange", (_, date) => date] }
-);
-
-export const canvasStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
-  gap: "16px",
-};
-
-<Meta 
-  component={DatePicker} 
-  title="UI/Inputs/Date" 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={DateStories} />
 
 # Date Picker
 ---
@@ -48,9 +19,7 @@ Date picker input component with calendar.
 Allows users to select a date value from an associated calendar or to type in a date value in the input, following a specified date format.
 
 
-<Cover kind={"story"}>
-  <DatePicker selectedDate={new Date()} onChange={(date) => {}} />
-</Cover>
+<Canvas of={DateStories.Overview} />
 
 
 Can be imported individually or referenced as a variation of the `Input` component:
@@ -66,22 +35,7 @@ import Input from "@digital-science/figshare-fcl/input";
 <ArgTypes of={DatePickerComponent} />
 
 ## Examples
-<Cover kind={"card"}>
-  <div style={canvasStyle}>
-    <p>Basic, with selected date</p>
-    <DatePicker selectedDate={new Date()} />
-    <p>Min and max date range</p>
-    <DatePicker minDate={new Date('May 1, 2000 03:24:00')} maxDate={new Date('December 1, 2030 00:20:00')} />
-    <p>Disabled</p>
-    <DatePicker selectedDate={new Date()} disabled />
-    <p>Error</p>
-    <DatePicker selectedDate={new Date()}  error />
-    <p>Input</p>
-    <Input type="date" />
-    <p>Custom placeholder</p>
-    <DatePicker placeholder="Select Date" />
-  </div>
-</Cover>
+<Canvas of={DateStories.Examples} />
 
 ```jsx
 import React from "react";

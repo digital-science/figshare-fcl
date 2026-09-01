@@ -1,17 +1,8 @@
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
-import { Cover } from "../story-utils/Cover";
+import * as SearchInputStories from "./searchinput.stories.jsx";
 
-<Meta
-  title="UI/latest/SearchInput"
-  component={SearchInput}
-  parameters={{
-    viewMode: "docs",
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+<Meta of={SearchInputStories} />
 
 # SearchInput
 
@@ -25,17 +16,7 @@ import { Cover } from "../story-utils/Cover";
 
 A specialized search input component with built-in clear and submit buttons. Supports both controlled and uncontrolled usage patterns with keyboard shortcuts and callbacks.
 
-<Cover kind={"story"}>
-  {() => (
-    <div style={{ width: "100%", maxWidth: "400px" }}>
-      <SearchInput 
-        placeholder="Search..." 
-        onChange={(e) => console.log(e.value)} 
-        onSubmit={(e) => console.log("Search:", e.value)}
-      />
-    </div>
-  )}
-</Cover>
+<Canvas of={SearchInputStories.Overview} />
 
 ```jsx
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
@@ -61,24 +42,7 @@ The component can be imported from `@digital-science/figshare-fcl/latest`.
 
 ### Basic SearchInput
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <div>
-        <h4>Default</h4>
-        <div style={{ width: "100%", maxWidth: "400px" }}>
-          <SearchInput placeholder="Search..." />
-        </div>
-      </div>
-      <div>
-        <h4>With Default Value</h4>
-        <div style={{ width: "100%", maxWidth: "400px" }}>
-          <SearchInput defaultValue="react" placeholder="Search..." />
-        </div>
-      </div>
-    </div>
-  )}
-</Cover>
+<Canvas of={SearchInputStories.BasicSearchInput} />
 
 ```jsx
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
@@ -92,24 +56,7 @@ import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
 
 ### Controlled SearchInput
 
-<Cover kind={"card"}>
-  {() => {
-    const [value, setValue] = React.useState("");
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <h4>Controlled Component</h4>
-        <div style={{ width: "100%", maxWidth: "400px" }}>
-          <SearchInput 
-            value={value} 
-            setValue={setValue}
-            placeholder="Type to search..." 
-          />
-        </div>
-        <p>Current value: <strong>{value || "(empty)"}</strong></p>
-      </div>
-    );
-  }}
-</Cover>
+<Canvas of={SearchInputStories.ControlledSearchInput} />
 
 ```jsx
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
@@ -133,21 +80,7 @@ export default function ControlledSearch() {
 
 ### SearchInput with Callbacks
 
-<Cover kind={"card"}>
-  {() => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <h4>With onChange and onSubmit Handlers</h4>
-      <div style={{ width: "100%", maxWidth: "400px" }}>
-        <SearchInput 
-          placeholder="Search and press Enter..." 
-          onChange={(e) => console.log("Change:", e.value)}
-          onSubmit={(e) => console.log("Submit:", e.value)}
-        />
-      </div>
-      <p style={{ fontSize: "12px", color: "gray" }}>Check browser console for events</p>
-    </div>
-  )}
-</Cover>
+<Canvas of={SearchInputStories.SearchInputWithCallbacks} />
 
 ```jsx
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
@@ -161,34 +94,7 @@ import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";
 
 ### SearchInput Features
 
-<Cover kind={"card"}>
-  {() => {
-    const [searchValue, setSearchValue] = React.useState("example search");
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <div>
-          <h4>Clear Button Appears When Input Has Value</h4>
-          <div style={{ width: "100%", maxWidth: "400px" }}>
-            <SearchInput 
-              value={searchValue}
-              setValue={setSearchValue}
-              placeholder="Search with clear button..." 
-            />
-          </div>
-          <p style={{ fontSize: "12px", color: "gray" }}>
-            Click the clear button to reset the search
-          </p>
-        </div>
-        <div>
-          <h4>Empty SearchInput</h4>
-          <div style={{ width: "100%", maxWidth: "400px" }}>
-            <SearchInput placeholder="Clear button only appears when typing..." />
-          </div>
-        </div>
-      </div>
-    );
-  }}
-</Cover>
+<Canvas of={SearchInputStories.SearchInputFeatures} />
 
 ```jsx
 import { SearchInput } from "@digital-science/figshare-fcl/latest/SearchInput";

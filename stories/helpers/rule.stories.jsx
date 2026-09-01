@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import { all } from "./a11y/index.stories";
-import styles from "./rule.css";
+import styles from "./rule.module.css";
 
 
 const renderChildren = (children) => {

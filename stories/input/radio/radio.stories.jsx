@@ -1,0 +1,72 @@
+import React, { useState, useCallback } from "react";
+import Radio from "@digital-science/figshare-fcl/input/radio";
+import Input from "@digital-science/figshare-fcl/input";
+
+import { Cover } from "../../story-utils/Cover";
+
+
+export default {
+  title: "UI/Inputs/Radio",
+  component: Radio,
+  parameters: { docs: { canvas: { withToolbar: true } } },
+};
+
+export const Overview = {
+  render: () => (
+    <Cover kind={"story"}>
+      {() => {
+        const items = [
+          { name: "radio-group", value: "1", label: "Option" },
+          { name: "radio-group", value: "2", label: "Option - Disabled", disabled: true },
+          { name: "radio-group", value: "3", label: "Option - Error", error: true },
+          { name: "radio-group", value: "4", label: "Option label with a large character count" },
+        ]
+        const [selectedOption, setSelectedOption] = useState(null);
+        const handleOptionChange = useCallback((event) => {
+          const { value } = event.target;
+          setSelectedOption(value);
+        }, []);
+        const isChecked = (value) => {
+          if (value === selectedOption) {
+            return true;
+          }
+
+          return false;
+        };
+
+        return (
+          <div style={ { width: "200px", display: "flex", flexDirection: "column", gap: "12px" } }>
+            {items.map((item) => (
+              <Input
+                key={`${item.name}-${item.value}`}
+                checked={isChecked(item.value)}
+                disabled={item.disabled}
+                error={item.error}
+                label={item.label}
+                value={item.value}
+                type="radio"
+                onChange={handleOptionChange}
+              />
+            ))}
+          </div>
+        )
+      }}
+    </Cover>
+  ),
+};
+
+export const Examples = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind={"card"}>
+      <div style={ { width: "300px", display: "flex", flexDirection: "column", gap: "12px" } }>
+        <Radio name="examples-radio-set-one-1" checked={false} label={"Option"} value={"1"} />
+        <Radio name="examples-radio-set-one-2" checked={true} label={"Option Two"} value={"2"} />
+        <Radio name="examples-radio-set-one-3" checked={false} disabled={true} label={"Option Three - Disabled"} value={"3"} />
+        <Radio name="examples-radio-set-one-4" checked={true} disabled={true} label={"Option Four  - Checked & Disabled"} value={"4"} />
+        <Radio name="examples-radio-set-one-5" checked={false} error={true} label={"Option Five - Error"} value={"5"} />
+        <Radio name="examples-radio-set-one-6" checked={true} error={true} label={"Some options have labels that will break to other lines."} value={"6"} />
+      </div>
+    </Cover>
+  ),
+};

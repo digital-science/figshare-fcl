@@ -1,25 +1,11 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { Meta, ArgTypes } from '@storybook/blocks';
+import { useEffect, useMemo } from "react";
+import { Meta, ArgTypes, Canvas } from '@storybook/addon-docs/blocks';
 import { Tabs, TabsList, Tab, TabsPanel, TabEntry } from "@digital-science/figshare-fcl/tabs";
-import { Button } from "@digital-science/figshare-fcl/button";
-import Edit from "@digital-science/figshare-fcl/icons/react/Edit";
 import image from "../../assets/avatar.png";
 import imageWithTransparentBackground from "../../assets/avatar-transparent-background.png";
-import { Cover } from "../story-utils/Cover";
+import * as TabsStories from "./index.stories.jsx";
 
-export const tab = "map";
-export const onTab = () => {};
-
-<Meta
-  title="UI/Tabs"
-  component={Tabs}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-     },
-  }}
-/>
+<Meta of={TabsStories} />
 
 # Tabs
 ---
@@ -34,47 +20,7 @@ Can manage it's own state and notify of tab changes, and can switch between cont
 The component will show tabs in the space that it is given. It will show tabs that do not fit, if any, in a dropdown.
 
 
-<Cover kind={"story"}>
-  {() => {
-    const [tab, setTab] = useState("map");
-    const onClickTab = useCallback((e) => { setTab(e.target.getAttribute("data-value")); }, [setTab]);
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <Tabs.List>
-          <Tabs.Tab active={tab === "map"} value="map" onClick={onClickTab}>Map</Tabs.Tab>
-          <Tabs.Tab active={tab === "features"} value="features" onClick={onClickTab}>Features</Tabs.Tab>
-          <Tabs.Tab active={tab === "geojson"} value="geojson" onClick={onClickTab}>GeoJSON</Tabs.Tab>
-          <Tabs.Tab active={tab === "metadata"} value="metadata" onClick={onClickTab}>Metadata</Tabs.Tab>
-          <Tabs.Tab active={tab === "global"} value="global" onClick={onClickTab}>Global</Tabs.Tab>
-          <Tabs.Tab active={tab === "related-materials"} value="related-materials" onClick={onClickTab}>Related Materials</Tabs.Tab>
-          <Tabs.Tab active={tab === "editor"} value="editor" onClick={onClickTab} disabled={true}>Editor</Tabs.Tab>
-          <Button style={{ marginLeft: "auto" }} Icon={Edit} theme="tertiaryAlt">Edit</Button>
-        </Tabs.List>
-        <Tabs.Panel value={tab}>
-          <Tabs.Entry value="map">
-            {() => (<div data-part="map" data-scope="geospatial">
-              Map Tab
-            </div>)}</Tabs.Entry>
-          <Tabs.Entry value="features">{() => (<div data-part="features" data-scope="geospatial">
-            Features Tab
-          </div>)}</Tabs.Entry>
-          <Tabs.Entry value="geojson">{() => (<div data-part="geojson" data-scope="geospatial">
-            GeoJSON Tab
-          </div>)}</Tabs.Entry>
-          <Tabs.Entry value="metadata">{() => (<div data-part="metadata" data-scope="administration">
-            Metadata Tab
-          </div>)}</Tabs.Entry>
-          <Tabs.Entry value="global">{() => (<div data-part="global" data-scope="administration">
-            Global Tab
-          </div>)}</Tabs.Entry>
-          <Tabs.Entry value="related-materials">{() => (<div data-part="related-materials" data-scope="administration">
-            Related Materials Tab
-          </div>)}</Tabs.Entry>
-        </Tabs.Panel>
-      </div>
-    )
-  }}
-</Cover>
+<Canvas of={TabsStories.Overview} />
 
 The component can be imported from `@digital-science/figshare-fcl/tabs`.
 See examples below on how add tabs to your pages.
@@ -234,112 +180,17 @@ Can accept a `function` as `children` to lazily evaluate it's contents only if n
 
 Using Tabs root component without managing state and with a disabled fourth tab.
 
-<Cover kind={"card"}>
-  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Tabs>
-      <Tabs.List>
-        <Tabs.Tab value="one">One</Tabs.Tab>
-        <Tabs.Tab value="two">Two</Tabs.Tab>
-        <Tabs.Tab value="three">Three</Tabs.Tab>
-        <Tabs.Tab value="four" disabled={true}>Four (Disabled)</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        <Tabs.Entry value="one">
-          <div>Content for one</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="two">
-          <div>Content for two</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="three">
-          <div>Content for three</div>
-        </Tabs.Entry>
-      </Tabs.Panel>
-    </Tabs>
-  </div>
-</Cover>
+<Canvas of={TabsStories.WithoutManagedState} />
 
 Using Tabs root component with a provided `defaultValue` and an `onChange` callback.
 The fourth tab, Feed, is disabled.
 
-<Cover kind={"card"}>
-  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Tabs defaultValue={"Groups"} onChange={(tab) => console.log("tabbed to", tab)}>
-      <Tabs.List>
-        <Tabs.Tab value="General">General</Tabs.Tab>
-        <Tabs.Tab value="Metadata">Metadata</Tabs.Tab>
-        <Tabs.Tab value="Groups">Groups</Tabs.Tab>
-        <Tabs.Tab value="Feed" disabled={true}>Feed</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        <Tabs.Entry value="General">
-          <div>Content for General</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="Metadata">
-          <div>Content for Metadata</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="Groups">
-          <div>Content for Groups</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="Feed">
-          <div>Content for Feed</div>
-        </Tabs.Entry>
-      </Tabs.Panel>
-    </Tabs>
-  </div>
-</Cover>
+<Canvas of={TabsStories.WithDefaultValueAndOnChange} />
 
 Using Tabs root component and fully mananging state in the owner by providing `value` and an `onChange` callback.
-<Cover kind={"card"}>
-  {/*  
-    const [tab, setTab] = useState("map");
-    const onTab = useCallback((newTab) => setTab(newTab), []);
-  */}
-  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Tabs value={tab} onChange={onTab}>
-      <Tabs.List>
-        <Tabs.Tab value="map">Map</Tabs.Tab>
-        <Tabs.Tab value="features">Features</Tabs.Tab>
-        <Tabs.Tab value="editor">Editor</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        <Tabs.Entry value="map">
-          <div>Content for Map</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="features">
-          <div>Content for Features</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="editor">
-          <div>Content for Editor</div>
-        </Tabs.Entry>
-      </Tabs.Panel>
-    </Tabs>
-  </div>
-</Cover>
+<Canvas of={TabsStories.FullyManagedState} />
 
 
 Using only visual components from the set, without a root provider and managing state in the owner.
 
-<Cover kind={"card"}>
-  {/*  
-    const [tab, setTab] = useState("map");
-    const onTab = useCallback((event) => setTab(event.target.getAttribute("data-value")), []);
-  */}
-  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <Tabs.List>
-        <Tabs.Tab active={tab === "map"} onClick={onTab} value="map">Map</Tabs.Tab>
-        <Tabs.Tab active={tab === "features"} onClick={onTab} value="features">Features</Tabs.Tab>
-        <Tabs.Tab active={tab === "editor"}  onClick={onTab} value="editor">Editor</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel value={tab}>
-        <Tabs.Entry value="map">
-          <div>Content for Map</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="features">
-          <div>Content for Features</div>
-        </Tabs.Entry>
-        <Tabs.Entry value="editor">
-          <div>Content for Editor</div>
-        </Tabs.Entry>
-      </Tabs.Panel>
-  </div>
-</Cover>
+<Canvas of={TabsStories.WithoutRootComponent} />

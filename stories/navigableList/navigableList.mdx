@@ -1,45 +1,9 @@
 import NavigableList from "@digital-science/figshare-fcl/helpers/navigableList";
-import { Cover } from "../story-utils/Cover";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
+import * as NavigableListStories from "./navigableList.stories.jsx";
 
-export const containerStyle = {
-  margin: "calc(3 * var(--gridSize))",
-  padding: "calc(3 * var(--gridSize))",
-  display: "flex",
-  flexWrap: "wrap",
-};
-
-export const buttonStyle = {
-  margin: "calc(2 * var(--gridSize))",
-};
-
-export const renderContent = ({ ref, containerStyle, ...passedProps }) => (
-  <div ref={ref} style={containerStyle} {...passedProps}>
-    <button style={buttonStyle}>Item 1</button>
-    <button style={buttonStyle}>Item 2</button>
-    <button style={buttonStyle}>Item 3</button>
-  </div>
-);
-
-export const verticalContainerStyle = {
-  margin: "calc(3 * var(--gridSize))",
-  padding: "calc(3 * var(--gridSize))",
-  display: "flex",
-  flexDirection: "column",
-  flexWrap: "wrap",
-};
-
-<Meta 
-  title="UI/NavigableList" 
-  component={NavigableList}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={NavigableListStories} />
 
 # NavigableList
 ---
@@ -55,31 +19,7 @@ Use *Left and Right Arrow* keys to navigate between focusable elements for `"hor
 or *Up and Down Arrow* keys for `"vertical"` `navigationType`s.
 
 
-<Cover kind={"story"}>
-  {() => {
-    const containerStyle = {
-      margin: "calc(3 * var(--gridSize))",
-      padding: "calc(3 * var(--gridSize))",
-      display: "flex",
-      flexWrap: "wrap",
-    };
-    const buttonStyle = {
-      margin: "calc(2 * var(--gridSize))",
-    };
-    const renderContent = ({ ref, ...passedProps }) => (
-      <div ref={ref} style={containerStyle} {...passedProps}>
-        <button style={buttonStyle}>Item 1</button>
-        <button style={buttonStyle}>Item 2</button>
-        <button style={buttonStyle}>Item 3</button>
-      </div>
-    );
-    return (
-      <NavigableList navigationType="horizontal">
-        {renderContent}
-      </NavigableList>
-    );
-  }}
-</Cover>
+<Canvas of={NavigableListStories.Overview} />
 
 
 The component can be imported from:
@@ -128,16 +68,8 @@ Remaining set properties are desturctured and passed to the component node*
 
 ### Horizontal NavigableList
 
-<Cover kind={"card"}>
-  <NavigableList navigationType="horizontal" containerStyle={containerStyle}>
-    {renderContent}
-  </NavigableList>
-</Cover>
+<Canvas of={NavigableListStories.HorizontalNavigableList} />
 
 ### Vertical NavigableList
 
-<Cover kind={"card"}>
-  <NavigableList navigationType="vertical" containerStyle={verticalContainerStyle}>
-    {renderContent}
-  </NavigableList>
-</Cover>
+<Canvas of={NavigableListStories.VerticalNavigableList} />

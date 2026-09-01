@@ -12,7 +12,7 @@ import { mergeRegister } from "@lexical/utils";
 import { DefaultToolbarConfig, LowPriority, ToolbarItem } from "../../constants";
 import useModal from "../LinkEditor/useModal";
 
-import styles from "./Toolbar.module.css"; // eslint-disable-line css-modules/no-unused-class
+import styles from "./Toolbar.module.css";
 import Tool from "./components/Tool";
 import Divider from "./components/Divider";
 import {

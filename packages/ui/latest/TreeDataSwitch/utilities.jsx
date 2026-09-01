@@ -20,7 +20,7 @@ export function structureTreeData({ dataset = [], checkedIds = [], openLevel = 0
 
     split.reduce((at, part, partIndex, partList) => {
       let branch = getIn(at?.nodes, [part]);
-      // eslint-disable-next-line eqeqeq
+
       const isAtNode = datum.id == part;
 
       if (!branch) {

@@ -24,7 +24,7 @@ export function assignRef(ref, value) {
 // Hook to merge multiple refs into a single ref callback function.
 // This is useful when you want to forward a ref to a child component while also using it in the parent component.
 export function useMergeRefs(...refs) {
-  // eslint-disable-next-line eqeqeq
+
   const availableRefs = refs.filter((ref) => ref != null);
 
   if (shouldReturnCleanup) {

@@ -1,18 +1,9 @@
 import PasswordInput from "@digital-science/figshare-fcl/input/password";
-import { Cover } from "../../story-utils/Cover";
+import * as PasswordStories from "./password.stories.jsx";
 
-import { Meta, ArgTypes } from "@storybook/blocks";
+import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
 
-<Meta 
-  title="UI/Inputs/Password" 
-  component={PasswordInput} 
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: { 
-      canvas: { hidden: true } 
-     },
-  }}
-/>
+<Meta of={PasswordStories} />
 
 # Password input
 ---
@@ -24,9 +15,7 @@ import { Meta, ArgTypes } from "@storybook/blocks";
 Password input component. Allows users to safely input passwords, and to temporarily toggle visibility.
 
 
-<Cover kind={"story"}>
-  <PasswordInput onChange={(event) => {}}/>
-</Cover>
+<Canvas of={PasswordStories.Overview} />
 
 
 Can be imported directly or referenced as an `Input` component variation, by setting `type="password"`:
@@ -49,11 +38,4 @@ function PasswordInputs() {
 
 ## Examples
 
-<Cover kind={"card"}>
-  <PasswordInput onChange={(event) => {}} onChange={(event) => {}} type="password" theme="default" placeholder="Default theme" />
-  <PasswordInput onChange={(event) => {}} type="password" theme="underline" placeholder="Underline theme" />
-  <PasswordInput onChange={(event) => {}} type="password" theme="default" error={true} placeholder="Default theme - error" />
-  <PasswordInput onChange={(event) => {}} type="password" theme="underline" error={true} placeholder="Underline theme - error" />
-  <PasswordInput onChange={(event) => {}} type="password" theme="default" disabled={true} placeholder="Default theme - disabled" />
-  <PasswordInput onChange={(event) => {}} type="password" theme="underline" disabled={true} placeholder="Underline theme - disabled" />
-</Cover>
+<Canvas of={PasswordStories.Examples} />

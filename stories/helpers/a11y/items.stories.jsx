@@ -1,4 +1,4 @@
-/* eslint-disable max-len, max-lines */
+
 const wuhcagBaseUrl = "https://www.wuhcag.com";
 const wcagBaseUrl = "https://www.w3.org/TR/WCAG22";
 const wcagSuccessBaseUrl = "https://www.w3.org/WAI/WCAG22/Understanding";
