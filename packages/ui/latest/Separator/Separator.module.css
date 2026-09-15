@@ -1,0 +1,29 @@
+.separator {
+  display: flex;
+
+  flex: 1 0;
+
+  background: var(--Border-Primary, #ddd);
+}
+
+.separator[aria-orientation="vertical"] {
+  width: 100%;
+  min-width: 30px;
+  height: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  margin: calc(2 * var(--gridSize)) calc(0.5 * var(--gridSize));
+}
+
+.separator[aria-orientation="horizontal"] {
+  width: 1px;
+  min-width: 1px;
+  max-width: 1px;
+  height: 100%;
+  min-height: 30px;
+  margin: calc(0.5 * var(--gridSize)) var(--gridSize);
+}
+
+.separator[data-margin="false"] {
+  margin: 0;
+}

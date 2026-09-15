@@ -5,6 +5,16 @@ import LoaderSvg from "@digital-science/figshare-fcl/icons/react/Loader";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip/Tooltip";
 
+import type {
+  ButtonProps,
+  ButtonComponent,
+  ButtonLabelProps,
+  ButtonIconProps,
+  ButtonInteractiveIconProps,
+  ButtonIconGroupProps,
+  ButtonLoadingProps,
+} from "./types";
+
 import "./Button.module.css";
 
 
@@ -22,14 +32,9 @@ export const Button = React.forwardRef(({
   tooltipContentProps = {},
   kind = "primary",
   em = "high",
-  // Legacy props
-  // theme,
-  // variant,
-  // Icon,
-  // iconPlacement,
   ...props
-}, ref) => {
-  const onClickHandler = useCallback((ev) => {
+}: ButtonProps, ref: any) => {
+  const onClickHandler = useCallback((ev: React.MouseEvent) => {
     if (disabled) {
       ev.preventDefault();
 
@@ -42,12 +47,12 @@ export const Button = React.forwardRef(({
   const className = classnames("button", providedClassName);
   const { Tag, propsByTag } = useMemo(() => {
     if (props.href) {
-      return { Tag: "a", propsByTag: { role: "button", "data-scope": "link" } };
+      return { Tag: "a" as const, propsByTag: { role: "button", "data-scope": "link" } };
     }
 
-    return { Tag: "button", propsByTag: { type: "button" } };
+    return { Tag: "button" as const, propsByTag: { type: "button" as const } };
   }, [props.href]);
-  let content = children;
+  let content: React.ReactNode = children;
 
   if (loading) {
     if (typeof loading === "boolean") {
@@ -81,6 +86,7 @@ export const Button = React.forwardRef(({
             {content}
           </Tag>
         </TooltipTrigger>
+        {/* @ts-expect-error TooltipContent props are not fully typed */}
         <TooltipContent data-font-style="bold" data-layout="flex" data-span="m" {...tooltipContentProps}>
           {tooltip}
           {showTooltipClose && <Tooltip.Close />}
@@ -107,56 +113,14 @@ export const Button = React.forwardRef(({
       {content}
     </Tag>
   );
-});
+}) as ButtonComponent;
 
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  em: PropTypes.oneOf(["high", "low", "success", "danger"]),
-  href: PropTypes.string,
-  inline: PropTypes.oneOf([true, false, "text", "slim", "slim-flexible"]),
-  loading: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
-  /** The kind or theme of the button we want to render. */
-  kind: PropTypes.oneOf(["primary", "secondary", "tertiary", "inverted", "input"]),
-  /** The width of the button based on context */
-  span: PropTypes.oneOf(["full", "fit", "icon", "narrow", "button", "content"]),
-  /** The justification of the button content */
-  justify: PropTypes.oneOf(["between", "start", "end"]),
-  /**
-   * Tooltip to display for this control button.
-   */
-  tooltip: PropTypes.node,
-  /**
-   * Options object for the `floating` element (passed to `useFloating` internally).
-   */
-  tooltipOptions: PropTypes.object,
-  tooltipContentProps: PropTypes.object,
-  onClick: PropTypes.func,
-};
-
-Button.defaultProps = {
-  className: undefined,
-  href: undefined,
-  loading: undefined,
-  disabled: false,
-  tooltip: undefined,
-  tooltipOptions: {},
-  tooltipContentProps: {},
-  kind: "primary",
-  inline: false,
-  em: "high",
-  onClick: undefined,
-  span: undefined,
-  justify: undefined,
-};
-
-export function ButtonLabel({ children, wrap, hidden, ...props }) {
-  const ref = React.useRef(null);
+export function ButtonLabel({ children, wrap = false, hidden = false, ...props }: ButtonLabelProps) {
+  const ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
     if (typeof children === "string" && nodeIsButtonWithoutLabel(ref.current?.parentElement)) {
-      ref.current.parentElement.setAttribute("aria-label", children);
+      ref.current?.parentElement?.setAttribute("aria-label", children);
     }
   }, [children]);
 
@@ -167,20 +131,11 @@ export function ButtonLabel({ children, wrap, hidden, ...props }) {
   );
 }
 
-ButtonLabel.propTypes = {
-  children: PropTypes.node.isRequired,
-  /** Whether to wrap the label text */
-  wrap: PropTypes.oneOf([false, true, "ellipsis", "wrap", "nowrap", "wrap-all"]),
-  hidden: PropTypes.bool,
-};
-
-ButtonLabel.defaultProps = { wrap: false, hidden: false };
-
-export function nodeIsButtonWithoutLabel(element) {
-  return (["BUTTON", "A"].includes(element?.tagName) && !element?.hasAttribute?.("aria-label"));
+export function nodeIsButtonWithoutLabel(element: Element | null | undefined) {
+  return (["BUTTON", "A"].includes(element?.tagName ?? "") && !element?.hasAttribute?.("aria-label"));
 }
 
-export function ButtonIcon({ children, asChild, blend, size, ...props }) {
+export function ButtonIcon({ children, asChild = false, blend = false, size = "medium", ...props }: ButtonIconProps) {
   if (asChild && React.isValidElement(children)) {
     return React.cloneElement(children, {
       "data-part": "button-icon",
@@ -194,36 +149,8 @@ export function ButtonIcon({ children, asChild, blend, size, ...props }) {
   return (<span aria-hidden="true" data-part="button-icon-slot" data-blend={blend} data-size={size} {...props}>{children}</span>);
 }
 
-ButtonIcon.propTypes = {
-  /**
-   * Clones and renders the child element directly passing it additional props.
-   * Useful if we do not want to `wrap` the icon element further in an `icon-slot` element.
-   */
-  asChild: PropTypes.bool,
-  /**
-   * The icon node we want to render or a set of them.
-   */
-  children: PropTypes.node,
-  /**
-   * Whether to blend the icon color with the button text color.
-   * Or leave it as predefined by the button kind and em modifiers.
-  */
-  blend: PropTypes.bool,
-  /**
-   * The size of the icon, which can be used to adjust the icon dimensions and alignment within the button. If not provided, it will default to "medium".
-   */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-};
-
-ButtonIcon.defaultProps = {
-  children: undefined,
-  asChild: false,
-  blend: false,
-  size: "medium",
-};
-
-export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ...props }) {
-  const handleKeyDown = useCallback((event) => {
+export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ...props }: ButtonInteractiveIconProps) {
+  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       onClick?.(event);
@@ -249,31 +176,9 @@ export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, .
   return (<ButtonIcon {...interactionProps} {...props}>{children}</ButtonIcon>);
 }
 
-ButtonInteractiveIcon.propTypes = {
-  /**
-   * The icon node we want to render or a set of them.
-   */
-  children: PropTypes.node,
-
-  /**
-   * The interactive icon tooltip content.
-   */
-  tooltip: PropTypes.node,
-  /**
-   * The function to call when the interactive icon is clicked.
-   */
-  onClick: PropTypes.func,
-  /**
-   * The function to call when a key is pressed while the interactive icon is focused.
-   */
-  onKeyDown: PropTypes.func,
-};
-
-ButtonInteractiveIcon.defaultProps = { children: undefined, tooltip: undefined, onClick: undefined, onKeyDown: undefined };
-
 // A grouping container for multiple icons inside a button
 // provides some styling and separation from the button label
-export function ButtonIconGroup({ children, interactive, ...props }) {
+export function ButtonIconGroup({ children, interactive = false, ...props }: ButtonIconGroupProps) {
 
   const content = React.Children.map(children, (child) => {
     if (interactive) {
@@ -290,10 +195,7 @@ export function ButtonIconGroup({ children, interactive, ...props }) {
   );
 }
 
-ButtonIconGroup.propTypes = { children: PropTypes.node, interactive: PropTypes.bool };
-ButtonIconGroup.defaultProps = { children: undefined, interactive: false };
-
-export function ButtonLoading({ text, spinner }) {
+export function ButtonLoading({ text, spinner }: ButtonLoadingProps) {
   // eslint-disable-next-line no-nested-ternary
   const spinnerPosition = spinner ? (spinner === true ? "left" : spinner) : undefined;
 
@@ -305,16 +207,6 @@ export function ButtonLoading({ text, spinner }) {
     </>
   );
 }
-
-ButtonLoading.propTypes = {
-  spinner: PropTypes.oneOf([true, "left", "right"]),
-  text: PropTypes.node,
-};
-
-ButtonLoading.defaultProps = {
-  spinner: undefined,
-  text: undefined,
-};
 
 Button.Icon = ButtonIcon;
 Button.InteractiveIcon = ButtonInteractiveIcon;
