@@ -118,6 +118,35 @@ describe("<DateInput />", () => {
     teardown();
   });
 
+  it("has aria-labels on month view navigation buttons", async() => {
+    const { container } = render(<DatePicker />);
+    fireEvent.click(container.querySelector("input"));
+    await act(() => wait());
+
+    const portal = document.body.querySelector("#datepicker-portal");
+    expect(portal.querySelector("[aria-label='Previous year']")).toBeInTheDocument();
+    expect(portal.querySelector("[aria-label='Previous month']")).toBeInTheDocument();
+    expect(portal.querySelector("[aria-label='Next month']")).toBeInTheDocument();
+    expect(portal.querySelector("[aria-label='Next year']")).toBeInTheDocument();
+    teardown();
+  });
+
+  it("has aria-labels on year picker navigation buttons", async() => {
+    const { container } = render(<DatePicker />);
+    fireEvent.click(container.querySelector("input"));
+    await act(() => wait());
+
+    // Open year picker
+    const buttons = document.body.querySelectorAll(".react-datepicker__header button");
+    fireEvent.click(buttons[2]);
+    await act(() => wait());
+
+    const portal = document.body.querySelector("#datepicker-portal");
+    expect(portal.querySelector("[aria-label='Previous year range']")).toBeInTheDocument();
+    expect(portal.querySelector("[aria-label='Next year range']")).toBeInTheDocument();
+    teardown();
+  });
+
   it("shows selected date as highlighted in open calendar", async() => {
     const selectedDate = moment("2020-06-15").toDate();
     const { container } = render(<DatePicker selectedDate={selectedDate} />);

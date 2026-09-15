@@ -206,9 +206,9 @@ export default class Date extends Component {
 
       return (
         <div className={style.header}>
-          <button disabled={prevYearButtonDisabled} onClick={decreaseYear}><ChevronLeft /><ChevronLeft /></button>
+          <button aria-label="Previous year range" disabled={prevYearButtonDisabled} onClick={decreaseYear}><ChevronLeft /><ChevronLeft /></button>
           <button className={style.toggle} onClick={this.closeYearPicker}>{`${startPeriod} - ${endPeriod}`}</button>
-          <button disabled={nextYearButtonDisabled} onClick={increaseYear}><ChevronRight /><ChevronRight /></button>
+          <button aria-label="Next year range" disabled={nextYearButtonDisabled} onClick={increaseYear}><ChevronRight /><ChevronRight /></button>
         </div>
       );
     }
@@ -216,13 +216,13 @@ export default class Date extends Component {
     return (
       <div className={style.header}>
         <div>
-          <button disabled={prevYearButtonDisabled} onClick={decreaseYear}><ChevronLeft /><ChevronLeft /></button>
-          <button disabled={prevMonthButtonDisabled} onClick={decreaseMonth}><ChevronLeft /></button>
+          <button aria-label="Previous year" disabled={prevYearButtonDisabled} onClick={decreaseYear}><ChevronLeft /><ChevronLeft /></button>
+          <button aria-label="Previous month" disabled={prevMonthButtonDisabled} onClick={decreaseMonth}><ChevronLeft /></button>
         </div>
         <button className={style.toggle} onClick={this.openYearPicker}>{moment(date).format("MMM yyyy")}</button>
         <div>
-          <button disabled={nextMonthButtonDisabled} onClick={increaseMonth}><ChevronRight /></button>
-          <button disabled={nextYearButtonDisabled} onClick={increaseYear}><ChevronRight /><ChevronRight /></button>
+          <button aria-label="Next month" disabled={nextMonthButtonDisabled} onClick={increaseMonth}><ChevronRight /></button>
+          <button aria-label="Next year" disabled={nextYearButtonDisabled} onClick={increaseYear}><ChevronRight /><ChevronRight /></button>
         </div>
       </div>
     );
