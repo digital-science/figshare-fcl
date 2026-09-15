@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import clsx from "classnames";
 
 import "./Block.module.css";
+
 import { useTextDirection } from "../../hooks/useTextDirection";
+import type { BlockProps } from "./types";
 
-
-export const Block = React.forwardRef(({ children, kind, className, tag: Tag, mark, inferDirection, ...rest }, ref) => {
+export const Block = React.forwardRef(({ children, kind = "layout-rows", className, tag: Tag = "div", mark, inferDirection = false, ...rest }: BlockProps, ref) => {
   // Use directionality info for the block content if wanted by toggling inferDirection prop.
   // This is useful for blocks that might contain user provided content, whose directionality is not known in advance.
   const directionality = useTextDirection({ children, inferDirection, ref });
 
-  const own = {
+  const own: Record<string, unknown> = {
     className: clsx("block", className),
     "data-kind": kind,
   };
@@ -44,19 +45,6 @@ Block.propTypes = {
   inferDirection: PropTypes.bool,
 };
 
-Block.defaultProps = {
-  children: undefined,
-  className: undefined,
-  kind: "layout-rows",
-  layout: undefined,
-  border: undefined,
-  gap: undefined,
-  padding: undefined,
-  span: undefined,
-  mark: undefined,
-  tag: "div",
-  inferDirection: false,
-};
 
 export { Block as Box };
 

@@ -1,7 +1,6 @@
 :global(.block) {
   box-sizing: border-box;
 
-  /* TODO: this should not appear here, but removing it needs testing on specific instances which do not have span- kind values */
   width: 100%;
   margin: 0;
   padding: 0;
@@ -353,12 +352,8 @@
 }
 
 :global(.block)[data-kind~="padding-left-right-none"] {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-:global(.block)[data-kind~="padding-top-none"] {
-  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 :global(.block)[data-kind~="padding-top-1"] {
@@ -371,6 +366,22 @@
 
 :global(.block)[data-kind~="padding-top-3"] {
   padding-top: calc(3 * var(--gridSize));
+}
+
+:global(.block)[data-kind~="padding-top-none"] {
+  padding-top: 0;
+}
+
+:global(.block)[data-kind~="padding-bottom-1"] {
+  padding-bottom: var(--gridSize);
+}
+
+:global(.block)[data-kind~="padding-bottom-2"] {
+  padding-bottom: calc(2 * var(--gridSize));
+}
+
+:global(.block)[data-kind~="padding-bottom-3"] {
+  padding-bottom: calc(3 * var(--gridSize));
 }
 
 :global(.block)[data-kind~="padding-bottom-none"] {
@@ -753,6 +764,18 @@
     padding-top: calc(3 * var(--gridSize));
   }
 
+  :global(.block)[data-kind~="padding-tablet-bottom-1"] {
+    padding-bottom: var(--gridSize);
+  }
+
+  :global(.block)[data-kind~="padding-tablet-bottom-2"] {
+    padding-bottom: calc(2 * var(--gridSize));
+  }
+
+  :global(.block)[data-kind~="padding-tablet-bottom-3"] {
+    padding-bottom: calc(3 * var(--gridSize));
+  }
+
   :global(.block)[data-kind~="padding-tablet-bottom-none"] {
     padding-bottom: 0;
   }
@@ -929,6 +952,18 @@
 
   :global(.block)[data-kind~="padding-mobile-top-3"] {
     padding-top: calc(3 * var(--gridSize));
+  }
+
+  :global(.block)[data-kind~="padding-mobile-bottom-1"] {
+    padding-bottom: var(--gridSize);
+  }
+
+  :global(.block)[data-kind~="padding-mobile-bottom-2"] {
+    padding-bottom: calc(2 * var(--gridSize));
+  }
+
+  :global(.block)[data-kind~="padding-mobile-bottom-3"] {
+    padding-bottom: calc(3 * var(--gridSize));
   }
 
   :global(.block)[data-kind~="padding-mobile-bottom-none"] {
