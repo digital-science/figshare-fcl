@@ -1,15 +1,16 @@
 import React from "react";
 import { render, cleanup, screen, waitFor } from "@testing-library/react";
+import { renderHook } from "../../testing/renderHook";
 import userEvent from "@testing-library/user-event";
-import { renderHook } from "@testing-library/react-hooks";
 
 import { SearchInput, useUniqueId, asPacketOrEventLikeObject } from "./SearchInput";
+import { TestScope } from "../../../../types/testing";
 
 
 describe("SearchInput", () => {
   function setup(overrides = {}) {
     const user = userEvent.setup();
-    const scope = {
+    const scope: TestScope = {
       user,
       props: {
         onChange: jest.fn(),

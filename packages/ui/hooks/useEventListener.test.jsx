@@ -1,6 +1,8 @@
 
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
 import { useEffect, useLayoutEffect, useRef } from "react";
+
+import { renderHook } from "../testing/renderHook";
 
 import { useEventListener, useIsomorphicLayoutEffect } from "./useEventListener";
 

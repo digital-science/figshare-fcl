@@ -1,9 +1,9 @@
 module.exports = {
   coverageDirectory: ".coverage",
   collectCoverageFrom: [
-    "<rootDir>/packages/**/*.{js,jsx}",
-    "!<rootDir>/packages/**/*.test.{js,jsx}",
-    "!<rootDir>/**/*.stories.{js,jsx}",
+    "<rootDir>/packages/**/*.{js,jsx,ts,tsx}",
+    "!<rootDir>/packages/**/*.test.{js,jsx,ts,tsx}",
+    "!<rootDir>/**/*.stories.{js,jsx,ts,tsx}",
     "!<rootDir>/packages/**/__files__/**",
     "!<rootDir>/node_modules",
   ],
@@ -21,7 +21,7 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/scripts/tests/jsdom.setup.js"],
   testPathIgnorePatterns: ["/node_modules/"],
   transform: {
-    "^.+\\.(js|jsx)$": require.resolve("babel-jest"),
+    "^.+\\.(js|jsx|ts|tsx)$": require.resolve("babel-jest"),
     "\\.(jpg|jpeg|png|gif)$": "<rootDir>/scripts/tests/fileTransformer.cjs",
     "\\.(eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/scripts/tests/fileTransformer.cjs",
     "\\.(mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/scripts/tests/fileTransformer.cjs",

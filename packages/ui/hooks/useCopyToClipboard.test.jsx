@@ -1,5 +1,8 @@
-import { renderHook, cleanup, act } from "@testing-library/react-hooks";
+import { cleanup } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import { wait } from "@apollo/client/testing";
+
+import { renderHook } from "../testing/renderHook";
 
 import { useCopyToClipboard } from "./useCopyToClipboard";
 

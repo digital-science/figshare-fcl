@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import CloseSvg from "@digital-science/figshare-fcl/icons/react/Close";
 import InfoCircleSvg from "@digital-science/figshare-fcl/icons/react/InfoCircle";
@@ -13,7 +12,61 @@ import { Button } from "../Button";
 import styles from "./Alert.module.css";
 
 
-export function Alert({ id, type, title, message, persistent, className: providedClassName, children, padded, variant, onClose, ...props }) {
+type AlertType = "info" | "warning" | "error" | "success" | "notice";
+type AlertVariant = "solid" | "translucent";
+type WrapType = "none" | "one" | "both";
+
+type AlertClosePayload = {
+  id: string;
+  event: React.MouseEvent;
+};
+
+type AlertProps = {
+  id?: string;
+  type: AlertType;
+  title?: React.ReactNode;
+  message?: React.ReactNode;
+  persistent?: boolean;
+  className?: string;
+  children?: React.ReactNode | ((data: { type: AlertType; onClose?: (payload: AlertClosePayload) => void; [key: string]: unknown }) => React.ReactNode);
+  padded?: boolean;
+  variant?: AlertVariant;
+  onClose?: (payload: AlertClosePayload) => void;
+  [key: string]: unknown;
+};
+
+type AlertIconProps = {
+  type?: AlertType;
+  children?: React.ReactNode;
+  [key: string]: unknown;
+};
+
+type AlertTitleProps = {
+  children: React.ReactNode;
+  [key: string]: unknown;
+};
+
+type AlertDescriptionProps = {
+  children: React.ReactNode;
+  [key: string]: unknown;
+};
+
+type AlertCloseProps = {
+  id?: string;
+  onClose?: (payload: AlertClosePayload) => void;
+  wrapType?: WrapType;
+  [key: string]: unknown;
+};
+
+type AlertComponent = React.FC<AlertProps> & {
+  Icon: React.FC<AlertIconProps>;
+  Title: React.FC<AlertTitleProps>;
+  Description: React.FC<AlertDescriptionProps>;
+  Close: React.FC<AlertCloseProps>;
+};
+
+
+export const Alert: AlertComponent = ({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }: AlertProps) => {
   const className = classnames(styles.alert, providedClassName);
   const wrap = computeWrap(title, message);
   // Determine if the right side padding should be applied based on the padded and persistent props.
@@ -38,9 +91,11 @@ export function Alert({ id, type, title, message, persistent, className: provide
       </div>
     </div>
   );
-}
+};
 
-function computeWrap(title, message) {
+Alert.displayName = "Alert";
+
+function computeWrap(title: React.ReactNode, message: React.ReactNode): WrapType {
   if (title && message) {
     return "both";
   }
@@ -54,33 +109,8 @@ function computeWrap(title, message) {
   return "none";
 }
 
-Alert.propTypes = {
-  type: PropTypes.oneOf(["info", "warning", "error", "success", "notice"]).isRequired,
-  id: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  persistent: PropTypes.bool,
-  title: PropTypes.node,
-  message: PropTypes.node,
-  padded: PropTypes.bool,
-  variant: PropTypes.oneOf(["solid", "translucent"]),
-  onClose: PropTypes.func,
-};
 
-Alert.defaultProps = {
-  children: undefined,
-  id: "alert",
-  onClose: undefined,
-  title: undefined,
-  message: undefined,
-  className: undefined,
-  persistent: true,
-  variant: "translucent",
-  padded: true,
-};
-
-
-export const ALERT_ICONS_MAP = {
+export const ALERT_ICONS_MAP: Record<string, React.ComponentType> = {
   notice: InfoCircleSvg,
   info: InfoCircleSvg,
   warning: WarningCircleSvg,
@@ -88,9 +118,9 @@ export const ALERT_ICONS_MAP = {
   success: CheckmarkSvg,
 };
 
-function AlertIcon({ type, children, ...props }) {
+function AlertIcon({ type, children, ...props }: AlertIconProps) {
   const iconNode = React.useMemo(() => {
-    const IconComponent = ALERT_ICONS_MAP[type];
+    const IconComponent = type ? ALERT_ICONS_MAP[type] : undefined;
     if (IconComponent) {
       return <IconComponent />;
     }
@@ -105,17 +135,9 @@ function AlertIcon({ type, children, ...props }) {
   );
 }
 
-AlertIcon.propTypes = {
-  type: PropTypes.oneOf(["info", "warning", "error", "success", "notice"]),
-  children: PropTypes.node,
-};
+AlertIcon.displayName = "AlertIcon";
 
-AlertIcon.defaultProps = {
-  type: undefined,
-  children: undefined,
-};
-
-function AlertTitle({ children, ...props }) {
+function AlertTitle({ children, ...props }: AlertTitleProps) {
   return (
     <em data-part="alert-title" {...props}>
       {children}
@@ -123,9 +145,9 @@ function AlertTitle({ children, ...props }) {
   );
 }
 
-AlertTitle.propTypes = { children: PropTypes.node.isRequired };
+AlertTitle.displayName = "AlertTitle";
 
-function AlertDescription({ children, ...props }) {
+function AlertDescription({ children, ...props }: AlertDescriptionProps) {
   return (
     <p data-part="alert-description" {...props}>
       {children}
@@ -133,10 +155,10 @@ function AlertDescription({ children, ...props }) {
   );
 }
 
-AlertDescription.propTypes = { children: PropTypes.node.isRequired };
+AlertDescription.displayName = "AlertDescription";
 
-function AlertClose({ id, onClose, wrapType, ...props }) {
-  const handleOnClose = React.useCallback((event) => {
+function AlertClose({ id = "alert", onClose, wrapType = "none", ...props }: AlertCloseProps) {
+  const handleOnClose = React.useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     onClose?.({ id, event });
   }, [onClose, id]);
@@ -149,13 +171,8 @@ function AlertClose({ id, onClose, wrapType, ...props }) {
     </div>
   );
 }
-AlertClose.propTypes = {
-  id: PropTypes.string,
-  wrapType: PropTypes.oneOf(["none", "one", "both"]),
-  onClose: PropTypes.func,
-};
 
-AlertClose.defaultProps = { id: "alert", onClose: undefined, wrapType: "none" };
+AlertClose.displayName = "AlertClose";
 
 Alert.Icon = AlertIcon;
 Alert.Title = AlertTitle;

@@ -1,23 +1,30 @@
 import React, { useState, useContext, createContext, useCallback, useMemo, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 
+import type {
+  DisclosureContextValue,
+  DisclosureComponent,
+  DisclosureProps,
+  DisclosureToggleProps,
+  DisclosureContentProps,
+  ToggleRenderProps,
+  ContentRenderProps,
+} from "./types";
 import { useId } from "../../hooks/useId";
 
-
-const DisclosureContext = createContext({
+const DisclosureContext = createContext<DisclosureContextValue>({
   id: "",
   visible: false,
   onToggle: null,
   keepMounted: true,
 });
 
-export const Disclosure = ({
+export const Disclosure: DisclosureComponent = ({
   children,
   visible: controlledVisible,
   onToggle,
   defaultVisible = false,
   keepMounted = true,
-}) => {
+}: DisclosureProps) => {
   const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
   const id = useId();
   const isControlled = controlledVisible !== undefined;
@@ -52,26 +59,12 @@ export const Disclosure = ({
   );
 };
 
-Disclosure.propTypes = {
-  children: PropTypes.node,
-  visible: PropTypes.bool,
-  defaultVisible: PropTypes.bool,
-  keepMounted: PropTypes.bool,
-  onToggle: PropTypes.func,
-};
+Disclosure.displayName = "Disclosure";
 
-Disclosure.defaultProps = {
-  children: null,
-  visible: undefined,
-  defaultVisible: false,
-  onToggle: null,
-  keepMounted: true,
-};
-
-export const DisclosureToggle = ({ children }) => {
+export const DisclosureToggle = ({ children }: DisclosureToggleProps) => {
   const context = useContext(DisclosureContext);
 
-  const props = {
+  const props: ToggleRenderProps = {
     visible: context.visible,
     "aria-controls": context.id,
     "aria-expanded": context.visible,
@@ -82,12 +75,12 @@ export const DisclosureToggle = ({ children }) => {
   return children(props);
 };
 
-DisclosureToggle.propTypes = { children: PropTypes.func.isRequired };
+DisclosureToggle.displayName = "DisclosureToggle";
 
-export const DisclosureContent = ({ children }) => {
+export const DisclosureContent = ({ children }: DisclosureContentProps) => {
   const context = useContext(DisclosureContext);
 
-  const props = {
+  const props: ContentRenderProps = {
     id: context.id,
     visible: context.visible,
     "aria-hidden": !context.visible,
@@ -100,7 +93,7 @@ export const DisclosureContent = ({ children }) => {
   return children(props);
 };
 
-DisclosureContent.propTypes = { children: PropTypes.func.isRequired };
+DisclosureContent.displayName = "DisclosureContent";
 
 Disclosure.Toggle = DisclosureToggle;
 Disclosure.Content = DisclosureContent;

@@ -1,7 +1,9 @@
 /* eslint-disable init-declarations */
 
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
 import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "utils/dom";
+
+import { renderHook } from "../testing/renderHook";
 
 import { useListedElementsNavigation } from "./useListedElementsNavigation";
 
