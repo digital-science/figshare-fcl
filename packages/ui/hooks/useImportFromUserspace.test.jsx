@@ -1,4 +1,6 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
+
+import { renderHook } from "../testing/renderHook";
 
 import { useImportFileFromUserspace, IMPORT_STATUS_LABELS } from "./useImportFromUserspace";
 

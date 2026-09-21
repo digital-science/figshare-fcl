@@ -1,4 +1,5 @@
 import uuid from "../../helpers/utils/uuid";
+import type { AlertType } from "../Alerts/types";
 
 
 const defaultOptions = {
@@ -8,7 +9,22 @@ const defaultOptions = {
   content: "Unknown message",
 };
 
-export function pushAlert(options = {}) {
+
+type PushAlertOptions = {
+  id?: string;
+  channel?: string;
+  persistent?: boolean;
+  type?: AlertType | string;
+  content?: React.ReactNode;
+  title?: string;
+  message?: React.ReactNode;
+  children?: React.ReactNode;
+  timeout?: number;
+  attributes?: Record<string, unknown>;
+  cause?: unknown;
+};
+
+export function pushAlert(options: PushAlertOptions = {}) {
   const config = { ...defaultOptions, ...options };
   const { type, channel, title, message, content, children, persistent, timeout, attributes, cause } = config;
 
@@ -33,7 +49,7 @@ export function pushAlert(options = {}) {
   document.dispatchEvent(event);
 }
 
-export function clearAlerts(channel) {
+export function clearAlerts(channel: string) {
   const event = new CustomEvent("alerts:message", {
     detail: {
       action: "clear",
@@ -44,7 +60,7 @@ export function clearAlerts(channel) {
   document.dispatchEvent(event);
 }
 
-export function popAlert(channel, id) {
+export function popAlert(channel: string, id: string) {
   const event = new CustomEvent("alerts:message", {
     detail: {
       action: "pop",

@@ -84,14 +84,12 @@ describe("TreeDataSwitch", () => {
     const scope = setup({ tree: structureTreeData({ dataset, openLevel: 0 }) });
     scope.run();
 
-    // Find expand button for Root Item 1 (which has children)
     const expandButtons = screen.getAllByRole("button");
     const expandButton = expandButtons.find((btn) => btn.getAttribute("tooltip") === "Expand");
 
     if (expandButton) {
       await scope.user.click(expandButton);
 
-      // Check if child items are now visible
       await waitFor(() => {
         expect(screen.getByText("Child Item 1")).toBeInTheDocument();
       });
@@ -106,7 +104,6 @@ describe("TreeDataSwitch", () => {
 
     const searchInput = screen.getByPlaceholderText("Search items...");
 
-    // Type search term that should match "Child Item 1"
     await scope.user.type(searchInput, "Child Item 1");
 
     await waitFor(() => {
@@ -123,7 +120,6 @@ describe("TreeDataSwitch", () => {
 
     const searchInput = screen.getByPlaceholderText("Search items...");
 
-    // Type search term that won't match anything
     await scope.user.type(searchInput, "nonexistent item");
 
     await waitFor(() => {
@@ -151,7 +147,6 @@ describe("TreeDataSwitch", () => {
     const scope = setup({ readOnly: true });
     scope.run();
 
-    // In read-only mode, should show tags instead of checkboxes
     const tags = screen.getAllByText(/ON|OFF/);
     expect(tags.length).toBeGreaterThan(0);
 

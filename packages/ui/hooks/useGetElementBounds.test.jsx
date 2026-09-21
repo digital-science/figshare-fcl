@@ -1,5 +1,7 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
 import { debounce } from "utils/debounce";
+
+import { renderHook } from "../testing/renderHook";
 
 import { useGetElementBounds } from "./useGetElementBounds";
 

@@ -3,11 +3,12 @@ import { render, cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Alert from "./Alert";
+import { TestScope } from "../../../../types/testing";
 
 
 describe("Alert", () => {
   function setup(props = {}) {
-    const scope = {
+    const scope: TestScope = {
       props: {
         type: "warning",
         message: "Test message",
@@ -68,7 +69,7 @@ describe("Alert", () => {
     scope.run();
 
     // Update the id prop
-    scope.wrapper.rerender(<Alert {...alertProps} id="alert-v2" />);
+    scope.wrapper.rerender(<Alert {...alertProps} type="notice" id="alert-v2" />);
 
     const closeButton = screen.getAllByRole("button")[0];
     await user.click(closeButton);

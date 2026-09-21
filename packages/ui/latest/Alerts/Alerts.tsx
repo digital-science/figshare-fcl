@@ -1,17 +1,27 @@
 import React from "react";
-import PropTypes from "prop-types";
-
+import type { TicketEntry, AlertMessage, StackType } from "./types";
 import { getIn } from "../../utils/getIn";
 
 import { AlertsList } from "./AlertsList";
 import { popAlert } from "./utils";
 
 
-export function Alerts({ id: componentChannel, className, initial, isFixed, onDismiss, margin, stackType, ...props }) {
-  const [messages, setMessages] = React.useState(initial);
-  const tickets = React.useRef([]);
+export type AlertsProps = {
+  id?: string;
+  className?: string;
+  initial?: AlertMessage[];
+  isFixed?: boolean;
+  margin?: boolean;
+  stackType?: StackType;
+  onDismiss?: (alert: any, channel: string) => void;
+  [key: string]: unknown;
+};
 
-  const clearExistingTicket = React.useCallback((id) => {
+export function Alerts({ id: componentChannel = "global-alerts", className, initial = [], isFixed = false, onDismiss, margin = false, stackType = "single", ...props }: AlertsProps) {
+  const [messages, setMessages] = React.useState(initial);
+  const tickets = React.useRef<TicketEntry[]>([]);
+
+  const clearExistingTicket = React.useCallback((id: string) => {
     tickets.current = tickets.current.filter((entry) => {
       if (entry.id === id) {
         clearTimeout(entry.ticket);
@@ -23,14 +33,14 @@ export function Alerts({ id: componentChannel, className, initial, isFixed, onDi
     });
   }, []);
 
-  const onDismissAlert = React.useCallback((alert) => {
+  const onDismissAlert = React.useCallback((alert: any) => {
     const idToPop = getIn(alert, "id", alert, getIn.predicates.nonEmptyString);
 
     popAlert(componentChannel, idToPop);
     onDismiss?.(alert, componentChannel);
   }, [componentChannel, onDismiss]);
 
-  const onEvent = React.useCallback((event) => {
+  const onEvent = React.useCallback((event: any) => {
     const { detail: { action, alert, channel, timeout } } = event;
     const id = alert?.id;
 
@@ -113,32 +123,4 @@ export function Alerts({ id: componentChannel, className, initial, isFixed, onDi
   );
 }
 
-Alerts.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  initial: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(["info", "warning", "error", "success", "notice"]),
-      message: PropTypes.node,
-      children: PropTypes.node,
-      persistent: PropTypes.bool,
-      attributes: PropTypes.object,
-      title: PropTypes.string,
-    })
-  ),
-  isFixed: PropTypes.bool,
-  margin: PropTypes.bool,
-  stackType: PropTypes.oneOf(["single", "list", "stack"]),
-  onDismiss: PropTypes.func,
-};
-
-Alerts.defaultProps = {
-  className: undefined,
-  id: "global-alerts",
-  initial: [],
-  isFixed: false,
-  margin: false,
-  onDismiss: undefined,
-  stackType: "single",
-};
+Alerts.displayName = "Alerts";

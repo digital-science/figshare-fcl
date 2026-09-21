@@ -9,25 +9,44 @@ import { Button } from "../Button";
 
 import styles from "./SearchInput.module.css";
 
+
+export type PacketOrEventLikeObject = {
+  value: string;
+  name: string;
+  target: { value: string; name: string };
+  preventDefault: () => boolean;
+  stopPropagation: () => boolean;
+};
+
+type SearchInputProps = {
+  id?: string;
+  value?: string;
+  setValue?: (value: string) => void;
+  defaultValue?: string;
+  onChange?: (event: PacketOrEventLikeObject) => void;
+  onSubmit?: (event: PacketOrEventLikeObject) => void;
+  [key: string]: unknown;
+};
+
 /*
   A SearchInput implementation that does not rely on form element, which means it can be used independently
   Or nested inside another form element.
   It also supports being a controlled or uncontrolled component, depending on whether the value and setValue props are provided.
   And has better behavior for submission and clearing the input, as well as accessibility improvements.
  */
-export function SearchInput({ id, value: providedValue, setValue: providedSetValue, defaultValue, onChange, onSubmit, ...rest }) {
+export function SearchInput({ id, value: providedValue, setValue: providedSetValue, defaultValue = "", onChange, onSubmit, ...rest }: SearchInputProps) {
   const [value, setValue] = useControllableState({ value: providedValue, setValue: providedSetValue, defaultValue });
   const generatedId = useUniqueId();
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<any>(null);
   const inputId = id || generatedId;
-  const { name: fieldName = inputId, onKeyDown } = rest;
+  const { name: fieldName = inputId, onKeyDown } = rest as any;
 
-  const onChangeHandler = React.useCallback((event) => {
+  const onChangeHandler = React.useCallback((event: any) => {
     setValue(event.target.value);
     onChange?.(asPacketOrEventLikeObject(event.target.value, fieldName));
   }, [onChange, fieldName]);
 
-  const onKeyDownHandler = React.useCallback((event) => {
+  const onKeyDownHandler = React.useCallback((event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       event.preventDefault();
       onSubmit?.(asPacketOrEventLikeObject(value, fieldName));
@@ -113,23 +132,14 @@ SearchInput.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-SearchInput.defaultProps = {
-  id: undefined,
-  value: undefined,
-  setValue: undefined,
-  defaultValue: "",
-  onChange: undefined,
-  onSubmit: undefined,
-};
-
 export default SearchInput;
 
 
 // Generate unique IDs for accessibility
 let idCounter = 0;
 
-export function useUniqueId(prefix = "search-input") {
-  const idRef = React.useRef(null);
+export function useUniqueId(prefix = "search-input"): string {
+  const idRef = React.useRef<string | null>(null);
   if (idRef.current === null) {
     idCounter += 1;
     idRef.current = `${prefix}-${idCounter}`;
@@ -140,6 +150,6 @@ export function useUniqueId(prefix = "search-input") {
 
 const noop = () => true;
 
-export function asPacketOrEventLikeObject(value, name) {
+export function asPacketOrEventLikeObject(value: string, name: string): PacketOrEventLikeObject {
   return { value, name, target: { value, name }, preventDefault: noop, stopPropagation: noop };
 }

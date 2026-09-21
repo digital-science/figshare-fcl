@@ -1,5 +1,3 @@
-
-/* eslint-disable jsx-a11y/aria-role */
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@digital-science/figshare-fcl/input/checkbox";
@@ -16,7 +14,66 @@ import { getIn } from "../../utils/getIn";
 import { SearchInput } from "../SearchInput";
 
 
-export function TreeDataSwitch({ name: fieldName, readOnly, tree, onChange, searchPlaceholder, noSearchResultsMessage, renderActions, renderBulkActions }) {
+type TreeNodeType = "treeitem" | "listitem";
+
+type TreeNodeData = {
+  id: string;
+  children: string[];
+  nodes: Record<string, TreeNodeData>;
+  level: number;
+  path: string;
+  datum: { name: string; [key: string]: unknown };
+  state: { expanded: boolean; checked: boolean; disabled?: boolean };
+  metadata: { tooltip?: React.ReactNode; [key: string]: unknown };
+  [key: string]: unknown;
+};
+
+type TreeData = {
+  children: string[];
+  path: string;
+  length: number;
+  nodes: Record<string, TreeNodeData>;
+  level: number;
+  state: { expanded: boolean; checked: boolean };
+};
+
+type NodeChangeEvent = {
+  node: TreeNodeData;
+  event: any;
+  checked: boolean;
+};
+
+type TreeDataSwitchProps = {
+  name: string;
+  tree: TreeData;
+  onChange: (data: any) => void;
+  readOnly?: boolean;
+  searchPlaceholder?: string;
+  noSearchResultsMessage?: string;
+  renderActions?: (data: { node: TreeNodeData; expanded: boolean; checked: boolean; readOnly: boolean; isListed: boolean }) => React.ReactNode;
+  renderBulkActions?: ((data: { tree: TreeData; search: string; onUpdate: (update: any) => void; name: string; readOnly: boolean }) => React.ReactNode) | React.ReactNode;
+};
+
+type TreeNodeProps = {
+  node: TreeNodeData;
+  fieldName: string;
+  onChange: (data: NodeChangeEvent) => void;
+  type?: TreeNodeType;
+  renderActions?: TreeDataSwitchProps["renderActions"];
+  readOnly?: boolean;
+};
+
+
+export function TreeDataSwitch({
+  name: fieldName,
+  readOnly = false,
+  tree,
+  onChange,
+  searchPlaceholder = "Search...",
+  noSearchResultsMessage = "No results found.",
+  renderActions,
+  renderBulkActions,
+}: TreeDataSwitchProps) {
   const [, updateState] = React.useState({ tree });
   const [search, setSearch] = React.useState("");
   const searchResults = React.useMemo(() => {
@@ -31,20 +88,19 @@ export function TreeDataSwitch({ name: fieldName, readOnly, tree, onChange, sear
     });
   }, [search, tree]);
 
-  const onSearchChange = React.useCallback((e) => {
+  const onSearchChange = React.useCallback((e: any) => {
     setSearch(e.target.value);
   }, [setSearch]);
 
-  const onNodeChange = React.useCallback(({ node, event, checked }) => {
+  const onNodeChange = React.useCallback(({ node, event, checked }: NodeChangeEvent) => {
     onChange?.({ name: fieldName, tree, node, event, checked });
   }, [fieldName, tree]);
 
-  const onUpdate = React.useCallback((update) => {
+  const onUpdate = React.useCallback((update: any) => {
     updateState(update);
     onChange?.({ name: fieldName, ...update });
   }, [fieldName, onChange]);
 
-  // REVIEW: implement module level css specific to this component
   return (
     <Block kind="layout-columns gap-2">
       <Block kind="layout-rows gap-2 align-center justify-space-between">
@@ -119,7 +175,14 @@ TreeDataSwitch.defaultProps = {
 };
 
 
-export function TreeNode({ node, type, fieldName, readOnly, onChange, renderActions }) {
+export function TreeNode({
+  node,
+  type = "treeitem",
+  fieldName,
+  readOnly = false,
+  onChange,
+  renderActions,
+}: TreeNodeProps) {
   const isExpandable = node.children && node.children.length > 0;
   const [expanded, setExpanded] = React.useState(!!node.state.expanded);
   const [checked, setChecked] = React.useState(!!node.state.checked);
@@ -135,12 +198,11 @@ export function TreeNode({ node, type, fieldName, readOnly, onChange, renderActi
   const onExpandCollapse = React.useCallback(() => {
     setExpanded((prev) => {
       node.state.expanded = !prev;
-
       return !prev;
     });
   }, [node, setExpanded]);
 
-  const onSwitchChange = React.useCallback((e) => {
+  const onSwitchChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked: newChecked } = e.target;
     setChecked(newChecked);
     node.state.checked = newChecked;
@@ -161,7 +223,6 @@ export function TreeNode({ node, type, fieldName, readOnly, onChange, renderActi
     if (isListed) {
       return { paddingLeft: "6px" };
     }
-
     return { paddingLeft: `${6 + (node.level * 18) + (isExpandable ? 0 : 38)}px` };
   }, [isListed, node.level, isExpandable]);
 
@@ -200,7 +261,7 @@ export function TreeNode({ node, type, fieldName, readOnly, onChange, renderActi
         <Block kind="layout-rows span-fit-content align-center gap-2 justify-end">
           <RenderSwitch key="readonly-node-switch" value={readOnly}>
             <RenderSwitch.Case value={true}>
-              <Tag color={checked ? Tag.colors.green : Tag.colors.red}>{checked ? "ON" : "OFF"}</Tag>
+              <Tag color={checked ? Tag.colors.green as any : Tag.colors.red as any}>{checked ? "ON" : "OFF"}</Tag>
             </RenderSwitch.Case>
             <RenderSwitch.Case value={false}>
               <RenderSwitch key="simple-switch-or-with-tooltip-switch" value={!!node.metadata.tooltip}>
@@ -217,7 +278,6 @@ export function TreeNode({ node, type, fieldName, readOnly, onChange, renderActi
                 <RenderSwitch.Case value={true}>
                   <Tooltip role="label">
                     <Tooltip.Trigger asChild={false}>
-                      {/* NOTE: [fcl] Checkbox accepts innerRef and cannot be cloned with a simple ref. Needs an update */}
                       <Checkbox
                         checked={checked}
                         disabled={node.state.disabled}

@@ -4,15 +4,28 @@ import classnames from "classnames";
 
 import { compact } from "../../utils/compact";
 import { Alert } from "../Alert";
+import type { AlertMessage, StackType } from "../Alerts/types";
 
 import styles from "./AlertsList.module.css";
+
+export type AlertsListProps = {
+  channel?: string;
+  children?: React.ReactNode;
+  alerts?: AlertMessage[];
+  className?: string;
+  isFixed?: boolean;
+  margin?: boolean;
+  stackType?: StackType;
+  onDismiss?: (alert: any) => void;
+  [key: string]: unknown;
+};
 
 /*
   Uncontrolled list container component for Alert instances
   Contained alerts can be provided manually through children
   Or predefined in a list of alert message configs used to render Alert instances
 */
-export function AlertsList({ channel, children, alerts, className, isFixed, onDismiss, margin, stackType, ...props }) {
+export function AlertsList({ channel = "global-alerts", children, alerts = [], className, isFixed = false, onDismiss, margin = false, stackType = "single", ...props }: AlertsListProps) {
   const kind = React.useMemo(() => compact([
     isFixed ? "fixed" : "",
     margin ? "margin" : "",
@@ -34,13 +47,13 @@ export function AlertsList({ channel, children, alerts, className, isFixed, onDi
   );
 }
 
-export function renderAlert(message, index, onClose) {
+export function renderAlert(message: AlertMessage, index: number, onClose?: (alert: any) => void) {
   return (
     <Alert
       key={message.id}
       id={message.id}
       data-alert-index={index}
-      style={ { "--alert-index": index } }
+      style={ { "--alert-index": index } as React.CSSProperties }
       title={message.title}
       message={message.message}
       type={message.type}
@@ -49,14 +62,14 @@ export function renderAlert(message, index, onClose) {
       onClose={onClose}
       {...message.attributes}
     >{message.children}</Alert>
-  )
+  );
 }
 
 AlertsList.propTypes = {
   alerts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(["info", "warning", "error", "success", "notice"]),
+      type: PropTypes.oneOf(["info", "warning", "error", "success", "notice"] as const),
       message: PropTypes.node,
       children: PropTypes.node,
       persistent: PropTypes.bool,
@@ -69,17 +82,6 @@ AlertsList.propTypes = {
   children: PropTypes.node,
   isFixed: PropTypes.bool,
   margin: PropTypes.bool,
-  stackType: PropTypes.oneOf(["single", "list", "stack"]),
+  stackType: PropTypes.oneOf(["single", "list", "stack"] as const),
   onDismiss: PropTypes.func,
-};
-
-AlertsList.defaultProps = {
-  alerts: [],
-  className: undefined,
-  children: undefined,
-  channel: "global-alerts",
-  isFixed: false,
-  margin: false,
-  onDismiss: undefined,
-  stackType: "single",
 };

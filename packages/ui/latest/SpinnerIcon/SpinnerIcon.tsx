@@ -6,7 +6,17 @@ import LoaderSvg from "@digital-science/figshare-fcl/icons/react/Loader";
 import "./SpinnerIcon.module.css";
 
 
-export function SpinnerIcon({ className: providedClassName, size, blend, ...props }) {
+type SpinnerIconSize = "full" | "small" | "medium" | "large";
+
+type SpinnerIconProps = {
+  className?: string;
+  blend?: boolean;
+  size?: SpinnerIconSize;
+  [key: string]: unknown;
+};
+
+
+export function SpinnerIcon({ className: providedClassName, size = "small", blend = false, ...props }: SpinnerIconProps) {
   const className = classnames("spinner-icon", providedClassName);
 
   return (
@@ -25,13 +35,7 @@ export function SpinnerIcon({ className: providedClassName, size, blend, ...prop
 SpinnerIcon.propTypes = {
   className: PropTypes.string,
   blend: PropTypes.bool,
-  size: PropTypes.oneOf(["full", "small", "medium", "large"]),
-};
-
-SpinnerIcon.defaultProps = {
-  className: undefined,
-  blend: false,
-  size: "small",
+  size: PropTypes.oneOf(["full", "small", "medium", "large"] as const),
 };
 
 export default SpinnerIcon;
