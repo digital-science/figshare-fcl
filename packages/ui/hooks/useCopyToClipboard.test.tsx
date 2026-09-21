@@ -1,16 +1,22 @@
 import { cleanup } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { wait } from "@apollo/client/testing";
-
+import { wait } from "../testing/wait";
 import { renderHook } from "../testing/renderHook";
 
 import { useCopyToClipboard } from "./useCopyToClipboard";
+import { TestScope } from "../../../types/testing";
 
 
 describe("useCopyToClipboard hook", () => {
   function setup() {
-    const scope = {
-      props: ["copied-text", 100],
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText: jest.fn().mockResolvedValue(undefined) },
+      writable: true,
+      configurable: true,
+    });
+
+    const scope: TestScope = {
+      props: ["copied-text", 100] as [string, number],
       copyAPI: jest.spyOn(navigator.clipboard, "writeText"),
     };
 
@@ -35,7 +41,7 @@ describe("useCopyToClipboard hook", () => {
     });
     expect(scope.copyAPI).toHaveBeenCalled();
 
-    teardown(scope);
+    teardown();
   });
 
   it("should not throw if api is not available", async() => {
@@ -52,6 +58,6 @@ describe("useCopyToClipboard hook", () => {
     });
     expect(scope.copyAPI).toHaveBeenCalled();
 
-    teardown(scope);
+    teardown();
   });
 });

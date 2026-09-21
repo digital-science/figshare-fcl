@@ -1,14 +1,14 @@
 /* eslint-disable init-declarations */
 
 import { act } from "react-dom/test-utils";
-import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "utils/dom";
+import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "../utils/dom";
 
 import { renderHook } from "../testing/renderHook";
 
 import { useListedElementsNavigation } from "./useListedElementsNavigation";
 
 // Mock utils/dom
-jest.mock("utils/dom", () => {
+jest.mock("../utils/dom", () => {
   return {
     getElements: jest.fn(),
     focusOnElement: jest.fn(),
@@ -19,13 +19,13 @@ jest.mock("utils/dom", () => {
 
 // Mock @digital-science/figshare-fcl/helpers guard function.
 jest.mock("@digital-science/figshare-fcl/helpers", () => {
-  return { guard: (fn) => fn() };
+  return { guard: (fn: () => void) => fn() };
 });
 
 describe("useListedElementsNavigation", () => {
-  let container;
-  let elements;
-  let onKeyDownProvided;
+  let container: HTMLDivElement;
+  let elements: Record<string, unknown>;
+  let onKeyDownProvided: jest.Mock;
 
   beforeEach(() => {
     container = document.createElement("div");
@@ -40,9 +40,9 @@ describe("useListedElementsNavigation", () => {
       isFocusedOnAnElement: false,
     };
 
-    getElements.mockReturnValue(elements);
-    focusOnElement.mockClear();
-    findNextTabStop.mockReturnValue(document.createElement("div"));
+    (getElements as jest.Mock).mockReturnValue(elements);
+    (focusOnElement as jest.Mock).mockClear();
+    (findNextTabStop as jest.Mock).mockReturnValue(document.createElement("div"));
     onKeyDownProvided = jest.fn();
   });
 

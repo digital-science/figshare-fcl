@@ -1,11 +1,11 @@
-import { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback, RefObject, KeyboardEvent } from "react";
 import { guard } from "@digital-science/figshare-fcl/helpers";
-import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "utils/dom";
+import { getElements, focusOnElement, findNextTabStop, TABBABLE_SELECTOR } from "../utils/dom";
 
 
 const DEFAULT_LISTED_CONTAINER_SELECTOR = "[data-list-node='true'], [role='listbox'], [role='toolbar']";
 const DEFAULT_ELEMENT_SELECTOR = "*[data-node][data-index]:not(:disabled):not([aria-disabled='true')";
-const KEY_BY_ORIENTATION = {
+const KEY_BY_ORIENTATION: Record<string, Record<string, string>> = {
   next: {
     horizontal: "ArrowRight",
     vertical: "ArrowUp",
@@ -16,14 +16,25 @@ const KEY_BY_ORIENTATION = {
   },
 };
 
+type UseListedElementsNavigationOptions = {
+  listSelector?: string;
+  itemSelector?: string;
+  onKeyDown?: (event: KeyboardEvent) => void;
+};
+
+type UseListedElementsNavigationReturn = {
+  ref: RefObject<HTMLElement | null>;
+  onKeyDown: (event: KeyboardEvent) => void;
+};
+
 export function useListedElementsNavigation({
   listSelector = DEFAULT_LISTED_CONTAINER_SELECTOR,
   itemSelector = DEFAULT_ELEMENT_SELECTOR,
   onKeyDown: onKeyDownProvided,
-} = {}) {
-  const ref = useRef(null);
+}: UseListedElementsNavigationOptions = {}): UseListedElementsNavigationReturn {
+  const ref = useRef<HTMLElement | null>(null);
 
-  const onKeyDown = useCallback((event) => {
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
     guard(() => {
       // call an optional handler
       onKeyDownProvided?.(event);
@@ -32,7 +43,7 @@ export function useListedElementsNavigation({
         return;
       }
 
-      const container = event.currentTarget;
+      const container = event.currentTarget as HTMLElement;
       const elements = getElements(container, itemSelector, document.activeElement);
 
       const orientation = container.getAttribute("aria-orientation") || "horizontal";

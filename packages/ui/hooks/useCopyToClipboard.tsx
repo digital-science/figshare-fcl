@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
 
-export function useCopyToClipboard(text = "", tooltipDelay = 1000) {
+export function useCopyToClipboard(text = "", tooltipDelay = 1000): [boolean, () => Promise<void>] {
   const [copied, setCopied] = useState(false);
 
   const copy = useCallback(async() => {
@@ -10,7 +10,7 @@ export function useCopyToClipboard(text = "", tooltipDelay = 1000) {
       setCopied(true);
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.log("Clipboard not available", err.message);
+      console.log("Clipboard not available", (err as Error).message);
     } finally {
       setTimeout(() => {
         setCopied(false);
@@ -21,7 +21,7 @@ export function useCopyToClipboard(text = "", tooltipDelay = 1000) {
   return [copied, copy];
 }
 
-function copyToClipboard(text) {
+function copyToClipboard(text: string) {
   return navigator?.clipboard?.writeText?.(text);
 }
 

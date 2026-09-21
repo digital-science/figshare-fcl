@@ -3,8 +3,8 @@ import { useRef } from "react";
 
 let idCounter = 0;
 
-export const useId = () => {
-  const idRef = useRef(null);
+export const useId = (): string => {
+  const idRef = useRef<string | null>(null);
 
   if (idRef.current === null) {
     idRef.current = `fcl-id-${idCounter}`;

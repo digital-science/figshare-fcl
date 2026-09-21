@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { render, cleanup, screen, act } from "@testing-library/react";
 
 import { useLimitedList, LimitedListShowMoreControls } from "./useLimitedList";
+import { TestScope } from "../../../types/testing";
 
 
 describe("useLimitedList()", () => {
-  const hookRef = { current: undefined };
+  const hookRef = { current: undefined as ReturnType<typeof useLimitedList> | undefined };
 
-  function Fixture({ list, itemsPerPage, entriesLabel }) {
+  function Fixture({ list, itemsPerPage, entriesLabel }: { list: number[]; itemsPerPage?: number; entriesLabel?: string }) {
     const result = useLimitedList(list, itemsPerPage, entriesLabel);
 
     useEffect(() => {
@@ -17,8 +18,8 @@ describe("useLimitedList()", () => {
     return null;
   }
 
-  function setup({ list = [], itemsPerPage = 10, entriesLabel = "entries" } = {}) {
-    const scope = { list, itemsPerPage, entriesLabel };
+  function setup({ list = [] as number[], itemsPerPage = 10, entriesLabel = "entries" } = {}) {
+    const scope: TestScope = { list, itemsPerPage, entriesLabel, wrapper: undefined as ReturnType<typeof render> | undefined };
 
     scope.run = () => {
       scope.wrapper = render(
@@ -38,11 +39,11 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [] });
     scope.run();
 
-    expect(hookRef.current.limitedList).toEqual([]);
-    expect(hookRef.current.remainingList).toEqual([]);
-    expect(hookRef.current.remainingCount).toBe(0);
-    expect(hookRef.current.canShowMore).toBe(false);
-    expect(hookRef.current.canShowLess).toBe(false);
+    expect(hookRef.current!.limitedList).toEqual([]);
+    expect(hookRef.current!.remainingList).toEqual([]);
+    expect(hookRef.current!.remainingCount).toBe(0);
+    expect(hookRef.current!.canShowMore).toBe(false);
+    expect(hookRef.current!.canShowLess).toBe(false);
 
     teardown();
   });
@@ -51,10 +52,10 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [1, 2, 3] });
     scope.run();
 
-    expect(hookRef.current.limitedList).toEqual([1, 2, 3]);
-    expect(hookRef.current.remainingList).toEqual([]);
-    expect(hookRef.current.remainingCount).toBe(0);
-    expect(hookRef.current.canShowMore).toBe(false);
+    expect(hookRef.current!.limitedList).toEqual([1, 2, 3]);
+    expect(hookRef.current!.remainingList).toEqual([]);
+    expect(hookRef.current!.remainingCount).toBe(0);
+    expect(hookRef.current!.canShowMore).toBe(false);
 
     teardown();
   });
@@ -63,10 +64,10 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [1, 2, 3, 4, 5], itemsPerPage: 3 });
     scope.run();
 
-    expect(hookRef.current.limitedList).toEqual([1, 2, 3]);
-    expect(hookRef.current.remainingList).toEqual([4, 5]);
-    expect(hookRef.current.remainingCount).toBe(2);
-    expect(hookRef.current.canShowMore).toBe(true);
+    expect(hookRef.current!.limitedList).toEqual([1, 2, 3]);
+    expect(hookRef.current!.remainingList).toEqual([4, 5]);
+    expect(hookRef.current!.remainingCount).toBe(2);
+    expect(hookRef.current!.canShowMore).toBe(true);
 
     teardown();
   });
@@ -75,14 +76,14 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [1, 2, 3, 4, 5], itemsPerPage: 3 });
     scope.run();
 
-    expect(hookRef.current.limitedList).toHaveLength(3);
+    expect(hookRef.current!.limitedList).toHaveLength(3);
 
     act(() => {
-      hookRef.current.onShowMore();
+      hookRef.current!.onShowMore();
     });
 
-    expect(hookRef.current.limitedList).toHaveLength(5);
-    expect(hookRef.current.canShowMore).toBe(false);
+    expect(hookRef.current!.limitedList).toHaveLength(5);
+    expect(hookRef.current!.canShowMore).toBe(false);
 
     teardown();
   });
@@ -92,15 +93,15 @@ describe("useLimitedList()", () => {
     scope.run();
 
     act(() => {
-      hookRef.current.onShowMore();
+      hookRef.current!.onShowMore();
     });
 
-    expect(hookRef.current.limitedList).toHaveLength(5);
+    expect(hookRef.current!.limitedList).toHaveLength(5);
 
     const newList = [10, 20, 30, 40, 50];
-    scope.wrapper.rerender(<Fixture list={newList} itemsPerPage={3} />);
+    scope.wrapper!.rerender(<Fixture list={newList} itemsPerPage={3} />);
 
-    expect(hookRef.current.limitedList).toEqual([10, 20, 30]);
+    expect(hookRef.current!.limitedList).toEqual([10, 20, 30]);
 
     teardown();
   });
@@ -109,7 +110,7 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [1, 2], entriesLabel: "grants" });
     scope.run();
 
-    expect(hookRef.current.entriesLabel).toBe("grants");
+    expect(hookRef.current!.entriesLabel).toBe("grants");
 
     teardown();
   });
@@ -118,7 +119,7 @@ describe("useLimitedList()", () => {
     const scope = setup({ list: [1, 2] });
     scope.run();
 
-    expect(hookRef.current.entriesLabel).toBe("entries");
+    expect(hookRef.current!.entriesLabel).toBe("entries");
 
     teardown();
   });
@@ -127,15 +128,16 @@ describe("useLimitedList()", () => {
 
 describe("LimitedListShowMoreControls", () => {
   function setup() {
-    const scope = {
+    const scope: TestScope = {
       props: {
         canShowMore: false,
         canShowLess: false,
         remainingCount: 0,
         onShowMore: jest.fn(),
         onShowLess: jest.fn(),
-        entriesLabel: "items",
+        entriesLabel: "items" as string | undefined,
       },
+      wrapper: undefined as ReturnType<typeof render> | undefined,
     };
 
     scope.run = () => {
@@ -153,7 +155,7 @@ describe("LimitedListShowMoreControls", () => {
     const scope = setup();
     scope.run();
 
-    expect(scope.wrapper.container).toBeEmptyDOMElement();
+    expect(scope.wrapper!.container).toBeEmptyDOMElement();
 
     teardown();
   });
