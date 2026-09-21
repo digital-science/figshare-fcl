@@ -13,6 +13,7 @@ import { Cover } from "../story-utils/Cover";
 - [Props](#props-table)
 - [Sub-Components](#sub-components)
 - [Examples](#examples)
+- [Anchor Links](#anchor-links)
 
 ## Overview
 
@@ -269,5 +270,51 @@ import { Download, Edit, Delete } from "@digital-science/figshare-fcl/icons/reac
 
 <Button kind="tertiary" span="icon" title="Delete permanently">
   <Button.Icon><Delete /></Button.Icon>
+</Button>
+```
+
+### Anchor Links
+
+When a `Button` receives an `href` prop it renders as an anchor. By default this is a plain `<a>` tag.
+
+<Canvas of={ButtonStories.AnchorLinks} />
+
+```jsx
+<Button kind="primary" href="/internal-page">
+  <Button.Label>Internal link</Button.Label>
+</Button>
+
+<Button kind="secondary" href="https://example.com">
+  <Button.Label>External link</Button.Label>
+</Button>
+```
+
+#### Binding a custom Link component
+
+Use `bindLinkComponent` to replace the internal anchor with a router-aware component (e.g. React Router's `Link`).
+External URLs and the `external` prop bypass the bound component and keep rendering plain anchors.
+
+<Canvas of={ButtonStories.BoundLinkComponent} />
+
+```jsx
+import { Link } from "react-router-dom";
+import { bindLinkComponent } from "@digital-science/figshare-fcl/latest/Button/anchor";
+
+// Call once at the app root
+bindLinkComponent({ component: Link });
+
+// Internal links now route through React Router
+<Button kind="primary" href="/dashboard">
+  <Button.Label>Dashboard</Button.Label>
+</Button>
+
+// External links remain plain anchors
+<Button kind="tertiary" href="https://figshare.com">
+  <Button.Label>External</Button.Label>
+</Button>
+
+// Force external with the external prop
+<Button kind="tertiary" href="/some-path" external>
+  <Button.Label>Forced external</Button.Label>
 </Button>
 ```

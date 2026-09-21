@@ -19,6 +19,8 @@ import {
   safePolygon,
 } from "@floating-ui/react";
 
+import type { TooltipOptions, TooltipContextValue } from "./types";
+
 
 export function useTooltip({
   initialOpen = false,
@@ -33,8 +35,8 @@ export function useTooltip({
   onOpenChange: setControlledOpen,
   middleware,
   autoHideMs,
-}) {
-  const arrowRef = React.useRef(null);
+}: TooltipOptions = {}) {
+  const arrowRef = React.useRef<SVGSVGElement | null>(null);
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
   const open = controlledOpen ?? uncontrolledOpen;
@@ -111,9 +113,9 @@ export function useTooltip({
   );
 }
 
-export const TooltipContext = React.createContext(null);
+export const TooltipContext = React.createContext<TooltipContextValue | null>(null);
 
-export const useTooltipContext = () => {
+export const useTooltipContext = (): TooltipContextValue => {
   const context = React.useContext(TooltipContext);
 
   if (context === null) {

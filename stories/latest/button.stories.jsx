@@ -1,8 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { bindLinkComponent } from "@digital-science/figshare-fcl/latest/Button/anchor";
 import { Checkmark, Delete, Copy, Download, Eye, Edit } from "@digital-science/figshare-fcl/icons/react";
 
 import { Cover } from "../story-utils/Cover";
+
+// Mock Link component that simulates a router link (e.g., React Router's <Link>).
+// Renders a <mark> tag so it's visually distinct in the story.
+const MockRouterLink = React.forwardRef(({ to, children, ...rest }, ref) => (
+  <a ref={ref} data-router-link={to} {...rest} style={ { cursor: "alias" } }>{children}</a>
+));
+MockRouterLink.displayName = "MockRouterLink";
 
 
 export default {
@@ -268,6 +277,87 @@ export const LoadingStates = {
       </div>
     </Cover>
   ),
+};
+
+export const AnchorLinks = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind="card">
+      <div style={ { display: "flex", flexDirection: "column", gap: "24px" } }>
+        <div>
+          <h4>Default anchor links (no binding)</h4>
+          <p>Without <code>bindLinkComponent</code>, buttons with <code>href</code> render plain anchor tags.</p>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="primary" href="/internal-page">
+              <Button.Label>Internal link (plain anchor)</Button.Label>
+            </Button>
+            <Button kind="secondary" href="https://example.com">
+              <Button.Label>External link</Button.Label>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Cover>
+  ),
+};
+
+export const BoundLinkComponent = {
+  tags: ["!dev"],
+  render: () => {
+    const [bound, setBound] = React.useState(false);
+
+    const onToggleBinding = React.useCallback(() => {
+      setBound((currentBoundState) => {
+        if (currentBoundState) {
+          bindLinkComponent({ component: "a" });
+        } else {
+          bindLinkComponent({ component: MockRouterLink });
+        }
+
+        return !currentBoundState;
+      });
+    }, [setBound]);
+
+    return (
+      <Cover key={`bound-link-component-${bound}`} kind="card">
+        <div style={ { display: "flex", flexDirection: "column", gap: "24px" } }>
+          <div>
+            <h4>Bound Link Component</h4>
+            <p>
+              After calling <code>bindLinkComponent</code>, internal links render through the bound component
+              (inspect the DOM — you will see an <code>&lt;a&gt;</code> with a <code>data-router-link</code> attribute) and a custom cursor style.
+            </p>
+            <div style={ { display: "flex", flexDirection: "row", gap: "12px", margin: "0 0 12px 0" } }>
+              <Button tooltip="Toggle the bound link component between the default anchor and a custom link component" onClick={onToggleBinding}>
+                <Button.Label>{bound ? "Toggle: Unbind" : "Toggle: Bind"}</Button.Label>
+              </Button>
+            </div>
+            <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+              <Button kind="primary" href="/dashboard">
+                <Button.Icon><Eye /></Button.Icon>
+                <Button.Label>Dashboard {bound ? "(routed)" : "(not routed)"}</Button.Label>
+              </Button>
+              <Button kind="secondary" href="/settings">
+                <Button.Label>Settings {bound ? "(routed)" : "(not routed)"}</Button.Label>
+              </Button>
+            </div>
+          </div>
+          <div>
+            <h4>External links remain plain anchors</h4>
+            <p>External URLs and the <code>external</code> prop bypass the bound component.</p>
+            <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+              <Button kind="tertiary" href="https://figshare.com">
+                <Button.Label>External URL (plain anchor)</Button.Label>
+              </Button>
+              <Button kind="tertiary" href="/forced-external" external={true}>
+                <Button.Label>Forced external (plain anchor)</Button.Label>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Cover>
+    );
+  },
 };
 
 export const Tooltips = {

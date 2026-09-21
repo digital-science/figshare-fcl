@@ -3,7 +3,7 @@
     "noEmit": true,
     "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
@@ -19,6 +19,6 @@
     "types": ["jest"],
     "typeRoots": ["./types", "./node_modules/@types"]
   },
-  "include": ["packages", "stories"],
+  "include": ["packages", "stories", "types"],
   "exclude": ["node_modules", "build", ".storybook"]
 }
