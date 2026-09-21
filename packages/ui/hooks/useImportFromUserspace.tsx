@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 const HIDDEN_STYLE = { display: "none" };
 let FILE_INPUT_ID = 0;
 
-function readAsText(file) {
+function readAsText(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
     const fr = new FileReader();
     fr.onload = () => {
@@ -15,12 +15,37 @@ function readAsText(file) {
   });
 }
 
-export const IMPORT_STATUS_LABELS = {
+type ImportStatus = "idle" | "importing" | "imported" | "success" | "failed";
+
+type ImportStatusLabels = Record<ImportStatus, string>;
+
+export const IMPORT_STATUS_LABELS: ImportStatusLabels = {
   idle: "Import",
   importing: "Importing...",
   imported: "Imported",
   success: "Done",
   failed: "Failed",
+};
+
+type ImportResult = {
+  name: string;
+  data: string | ArrayBuffer | null;
+};
+
+type UseImportFileFromUserspaceProps = {
+  accept?: string;
+  bytesLimit?: number;
+  onImport: (result: ImportResult) => Promise<void> | void;
+  readFile?: (file: File) => Promise<string | ArrayBuffer | null>;
+  labels?: ImportStatusLabels;
+};
+
+type UseImportFileFromUserspaceReturn = {
+  status: ImportStatus;
+  reason: Error | undefined;
+  onAttemptImport: () => void;
+  renderFileInput: () => React.JSX.Element;
+  statusLabel: string;
 };
 
 export function useImportFileFromUserspace({
@@ -29,24 +54,24 @@ export function useImportFileFromUserspace({
   onImport,
   readFile = readAsText,
   labels = IMPORT_STATUS_LABELS,
-}) {
+}: UseImportFileFromUserspaceProps): UseImportFileFromUserspaceReturn {
   const [inputKeyIndex, setInputKeyIndex] = useState(0);
   const labelsRef = useRef(labels);
   // eslint-disable-next-line no-plusplus
   const importerId = useMemo(() => `importer-${++FILE_INPUT_ID}`, []);
-  const inputRef = useRef(null);
-  const [status, setStatus] = useState("idle");
-  const [reason, setReason] = useState(undefined);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [status, setStatus] = useState<ImportStatus>("idle");
+  const [reason, setReason] = useState<Error | undefined>(undefined);
   const onAttemptImport = useCallback(() => {
     inputRef.current?.click?.();
   }, []);
-  const onResolveImport = useCallback(async(event) => {
+  const onResolveImport = useCallback(async(event: React.ChangeEvent<HTMLInputElement>) => {
     try {
       const { files } = event.target;
-      if (files.length) {
+      if (files && files.length) {
         setStatus("importing");
         setReason(undefined);
-        const [file] = files;
+        const [file] = Array.from(files);
         const { name, size } = file;
 
         if (bytesLimit && size > bytesLimit) {
@@ -62,7 +87,7 @@ export function useImportFileFromUserspace({
       }
     } catch (e) {
       setStatus("failed");
-      setReason(e);
+      setReason(e as Error);
     } finally {
       setTimeout(() => setStatus("idle"), 3000);
     }

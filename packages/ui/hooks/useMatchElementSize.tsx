@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { func } from "prop-types";
 
 import { useGetElementBounds } from "./useGetElementBounds";
 
 
-export const DEFAULT_STYLE = {
+type SizingStyle = {
+  width: string;
+  maxWidth: string;
+  height: string;
+  maxHeight: string;
+};
+
+export const DEFAULT_STYLE: SizingStyle = {
   width: "100%",
   maxWidth: "100%",
   height: "100%",
   maxHeight: "100%",
 };
 
-export function useMatchElementSize(element, initialStyle = DEFAULT_STYLE) {
+export function useMatchElementSize(element: HTMLElement | null, initialStyle: SizingStyle | Record<string, never> = DEFAULT_STYLE) {
   const bounds = useGetElementBounds(element);
   const { box, info } = bounds;
 
@@ -24,8 +30,13 @@ export function useMatchElementSize(element, initialStyle = DEFAULT_STYLE) {
   }, [box, info]);
 }
 
-export function BoundingBox({ children, ...props }) {
-  const ref = useRef(null);
+type BoundingBoxProps = {
+  children: (props: { style: SizingStyle | Record<string, never> }) => React.ReactNode;
+  [key: string]: unknown;
+};
+
+export function BoundingBox({ children, ...props }: BoundingBoxProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [mounted, didMount] = useState(false);
   const style = useMatchElementSize(ref.current, {});
 
@@ -36,9 +47,7 @@ export function BoundingBox({ children, ...props }) {
   return (<div ref={ref} {...props}>{mounted ? children({ style }) : null }</div>);
 }
 
-BoundingBox.propTypes = { children: func.isRequired };
-
-export function getSizingStyleProps(box) {
+export function getSizingStyleProps(box: { width?: number; height?: number }): SizingStyle {
   const widthInPx = `${box?.width ?? 0}px`;
   const heightInPx = `${box?.height ?? 0}px`;
 

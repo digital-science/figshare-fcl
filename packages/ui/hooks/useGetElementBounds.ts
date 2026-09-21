@@ -1,16 +1,38 @@
-import { useRef, useMemo, useState, useEffect } from "react";
-import { debounce } from "utils/debounce";
+import { useRef, useMemo, useState, useEffect, MutableRefObject } from "react";
+import { debounce } from "../helpers/utils/debounce";
 
 
 import { useEventListener } from "./useEventListener";
 
 
-export function useGetElementBounds(element, resizeDelay = 200) {
+type ElementBounds = {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+};
+
+type BoundsInfo = {
+  computed: boolean;
+  resized: boolean;
+};
+
+type ElementBoundsResult = {
+  box: ElementBounds | DOMRect;
+  info: MutableRefObject<BoundsInfo>;
+  elementRef: MutableRefObject<HTMLElement | null>;
+};
+
+export function useGetElementBounds(element: HTMLElement | null, resizeDelay = 200): ElementBoundsResult {
   const elementRef = useRef(element);
-  const [box, setBox] = useState(() => {
+  const [box, setBox] = useState<ElementBounds | DOMRect>(() => {
     return { width: 0, height: 0, x: 0, y: 0, left: 0, top: 0, right: 0, bottom: 0 };
   });
-  const info = useRef({ computed: false, resized: false });
+  const info = useRef<BoundsInfo>({ computed: false, resized: false });
 
   useEffect(() => {
     elementRef.current = element;

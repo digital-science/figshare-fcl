@@ -10,7 +10,7 @@ jest.mock("@digital-science/figshare-fcl/input/text/utils", () => {
 });
 
 jest.mock("@digital-science/figshare-fcl/textEditor/Lexical/utils", () => {
-  return { stripHtmlTags: jest.fn((text) => text.replace(/(<([^>]+)>)/gi, "")) };
+  return { stripHtmlTags: jest.fn((text: string) => text.replace(/(<([^>]+)>)/gi, "")) };
 });
 
 
@@ -19,14 +19,14 @@ const { stripHtmlTags } = require("@digital-science/figshare-fcl/textEditor/Lexi
 
 
 describe("useTextDirection()", () => {
-  const hookRef = { current: undefined };
+  const hookRef = { current: undefined as ReturnType<typeof useTextDirection> | undefined };
 
   beforeEach(() => {
     getTextDirection.mockReset();
     stripHtmlTags.mockClear();
   });
 
-  function Fixture({ value, inferDirection, providedRef }) {
+  function Fixture({ value, inferDirection, providedRef }: { value?: React.ReactNode; inferDirection?: boolean; providedRef?: React.Ref<HTMLElement> }) {
     const result = useTextDirection({ children: value, inferDirection, ref: providedRef });
 
     useEffect(() => {
@@ -50,7 +50,7 @@ describe("useTextDirection()", () => {
 
     render(<Fixture value="Hello world" />);
 
-    expect(typeof hookRef.current.props.ref).toBe("function");
+    expect(typeof hookRef.current!.props.ref).toBe("function");
 
     teardown();
   });
@@ -60,8 +60,8 @@ describe("useTextDirection()", () => {
 
     render(<Fixture value="Hello world" />);
 
-    expect(hookRef.current.dir).toBe("ltr");
-    expect(hookRef.current.props.dir).toBe("ltr");
+    expect(hookRef.current!.dir).toBe("ltr");
+    expect(hookRef.current!.props.dir).toBe("ltr");
 
     teardown();
   });
@@ -71,8 +71,8 @@ describe("useTextDirection()", () => {
 
     render(<Fixture value="\u0645\u0631\u062D\u0628\u0627" />);
 
-    expect(hookRef.current.dir).toBe("rtl");
-    expect(hookRef.current.props.dir).toBe("rtl");
+    expect(hookRef.current!.dir).toBe("rtl");
+    expect(hookRef.current!.props.dir).toBe("rtl");
 
     teardown();
   });
@@ -94,8 +94,8 @@ describe("useTextDirection()", () => {
 
     render(<Fixture value="\u0645\u0631\u062D\u0628\u0627" inferDirection={false} />);
 
-    expect(hookRef.current.dir).toBeUndefined();
-    expect(hookRef.current.props.dir).toBeUndefined();
+    expect(hookRef.current!.dir).toBeUndefined();
+    expect(hookRef.current!.props.dir).toBeUndefined();
     expect(getTextDirection).not.toHaveBeenCalled();
 
     teardown();
@@ -104,7 +104,7 @@ describe("useTextDirection()", () => {
   it("does not set dir when value is an empty string", () => {
     render(<Fixture value="" />);
 
-    expect(hookRef.current.dir).toBeUndefined();
+    expect(hookRef.current!.dir).toBeUndefined();
     expect(getTextDirection).not.toHaveBeenCalled();
 
     teardown();
@@ -113,7 +113,7 @@ describe("useTextDirection()", () => {
   it("does not set dir when value is undefined and the ref element has no text", () => {
     render(<Fixture value={undefined} />);
 
-    expect(hookRef.current.dir).toBeUndefined();
+    expect(hookRef.current!.dir).toBeUndefined();
     expect(getTextDirection).not.toHaveBeenCalled();
 
     teardown();
@@ -123,26 +123,26 @@ describe("useTextDirection()", () => {
     getTextDirection.mockReturnValue("rtl");
 
     // First render: internal ref attaches to the div containing Arabic text rendered from value
-    const wrapper = render(<Fixture value={<span>\u0645\u0631\u062D\u0628\u0627</span>} />);
+    const wrapper = render(<Fixture value={<span>{"\u0645\u0631\u062D\u0628\u0627"}</span>} />);
     // ownRef.current.textContent is now "مرحبا"
 
     // Re-render with a new element reference to trigger useMemo to re-run
-    wrapper.rerender(<Fixture value={<span>\u0645\u0631\u062D\u0628\u0627</span>} />);
+    wrapper.rerender(<Fixture value={<span>{"\u0645\u0631\u062D\u0628\u0627"}</span>} />);
 
     expect(getTextDirection).toHaveBeenCalled();
-    expect(hookRef.current.dir).toBe("rtl");
+    expect(hookRef.current!.dir).toBe("rtl");
 
     teardown();
   });
 
   it("populates the provided external ref when the element is mounted", () => {
-    const externalRef = React.createRef();
+    const externalRef = React.createRef<HTMLElement>();
     getTextDirection.mockReturnValue("ltr");
 
     render(<Fixture value="Hello world" providedRef={externalRef} />);
 
     expect(externalRef.current).not.toBeNull();
-    expect(externalRef.current.tagName).toBe("DIV");
+    expect(externalRef.current!.tagName).toBe("DIV");
 
     teardown();
   });

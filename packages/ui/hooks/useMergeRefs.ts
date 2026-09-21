@@ -6,16 +6,16 @@ import * as React from "react";
 const majorVersion = parseInt(React.version.split(".")[0], 10);
 const shouldReturnCleanup = majorVersion >= 19;
 
-export function assignRef(ref, value) {
+export function assignRef<T>(ref: React.Ref<T> | null | undefined, value: T | null): (() => void) | void {
   if (ref == null) return;
 
   if (typeof ref === "function") {
 
-    return ref(value);
+    return ref(value) as (() => void) | void;
   }
 
   try {
-    ref.current = value;
+    (ref as React.MutableRefObject<T | null>).current = value;
   } catch (error) {
     throw new Error(`Cannot assign value '${value}' to ref '${ref}'`);
   }
@@ -23,25 +23,25 @@ export function assignRef(ref, value) {
 
 // Hook to merge multiple refs into a single ref callback function.
 // This is useful when you want to forward a ref to a child component while also using it in the parent component.
-export function useMergeRefs(...refs) {
+export function useMergeRefs<T>(...refs: (React.Ref<T> | null | undefined)[]) {
 
   const availableRefs = refs.filter((ref) => ref != null);
 
   if (shouldReturnCleanup) {
     // React 19+ - return cleanup function
-    const cleanupMap = new Map();
+    const cleanupMap = new Map<React.Ref<T>, (() => void)>();
 
-    return (node) => {
+    return (node: T | null) => {
       availableRefs.forEach((ref) => {
         const cleanup = assignRef(ref, node);
         if (cleanup) {
-          cleanupMap.set(ref, cleanup);
+          cleanupMap.set(ref!, cleanup);
         }
       });
 
       return () => {
         availableRefs.forEach((ref) => {
-          const cleanup = cleanupMap.get(ref);
+          const cleanup = cleanupMap.get(ref!);
           if (cleanup && typeof cleanup === "function") {
             cleanup();
           } else {
@@ -55,7 +55,7 @@ export function useMergeRefs(...refs) {
   }
 
   // React 18 and lower - don't return cleanup function
-  return (node) => {
+  return (node: T | null) => {
     availableRefs.forEach((ref) => {
       assignRef(ref, node);
     });

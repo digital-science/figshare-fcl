@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Button } from "shared/ui/latest/Button";
-import { Block } from "shared/ui/latest/Block";
+import { Button } from "../latest/Button";
+import { Block } from "../latest/Block";
 
 
 /**
@@ -9,7 +8,7 @@ import { Block } from "shared/ui/latest/Block";
  * It exposes the limited list to be rendered, and functions to show more or less items.
  * It also exposes the remaining items, and all state related to the pagination so it can be controlled.
  * */
-export function useLimitedList(list, itemsPerPage = 10, entriesLabel = "entries") {
+export function useLimitedList<T>(list: T[], itemsPerPage = 10, entriesLabel = "entries") {
   const [page, setPage] = React.useState(1);
 
   // Reset to page 1 whenever the list identity changes (e.g. navigating to a different item).
@@ -35,7 +34,7 @@ export function useLimitedList(list, itemsPerPage = 10, entriesLabel = "entries"
 
   if (!list.length) {
     return {
-      limitedList: [], remainingList: [], remainingCount: 0,
+      limitedList: [] as T[], remainingList: [] as T[], remainingCount: 0,
       canShowMore: false, canShowLess: false,
       onShowMore, onShowLess,
       page, setPage,
@@ -58,11 +57,27 @@ export function useLimitedList(list, itemsPerPage = 10, entriesLabel = "entries"
   };
 }
 
+type LimitedListShowMoreControlsProps = {
+  canShowMore?: boolean;
+  canShowLess?: boolean;
+  remainingCount?: number;
+  onShowMore?: () => void;
+  onShowLess?: () => void;
+  entriesLabel?: string;
+};
+
 /**
  * A component to render a default set of show more / show less controls for a list that is being paginated with useLimitedList.
  * It receives most of the state from the hook and renders the appropriate buttons with the appropriate labels and aria attributes.
  * */
-export function LimitedListShowMoreControls({ canShowMore, canShowLess, remainingCount, onShowMore, onShowLess, entriesLabel = "entries" }) {
+export function LimitedListShowMoreControls({
+  canShowMore = false,
+  canShowLess = false,
+  remainingCount = 0,
+  onShowMore,
+  onShowLess,
+  entriesLabel = "entries",
+}: LimitedListShowMoreControlsProps) {
   return (<>
     {(canShowMore || canShowLess) && (
       <Block kind="layout-rows gap-2 align-start justify-start">
@@ -92,21 +107,3 @@ export function LimitedListShowMoreControls({ canShowMore, canShowLess, remainin
     )}
   </>);
 }
-
-LimitedListShowMoreControls.propTypes = {
-  canShowMore: PropTypes.bool,
-  canShowLess: PropTypes.bool,
-  remainingCount: PropTypes.number,
-  entriesLabel: PropTypes.string,
-  onShowMore: PropTypes.func,
-  onShowLess: PropTypes.func,
-};
-
-LimitedListShowMoreControls.defaultProps = {
-  canShowMore: false,
-  canShowLess: false,
-  remainingCount: 0,
-  onShowMore: undefined,
-  onShowLess: undefined,
-  entriesLabel: "entries",
-};

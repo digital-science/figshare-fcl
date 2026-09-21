@@ -1,18 +1,18 @@
 import { act } from "react-dom/test-utils";
-import { debounce } from "utils/debounce";
+import { debounce } from "../helpers/utils/debounce";
 
 import { renderHook } from "../testing/renderHook";
 
 import { useGetElementBounds } from "./useGetElementBounds";
 
 // Mock debounce function
-jest.mock("utils/debounce", () => {
+jest.mock("../helpers/utils/debounce", () => {
   return { debounce: jest.fn((func) => func) };
 });
 
 describe("useGetElementBounds", () => {
   // eslint-disable-next-line init-declarations
-  let element;
+  let element: HTMLDivElement;
 
   beforeEach(() => {
     element = document.createElement("div");
@@ -31,7 +31,7 @@ describe("useGetElementBounds", () => {
 
   it("should update box with element bounds on mount", () => {
     const mockRect = { width: 100, height: 50, x: 10, y: 20, left: 10, top: 20, right: 110, bottom: 70 };
-    element.getBoundingClientRect = jest.fn(() => mockRect);
+    element.getBoundingClientRect = jest.fn(() => mockRect) as unknown as () => DOMRect;
 
     const { result } = renderHook(() => useGetElementBounds(element));
 
@@ -41,7 +41,7 @@ describe("useGetElementBounds", () => {
   });
 
   it("should update elementRef when element prop changes", () => {
-    const element2 = document.createElement("span");
+    const element2 = document.createElement("span") as unknown as HTMLDivElement;
     document.body.appendChild(element2);
 
     const { result, rerender } = renderHook(
@@ -59,7 +59,7 @@ describe("useGetElementBounds", () => {
 
   it("should update box on window resize", () => {
     const mockRect = { width: 200, height: 100, x: 30, y: 40, left: 30, top: 40, right: 230, bottom: 140 };
-    element.getBoundingClientRect = jest.fn(() => mockRect);
+    element.getBoundingClientRect = jest.fn(() => mockRect) as unknown as () => DOMRect;
 
     const { result } = renderHook(() => useGetElementBounds(element));
 
@@ -74,7 +74,7 @@ describe("useGetElementBounds", () => {
   it("should use the provided resizeDelay for debounce", () => {
     const resizeDelay = 500;
     const mockRect = { width: 200, height: 100, x: 30, y: 40, left: 30, top: 40, right: 230, bottom: 140 };
-    element.getBoundingClientRect = jest.fn(() => mockRect);
+    element.getBoundingClientRect = jest.fn(() => mockRect) as unknown as () => DOMRect;
 
     renderHook(() => useGetElementBounds(element, resizeDelay));
 

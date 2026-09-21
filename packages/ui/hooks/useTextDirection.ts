@@ -5,14 +5,28 @@ import { stripHtmlTags } from "@digital-science/figshare-fcl/textEditor/Lexical/
 import useMergeRefs from "./useMergeRefs";
 
 
+type UseTextDirectionProps = {
+  children?: React.ReactNode;
+  inferDirection?: boolean;
+  ref?: React.Ref<HTMLElement>;
+};
+
+type UseTextDirectionResult = {
+  dir?: string;
+  props: {
+    ref: (node: HTMLElement | null) => void;
+    dir?: string;
+  };
+};
+
 /**
  * A hook to determine the text direction of a given node.
  * It extracts text content directly from the node itself or uses children if it is a string node.
  * It can be any React node, so we pass the children prop to the hook to react to changes in the content
  * and re-evaluate the directionality.
  */
-export function useTextDirection({ children, inferDirection = true, ref: providedRef }) {
-  const ownRef = React.useRef(null);
+export function useTextDirection({ children, inferDirection = true, ref: providedRef }: UseTextDirectionProps): UseTextDirectionResult {
+  const ownRef = React.useRef<HTMLElement>(null);
   const ref = useMergeRefs(ownRef, providedRef);
 
   return React.useMemo(() => {

@@ -2,13 +2,14 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 
 
-function renderHook(hook) {
+function renderHook<TProps>(hook: (props: TProps) => any, options: { initialProps?: TProps } = {}) {
   const result = { current: null };
-  let rerender = () => undefined;
+  let currentProps = options.initialProps;
+  let rerender = (props?: TProps) => undefined;
   let unmount = () => undefined;
 
   function TestComponent() {
-    result.current = hook();
+    result.current = hook(currentProps as TProps);
 
     return null;
   }
@@ -17,7 +18,6 @@ function renderHook(hook) {
   document.body.appendChild(container);
 
   act(() => {
-    // eslint-disable-next-line react/no-render-return-value
     const instance = require("react-dom").render(
       React.createElement(TestComponent),
       container
@@ -26,7 +26,8 @@ function renderHook(hook) {
     return instance;
   });
 
-  rerender = () => {
+  rerender = (props?: TProps) => {
+    currentProps = props !== undefined ? props : currentProps;
     act(() => {
       require("react-dom").render(
         React.createElement(TestComponent),

@@ -34,7 +34,7 @@ describe("assignRef()", () => {
   });
 
   it("throws an error when the object ref is not writable", () => {
-    const ref = {};
+    const ref = {} as { current: string | null };
 
     Object.defineProperty(ref, "current", {
       get: () => null,
@@ -63,7 +63,7 @@ describe("useMergeRefs() — React 18 path", () => {
   });
 
   it("assigns the node to a single object ref", () => {
-    const ref = { current: null };
+    const ref = { current: null as HTMLDivElement | null };
     const node = document.createElement("div");
     const merged = useMergeRefs(ref);
     merged(node);
@@ -72,8 +72,8 @@ describe("useMergeRefs() — React 18 path", () => {
   });
 
   it("assigns the node to multiple object refs", () => {
-    const ref1 = { current: null };
-    const ref2 = { current: null };
+    const ref1 = { current: null as HTMLDivElement | null };
+    const ref2 = { current: null as HTMLDivElement | null };
     const node = document.createElement("div");
     const merged = useMergeRefs(ref1, ref2);
     merged(node);
@@ -92,7 +92,7 @@ describe("useMergeRefs() — React 18 path", () => {
   });
 
   it("handles a mix of object and function refs", () => {
-    const objRef = { current: null };
+    const objRef = { current: null as HTMLDivElement | null };
     const fnRef = jest.fn();
     const node = document.createElement("div");
     const merged = useMergeRefs(objRef, fnRef);
@@ -103,7 +103,7 @@ describe("useMergeRefs() — React 18 path", () => {
   });
 
   it("filters out null refs", () => {
-    const ref = { current: null };
+    const ref = { current: null as HTMLDivElement | null };
     const node = document.createElement("div");
     const merged = useMergeRefs(null, ref);
     merged(node);
@@ -112,7 +112,7 @@ describe("useMergeRefs() — React 18 path", () => {
   });
 
   it("filters out undefined refs", () => {
-    const ref = { current: null };
+    const ref = { current: null as HTMLDivElement | null };
     const node = document.createElement("div");
     const merged = useMergeRefs(undefined, ref);
     merged(node);
@@ -128,7 +128,7 @@ describe("useMergeRefs() — React 18 path", () => {
 
 
 describe("useMergeRefs() — React 19 path", () => {
-  const v19 = { useMergeRefs: null };
+  const v19 = { useMergeRefs: null as typeof useMergeRefs | null };
 
   beforeAll(() => {
     jest.isolateModules(() => {
@@ -140,17 +140,17 @@ describe("useMergeRefs() — React 19 path", () => {
   });
 
   it("callback returns a cleanup function", () => {
-    const ref = { current: null };
-    const merged = v19.useMergeRefs(ref);
+    const ref = { current: null as HTMLDivElement | null };
+    const merged = v19.useMergeRefs!(ref);
     const cleanup = merged(document.createElement("div"));
 
     expect(typeof cleanup).toBe("function");
   });
 
   it("cleanup nullifies object refs", () => {
-    const ref = { current: null };
-    const merged = v19.useMergeRefs(ref);
-    const cleanup = merged(document.createElement("div"));
+    const ref = { current: null as HTMLDivElement | null };
+    const merged = v19.useMergeRefs!(ref);
+    const cleanup = merged(document.createElement("div")) as unknown as () => void;
 
     expect(ref.current).not.toBeNull();
     cleanup();
@@ -160,8 +160,8 @@ describe("useMergeRefs() — React 19 path", () => {
   it("cleanup calls the cleanup returned by a function ref", () => {
     const fnCleanup = jest.fn();
     const fnRef = jest.fn(() => fnCleanup);
-    const merged = v19.useMergeRefs(fnRef);
-    const cleanup = merged(document.createElement("div"));
+    const merged = v19.useMergeRefs!(fnRef);
+    const cleanup = merged(document.createElement("div")) as unknown as () => void;
     cleanup();
 
     expect(fnCleanup).toHaveBeenCalled();
@@ -169,8 +169,8 @@ describe("useMergeRefs() — React 19 path", () => {
 
   it("cleanup falls back to nullifying a function ref when it returns no cleanup", () => {
     const fnRef = jest.fn();
-    const merged = v19.useMergeRefs(fnRef);
-    const cleanup = merged(document.createElement("div"));
+    const merged = v19.useMergeRefs!(fnRef);
+    const cleanup = merged(document.createElement("div")) as unknown as () => void;
     cleanup();
 
     expect(fnRef).toHaveBeenCalledWith(null);
