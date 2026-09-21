@@ -7,7 +7,7 @@ import { Text } from "./Text";
 
 describe("<Text />", () => {
   function setup() {
-    const scope = { props: { children: "Hello world" } };
+    const scope: any = { props: { children: "Hello world" } };
 
     scope.run = () => {
       scope.wrapper = render(<Text {...scope.props} />);
@@ -183,7 +183,7 @@ describe("<Text />", () => {
     render(<Text ref={ref}>Ref text</Text>);
 
     expect(ref.current).not.toBeNull();
-    expect(ref.current.tagName).toBe("SPAN");
+    expect((ref.current as HTMLElement).tagName).toBe("SPAN");
 
     cleanup();
   });

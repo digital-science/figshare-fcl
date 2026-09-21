@@ -3,12 +3,13 @@ import { render, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { IconSlot } from "./IconSlot";
+import { TestScope } from "../../../../types/testing";
 
 
 describe("IconSlot", () => {
   function setup() {
     const user = userEvent.setup();
-    const scope = {
+    const scope: TestScope = {
       user,
       props: {},
     };

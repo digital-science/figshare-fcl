@@ -8,10 +8,10 @@ import { Tooltip, TooltipContent, TooltipTrigger, TooltipClose } from "./Tooltip
 describe("Tooltip", () => {
   function setup(options = {}) {
     const user = userEvent.setup();
-    const scope = {
+    const scope: any = {
       user,
       props: {
-        placement: "top",
+        placement: "top" as const,
         ...options,
       },
     };
@@ -160,7 +160,7 @@ describe("TooltipClose", () => {
   function setup(options = {}) {
     const user = userEvent.setup();
     const onClickMock = jest.fn();
-    const scope = {
+    const scope: any = {
       user,
       props: {
         interactive: true,

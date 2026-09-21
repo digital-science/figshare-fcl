@@ -14,6 +14,7 @@ import type {
   ButtonIconGroupProps,
   ButtonLoadingProps,
 } from "./types";
+import { Link, isExternalLink } from "./anchor";
 
 import "./Button.module.css";
 
@@ -47,11 +48,17 @@ export const Button = React.forwardRef(({
   const className = classnames("button", providedClassName);
   const { Tag, propsByTag } = useMemo(() => {
     if (props.href) {
-      return { Tag: "a" as const, propsByTag: { role: "button", "data-scope": "link" } };
+      let LinkTag = Link.Internal;
+
+      if (isExternalLink(props)) {
+        LinkTag = Link.External;
+      }
+
+      return { Tag: LinkTag, propsByTag: { role: "button", "data-scope": "link" } };
     }
 
     return { Tag: "button" as const, propsByTag: { type: "button" as const } };
-  }, [props.href]);
+  }, [props.href, props.external]);
   let content: React.ReactNode = children;
 
   if (loading) {
@@ -66,7 +73,6 @@ export const Button = React.forwardRef(({
     const { showTooltipClose, ...tooltipOptionsRest } = tooltipOptions;
 
     return (
-      // eslint-disable-next-line jsx-a11y/aria-role
       <Tooltip role="label" {...tooltipOptionsRest}>
         <TooltipTrigger asChild={true}>
           <Tag
@@ -86,7 +92,6 @@ export const Button = React.forwardRef(({
             {content}
           </Tag>
         </TooltipTrigger>
-        {/* @ts-expect-error TooltipContent props are not fully typed */}
         <TooltipContent data-font-style="bold" data-layout="flex" data-span="m" {...tooltipContentProps}>
           {tooltip}
           {showTooltipClose && <Tooltip.Close />}
@@ -115,6 +120,8 @@ export const Button = React.forwardRef(({
   );
 }) as ButtonComponent;
 
+Button.displayName = "Button";
+
 export function ButtonLabel({ children, wrap = false, hidden = false, ...props }: ButtonLabelProps) {
   const ref = React.useRef<HTMLSpanElement>(null);
 
@@ -130,6 +137,7 @@ export function ButtonLabel({ children, wrap = false, hidden = false, ...props }
     </span>
   );
 }
+ButtonLabel.displayName = "ButtonLabel";
 
 export function nodeIsButtonWithoutLabel(element: Element | null | undefined) {
   return (["BUTTON", "A"].includes(element?.tagName ?? "") && !element?.hasAttribute?.("aria-label"));
@@ -142,12 +150,14 @@ export function ButtonIcon({ children, asChild = false, blend = false, size = "m
       "aria-hidden": true,
       "data-blend": blend,
       "data-size": size,
-      ...children.props,
+      ...children.props as React.ComponentProps<any>,
     });
   }
 
   return (<span aria-hidden="true" data-part="button-icon-slot" data-blend={blend} data-size={size} {...props}>{children}</span>);
 }
+
+ButtonIcon.displayName = "ButtonIcon";
 
 export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ...props }: ButtonInteractiveIconProps) {
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
@@ -176,6 +186,8 @@ export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, .
   return (<ButtonIcon {...interactionProps} {...props}>{children}</ButtonIcon>);
 }
 
+ButtonInteractiveIcon.displayName = "ButtonInteractiveIcon";
+
 // A grouping container for multiple icons inside a button
 // provides some styling and separation from the button label
 export function ButtonIconGroup({ children, interactive = false, ...props }: ButtonIconGroupProps) {
@@ -195,6 +207,8 @@ export function ButtonIconGroup({ children, interactive = false, ...props }: But
   );
 }
 
+ButtonIconGroup.displayName = "ButtonIconGroup";
+
 export function ButtonLoading({ text, spinner }: ButtonLoadingProps) {
   // eslint-disable-next-line no-nested-ternary
   const spinnerPosition = spinner ? (spinner === true ? "left" : spinner) : undefined;
@@ -207,6 +221,8 @@ export function ButtonLoading({ text, spinner }: ButtonLoadingProps) {
     </>
   );
 }
+
+ButtonLoading.displayName = "ButtonLoading";
 
 Button.Icon = ButtonIcon;
 Button.InteractiveIcon = ButtonInteractiveIcon;

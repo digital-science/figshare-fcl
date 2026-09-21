@@ -1,11 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import styles from "./Tag.module.css";
 
+type TagColors = "neutral" | "blue" | "green" | "green-filled" | "orange" | "red" | "purple";
 
-export function Tag({ children, pill, color, className }) {
+type TagProps = {
+  children: React.ReactNode;
+  pill?: boolean;
+  color?: TagColors;
+  className?: string;
+};
+
+type TagComponent = React.FC<TagProps> & { colors: typeof TAG_COLORS };
+
+export const Tag: TagComponent = ({ children, pill, color, className }: TagProps) => {
   return (
     <div
       data-part="tag"
@@ -17,7 +26,9 @@ export function Tag({ children, pill, color, className }) {
       </span>
     </div>
   );
-}
+};
+
+Tag.displayName = "Tag";
 
 const TAG_COLORS = {
   neutral: "neutral",
@@ -27,19 +38,6 @@ const TAG_COLORS = {
   orange: "orange",
   red: "red",
   purple: "purple",
-};
-
-Tag.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(Object.values(TAG_COLORS)),
-  pill: PropTypes.bool,
-};
-
-Tag.defaultProps = {
-  className: undefined,
-  color: TAG_COLORS.neutral,
-  pill: false,
 };
 
 Tag.colors = TAG_COLORS;
