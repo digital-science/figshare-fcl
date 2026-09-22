@@ -1,6 +1,19 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
 
+const containers: HTMLDivElement[] = [];
+
+afterEach(() => {
+  containers.forEach((container) => {
+    act(() => {
+      require("react-dom").unmountComponentAtNode(container);
+    });
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+  });
+  containers.length = 0;
+});
 
 function renderHook<TProps>(hook: (props: TProps) => any, options: { initialProps?: TProps } = {}) {
   const result = { current: null };
@@ -16,6 +29,7 @@ function renderHook<TProps>(hook: (props: TProps) => any, options: { initialProp
 
   const container = document.createElement("div");
   document.body.appendChild(container);
+  containers.push(container);
 
   act(() => {
     const instance = require("react-dom").render(
@@ -40,7 +54,13 @@ function renderHook<TProps>(hook: (props: TProps) => any, options: { initialProp
     act(() => {
       require("react-dom").unmountComponentAtNode(container);
     });
-    document.body.removeChild(container);
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+    const index = containers.indexOf(container);
+    if (index > -1) {
+      containers.splice(index, 1);
+    }
   };
 
   return { result, rerender, unmount };

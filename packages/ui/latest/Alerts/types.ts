@@ -1,4 +1,4 @@
-
+import type React from "react";
 
 export type AlertType = "info" | "warning" | "error" | "success" | "notice";
 export type StackType = "single" | "list" | "stack";

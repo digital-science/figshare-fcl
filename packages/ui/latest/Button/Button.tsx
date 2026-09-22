@@ -46,6 +46,7 @@ export const Button = React.forwardRef(({
   }, [disabled, onClick]);
 
   const className = classnames("button", providedClassName);
+  const { external: _external, ...domProps } = props;
   const { Tag, propsByTag } = useMemo(() => {
     if (props.href) {
       let LinkTag = Link.Internal;
@@ -87,7 +88,7 @@ export const Button = React.forwardRef(({
             data-part="button"
             onClick={onClickHandler}
             {...propsByTag}
-            {...props}
+            {...domProps}
           >
             {content}
           </Tag>
@@ -113,7 +114,7 @@ export const Button = React.forwardRef(({
       data-part="button"
       onClick={onClickHandler}
       {...propsByTag}
-      {...props}
+      {...domProps}
     >
       {content}
     </Tag>
