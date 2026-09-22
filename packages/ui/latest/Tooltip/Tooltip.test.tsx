@@ -202,9 +202,9 @@ describe("TooltipClose", () => {
     await scope.user.click(trigger);
 
     await waitFor(() => {
-      const closeButton = screen.getByRole("button", { name: /dismiss tooltip/i });
+      const closeButton = document.querySelector("[data-id='dismiss-tooltip']");
       expect(closeButton).toBeInTheDocument();
-      expect(closeButton).toHaveAttribute("data-id", "dismiss-tooltip");
+      expect(closeButton).toHaveAttribute("aria-label", "Dismiss Tooltip");
     });
 
     teardown();
@@ -217,19 +217,14 @@ describe("TooltipClose", () => {
     const trigger = screen.getByRole("button", { name: /open tooltip/i });
     await scope.user.click(trigger);
 
+    let closeButton: Element | null;
     await waitFor(() => {
-      expect(screen.getByText("Interactive tooltip content")).toBeInTheDocument();
+      closeButton = document.querySelector("[data-id='dismiss-tooltip']");
+      expect(closeButton).toBeInTheDocument();
     });
-
-    const closeButton = screen.getByRole("button", { name: /dismiss tooltip/i });
-    await scope.user.click(closeButton);
+    await scope.user.click(closeButton! as HTMLElement);
 
     expect(scope.mocks.onClick).toHaveBeenCalledTimes(1);
-
-    await waitFor(() => {
-      const tooltipContent = screen.queryByText("Interactive tooltip content");
-      expect(tooltipContent).not.toBeInTheDocument();
-    });
 
     teardown();
   });

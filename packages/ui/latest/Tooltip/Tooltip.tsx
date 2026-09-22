@@ -117,7 +117,7 @@ export function TooltipClose({ onClick, ...props }: TooltipCloseProps) {
   }, [onClick, setOpen]);
 
   return (
-    <Button type="button" data-id="dismiss-tooltip" aria-label="Dismiss Tooltip" kind="default" em="medium" onClick={onClose} {...props}>
+    <Button type="button" data-id="dismiss-tooltip" aria-label="Dismiss Tooltip" kind="tertiary" em="low" onClick={onClose} {...props}>
       <Button.Icon asChild={true}><CloseIcon /></Button.Icon>
     </Button>
   );

@@ -19,6 +19,17 @@ function mapLinkProps({ href, external, ...rest }: any) {
 // and optionally externally by the Button component
 // when an anchor is needed.
 export function bindLinkComponent({ component, mapProps = mapLinkProps, bindExternal = false, }: { component: React.ElementType; mapProps?: (props: React.ComponentProps<any>) => React.ComponentProps<ButtonProps | any>; bindExternal?: boolean }) {
+  // When binding a native element (e.g. "a"), reset directly without prop mapping
+  if (typeof component === "string") {
+    Link.Internal = component;
+
+    if (bindExternal) {
+      Link.External = component;
+    }
+
+    return component;
+  }
+
   const LinkComponent = component;
 
   const BoundLinkComponent = React.forwardRef((props, ref) => {
@@ -45,5 +56,5 @@ export function isExternalLink(props: any) {
     return true;
   }
 
-  return typeof props.href === "string" && /^(https|http|ftp)?:\/\//.test(props.href);
+  return typeof props.href === "string" && /^(?:https?:\/\/|ftp:\/\/|mailto:|tel:|\/\/)/i.test(props.href);
 }
