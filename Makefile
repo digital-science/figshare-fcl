@@ -1,6 +1,6 @@
 DOCKER_EXE:=docker
 DOCKER_BUILD_EXTRA_PARAMS:=
-DOCKER_BUILD_PARAMS:=--secret id=npmrc,src=${HOME}/.npmrc --ssh default ${DOCKER_BUILD_EXTRA_PARAMS}
+DOCKER_BUILD_PARAMS:=--secret id=npmrc,src=${HOME}/.npmrc ${DOCKER_BUILD_EXTRA_PARAMS}
 TESTS_CONTAINER_NAME:=tests.fcl
 CIMAGE_DEPLOYMENT_TAG:=figshare/fcl:deployment
 CIMAGE_LATEST_TAG:=figshare/fcl:latest
