@@ -12,9 +12,7 @@ ARG CI=true
 # Base
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y \
-    curl git make openssh-client
-RUN mkdir -p -m 0600 /root/.ssh
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+    curl git make
 
 RUN apt-get install --no-install-recommends -y \
     gnupg ca-certificates \
@@ -29,10 +27,13 @@ COPY . $projdir
 
 WORKDIR $projdir
 
-RUN --mount=type=ssh --mount=type=secret,id=npmrc,dst=/root/.npmrc \
+# Only the private npm registry (@digital-science on npm.pkg.github.com,
+# via .npmrc) is needed - no git+ssh private deps here, so no SSH-agent
+# forwarding to keep supporting once Jenkins no longer builds this repo.
+RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     make install
 
-RUN --mount=type=ssh --mount=type=secret,id=npmrc,dst=/root/.npmrc \
+RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     make build
 
 FROM ${registry}/figshare/nginx:1.18 AS deployment

@@ -1,0 +1,65 @@
+name: PR Tests - fcl
+
+# Replaces the Jenkins "PR Tests - fcl" job. GitHub Actions' native
+# pull_request trigger replaces Jenkins's Generic Webhook Trigger setup
+# entirely - no webhook config needed, and PR status checks are posted
+# automatically by GHA itself (Jenkins needed an explicit pipeline step
+# for this).
+#
+# `make ci-tests`/`make ci-analysis` are both no-ops in this repo's
+# Makefile today (no Sonar wiring, no test suite hooked in) - kept as-is
+# rather than inventing new CI behavior beyond what Jenkins already ran.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  AWS_REGION: eu-west-1
+  ECR_REGISTRY: "942286566325.dkr.ecr.eu-west-1.amazonaws.com"
+
+permissions:
+  contents: read # declaring any permissions: block drops the implicit
+                 # default (which includes this) - actions/checkout fails
+                 # with a "repository not found"-shaped error without it
+  id-token: write # needed for AWS OIDC
+
+jobs:
+  pr-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fcl
+        uses: actions/checkout@v4
+
+      - name: Get GitHub App installation token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.CI_GH_APP_ID }}
+          private-key: ${{ secrets.CI_GH_APP_PRIVATE_KEY }}
+
+      - name: Write .npmrc for private npm registry access
+        run: |
+          cat > "${HOME}/.npmrc" <<EOF
+          @digital-science:registry=https://npm.pkg.github.com/
+          //npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token }}
+          EOF
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ECR_PUSH_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build images (deployment + latest/dev stages)
+        run: |
+          make container-images \
+            DOCKER_BUILD_EXTRA_PARAMS="--build-arg registry=${ECR_REGISTRY} --pull"
+
+      - name: Run tests (make ci-tests)
+        run: make ci-tests
+
+      - name: Static analysis (make ci-analysis)
+        run: make ci-analysis

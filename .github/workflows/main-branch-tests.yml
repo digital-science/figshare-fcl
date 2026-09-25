@@ -1,0 +1,67 @@
+name: Main Branch Tests - fcl
+
+# Replaces the Jenkins "Main Branch Tests - fcl" job. Runs periodically
+# against main (fcl's default branch), not reacting to pushes - this
+# exists to catch changes in external dependencies that could break
+# things even with no code change on this side, so a push trigger
+# wouldn't serve the same purpose.
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Monday 03:00 UTC, matching Jenkins's @weekly cadence
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch/ref to test"
+        required: false
+        default: "main"
+
+env:
+  AWS_REGION: eu-west-1
+  ECR_REGISTRY: "942286566325.dkr.ecr.eu-west-1.amazonaws.com"
+
+permissions:
+  contents: read
+  id-token: write # needed for AWS OIDC
+
+jobs:
+  main-branch-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fcl
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || 'main' }}
+
+      - name: Get GitHub App installation token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.CI_GH_APP_ID }}
+          private-key: ${{ secrets.CI_GH_APP_PRIVATE_KEY }}
+
+      - name: Write .npmrc for private npm registry access
+        run: |
+          cat > "${HOME}/.npmrc" <<EOF
+          @digital-science:registry=https://npm.pkg.github.com/
+          //npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token }}
+          EOF
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ECR_PUSH_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build images (deployment + latest/dev stages)
+        run: |
+          make container-images \
+            DOCKER_BUILD_EXTRA_PARAMS="--build-arg registry=${ECR_REGISTRY} --pull"
+
+      - name: Run tests (make ci-tests)
+        run: make ci-tests
+
+      - name: Static analysis (make ci-analysis)
+        run: make ci-analysis
