@@ -2,8 +2,9 @@ DOCKER_EXE:=docker
 DOCKER_BUILD_EXTRA_PARAMS:=
 DOCKER_BUILD_PARAMS:=--secret id=npmrc,src=${HOME}/.npmrc ${DOCKER_BUILD_EXTRA_PARAMS}
 TESTS_CONTAINER_NAME:=tests.fcl
-CIMAGE_DEPLOYMENT_TAG:=figshare/fcl:deployment
-CIMAGE_LATEST_TAG:=figshare/fcl:latest
+# Optional suffix for the built image tag, e.g. `make container-images IMAGE_TAG_SUFFIX=-dev`
+IMAGE_TAG_SUFFIX:=
+CIMAGE_LATEST_TAG:=figshare/fcl:latest${IMAGE_TAG_SUFFIX}
 CONFIGS_DIR:=./auto/configs
 DOCKER_TESTS_PARAMS:=
 
@@ -22,9 +23,13 @@ build:
 .PHONY: build
 
 
+server:  ## Run the storybook dev server - what this image actually deploys, see Dockerfile comment
+	npm run storybook
+.PHONY: server
+
+
 container-images:
-	${DOCKER_EXE} build ${DOCKER_BUILD_PARAMS} -t ${CIMAGE_DEPLOYMENT_TAG} --target deployment .
-	${DOCKER_EXE} build ${DOCKER_BUILD_PARAMS} -t ${CIMAGE_LATEST_TAG} --target development .
+	${DOCKER_EXE} build ${DOCKER_BUILD_PARAMS} -t ${CIMAGE_LATEST_TAG} .
 .PHONY: container-images
 
 

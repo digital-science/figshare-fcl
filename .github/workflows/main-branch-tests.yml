@@ -48,7 +48,7 @@ jobs:
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build images (deployment + latest/dev stages)
+      - name: Build image
         run: |
           make container-images \
             DOCKER_BUILD_EXTRA_PARAMS="--build-arg registry=${ECR_REGISTRY} --pull"

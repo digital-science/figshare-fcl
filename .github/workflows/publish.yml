@@ -8,27 +8,33 @@ name: Publish - fcl
 # This builds and pushes the Storybook documentation site image
 # (figshare/fcl), not the @digital-science/figshare-fcl npm package
 # itself - that's published separately (npm publish, outside Jenkins/
-# GHA CI). No k8s deployment exists for this image on figshare.dev, so
-# this only builds/pushes to dev ECR - no deploy-development job.
+# GHA CI). This wasn't deployed to k8s at all on the old .network K3s
+# setup, even though it should have been - now properly deployed on
+# figshare.dev, managed like every other app.
 on:
   push:
     branches: [main]
   workflow_dispatch: {}
 
 permissions:
-  contents: read # declaring any permissions: block drops the implicit
-                 # default (which includes this) - actions/checkout fails
-                 # with a "repository not found"-shaped error without it
+  contents: write # needed for the deploy job's push to figshare-infrastructure
   id-token: write # needed for AWS OIDC
 
 env:
   AWS_REGION: eu-west-1
   ECR_REGISTRY: "942286566325.dkr.ecr.eu-west-1.amazonaws.com"
   ECR_REPO: figshare/fcl
+  # ranjani/update-dev-configs, not master - that's still the active
+  # branch the figshare.dev environment's ArgoCD tracks today.
+  INFRA_REPO: digital-science/figshare-infrastructure
+  INFRA_BRANCH: ranjani/update-dev-configs
+  INFRA_PATCH_FILE: manifests/apps/fcl/overlays/development/patch-deployment.yaml
 
 jobs:
   build-test-push:
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.tag.outputs.image_tag }}
     steps:
       - name: Checkout fcl
         uses: actions/checkout@v4
@@ -55,7 +61,7 @@ jobs:
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build images (deployment + latest/dev stages)
+      - name: Build image
         run: |
           make container-images \
             DOCKER_BUILD_EXTRA_PARAMS="--build-arg registry=${ECR_REGISTRY} --pull"
@@ -69,3 +75,37 @@ jobs:
           docker tag figshare/fcl:latest "${{ steps.tag.outputs.image_tag }}"
           docker push "${ECR_REGISTRY}/${ECR_REPO}:latest"
           docker push "${{ steps.tag.outputs.image_tag }}"
+
+  deploy-development:
+    needs: build-test-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get GitHub App installation token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.FIGSHARE_CI_GH_APP_ID }}
+          private-key: ${{ secrets.FIGSHARE_CI_GH_APP_PRIVATE_KEY }}
+          repositories: figshare-infrastructure
+
+      - name: Checkout figshare-infrastructure
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.INFRA_REPO }}
+          ref: ${{ env.INFRA_BRANCH }}
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Bump image tag
+        run: |
+          # yq (mikefarah/yq) ships preinstalled on GitHub-hosted ubuntu-latest
+          # runners - same tool the Dagger deploy-development function uses.
+          yq -i '.spec.template.spec.containers[0].image = "${{ needs.build-test-push.outputs.image_tag }}"' "${INFRA_PATCH_FILE}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${INFRA_PATCH_FILE}"
+          git commit -m "Update service ${{ needs.build-test-push.outputs.image_tag }}"
+          git pull --rebase origin "${INFRA_BRANCH}"
+          git push origin "${INFRA_BRANCH}"
