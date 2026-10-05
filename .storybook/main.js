@@ -14,4 +14,10 @@ export default {
     "@storybook/addon-a11y",
   ],
   staticDirs: ["./"],
+  // Storybook's dev server rejects requests whose Host header isn't in
+  // core.allowedHosts (DNS-rebinding protection) - needed since this is
+  // deployed behind fcl.figshare.dev, not accessed as localhost.
+  core: {
+    allowedHosts: [".figshare.dev"],
+  },
 };
