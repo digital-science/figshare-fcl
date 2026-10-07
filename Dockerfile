@@ -34,14 +34,6 @@ RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     make install
 
 # No production build/nginx stage - this is a dev-environment documentation
-# site only, not a performance-critical production asset. Running the
-# Storybook dev server directly sidesteps Storybook 10.5/Vite 8's new
-# Rolldown/Oxc production bundler entirely, which is far stricter about
-# JSX-in-.js files (see packages/ui/icons/spinner/spinner.js) than the
-# esbuild-based dev-server path every frontend dev already uses locally -
-# chasing that through increasingly fragile, still-shifting Rolldown config
-# (hit a real regression testing an esbuild loader override; even the
-# config itself is already deprecated within this same Vite 8 release) was
-# a worse trade than just running the thing everyone already knows works.
+# site only, not a performance-critical production asset.
 EXPOSE 9001
 CMD ["make", "server"]
