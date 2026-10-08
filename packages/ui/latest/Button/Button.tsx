@@ -16,7 +16,7 @@ import type {
 } from "./types";
 import { Link, isExternalLink } from "./anchor";
 
-import "./Button.module.css";
+import "./Button.css";
 
 
 export const Button = React.forwardRef(({

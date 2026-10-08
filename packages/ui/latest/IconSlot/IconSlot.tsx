@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import "./IconSlot.module.css";
+import "./IconSlot.css";
 
 
 type IconSlotProps = {
