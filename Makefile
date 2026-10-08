@@ -23,7 +23,7 @@ build:
 .PHONY: build
 
 
-server:  ## Run the storybook dev server - what this image actually deploys, see Dockerfile comment
+server:  ## Run the storybook dev server - for local development only, not what the deployed image runs (that's nginx serving `make build`'s static output, see Dockerfile)
 	npm run storybook
 .PHONY: server
 
