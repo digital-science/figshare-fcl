@@ -33,7 +33,27 @@ WORKDIR $projdir
 RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     make install
 
-# No production build/nginx stage - this is a dev-environment documentation
-# site only, not a performance-critical production asset.
-EXPOSE 9001
-CMD ["make", "server"]
+RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
+    make build
+
+FROM ${registry}/figshare/nginx:1.18 AS deployment
+
+COPY --from=development /app/build /app
+
+RUN rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+RUN echo "" > /etc/nginx/modules-enabled/modules.conf
+RUN cat <<EOF > /etc/nginx/sites-enabled/default.conf
+server {
+    listen 80 default_server;
+    server_name _;
+
+    error_log /dev/stdout info;
+
+    location / {
+        root /app;
+        index index.html;
+    }
+}
+EOF
+
+RUN nginx -t
