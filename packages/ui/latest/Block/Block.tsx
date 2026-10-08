@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "classnames";
 
-import "./Block.module.css";
+import "./Block.css";
 
 import { useTextDirection } from "../../hooks/useTextDirection";
 import type { BlockProps } from "./types";

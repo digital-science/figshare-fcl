@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import LoaderSvg from "@digital-science/figshare-fcl/icons/react/Loader";
 
-import "./SpinnerIcon.module.css";
+import "./SpinnerIcon.css";
 
 
 type SpinnerIconSize = "full" | "small" | "medium" | "large";

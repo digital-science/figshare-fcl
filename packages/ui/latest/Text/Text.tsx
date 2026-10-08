@@ -6,7 +6,7 @@ import { useTextDirection } from "../../hooks/useTextDirection";
 
 import type { TextProps } from "./types";
 
-import "./Text.module.css";
+import "./Text.css";
 
 
 export const Text = React.forwardRef(({
