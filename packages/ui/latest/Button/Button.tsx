@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import LoaderSvg from "@digital-science/figshare-fcl/icons/react/Loader";
+import FigshareLogo from "@digital-science/figshare-fcl/icons/figshare/logo";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip/Tooltip";
 
@@ -210,15 +211,20 @@ export function ButtonIconGroup({ children, interactive = false, ...props }: But
 
 ButtonIconGroup.displayName = "ButtonIconGroup";
 
-export function ButtonLoading({ text, spinner }: ButtonLoadingProps) {
+export function ButtonLoading({ text, spinner, logo }: ButtonLoadingProps) {
   // eslint-disable-next-line no-nested-ternary
+  const hasLogo = Boolean(logo);
+  const hasSpinner = !Boolean(logo);
   const spinnerPosition = spinner ? (spinner === true ? "left" : spinner) : undefined;
+  const logoPosition = logo ? (logo === true ? "left" : logo) : undefined;
 
   return (
     <>
-      {spinnerPosition === "left" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
+      {hasLogo && logoPosition === "left" && (<ButtonIcon asChild={false}><FigshareLogo grayscale={true} data-part="button-logo" width="inherit" height="inherit"/></ButtonIcon>)}
+      {hasSpinner && spinnerPosition === "left" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
       {text && (<ButtonLabel>{text}</ButtonLabel>)}
-      {spinnerPosition === "right" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
+      {hasLogo && logoPosition === "right" && (<ButtonIcon asChild={false}><FigshareLogo  grayscale={true} data-part="button-logo" width="inherit" height="inherit"/></ButtonIcon>)}
+      {hasSpinner && spinnerPosition === "right" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
     </>
   );
 }

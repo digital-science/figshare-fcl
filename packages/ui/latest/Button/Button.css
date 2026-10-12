@@ -730,12 +730,15 @@ span[data-part="button-icon-slot"] {
   }
 }
 
-span[data-part="button-icon-slot"] > * {
+span[data-part="button-icon-slot"] > svg,
+span[data-part="button-icon-slot"] > span, 
+span[data-part="button-icon-slot"] > div, 
+span[data-part="button-icon-slot"] > img {
   position: absolute;
   top: 50%;
   left: 50%;
 
-  width: auto;
+  width: inherit;
   height: auto;
 
   transform: translate(-50%, -50%);
@@ -762,6 +765,17 @@ span[data-part="button-icon-slot"] > * {
 
   width: auto;
   height: auto;
+
+  animation: spinnerSpin 2s linear infinite;
+}
+
+*[data-part="button-logo"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: inherit !important;
+  height: inherit !important;
 
   animation: spinnerSpin 2s linear infinite;
 }

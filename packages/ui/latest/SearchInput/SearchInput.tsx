@@ -25,8 +25,9 @@ type SearchInputProps = {
   defaultValue?: string;
   onChange?: (event: PacketOrEventLikeObject) => void;
   onSubmit?: (event: PacketOrEventLikeObject) => void;
-  [key: string]: unknown;
-};
+  onClear?: (event: PacketOrEventLikeObject) => void;
+  kind?: "default" | "underline";
+} & Record<string, unknown>;
 
 /*
   A SearchInput implementation that does not rely on form element, which means it can be used independently
@@ -34,94 +35,97 @@ type SearchInputProps = {
   It also supports being a controlled or uncontrolled component, depending on whether the value and setValue props are provided.
   And has better behavior for submission and clearing the input, as well as accessibility improvements.
  */
-export function SearchInput({ id, value: providedValue, setValue: providedSetValue, defaultValue = "", onChange, onSubmit, ...rest }: SearchInputProps) {
-  const [value, setValue] = useControllableState({ value: providedValue, setValue: providedSetValue, defaultValue });
-  const generatedId = useUniqueId();
-  const inputRef = React.useRef<any>(null);
-  const inputId = id || generatedId;
-  const { name: fieldName = inputId, onKeyDown } = rest as any;
+export const SearchInput = React.forwardRef<HTMLDivElement, SearchInputProps>(
+  ({ id, value: providedValue, setValue: providedSetValue, defaultValue = "", onChange, onSubmit, onClear, kind, ...rest }, ref) => {
+    const [value, setValue] = useControllableState({ value: providedValue, setValue: providedSetValue, defaultValue });
+    const generatedId = useUniqueId();
+    const inputRef = React.useRef<any>(null);
+    const inputId = id || generatedId;
+    const { name: fieldName = inputId, onKeyDown } = rest as any;
 
-  const onChangeHandler = React.useCallback((event: any) => {
-    setValue(event.target.value);
-    onChange?.(asPacketOrEventLikeObject(event.target.value, fieldName));
-  }, [onChange, fieldName]);
+    const onChangeHandler = React.useCallback((event: any) => {
+      setValue(event.target.value);
+      onChange?.(asPacketOrEventLikeObject(event.target.value, fieldName));
+    }, [onChange, fieldName]);
 
-  const onKeyDownHandler = React.useCallback((event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
+    const onKeyDownHandler = React.useCallback((event: React.KeyboardEvent) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        onSubmit?.(asPacketOrEventLikeObject(value, fieldName));
+      }
+      onKeyDown?.(event);
+    }, [onSubmit, onKeyDown, fieldName, value]);
+
+    const onClearHandler = React.useCallback(() => {
+      setValue("");
+      const clearEvent = asPacketOrEventLikeObject("", fieldName);
+      onClear?.(clearEvent);
+      onChange?.(clearEvent);
+      onSubmit?.(clearEvent);
+
+      // After clearing the input, we want to focus it so that the user can immediately start typing a new search query if they wish
+      inputRef?.current?.focus?.();
+    }, [onChange, onSubmit, onClear, fieldName]);
+
+    const onSubmitHandler = React.useCallback(() => {
       onSubmit?.(asPacketOrEventLikeObject(value, fieldName));
-    }
-    onKeyDown?.(event);
-  }, [onSubmit, onKeyDown, fieldName, value]);
+    }, [onSubmit, value, fieldName]);
 
-  const onClearHandler = React.useCallback(() => {
-    setValue("");
-    const clearEvent = asPacketOrEventLikeObject("", fieldName);
-    onChange?.(clearEvent);
-    onSubmit?.(clearEvent);
-
-    // After clearing the input, we want to focus it so that the user can immediately start typing a new search query if they wish
-    inputRef?.current?.focus?.();
-  }, [onChange, onSubmit, fieldName]);
-
-  const onSubmitHandler = React.useCallback(() => {
-    onSubmit?.(asPacketOrEventLikeObject(value, fieldName));
-  }, [onSubmit, value, fieldName]);
-
-  return (
-    <div role="search" className={styles.searchInput} data-scope="search-input" data-part="search-input-wrap" data-clearable={!!value}>
-      <label htmlFor={inputId} data-visually-hidden="true">
+    return (
+      <div ref={ref} role="search" className={styles.searchInput} data-scope="search-input" data-part="search-input-wrap" data-kind={kind} data-clearable={!!value}>
+        <label htmlFor={inputId} data-visually-hidden="true">
         Search
-      </label>
-      <TextInput
-        ref={inputRef}
-        id={inputId}
-        data-part="search-input-field"
-        placeholder="Search"
-        value={value}
-        aria-label="Search"
-        {...rest}
-        onChange={onChangeHandler}
-        onKeyDown={onKeyDownHandler}
-      />
-      <div className={styles.searchInputButtons} data-part="search-input-buttons">
-        {value && (
+        </label>
+        <TextInput
+          ref={inputRef}
+          id={inputId}
+          data-part="search-input-field"
+          placeholder="Search"
+          value={value}
+          aria-label="Search"
+          {...rest}
+          theme={kind}
+          onChange={onChangeHandler}
+          onKeyDown={onKeyDownHandler}
+        />
+        <div className={styles.searchInputButtons} data-part="search-input-buttons">
+          {value && (
+            <Button
+              id={`clear-${inputId}`}
+              type="button"
+              span="icon"
+              data-part="search-input-clear-button"
+              kind="tertiary"
+              em="low"
+              aria-label="Clear search"
+              tabIndex={-1}
+              onClick={onClearHandler}
+            >
+              <Button.Label hidden={true}>Clear</Button.Label>
+              <Button.Icon>
+                <CloseSvg />
+              </Button.Icon>
+            </Button>
+          )}
           <Button
-            id={`clear-${inputId}`}
+            id={`submit-${inputId}`}
             type="button"
-            span="icon"
-            data-part="search-input-clear-button"
+            data-part="search-input-submit-button"
             kind="tertiary"
             em="low"
-            aria-label="Clear search"
+            span="icon"
             tabIndex={-1}
-            onClick={onClearHandler}
+            onClick={onSubmitHandler}
           >
-            <Button.Label hidden={true}>Clear</Button.Label>
+            <Button.Label hidden={true}>Search</Button.Label>
             <Button.Icon>
-              <CloseSvg />
+              <SearchSvg />
             </Button.Icon>
           </Button>
-        )}
-        <Button
-          id={`submit-${inputId}`}
-          type="button"
-          data-part="search-input-submit-button"
-          kind="tertiary"
-          em="low"
-          span="icon"
-          tabIndex={-1}
-          onClick={onSubmitHandler}
-        >
-          <Button.Label hidden={true}>Search</Button.Label>
-          <Button.Icon>
-            <SearchSvg />
-          </Button.Icon>
-        </Button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  });
 
 SearchInput.propTypes = {
   id: PropTypes.string,
@@ -130,6 +134,8 @@ SearchInput.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  onClear: PropTypes.func,
+  kind: PropTypes.oneOf(["default", "underline"]),
 };
 
 export default SearchInput;

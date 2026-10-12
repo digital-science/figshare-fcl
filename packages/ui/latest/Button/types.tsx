@@ -87,6 +87,7 @@ type SpinnerPosition = true | "left" | "right";
 
 export type ButtonLoadingProps = {
   spinner?: SpinnerPosition;
+  logo?: SpinnerPosition;
   text?: React.ReactNode;
 }
 
