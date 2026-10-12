@@ -1,4 +1,8 @@
-div[data-scope="tooltip"][data-part="content"] {
+.tooltip {
+  /* Module anchor class - ensures this CSS is registered for SSR extraction */
+}
+
+:global(div[data-scope="tooltip"][data-part="content"]) {
   --background-color: #464646;
   --text-color: #fff;
   --icon-color: #fff;
@@ -26,11 +30,11 @@ div[data-scope="tooltip"][data-part="content"] {
   }
 }
 
-div[data-scope="tooltip"][data-part="content"] button[data-id="dismiss-tooltip"] {
+:global(div[data-scope="tooltip"][data-part="content"] button[data-id="dismiss-tooltip"]) {
   --button-color: var(--icon-color);
 }
 
-div[data-scope="tooltip"][data-part="content"][data-theme="warning"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-theme="warning"]) {
   --background-color: #ffffa7;
   --text-color: #252525;
   --icon-color: #a60845;
@@ -40,21 +44,21 @@ div[data-scope="tooltip"][data-part="content"][data-theme="warning"] {
   padding: 18px;
 }
 
-div[data-scope="tooltip"][data-part="content"][data-layout="flex"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-layout="flex"]) {
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 
-div[data-scope="tooltip"][data-part="content"][data-span="full"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-span="full"]) {
   max-width: none;
 }
 
-div[data-scope="tooltip"][data-part="content"][data-span="m"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-span="m"]) {
   max-width: calc(55 * var(--gridSize));
 }
 
-div[data-scope="tooltip"][data-part="content"][data-font-style="normal"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-font-style="normal"]) {
   font-weight: normal;
 
   & p {
@@ -76,11 +80,11 @@ div[data-scope="tooltip"][data-part="content"][data-font-style="normal"] {
   }
 }
 
-div[data-scope="tooltip"][data-part="content"][data-font-style="bold"] {
+:global(div[data-scope="tooltip"][data-part="content"][data-font-style="bold"]) {
   font-weight: 700;
 }
 
-svg[data-scope="tooltip"][data-part="arrow"] {
+:global(svg[data-scope="tooltip"][data-part="arrow"]) {
   color: var(--background-color);
   fill: var(--background-color);
 }

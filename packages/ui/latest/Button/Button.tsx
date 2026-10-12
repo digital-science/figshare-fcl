@@ -17,7 +17,7 @@ import type {
 } from "./types";
 import { Link, isExternalLink } from "./anchor";
 
-import "./Button.css";
+import styles from "./Button.module.css";
 
 
 export const Button = React.forwardRef(({
@@ -46,7 +46,7 @@ export const Button = React.forwardRef(({
     onClick?.(ev);
   }, [disabled, onClick]);
 
-  const className = classnames("button", providedClassName);
+  const className = classnames(styles.button, providedClassName);
   const { external: _external, ...domProps } = props;
   const { Tag, propsByTag } = useMemo(() => {
     if (props.href) {
@@ -220,10 +220,10 @@ export function ButtonLoading({ text, spinner, logo }: ButtonLoadingProps) {
 
   return (
     <>
-      {hasLogo && logoPosition === "left" && (<ButtonIcon asChild={false}><FigshareLogo grayscale={true} data-part="button-logo" width="inherit" height="inherit"/></ButtonIcon>)}
+      {hasLogo && logoPosition === "left" && (<ButtonIcon asChild={false}><FigshareLogo grayscale={true} data-part="button-logo" width="16" height="16"/></ButtonIcon>)}
       {hasSpinner && spinnerPosition === "left" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
       {text && (<ButtonLabel>{text}</ButtonLabel>)}
-      {hasLogo && logoPosition === "right" && (<ButtonIcon asChild={false}><FigshareLogo  grayscale={true} data-part="button-logo" width="inherit" height="inherit"/></ButtonIcon>)}
+      {hasLogo && logoPosition === "right" && (<ButtonIcon asChild={false}><FigshareLogo  grayscale={true} data-part="button-logo" width="16" height="16"/></ButtonIcon>)}
       {hasSpinner && spinnerPosition === "right" && (<ButtonIcon asChild={false}><LoaderSvg data-part="button-spinner" /></ButtonIcon>)}
     </>
   );

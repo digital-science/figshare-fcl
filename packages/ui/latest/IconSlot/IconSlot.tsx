@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import "./IconSlot.css";
+import styles from "./IconSlot.module.css";
 
 
 type IconSlotProps = {
@@ -25,7 +25,7 @@ type IconSlotProps = {
 
 
 export function IconSlot({ icon, kind, children, className: providedClassName, asChild = true, ...props }: IconSlotProps) {
-  const className = classnames("icon-slot", providedClassName);
+  const className = classnames(styles["icon-slot"], providedClassName);
   let node = children;
 
   if (icon) {

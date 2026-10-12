@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import LoaderSvg from "@digital-science/figshare-fcl/icons/react/Loader";
 
-import "./SpinnerIcon.css";
+import styles from "./SpinnerIcon.module.css";
 
 
 type SpinnerIconSize = "full" | "small" | "medium" | "large";
@@ -17,7 +17,7 @@ type SpinnerIconProps = {
 
 
 export function SpinnerIcon({ className: providedClassName, size = "small", blend = false, ...props }: SpinnerIconProps) {
-  const className = classnames("spinner-icon", providedClassName);
+  const className = classnames(styles["spinner-icon"], providedClassName);
 
   return (
     <span
