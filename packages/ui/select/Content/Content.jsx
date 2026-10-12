@@ -106,7 +106,6 @@ export class Content extends Component {
           placeholder={searchPlaceholder}
           value={search}
           onChange={this.onSearch}
-          onClear={this.onSearch}
           onKeyDown={this.onKeyDown}
           onSubmit={this.onSubmit}
         />

@@ -69,6 +69,13 @@
   color: var(--Typography-Tertiary, #525252);
 }
 
+.typography.label {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+}
+
 .typography.label-3 {
   font-size: 14px;
   font-weight: 400;
@@ -110,6 +117,26 @@
 
 .typography.color-currentColor {
   color: currentcolor;
+}
+
+.typography.color-error {
+  color: var(--Typography-Color-Error, #c03830);
+}
+
+.typography.color-warning {
+  color: var(--Typography-Color-Warning, #d66000);
+}
+
+.typography.color-success {
+  color: var(--Typography-Color-Success, #2a6347);
+}
+
+.typography.color-info {
+  color: var(--Typography-Color-Info, #005ebd);
+}
+
+.typography.color-disabled {
+  color: var(--Typography-Disabled, #707070);
 }
 
 .typography.wrap-nowrap {
