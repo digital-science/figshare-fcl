@@ -214,7 +214,7 @@ ButtonIconGroup.displayName = "ButtonIconGroup";
 export function ButtonLoading({ text, spinner, logo }: ButtonLoadingProps) {
   // eslint-disable-next-line no-nested-ternary
   const hasLogo = Boolean(logo);
-  const hasSpinner = !Boolean(logo);
+  const hasSpinner = Boolean(spinner);
   const spinnerPosition = spinner ? (spinner === true ? "left" : spinner) : undefined;
   const logoPosition = logo ? (logo === true ? "left" : logo) : undefined;
 
