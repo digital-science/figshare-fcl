@@ -274,6 +274,23 @@ export const LoadingStates = {
             <Button kind="tertiary" loading={true}><Button.Label>Wait</Button.Label></Button>
           </div>
         </div>
+        <div>
+          <h4>Loading - With Logo</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="primary" loading={<Button.Loading logo={true} text="Loading" />}>
+              <Button.Label>Loading</Button.Label>
+            </Button>
+            <Button kind="primary" loading={<Button.Loading logo="left" text="Uploading" spinner="right" />}>
+              <Button.Label>Uploading</Button.Label>
+            </Button>
+            <Button kind="secondary" loading={<Button.Loading logo="right" text="Processing" />}>
+              <Button.Label>Processing</Button.Label>
+            </Button>
+            <Button kind="tertiary" loading={<Button.Loading logo={true} />}>
+              <Button.Label>Logo only</Button.Label>
+            </Button>
+          </div>
+        </div>
       </div>
     </Cover>
   ),
