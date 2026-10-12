@@ -6,7 +6,7 @@ import { useTextDirection } from "../../hooks/useTextDirection";
 
 import type { TextProps } from "./types";
 
-import "./Text.css";
+import styles from "./Text.module.css";
 
 
 export const Text = React.forwardRef(({
@@ -29,11 +29,11 @@ export const Text = React.forwardRef(({
   return (
     <Tag
       ref={ref}
-      className={clsx("typography", `${kind}`, {
-        [`weight-${weight}`]: weight,
-        [`color-${color}`]: color,
-        [`wrap-${wrap}`]: wrap,
-        [`text-align-${align}`]: align,
+      className={clsx(styles.typography, styles[kind], {
+        [styles[`weight-${weight}`]]: weight,
+        [styles[`color-${color}`]]: color,
+        [styles[`wrap-${wrap}`]]: wrap,
+        [styles[`text-align-${align}`]]: align,
       }, className)}
       {...directionality.props}
       {...rest}

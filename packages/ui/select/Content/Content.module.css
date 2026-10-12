@@ -31,6 +31,8 @@
 
 .searchInput {
   width: 100%;
+
+  border-radius: calc(3 * var(--gridSize));
 }
 
 .content {
@@ -44,7 +46,7 @@
   width: 100%;
 }
 
-.search form {
+.search [data-scope="search-input"] {
   height: calc(6 * var(--gridSize));
 
   border-radius: calc(3 * var(--gridSize));

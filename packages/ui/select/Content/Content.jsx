@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 
 import { Menu } from "../../dropdown";
-import SearchInput from "../../input/search";
+import { SearchInput } from "../../latest/SearchInput";
 import Context from "../context";
 
 import style from "./Content.module.css";
@@ -106,8 +106,9 @@ export class Content extends Component {
           placeholder={searchPlaceholder}
           value={search}
           onChange={this.onSearch}
+          onClear={this.onSearch}
           onKeyDown={this.onKeyDown}
-          onSubmit={(event) => this.onSubmit(event)}
+          onSubmit={this.onSubmit}
         />
       </div>
     );
@@ -130,9 +131,8 @@ export class Content extends Component {
   }
 
   onSubmit = (event) => {
-    event.preventDefault();
-
-    this.context.onSearch(this.state.search);
+    const searchValue = event?.target?.value ?? this.state.search;
+    this.context.onSearch(searchValue);
   }
 
   onScroll = (event) => {

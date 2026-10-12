@@ -32,6 +32,10 @@
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+.overlay.transparent {
+  background-color: transparent;
+}
+
 .overlayBox {
   position: relative;
 

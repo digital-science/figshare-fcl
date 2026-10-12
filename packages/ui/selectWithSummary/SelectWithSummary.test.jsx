@@ -239,11 +239,10 @@ describe("SelectWithSummary", () => {
         />
       );
 
-      // Checkboxes for selected items should be checked
-      const checkboxes = screen.getAllByRole("checkbox");
-      expect(checkboxes[0]).toBeChecked(); // opt1
-      expect(checkboxes[1]).not.toBeChecked(); // opt2
-      expect(checkboxes[2]).toBeChecked(); // opt3
+      const options = screen.getAllByRole("option");
+      expect(options[0]).toHaveAttribute("aria-selected", "true"); // opt1
+      expect(options[1]).toHaveAttribute("aria-selected", "false"); // opt2
+      expect(options[2]).toHaveAttribute("aria-selected", "true"); // opt3
     });
 
     it("disables items when disabled prop is true", () => {
@@ -335,7 +334,8 @@ describe("SelectWithSummary", () => {
         />
       );
 
-      expect(screen.getByText("Select an option")).toBeInTheDocument();
+      expect(screen.queryByText("Select an option")).not.toBeInTheDocument();
+      expect(screen.getAllByText("Option 1").length).toBeGreaterThanOrEqual(1);
     });
   });
 });

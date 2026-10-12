@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "classnames";
 
-import "./Block.css";
+import styles from "./Block.module.css";
 
 import { useTextDirection } from "../../hooks/useTextDirection";
 import type { BlockProps } from "./types";
@@ -13,7 +13,7 @@ export const Block = React.forwardRef(({ children, kind = "layout-rows", classNa
   const directionality = useTextDirection({ children, inferDirection, ref });
 
   const own: Record<string, unknown> = {
-    className: clsx("block", className),
+    className: clsx(styles.block, className),
     "data-kind": kind,
   };
 

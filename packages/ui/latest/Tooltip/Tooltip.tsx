@@ -6,7 +6,7 @@ import {
   FloatingFocusManager,
 } from "@floating-ui/react";
 import CloseIcon from "@digital-science/figshare-fcl/icons/react/Close";
-import "./Tooltip.css";
+import styles from "./Tooltip.module.css";
 
 import { Button } from "../Button";
 

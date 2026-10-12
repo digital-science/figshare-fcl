@@ -617,7 +617,7 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-*[data-part="button-label"] {
+.button [data-part="button-label"] {
   overflow: hidden;
 
   &[data-aria-only="true"] {
@@ -637,8 +637,8 @@
   }
 }
 
-*[data-part="button-label"][data-wrap="wrap"],
-*[data-part="button-label"][data-wrap="true"] {
+.button [data-part="button-label"][data-wrap="wrap"],
+.button [data-part="button-label"][data-wrap="true"] {
   overflow: visible;
 
   text-align: left;
@@ -647,15 +647,15 @@
   text-overflow: initial;
 }
 
-*[data-part="button-label"][data-wrap="nowrap"],
-*[data-part="button-label"][data-wrap="false"] {
+.button [data-part="button-label"][data-wrap="nowrap"],
+.button [data-part="button-label"][data-wrap="false"] {
   overflow: visible;
 
   white-space: nowrap;
   text-overflow: initial;
 }
 
-*[data-part="button-label"][data-wrap="ellipsis"] {
+.button [data-part="button-label"][data-wrap="ellipsis"] {
   overflow: hidden;
 
   white-space: nowrap;
@@ -664,7 +664,7 @@
   text-overflow: ellipsis;
 }
 
-*[data-part="button-label"][data-wrap="wrap-all"] {
+.button [data-part="button-label"][data-wrap="wrap-all"] {
   overflow: visible;
 
   white-space: normal;
@@ -672,16 +672,16 @@
   word-break: break-all;
 }
 
-*[data-part="button-label"][data-text-decoration="underline"] {
+.button [data-part="button-label"][data-text-decoration="underline"] {
   text-decoration: underline;
 }
 
-*[data-part="button-label"][data-text-decoration="none"] {
+.button [data-part="button-label"][data-text-decoration="none"] {
   text-decoration: none;
 }
 
-*[data-part="button-icon"],
-span[data-part="button-icon-slot"] {
+.button [data-part="button-icon"],
+.button [data-part="button-icon-slot"] {
   position: relative;
 
   display: inline-flex;
@@ -730,10 +730,10 @@ span[data-part="button-icon-slot"] {
   }
 }
 
-span[data-part="button-icon-slot"] > svg,
-span[data-part="button-icon-slot"] > span, 
-span[data-part="button-icon-slot"] > div, 
-span[data-part="button-icon-slot"] > img {
+.button [data-part="button-icon-slot"] > svg,
+.button [data-part="button-icon-slot"] > span,
+.button [data-part="button-icon-slot"] > div,
+.button [data-part="button-icon-slot"] > img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -746,7 +746,7 @@ span[data-part="button-icon-slot"] > img {
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-  *[data-part="button-spinner"] {
+  .button [data-part="button-spinner"] {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -758,7 +758,7 @@ span[data-part="button-icon-slot"] > img {
   }
 }
 
-*[data-part="button-spinner"] {
+.button [data-part="button-spinner"] {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -769,13 +769,13 @@ span[data-part="button-icon-slot"] > img {
   animation: spinnerSpin 2s linear infinite;
 }
 
-*[data-part="button-logo"] {
+.button [data-part="button-logo"] {
   position: absolute;
   top: 50%;
   left: 50%;
 
-  width: inherit !important;
-  height: inherit !important;
+  width: 16px;
+  height: 16px;
 
   animation: spinnerSpin 2s linear infinite;
 }
@@ -790,14 +790,14 @@ span[data-part="button-icon-slot"] > img {
   }
 }
 
-span[data-part="button-icon-group"] {
+.button [data-part="button-icon-group"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--gridSize);
 }
 
-span[data-part="button-icon-group-icon-slot"] {
+.button [data-part="button-icon-group-icon-slot"] {
   position: relative;
 
   display: inline-flex;
@@ -806,7 +806,7 @@ span[data-part="button-icon-group-icon-slot"] {
   height: 24px;
 }
 
-span[data-part="button-icon-group-icon-slot"] > span {
+.button [data-part="button-icon-group-icon-slot"] > span {
   min-width: 32px;
   min-height: 24px;
 }

@@ -54,7 +54,7 @@ export default class Overlay extends Component {
     /**
       Choose the color of the contrasting screen background behind the main overlay box.
      */
-    overlayBackground: PropTypes.oneOf(["black", "blackTransparent", "white", "whiteTransparent"]),
+    overlayBackground: PropTypes.oneOf(["black", "blackTransparent", "white", "whiteTransparent", "transparent"]),
     /**
       Set a custom node to append the overlay node to.
      */
