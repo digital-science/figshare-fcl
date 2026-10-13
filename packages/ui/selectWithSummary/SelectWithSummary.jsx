@@ -53,6 +53,11 @@ export const SelectWithSummary = React.forwardRef(({
 
     if (hasInitialSummary && !options.length) {
       opts = [...summaryPreselectedValues];
+    } else if (hasInitialSummary && summaryPreselectedValues.length) {
+      const untouched = summaryPreselectedValues.filter(
+        (sp) => !touchedOptions.some((to) => to.value === sp.value)
+      );
+      opts = [...untouched, ...touchedOptions];
     }
 
     return opts;
