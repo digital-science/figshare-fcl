@@ -2,8 +2,9 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { useRef, useEffect } from "react";
 
-import { Button } from "../button";
+import { Button } from "../latest/Button";
 import FigshareLoader from "../icons/figshare/logo.jsx";
+import Checkmark from "../input/checkbox/components/checkmark";
 
 import styles from "./Summary.module.css";
 
@@ -77,7 +78,7 @@ export const Summary = React.forwardRef(({
     }
 
     return (
-      <Button className={styles.retry} theme="secondary" onClick={action}>
+      <Button className={styles.retry} kind="secondary" span="content" onClick={action}>
         {message}
       </Button>
     );
@@ -157,8 +158,12 @@ export const Summary = React.forwardRef(({
     const checked = selectedValues?.includes(optionValue);
 
     return (
-      <button
+      <Button
         key={optionValue}
+        kind="tertiary"
+        em="low"
+        span="full"
+        inline="slim-flexible"
         aria-selected={checked}
         className={classnames(styles.item, itemClassName)}
         disabled={disabled}
@@ -166,17 +171,11 @@ export const Summary = React.forwardRef(({
         tabIndex={-1}
         onClick={handleItemChange(optionValue)}
       >
-        <span className={styles.checkmark}>
-          <input
-            readOnly={true}
-            aria-hidden="true"
-            checked={checked}
-            tabIndex={-1}
-            type="checkbox"
-          />
-        </span>
-        <span>{name}</span>
-      </button>
+        <Button.Icon blend="true">
+          <Checkmark className={styles.checkmark} checked={checked} disabled={disabled} />
+        </Button.Icon>
+        <Button.Label wrap="wrap-all">{name}</Button.Label>
+      </Button>
     );
   }
 });
