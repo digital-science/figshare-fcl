@@ -5,24 +5,11 @@
 }
 
 .item {
-  display: flex;
+  display: flex !important;
 
-  width: 100%;
-  padding: 0;
-  
-  cursor: pointer;
   text-align: left;
-
+  justify-content: flex-start !important;
   
-  color: var(--color-typography-primary);
-
-  border: none;
-  background: none;
-
-  align-items: flex-start;
-  justify-content: flex-start;
-
-
   &:hover,
   &:focus {
     text-decoration: none;
@@ -36,17 +23,7 @@
 }
 
 .checkmark {
-  display: flex;
-
-  margin-top: calc(-1 * var(--gridSize));
-  padding-right: var(--gridSize);
-  flex: 0 0 calc(4 * var(--gridSize));
-  align-items: center;
-  justify-content: center;
-}
-
-.checkmark input[type="checkbox"] {
-  cursor: pointer;
+  fill: var(--color-checkbox-icon_checked) !important;
 }
 
 .loading,
