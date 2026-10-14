@@ -172,7 +172,7 @@ export const Summary = React.forwardRef(({
         onClick={handleItemChange(optionValue)}
       >
         <Button.Icon blend="true">
-          <Checkmark className={styles.checkmark} checked={checked} disabled={disabled} />
+          <Checkmark checked={checked} disabled={disabled} data-icon-name="checkmark" />
         </Button.Icon>
         <Button.Label wrap="wrap-all">{name}</Button.Label>
       </Button>
