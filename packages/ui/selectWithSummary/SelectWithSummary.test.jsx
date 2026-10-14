@@ -257,7 +257,7 @@ describe("SelectWithSummary", () => {
 
       const buttons = screen.getAllByRole("option");
       buttons.forEach((button) => {
-        expect(button).toBeDisabled();
+        expect(button).toHaveAttribute("aria-disabled", "true");
       });
     });
 

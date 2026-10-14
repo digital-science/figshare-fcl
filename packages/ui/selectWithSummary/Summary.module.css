@@ -15,15 +15,15 @@
     text-decoration: none;
   }
 
-  &:disabled {
+  &[aria-disabled="true"] {
     cursor: not-allowed;
 
     opacity: 0.5;
   }
-}
 
-.checkmark {
-  fill: var(--color-checkbox-icon_checked) !important;
+  [data-icon-name="checkmark"] {
+    fill: var(--color-checkbox-icon_checked) !important;
+  }
 }
 
 .loading,
