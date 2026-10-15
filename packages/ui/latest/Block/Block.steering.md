@@ -66,6 +66,9 @@ These set `display: flex` and `flex-direction`. To use `inline-flex` with a dire
 | `grow-1` / `grow-0` | `flex-grow: 1` / `flex-grow: 0` |
 | `shrink` | `flex: 0 1` |
 | `shrink-1` / `shrink-0` | `flex-shrink: 1` / `flex-shrink: 0` |
+
+**`shrink` vs `shrink-1`:** `shrink` sets `flex: 0 1`, which resets `flex-basis` to `0%` — the element starts with zero width and relies on content to size up, but may not compress properly in tight layouts. `shrink-1` sets only `flex-shrink: 1`, keeping `flex-basis: auto` so the element starts at its natural content width and can shrink from there. When migrating from the legacy `flex-shrink` token, use `shrink-1`.
+
 | `wrap` | `flex-wrap: wrap` |
 | `no-wrap` | `flex-wrap: nowrap` |
 | `wrap-reverse` | `flex-wrap: wrap-reverse` |
@@ -302,7 +305,7 @@ The legacy CSS rules will be removed once all usages are migrated.
 | `layout-mobile-rows` | `m-row` |
 | `layout-mobile-columns` | `m-column` |
 | `flex-grow` | `grow` |
-| `flex-shrink` | `shrink` |
+| `flex-shrink` | `shrink-1` |
 | `flex-fit` | `fit` |
 | `flex-wrap` | `wrap` |
 | `flex-wrap-reverse` | `wrap-reverse` |
