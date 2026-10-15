@@ -1,8 +1,4 @@
 .tooltip {
-  /* Module anchor class - ensures this CSS is registered for SSR extraction */
-}
-
-:global(div[data-scope="tooltip"][data-part="content"]) {
   --background-color: #464646;
   --text-color: #fff;
   --icon-color: #fff;
@@ -28,60 +24,60 @@
     outline: none;
     box-shadow: 0 0 0 2px #1e1e1e, 0 0 4px 2px #1e1e1e;
   }
-}
 
-:global(div[data-scope="tooltip"][data-part="content"] button[data-id="dismiss-tooltip"]) {
-  --button-color: var(--icon-color);
-}
-
-:global(div[data-scope="tooltip"][data-part="content"][data-theme="warning"]) {
-  --background-color: #ffffa7;
-  --text-color: #252525;
-  --icon-color: #a60845;
-
-  font-size: 16px;
-
-  padding: 18px;
-}
-
-:global(div[data-scope="tooltip"][data-part="content"][data-layout="flex"]) {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-:global(div[data-scope="tooltip"][data-part="content"][data-span="full"]) {
-  max-width: none;
-}
-
-:global(div[data-scope="tooltip"][data-part="content"][data-span="m"]) {
-  max-width: calc(55 * var(--gridSize));
-}
-
-:global(div[data-scope="tooltip"][data-part="content"][data-font-style="normal"]) {
-  font-weight: normal;
-
-  & p {
-    font-size: inherit;
-
-    color: inherit;
+  & button[data-id="dismiss-tooltip"] {
+    --button-color: var(--icon-color);
   }
 
-  & p:only-child {
-    margin: 0;
+  &[data-theme="warning"] {
+    --background-color: #ffffa7;
+    --text-color: #252525;
+    --icon-color: #a60845;
+
+    font-size: 16px;
+
+    padding: 18px;
   }
 
-  & a {
-    font-size: inherit;
-
-    text-decoration: underline;
-
-    color: inherit;
+  &[data-layout="flex"] {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
   }
-}
 
-:global(div[data-scope="tooltip"][data-part="content"][data-font-style="bold"]) {
-  font-weight: 700;
+  &[data-span="full"] {
+    max-width: none;
+  }
+
+  &[data-span="m"] {
+    max-width: calc(55 * var(--gridSize));
+  }
+
+  &[data-font-style="normal"] {
+    font-weight: normal;
+
+    & p {
+      font-size: inherit;
+
+      color: inherit;
+    }
+
+    & p:only-child {
+      margin: 0;
+    }
+
+    & a {
+      font-size: inherit;
+
+      text-decoration: underline;
+
+      color: inherit;
+    }
+  }
+
+  &[data-font-style="bold"] {
+    font-weight: 700;
+  }
 }
 
 :global(svg[data-scope="tooltip"][data-part="arrow"]) {

@@ -69,7 +69,7 @@ export const TooltipTrigger = React.forwardRef(({ children, asChild = true, Elem
 TooltipTrigger.displayName = "TooltipTrigger";
 
 
-export const TooltipContent = React.forwardRef(({ style, ...props }: TooltipContentProps, propRef) => {
+export const TooltipContent = React.forwardRef(({ style, className, ...props }: TooltipContentProps, propRef) => {
   const context = useTooltipContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
@@ -84,6 +84,7 @@ export const TooltipContent = React.forwardRef(({ style, ...props }: TooltipCont
         initialFocus={context.refs.floating}
       >
         <div
+          className={className ? `${styles.tooltip} ${className}` : styles.tooltip}
           ref={ref}
           data-scope="tooltip"
           data-part="content"

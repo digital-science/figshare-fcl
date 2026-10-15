@@ -13,6 +13,8 @@ import { Cover } from "../story-utils/Cover";
 - [Props](#props-table)
 - [Sub-Components](#sub-components)
 - [Examples](#examples)
+- [Interactive Icons](#interactive-icons)
+- [Icon Groups](#icon-groups)
 - [Anchor Links](#anchor-links)
 
 ## Overview
@@ -171,7 +173,7 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 import { Eye, Edit, Delete, Checkmark, Download, Copy } from "@digital-science/figshare-fcl/icons/react";
 
 // Icon only buttons
-<Button kind="primary" em="high" span="icon" title="View">
+<Button kind="primary" em="high" span="icon" tooltip="View">
   <Button.Icon><Eye /></Button.Icon>
 </Button>
 
@@ -210,7 +212,7 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 </Button>
 
 // Icon only
-<Button kind="primary" span="icon" title="Confirm">
+<Button kind="primary" span="icon" tooltip="Confirm">
   <Button.Icon><Checkmark /></Button.Icon>
 </Button>
 ```
@@ -251,6 +253,87 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 </Button>
 ```
 
+### Interactive Icons
+
+`Button.InteractiveIcon` renders an icon that acts as an independent interactive element inside a button.
+It supports click handlers, keyboard interaction, and optional tooltips.
+
+<Canvas of={ButtonStories.InteractiveIcons} />
+
+```jsx
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { Edit, Copy, Delete, Eye } from "@digital-science/figshare-fcl/icons/react";
+
+// Single interactive icon with tooltip
+<Button kind="secondary" em="low" span="full" justify="between">
+  <Button.Label>Item with actions</Button.Label>
+  <Button.InteractiveIcon tooltip="Edit this item" onClick={() => {}}>
+    <Edit />
+  </Button.InteractiveIcon>
+</Button>
+
+// Multiple interactive icons grouped together
+<Button kind="secondary" em="low" span="full" justify="between">
+  <Button.Label>Item with multiple actions</Button.Label>
+  <Button.IconGroup interactive={true}>
+    <Button.InteractiveIcon tooltip="Copy" onClick={() => {}}>
+      <Copy />
+    </Button.InteractiveIcon>
+    <Button.InteractiveIcon tooltip="Edit" onClick={() => {}}>
+      <Edit />
+    </Button.InteractiveIcon>
+    <Button.InteractiveIcon tooltip="Delete" onClick={() => {}}>
+      <Delete />
+    </Button.InteractiveIcon>
+  </Button.IconGroup>
+</Button>
+
+// Without tooltip
+<Button kind="secondary" em="low">
+  <Button.Label>Action</Button.Label>
+  <Button.InteractiveIcon onClick={() => {}}>
+    <Eye />
+  </Button.InteractiveIcon>
+</Button>
+```
+
+### Icon Groups
+
+`Button.IconGroup` groups multiple icons with consistent spacing.
+When `interactive={true}`, each icon is wrapped in a slot that enables independent click handling and tooltips.
+
+<Canvas of={ButtonStories.IconGroups} />
+
+```jsx
+import { Button } from "@digital-science/figshare-fcl/latest/Button";
+import { Eye, Download, Edit, Copy, Delete, Checkmark } from "@digital-science/figshare-fcl/icons/react";
+
+// Static icon group
+<Button kind="secondary" em="low">
+  <Button.IconGroup>
+    <Button.Icon><Eye /></Button.Icon>
+    <Button.Icon><Download /></Button.Icon>
+  </Button.IconGroup>
+  <Button.Label>View & Download</Button.Label>
+</Button>
+
+// Interactive icon group with tooltips
+<Button kind="secondary" em="low" span="full" justify="between">
+  <Button.Label>File.pdf</Button.Label>
+  <Button.IconGroup interactive={true}>
+    <Button.InteractiveIcon tooltip="Preview" onClick={() => {}}>
+      <Eye />
+    </Button.InteractiveIcon>
+    <Button.InteractiveIcon tooltip="Download" onClick={() => {}}>
+      <Download />
+    </Button.InteractiveIcon>
+    <Button.InteractiveIcon tooltip="Delete" onClick={() => {}}>
+      <Delete />
+    </Button.InteractiveIcon>
+  </Button.IconGroup>
+</Button>
+```
+
 ### Tooltips
 
 <Canvas of={ButtonStories.Tooltips} />
@@ -259,16 +342,16 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 import { Button } from "@digital-science/figshare-fcl/latest/Button";
 import { Download, Edit, Delete } from "@digital-science/figshare-fcl/icons/react";
 
-// Tooltip appears on hover via the title attribute
-<Button kind="primary" span="icon" title="Download the file">
+// Tooltip appears on hover via the tooltip prop
+<Button kind="primary" span="icon" tooltip="Download the file">
   <Button.Icon><Download /></Button.Icon>
 </Button>
 
-<Button kind="secondary" span="icon" title="Edit this item">
+<Button kind="secondary" span="icon" tooltip="Edit this item">
   <Button.Icon><Edit /></Button.Icon>
 </Button>
 
-<Button kind="tertiary" span="icon" title="Delete permanently">
+<Button kind="tertiary" span="icon" tooltip="Delete permanently">
   <Button.Icon><Delete /></Button.Icon>
 </Button>
 ```

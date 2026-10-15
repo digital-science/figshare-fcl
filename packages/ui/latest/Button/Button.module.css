@@ -711,15 +711,21 @@
   }
 
   &[data-interactive="true"] {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
     width: 38px;
     height: 38px;
-    min-height: 38px;
+    max-height: 38px;
 
-    transform: translate(-50%, -50%);
+    & > * {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: 16px;
+      height: auto;
+
+      transform: translate(-50%, -50%);
+      fill: inherit;
+    }
 
     &:hover,
     &:focus,
@@ -803,10 +809,16 @@
   display: inline-flex;
 
   width: 32px;
-  height: 24px;
-}
-
-.button [data-part="button-icon-group-icon-slot"] > span {
-  min-width: 32px;
   min-height: 24px;
+
+  > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: inherit;
+    height: auto;
+
+    transform: translate(-50%, -50%);
+  }
 }
