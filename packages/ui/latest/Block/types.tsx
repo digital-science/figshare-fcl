@@ -1,100 +1,132 @@
 
-type Display = "relative" | "inline" | "inline-block" | "block";
+/* Shared size scales */
+type Size = "1/2" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10";
+type SizeWithZero = "0" | Size;
 
-type Layout =
-  | "layout-rows" | "layout-rows-reverse" | "layout-columns" | "layout-columns-reverse"
-  | "layout-tablet-rows" | "layout-tablet-rows-reverse" | "layout-tablet-columns" | "layout-tablet-columns-reverse"
-  | "layout-mobile-rows" | "layout-mobile-rows-reverse" | "layout-mobile-columns" | "layout-mobile-columns-reverse";
+/* Responsive prefix: default (none), tablet (t-), mobile (m-) */
+type Prefix = "" | "t-" | "m-";
 
-type Flex =
-  | "flex-inline" | "flex-grow" | "flex-shrink" | "flex-fit"
-  | "flex-wrap" | "flex-wrap-reverse";
+/* Positioning */
+type Position = `${Prefix}${"relative" | "absolute" | "fixed" | "sticky" | "static"}`;
 
-type Align =
-  | "align-center" | "align-start" | "align-end" | "align-stretch"
-  | "align-tablet-center" | "align-tablet-start" | "align-tablet-end" | "align-tablet-stretch"
-  | "align-mobile-center" | "align-mobile-start" | "align-mobile-end" | "align-mobile-stretch";
+/* Display */
+type Display = `${Prefix}${"inline" | "inline-block" | "block" | "flex" | "flex-inline"}`;
 
-type Justify =
-  | "justify-center" | "justify-start" | "justify-end" | "justify-between" | "justify-evenly" | "justify-around" | "justify-stretch"
-  | "justify-tablet-center" | "justify-tablet-start" | "justify-tablet-end" | "justify-tablet-between" | "justify-tablet-evenly" | "justify-tablet-around" | "justify-tablet-stretch"
-  | "justify-mobile-center" | "justify-mobile-start" | "justify-mobile-end" | "justify-mobile-between" | "justify-mobile-evenly" | "justify-mobile-around" | "justify-mobile-stretch";
+/* Flex direction */
+type Direction = `${Prefix}${"row" | "row-reverse" | "column" | "column-reverse"}`;
 
-type Border = "border-rounded" | "border-primary" | "border-rounded-primary" | "border-collapsible";
+/* Flex fit/grow/shrink/wrap */
+type FlexModifier = `${Prefix}${
+  | "fit" | "grow" | "grow-1" | "grow-0"
+  | "shrink" | "shrink-1" | "shrink-0"
+  | "wrap" | "no-wrap" | "wrap-reverse"
+}`;
 
-type Background = "background-primary" | "background-secondary";
+/* Alignment (align-items) */
+type Align = `${Prefix}${"align-center" | "align-start" | "align-end" | "align-stretch" | "align-baseline"}`;
 
-type Gap =
-  | "gap-half" | "gap-half-1" | "gap-tight"
-  | "gap-1" | "gap-2" | "gap-3" | "gap-4" | "gap-5"
-  | "gap-6" | "gap-7" | "gap-8" | "gap-9" | "gap-10";
+/* Justify (justify-content) */
+type Justify = `${Prefix}${
+  | "justify-center" | "justify-start" | "justify-end"
+  | "justify-between" | "justify-evenly" | "justify-around" | "justify-stretch"
+}`;
 
-type Margin =
-  | "margin-none" | "margin-half-1"
-  | "margin-1" | "margin-2" | "margin-3" | "margin-4" | "margin-5"
-  | "margin-6" | "margin-7" | "margin-8" | "margin-9" | "margin-10";
+/* Self alignment (align-self) */
+type AlignSelf = `${Prefix}${
+  | "align-self-start" | "align-self-center" | "align-self-end"
+  | "align-self-stretch" | "align-self-baseline"
+}`;
 
-type Padding =
-  | "padding-none" | "padding-half-1" | "padding-2-3"
-  | "padding-1" | "padding-2" | "padding-3" | "padding-4" | "padding-5"
-  | "padding-6" | "padding-7" | "padding-8" | "padding-9" | "padding-10"
-  | "padding-left-none" | "padding-right-none" | "padding-left-right-none"
-  | "padding-top-none" | "padding-top-1" | "padding-top-2" | "padding-top-3"
-  | "padding-bottom-none" | "padding-bottom-1" | "padding-bottom-2" | "padding-bottom-3"
-  | "padding-top-bottom-none";
+/* Justify self */
+type JustifySelf = `${Prefix}${"justify-self-start" | "justify-self-center" | "justify-self-end" | "justify-self-stretch"}`;
 
-type TabletPadding =
-  | "padding-tablet-none" | "padding-tablet-half-1" | "padding-tablet-2-3"
-  | "padding-tablet-1" | "padding-tablet-2" | "padding-tablet-3" | "padding-tablet-4" | "padding-tablet-5"
-  | "padding-tablet-6" | "padding-tablet-7" | "padding-tablet-8" | "padding-tablet-9" | "padding-tablet-10"
-  | "padding-tablet-left-none" | "padding-tablet-right-none" | "padding-tablet-left-right-none"
-  | "padding-tablet-top-none" | "padding-tablet-top-1" | "padding-tablet-top-2" | "padding-tablet-top-3"
-  | "padding-tablet-bottom-none" | "padding-tablet-bottom-1" | "padding-tablet-bottom-2" | "padding-tablet-bottom-3"
-  | "padding-tablet-top-bottom-none";
+/* Overflow */
+type Overflow = `${Prefix}${
+  | "overflow-hidden" | "overflow-auto" | "overflow-visible" | "overflow-scroll"
+  | "overflow-x-hidden" | "overflow-x-auto" | "overflow-y-hidden" | "overflow-y-auto"
+}`;
 
-type MobilePadding =
-  | "padding-mobile-none" | "padding-mobile-half-1" | "padding-mobile-2-3"
-  | "padding-mobile-1" | "padding-mobile-2" | "padding-mobile-3" | "padding-mobile-4" | "padding-mobile-5"
-  | "padding-mobile-6" | "padding-mobile-7" | "padding-mobile-8" | "padding-mobile-9" | "padding-mobile-10"
-  | "padding-mobile-left-none" | "padding-mobile-right-none" | "padding-mobile-left-right-none"
-  | "padding-mobile-top-none" | "padding-mobile-top-1" | "padding-mobile-top-2" | "padding-mobile-top-3"
-  | "padding-mobile-bottom-none" | "padding-mobile-bottom-1" | "padding-mobile-bottom-2" | "padding-mobile-bottom-3"
-  | "padding-mobile-top-bottom-none";
+/* Text alignment */
+type TextAlign = `${Prefix}${"text-left" | "text-center" | "text-right"}`;
 
-type Span =
-  | "span-1" | "span-2" | "span-3" | "span-4" | "span-5"
-  | "span-6" | "span-7" | "span-8" | "span-9" | "span-10"
-  | "span-26" | "span-30" | "span-60"
-  | "span-fit-content" | "span-max-content" | "span-min-content" | "span-full" | "span-auto"
-  | "span-tab-panel"
-  | "span-tablet-full" | "span-tablet-auto" | "span-tablet-fit-content"
-  | "span-mobile-full" | "span-mobile-auto" | "span-mobile-fit-content"
-  | "children-span-full" | "children-span-tablet-full" | "children-span-mobile-full";
+/* Cursor */
+type Cursor = `${Prefix}${"cursor-pointer" | "cursor-default"}`;
 
-type SpanMin =
-  | "span-min-1" | "span-min-2" | "span-min-3" | "span-min-4" | "span-min-5"
-  | "span-min-6" | "span-min-7" | "span-min-8" | "span-min-9" | "span-min-10"
-  | "span-min-30" | "span-min-full";
+/* Gap */
+type Gap = `${Prefix}gap-${Size}`;
+type GapRow = `${Prefix}gap-row-${Size}`;
+type GapCol = `${Prefix}gap-col-${Size}`;
 
-type VerticalSpan =
-  | "v-span-1" | "v-span-2" | "v-span-3" | "v-span-4" | "v-span-5"
-  | "v-span-6" | "v-span-7" | "v-span-8" | "v-span-9" | "v-span-10"
-  | "v-span-20" | "v-span-30"
-  | "v-span-large-1" | "v-span-large-2" | "v-span-large-3";
+/* Padding */
+type PaddingAll = `${Prefix}p-${SizeWithZero}`;
+type PaddingX = `${Prefix}px-${SizeWithZero}`;
+type PaddingY = `${Prefix}py-${SizeWithZero}`;
+type PaddingBottom = `${Prefix}pb-${SizeWithZero}`;
+type PaddingTop = `${Prefix}pt-${SizeWithZero}`;
+type PaddingRight = `${Prefix}pr-${SizeWithZero}`;
+type PaddingLeft = `${Prefix}pl-${SizeWithZero}`;
+type Padding = PaddingAll | PaddingX | PaddingY | PaddingBottom | PaddingTop | PaddingRight | PaddingLeft;
 
-type Visibility = "hidden" | "visibility-hidden";
+/* Margin */
+type MarginAll = `${Prefix}m-${SizeWithZero}`;
+type MarginX = `${Prefix}mx-${SizeWithZero}`;
+type MarginY = `${Prefix}my-${SizeWithZero}`;
+type MarginBottom = `${Prefix}mb-${SizeWithZero}`;
+type MarginTop = `${Prefix}mt-${SizeWithZero}`;
+type MarginRight = `${Prefix}mr-${SizeWithZero}`;
+type MarginLeft = `${Prefix}ml-${SizeWithZero}`;
+type Margin = MarginAll | MarginX | MarginY | MarginBottom | MarginTop | MarginRight | MarginLeft;
 
+/* Span content keywords */
+type SpanKeyword = "content" | "max-content" | "min-content" | "auto" | "full";
+
+/* Span (width) */
+type Span = `${Prefix}span-${SpanKeyword | SizeWithZero | "20" | "26" | "30" | "60"}`;
+
+/* Vspan (height) */
+type Vspan = `${Prefix}vspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+
+/* Minspan (min-width) */
+type Minspan = `${Prefix}minspan-${SpanKeyword | SizeWithZero | "30"}`;
+
+/* Maxspan (max-width) */
+type Maxspan = `${Prefix}maxspan-${SpanKeyword | SizeWithZero}`;
+
+/* Minvspan (min-height) */
+type Minvspan = `${Prefix}minvspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+
+/* Maxvspan (max-height) */
+type Maxvspan = `${Prefix}maxvspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+
+/* Children span */
+type ChildrenSpan = `${Prefix}children-span-full`;
+
+/* Special span */
+type SpecialSpan = "span-tab-panel";
+
+/* Border */
+type Border = "bd-rounded" | "bd-w-1" | "bd-w-2" | "bd-w-3" | "bd-primary" | "bd-rounded-primary" | "bd-collapse";
+
+/* Background */
+type Background = "bg-primary" | "bg-secondary";
+
+/* Skeleton */
 type Skeleton = "skeleton";
 
-type BlockKindToken =
-  | Display | Layout | Flex | Align | Justify
-  | Border | Background | Skeleton
-  | Gap | Margin
-  | Padding | TabletPadding | MobilePadding
-  | Span | SpanMin | VerticalSpan
-  | Visibility;
+/* Visibility */
+type Visibility = `${Prefix}${"hidden" | "visibility-hidden"}`;
 
-/** Space-separated string of {@link BlockKindToken} values, e.g. `"layout-rows padding-2 gap-1"` */
+type BlockKindToken =
+  | Position | Display | Direction | FlexModifier
+  | Align | Justify | AlignSelf | JustifySelf
+  | Overflow | TextAlign | Cursor
+  | Gap | GapRow | GapCol
+  | Padding | Margin
+  | Span | Vspan | Minspan | Maxspan | Minvspan | Maxvspan
+  | ChildrenSpan | SpecialSpan
+  | Border | Background | Skeleton | Visibility;
+
+/** Space-separated string of {@link BlockKindToken} values, e.g. `"row p-2 gap-1"` */
 type BlockKind = BlockKindToken | (string & {});
 
 export type BlockProps = {

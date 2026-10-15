@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, no-alert */
 import React from "react";
 import { Button } from "@digital-science/figshare-fcl/latest/Button";
 import { bindLinkComponent } from "@digital-science/figshare-fcl/latest/Button/anchor";
@@ -141,16 +141,16 @@ export const ButtonWithIcons = {
         <div>
           <h4>Icon Only - Various Kinds and Emphasis</h4>
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
-            <Button kind="primary" em="high" span="icon" title="View">
+            <Button kind="primary" em="high" span="icon" tooltip="View">
               <Button.Icon><Eye /></Button.Icon>
             </Button>
-            <Button kind="secondary" em="high" span="icon" title="Edit">
+            <Button kind="secondary" em="high" span="icon" tooltip="Edit">
               <Button.Icon><Edit /></Button.Icon>
             </Button>
-            <Button kind="tertiary" em="low" span="icon" title="Delete">
+            <Button kind="tertiary" em="low" span="icon" tooltip="Delete">
               <Button.Icon><Delete /></Button.Icon>
             </Button>
-            <Button kind="primary" em="success" span="icon" title="Confirm">
+            <Button kind="primary" em="success" span="icon" tooltip="Confirm">
               <Button.Icon><Checkmark /></Button.Icon>
             </Button>
           </div>
@@ -218,10 +218,10 @@ export const ButtonSizesAndSpans = {
         <div>
           <h4>Icon Only</h4>
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
-            <Button kind="tertiary" span="icon" title="Search">
+            <Button kind="tertiary" span="icon" tooltip="Search">
               <Button.Icon><Eye /></Button.Icon>
             </Button>
-            <Button kind="primary" span="icon" title="Confirm">
+            <Button kind="primary" span="icon" tooltip="Confirm">
               <Button.Icon><Checkmark /></Button.Icon>
             </Button>
           </div>
@@ -377,6 +377,118 @@ export const BoundLinkComponent = {
   },
 };
 
+export const InteractiveIcons = {
+  render: () => (
+    <Cover kind="card">
+      <div style={ { display: "flex", flexDirection: "column", gap: "24px" } }>
+        <div>
+          <h4>ButtonInteractiveIcon</h4>
+          <p>An icon that acts as an independent interactive element inside a button. Supports tooltips and keyboard interaction.</p>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="secondary" em="low" span="full" justify="between">
+              <Button.Label>Item with actions</Button.Label>
+              <Button.InteractiveIcon tooltip="Edit this item" onClick={() => alert("Edit clicked")}>
+                <Edit />
+              </Button.InteractiveIcon>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <h4>Multiple Interactive Icons</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="secondary" em="low" span="full" justify="between">
+              <Button.Label>Item with multiple actions</Button.Label>
+              <Button.IconGroup interactive={true}>
+                <Button.InteractiveIcon tooltip="Copy" onClick={() => alert("Copy")}>
+                  <Copy />
+                </Button.InteractiveIcon>
+                <Button.InteractiveIcon tooltip="Edit" onClick={() => alert("Edit")}>
+                  <Edit />
+                </Button.InteractiveIcon>
+                <Button.InteractiveIcon tooltip="Delete" onClick={() => alert("Delete")}>
+                  <Delete />
+                </Button.InteractiveIcon>
+              </Button.IconGroup>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <h4>Interactive Icon without Tooltip</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="secondary" em="low">
+              <Button.Label>Action</Button.Label>
+              <Button.InteractiveIcon onClick={() => alert("Eye clicked")}>
+                <Eye />
+              </Button.InteractiveIcon>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Cover>
+  ),
+};
+
+export const IconGroups = {
+  render: () => (
+    <Cover kind="card">
+      <div style={ { display: "flex", flexDirection: "column", gap: "24px" } }>
+        <div>
+          <h4>ButtonIconGroup - Static Icons</h4>
+          <p>Groups multiple icons together with consistent spacing. Useful for showing status indicators or multiple non-interactive icons.</p>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="secondary" em="low">
+              <Button.IconGroup>
+                <Button.Icon><Eye /></Button.Icon>
+                <Button.Icon><Download /></Button.Icon>
+              </Button.IconGroup>
+              <Button.Label>View & Download</Button.Label>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <h4>ButtonIconGroup - Interactive Icons</h4>
+          <p>When <code>interactive=true</code>, each icon is wrapped in a slot that allows independent click handling and tooltips.</p>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="secondary" em="low" span="full" justify="between">
+              <Button.Label>File.pdf</Button.Label>
+              <Button.IconGroup interactive={true}>
+                <Button.InteractiveIcon tooltip="Preview" onClick={() => alert("Preview")}>
+                  <Eye />
+                </Button.InteractiveIcon>
+                <Button.InteractiveIcon tooltip="Download" onClick={() => alert("Download")}>
+                  <Download />
+                </Button.InteractiveIcon>
+                <Button.InteractiveIcon tooltip="Delete" onClick={() => alert("Delete")}>
+                  <Delete />
+                </Button.InteractiveIcon>
+              </Button.IconGroup>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <h4>IconGroup in different button kinds</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
+            <Button kind="primary" em="high">
+              <Button.IconGroup>
+                <Button.Icon><Checkmark /></Button.Icon>
+                <Button.Icon><Download /></Button.Icon>
+              </Button.IconGroup>
+              <Button.Label>Confirm & Download</Button.Label>
+            </Button>
+            <Button kind="tertiary" em="low">
+              <Button.Label>Actions</Button.Label>
+              <Button.IconGroup>
+                <Button.Icon><Edit /></Button.Icon>
+                <Button.Icon><Copy /></Button.Icon>
+              </Button.IconGroup>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Cover>
+  ),
+};
+
 export const Tooltips = {
   tags: ["!dev"],
   render: () => (
@@ -385,13 +497,13 @@ export const Tooltips = {
         <div>
           <h4>Icon Buttons with Tooltips</h4>
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
-            <Button kind="primary" span="icon" title="Download the file">
+            <Button kind="primary" span="icon" tooltip="Download the file">
               <Button.Icon><Download /></Button.Icon>
             </Button>
-            <Button kind="secondary" span="icon" title="Edit this item">
+            <Button kind="secondary" span="icon" tooltip="Edit this item">
               <Button.Icon><Edit /></Button.Icon>
             </Button>
-            <Button kind="tertiary" span="icon" title="Delete permanently">
+            <Button kind="tertiary" span="icon" tooltip="Delete permanently">
               <Button.Icon><Delete /></Button.Icon>
             </Button>
           </div>

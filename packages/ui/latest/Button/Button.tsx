@@ -175,8 +175,8 @@ export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, .
   if (tooltip) {
     return (
       <Tooltip strategy="absolute" placement="top">
-        <TooltipTrigger asChild={false}>
-          <ButtonIcon {...interactionProps} {...props}>{children}</ButtonIcon>
+        <TooltipTrigger asChild={true}>
+          <ButtonIcon {...interactionProps} {...props} asChild={false}>{children}</ButtonIcon>
         </TooltipTrigger>
         <TooltipContent>
           {tooltip}
@@ -203,7 +203,7 @@ export function ButtonIconGroup({ children, interactive = false, ...props }: But
   });
 
   return (
-    <span data-part="button-icon-group" data-interactive={interactive} {...props}>
+    <span data-part="button-icon-group" {...props}>
       {content}
     </span>
   );
