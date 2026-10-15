@@ -727,11 +727,17 @@
       fill: inherit;
     }
 
-    &:hover,
-    &:focus,
-    &:focus-visible {
-      color: var(--Button-Tertiary-Label-Hover, #7a183e);
-      fill: var(--Button-Tertiary-Label-Hover, #7a183e);
+
+    &[data-own-color="true"] {
+      color: var(--button-fill, currentColor);
+      fill: var(--button-fill, currentColor);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: var(--Button-Tertiary-Label-Hover, #7a183e);
+        fill: var(--Button-Tertiary-Label-Hover, #7a183e);
+      }
     }
   }
 }
@@ -803,7 +809,7 @@
   gap: var(--gridSize);
 }
 
-.button [data-part="button-icon-group-icon-slot"] {
+span[data-part="button-icon-group-icon-slot"] {
   position: relative;
 
   display: inline-flex;
@@ -811,7 +817,7 @@
   width: 32px;
   min-height: 24px;
 
-  > * {
+  > *:not([data-is-tooltip-trigger="true"]) {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -820,5 +826,21 @@
     height: auto;
 
     transform: translate(-50%, -50%);
+  }
+
+  > [data-is-tooltip-trigger="true"] {
+    width: 32px;
+    height: 24px;
+
+    > * {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: inherit;
+      height: auto;
+
+      transform: translate(-50%, -50%);
+    }
   }
 }

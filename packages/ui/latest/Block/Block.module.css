@@ -17,22 +17,23 @@
 .block[data-kind~="sticky"] { position: sticky; }
 .block[data-kind~="static"] { position: static; }
 
+
+/* Flex direction modifiers */
+.block[data-kind~="row"] { display: flex; flex-direction: row; }
+.block[data-kind~="row-reverse"] { display: flex; flex-direction: row-reverse; }
+
+.block[data-kind~="column"] { display: flex; flex-direction: column; }
+.block[data-kind~="column-reverse"] { display: flex; flex-direction: column-reverse; }
+
+/* Fit modifiers for flex containers */
+.block[data-kind~="fit"] { flex: 1; }
+
 /* Display modifiers */
 .block[data-kind~="inline"] { display: inline; }
 .block[data-kind~="inline-block"] { display: inline-block; }
 .block[data-kind~="block"] { display: block; }
 .block[data-kind~="flex"] { display: flex; }
 .block[data-kind~="flex-inline"] { display: inline-flex; }
-
-/* Flex direction modifiers */
-.block[data-kind~="row"] { display: flex; flex-direction: row; flex: 1; }
-.block[data-kind~="row-reverse"] { display: flex; flex-direction: row-reverse; flex: 1; }
-
-.block[data-kind~="column"] { display: flex; flex-direction: column; flex: 1; }
-.block[data-kind~="column-reverse"] { display: flex; flex-direction: column-reverse; flex: 1; }
-
-/* Fit modifiers for flex containers */
-.block[data-kind~="fit"] { flex: 1; }
 
 .block[data-kind~="grow"] { flex: 1 0; }
 .block[data-kind~="grow-1"] { flex-grow: 1; }
@@ -330,7 +331,8 @@
 
 
 /* Border modifiers */
-.block[data-kind~="bd-rounded"] { border-radius: var(--bd-radius); }
+.block[data-kind~="bd-rounded"],
+.block[data-kind~="bd-rounded-primary"] { border-radius: var(--bd-radius); }
 .block[data-kind~="bd-w-1"] { --bd-width: 1px; }
 .block[data-kind~="bd-w-2"] { --bd-width: 2px; }
 .block[data-kind~="bd-w-3"] { --bd-width: 3px; }
@@ -409,21 +411,21 @@
 .block[data-kind~="span-auto"] { width: auto; }
 .block[data-kind~="span-full"] { width: 100%; max-width: 100%; }
 
-.block[data-kind~="span-0"] { width: 0; }
-.block[data-kind~="span-1"] { width: var(--gridSize); }
-.block[data-kind~="span-2"] { width: calc(2 * var(--gridSize)); }
-.block[data-kind~="span-3"] { width: calc(3 * var(--gridSize)); }
-.block[data-kind~="span-4"] { width: calc(4 * var(--gridSize)); }
-.block[data-kind~="span-5"] { width: calc(5 * var(--gridSize)); }
-.block[data-kind~="span-6"] { width: calc(6 * var(--gridSize)); }
-.block[data-kind~="span-7"] { width: calc(7 * var(--gridSize)); }
-.block[data-kind~="span-8"] { width: calc(8 * var(--gridSize)); }
-.block[data-kind~="span-9"] { width: calc(9 * var(--gridSize)); }
-.block[data-kind~="span-10"] { width: calc(10 * var(--gridSize)); }
-.block[data-kind~="span-20"] { width: calc(20 * var(--gridSize)); }
-.block[data-kind~="span-26"] { width: calc(26 * var(--gridSize)); }
-.block[data-kind~="span-30"] { width: calc(30 * var(--gridSize)); }
-.block[data-kind~="span-60"] { width: calc(60 * var(--gridSize)); }
+.block[data-kind~="span-0"] { width: 0; max-width: 0; }
+.block[data-kind~="span-1"] { width: var(--gridSize); max-width: var(--gridSize); }
+.block[data-kind~="span-2"] { width: calc(2 * var(--gridSize)); max-width: calc(2 * var(--gridSize)); }
+.block[data-kind~="span-3"] { width: calc(3 * var(--gridSize)); max-width: calc(3 * var(--gridSize)); }
+.block[data-kind~="span-4"] { width: calc(4 * var(--gridSize)); max-width: calc(4 * var(--gridSize)); }
+.block[data-kind~="span-5"] { width: calc(5 * var(--gridSize)); max-width: calc(5 * var(--gridSize)); }
+.block[data-kind~="span-6"] { width: calc(6 * var(--gridSize)); max-width: calc(6 * var(--gridSize)); }
+.block[data-kind~="span-7"] { width: calc(7 * var(--gridSize)); max-width: calc(7 * var(--gridSize)); }
+.block[data-kind~="span-8"] { width: calc(8 * var(--gridSize)); max-width: calc(8 * var(--gridSize)); }
+.block[data-kind~="span-9"] { width: calc(9 * var(--gridSize)); max-width: calc(9 * var(--gridSize)); }
+.block[data-kind~="span-10"] { width: calc(10 * var(--gridSize)); max-width: calc(10 * var(--gridSize)); }
+.block[data-kind~="span-20"] { width: calc(20 * var(--gridSize)); max-width: calc(20 * var(--gridSize)); }
+.block[data-kind~="span-26"] { width: calc(26 * var(--gridSize)); max-width: calc(26 * var(--gridSize)); }
+.block[data-kind~="span-30"] { width: calc(30 * var(--gridSize)); max-width: calc(30 * var(--gridSize)); }
+.block[data-kind~="span-60"] { width: calc(60 * var(--gridSize)); max-width: calc(60 * var(--gridSize)); }
 
 
 /* Vspan (height) sizes */
@@ -470,7 +472,7 @@
 .block[data-kind~="maxspan-content"] { max-width: fit-content; }
 .block[data-kind~="maxspan-max-content"] { max-width: max-content; }
 .block[data-kind~="maxspan-min-content"] { max-width: min-content; }
-.block[data-kind~="maxspan-auto"] { max-width: auto; }
+.block[data-kind~="maxspan-auto"] { max-width: none; }
 .block[data-kind~="maxspan-full"] { max-width: 100%; }
 .block[data-kind~="maxspan-0"] { max-width: 0; }
 .block[data-kind~="maxspan-1"] { max-width: var(--gridSize); }
@@ -508,7 +510,7 @@
 .block[data-kind~="maxvspan-content"] { max-height: fit-content; }
 .block[data-kind~="maxvspan-max-content"] { max-height: max-content; }
 .block[data-kind~="maxvspan-min-content"] { max-height: min-content; }
-.block[data-kind~="maxvspan-auto"] { max-height: auto; }
+.block[data-kind~="maxvspan-auto"] { max-height: none; }
 .block[data-kind~="maxvspan-full"] { max-height: 100%; }
 .block[data-kind~="maxvspan-0"] { max-height: 0; }
 .block[data-kind~="maxvspan-1"] { max-height: var(--gridSize); }
@@ -535,7 +537,7 @@
 .block[data-kind~="span-tab-panel"] { max-width: 780px; }
 
 /* Special modifiers (visibility, others) */
-.block[data-kind~="hidden"] { display: none !important; }
+.block[data-kind~="hidden"] { display: none; }
 .block[data-kind~="visibility-hidden"] { visibility: hidden; pointer-events: none; }
 
 /* 
@@ -555,18 +557,19 @@
   .block[data-kind~="t-sticky"] { position: sticky; }
   .block[data-kind~="t-static"] { position: static; }
 
+
+  /* Flex direction modifiers */
+  .block[data-kind~="t-row"] { display: flex; flex-direction: row; }
+  .block[data-kind~="t-row-reverse"] { display: flex; flex-direction: row-reverse; }
+  .block[data-kind~="t-column"] { display: flex; flex-direction: column; }
+  .block[data-kind~="t-column-reverse"] { display: flex; flex-direction: column-reverse; }
+
   /* Display modifiers */
   .block[data-kind~="t-inline"] { display: inline; }
   .block[data-kind~="t-inline-block"] { display: inline-block; }
   .block[data-kind~="t-block"] { display: block; }
   .block[data-kind~="t-flex"] { display: flex; }
   .block[data-kind~="t-flex-inline"] { display: inline-flex; }
-
-  /* Flex direction modifiers */
-  .block[data-kind~="t-row"] { display: flex; flex-direction: row; flex: 1; }
-  .block[data-kind~="t-row-reverse"] { display: flex; flex-direction: row-reverse; flex: 1; }
-  .block[data-kind~="t-column"] { display: flex; flex-direction: column; flex: 1; }
-  .block[data-kind~="t-column-reverse"] { display: flex; flex-direction: column-reverse; flex: 1; }
 
   /* Fit modifiers for flex containers */
   .block[data-kind~="t-fit"] { flex: 1; }
@@ -867,21 +870,21 @@
   .block[data-kind~="t-span-min-content"] { width: min-content; }
   .block[data-kind~="t-span-auto"] { width: auto; }
   .block[data-kind~="t-span-full"] { width: 100%; max-width: 100%; }
-  .block[data-kind~="t-span-0"] { width: 0; }
-  .block[data-kind~="t-span-1"] { width: var(--gridSize); }
-  .block[data-kind~="t-span-2"] { width: calc(2 * var(--gridSize)); }
-  .block[data-kind~="t-span-3"] { width: calc(3 * var(--gridSize)); }
-  .block[data-kind~="t-span-4"] { width: calc(4 * var(--gridSize)); }
-  .block[data-kind~="t-span-5"] { width: calc(5 * var(--gridSize)); }
-  .block[data-kind~="t-span-6"] { width: calc(6 * var(--gridSize)); }
-  .block[data-kind~="t-span-7"] { width: calc(7 * var(--gridSize)); }
-  .block[data-kind~="t-span-8"] { width: calc(8 * var(--gridSize)); }
-  .block[data-kind~="t-span-9"] { width: calc(9 * var(--gridSize)); }
-  .block[data-kind~="t-span-10"] { width: calc(10 * var(--gridSize)); }
-  .block[data-kind~="t-span-20"] { width: calc(20 * var(--gridSize)); }
-  .block[data-kind~="t-span-26"] { width: calc(26 * var(--gridSize)); }
-  .block[data-kind~="t-span-30"] { width: calc(30 * var(--gridSize)); }
-  .block[data-kind~="t-span-60"] { width: calc(60 * var(--gridSize)); }
+  .block[data-kind~="t-span-0"] { width: 0; max-width: 0; }
+  .block[data-kind~="t-span-1"] { width: var(--gridSize); max-width: var(--gridSize); }
+  .block[data-kind~="t-span-2"] { width: calc(2 * var(--gridSize)); max-width: calc(2 * var(--gridSize)); }
+  .block[data-kind~="t-span-3"] { width: calc(3 * var(--gridSize)); max-width: calc(3 * var(--gridSize)); }
+  .block[data-kind~="t-span-4"] { width: calc(4 * var(--gridSize)); max-width: calc(4 * var(--gridSize)); }
+  .block[data-kind~="t-span-5"] { width: calc(5 * var(--gridSize)); max-width: calc(5 * var(--gridSize)); }
+  .block[data-kind~="t-span-6"] { width: calc(6 * var(--gridSize)); max-width: calc(6 * var(--gridSize)); }
+  .block[data-kind~="t-span-7"] { width: calc(7 * var(--gridSize)); max-width: calc(7 * var(--gridSize)); }
+  .block[data-kind~="t-span-8"] { width: calc(8 * var(--gridSize)); max-width: calc(8 * var(--gridSize)); }
+  .block[data-kind~="t-span-9"] { width: calc(9 * var(--gridSize)); max-width: calc(9 * var(--gridSize)); }
+  .block[data-kind~="t-span-10"] { width: calc(10 * var(--gridSize)); max-width: calc(10 * var(--gridSize)); }
+  .block[data-kind~="t-span-20"] { width: calc(20 * var(--gridSize)); max-width: calc(20 * var(--gridSize)); }
+  .block[data-kind~="t-span-26"] { width: calc(26 * var(--gridSize)); max-width: calc(26 * var(--gridSize)); }
+  .block[data-kind~="t-span-30"] { width: calc(30 * var(--gridSize)); max-width: calc(30 * var(--gridSize)); }
+  .block[data-kind~="t-span-60"] { width: calc(60 * var(--gridSize)); max-width: calc(60 * var(--gridSize)); }
 
   /* Vspan (height) sizes */
   .block[data-kind~="t-vspan-content"] { height: fit-content; }
@@ -926,7 +929,7 @@
   .block[data-kind~="t-maxspan-content"] { max-width: fit-content; }
   .block[data-kind~="t-maxspan-max-content"] { max-width: max-content; }
   .block[data-kind~="t-maxspan-min-content"] { max-width: min-content; }
-  .block[data-kind~="t-maxspan-auto"] { max-width: auto; }
+  .block[data-kind~="t-maxspan-auto"] { max-width: none; }
   .block[data-kind~="t-maxspan-full"] { max-width: 100%; }
   .block[data-kind~="t-maxspan-0"] { max-width: 0; }
   .block[data-kind~="t-maxspan-1"] { max-width: var(--gridSize); }
@@ -964,7 +967,7 @@
   .block[data-kind~="t-maxvspan-content"] { max-height: fit-content; }
   .block[data-kind~="t-maxvspan-max-content"] { max-height: max-content; }
   .block[data-kind~="t-maxvspan-min-content"] { max-height: min-content; }
-  .block[data-kind~="t-maxvspan-auto"] { max-height: auto; }
+  .block[data-kind~="t-maxvspan-auto"] { max-height: none; }
   .block[data-kind~="t-maxvspan-full"] { max-height: 100%; }
   .block[data-kind~="t-maxvspan-0"] { max-height: 0; }
   .block[data-kind~="t-maxvspan-1"] { max-height: var(--gridSize); }
@@ -984,7 +987,7 @@
   .block[data-kind~="t-children-span-full"] > * { width: 100%; min-width: 100%; max-width: 100%; }
 
   /* Visibility */
-  .block[data-kind~="t-hidden"] { display: none !important; }
+  .block[data-kind~="t-hidden"] { display: none; }
   .block[data-kind~="t-visibility-hidden"] { visibility: hidden; pointer-events: none; }
 }
 
@@ -1000,19 +1003,20 @@
   .block[data-kind~="m-sticky"] { position: sticky; }
   .block[data-kind~="m-static"] { position: static; }
 
+
+  /* Flex direction modifiers */
+  .block[data-kind~="m-row"] { display: flex; flex-direction: row; }
+  .block[data-kind~="m-row-reverse"] { display: flex; flex-direction: row-reverse; }
+  .block[data-kind~="m-column"] { display: flex; flex-direction: column; }
+  .block[data-kind~="m-column-reverse"] { display: flex; flex-direction: column-reverse; }
+
   /* Display modifiers */
   .block[data-kind~="m-inline"] { display: inline; }
   .block[data-kind~="m-inline-block"] { display: inline-block; }
   .block[data-kind~="m-block"] { display: block; }
   .block[data-kind~="m-flex"] { display: flex; }
   .block[data-kind~="m-flex-inline"] { display: inline-flex; }
-
-  /* Flex direction modifiers */
-  .block[data-kind~="m-row"] { display: flex; flex-direction: row; flex: 1; }
-  .block[data-kind~="m-row-reverse"] { display: flex; flex-direction: row-reverse; flex: 1; }
-  .block[data-kind~="m-column"] { display: flex; flex-direction: column; flex: 1; }
-  .block[data-kind~="m-column-reverse"] { display: flex; flex-direction: column-reverse; flex: 1; }
-
+  
   /* Fit modifiers for flex containers */
   .block[data-kind~="m-fit"] { flex: 1; }
   .block[data-kind~="m-grow"] { flex: 1 0; }
@@ -1312,21 +1316,21 @@
   .block[data-kind~="m-span-min-content"] { width: min-content; }
   .block[data-kind~="m-span-auto"] { width: auto; }
   .block[data-kind~="m-span-full"] { width: 100%; max-width: 100%; }
-  .block[data-kind~="m-span-0"] { width: 0; }
-  .block[data-kind~="m-span-1"] { width: var(--gridSize); }
-  .block[data-kind~="m-span-2"] { width: calc(2 * var(--gridSize)); }
-  .block[data-kind~="m-span-3"] { width: calc(3 * var(--gridSize)); }
-  .block[data-kind~="m-span-4"] { width: calc(4 * var(--gridSize)); }
-  .block[data-kind~="m-span-5"] { width: calc(5 * var(--gridSize)); }
-  .block[data-kind~="m-span-6"] { width: calc(6 * var(--gridSize)); }
-  .block[data-kind~="m-span-7"] { width: calc(7 * var(--gridSize)); }
-  .block[data-kind~="m-span-8"] { width: calc(8 * var(--gridSize)); }
-  .block[data-kind~="m-span-9"] { width: calc(9 * var(--gridSize)); }
-  .block[data-kind~="m-span-10"] { width: calc(10 * var(--gridSize)); }
-  .block[data-kind~="m-span-20"] { width: calc(20 * var(--gridSize)); }
-  .block[data-kind~="m-span-26"] { width: calc(26 * var(--gridSize)); }
-  .block[data-kind~="m-span-30"] { width: calc(30 * var(--gridSize)); }
-  .block[data-kind~="m-span-60"] { width: calc(60 * var(--gridSize)); }
+  .block[data-kind~="m-span-0"] { width: 0; max-width: 0; }
+  .block[data-kind~="m-span-1"] { width: var(--gridSize); max-width: var(--gridSize); }
+  .block[data-kind~="m-span-2"] { width: calc(2 * var(--gridSize)); max-width: calc(2 * var(--gridSize)); }
+  .block[data-kind~="m-span-3"] { width: calc(3 * var(--gridSize)); max-width: calc(3 * var(--gridSize)); }
+  .block[data-kind~="m-span-4"] { width: calc(4 * var(--gridSize)); max-width: calc(4 * var(--gridSize)); }
+  .block[data-kind~="m-span-5"] { width: calc(5 * var(--gridSize)); max-width: calc(5 * var(--gridSize)); }
+  .block[data-kind~="m-span-6"] { width: calc(6 * var(--gridSize)); max-width: calc(6 * var(--gridSize)); }
+  .block[data-kind~="m-span-7"] { width: calc(7 * var(--gridSize)); max-width: calc(7 * var(--gridSize)); }
+  .block[data-kind~="m-span-8"] { width: calc(8 * var(--gridSize)); max-width: calc(8 * var(--gridSize)); }
+  .block[data-kind~="m-span-9"] { width: calc(9 * var(--gridSize)); max-width: calc(9 * var(--gridSize)); }
+  .block[data-kind~="m-span-10"] { width: calc(10 * var(--gridSize)); max-width: calc(10 * var(--gridSize)); }
+  .block[data-kind~="m-span-20"] { width: calc(20 * var(--gridSize)); max-width: calc(20 * var(--gridSize)); }
+  .block[data-kind~="m-span-26"] { width: calc(26 * var(--gridSize)); max-width: calc(26 * var(--gridSize)); }
+  .block[data-kind~="m-span-30"] { width: calc(30 * var(--gridSize)); max-width: calc(30 * var(--gridSize)); }
+  .block[data-kind~="m-span-60"] { width: calc(60 * var(--gridSize)); max-width: calc(60 * var(--gridSize)); }
 
   /* Vspan (height) sizes */
   .block[data-kind~="m-vspan-content"] { height: fit-content; }
@@ -1371,7 +1375,7 @@
   .block[data-kind~="m-maxspan-content"] { max-width: fit-content; }
   .block[data-kind~="m-maxspan-max-content"] { max-width: max-content; }
   .block[data-kind~="m-maxspan-min-content"] { max-width: min-content; }
-  .block[data-kind~="m-maxspan-auto"] { max-width: auto; }
+  .block[data-kind~="m-maxspan-auto"] { max-width: none; }
   .block[data-kind~="m-maxspan-full"] { max-width: 100%; }
   .block[data-kind~="m-maxspan-0"] { max-width: 0; }
   .block[data-kind~="m-maxspan-1"] { max-width: var(--gridSize); }
@@ -1409,7 +1413,7 @@
   .block[data-kind~="m-maxvspan-content"] { max-height: fit-content; }
   .block[data-kind~="m-maxvspan-max-content"] { max-height: max-content; }
   .block[data-kind~="m-maxvspan-min-content"] { max-height: min-content; }
-  .block[data-kind~="m-maxvspan-auto"] { max-height: auto; }
+  .block[data-kind~="m-maxvspan-auto"] { max-height: none; }
   .block[data-kind~="m-maxvspan-full"] { max-height: 100%; }
   .block[data-kind~="m-maxvspan-0"] { max-height: 0; }
   .block[data-kind~="m-maxvspan-1"] { max-height: var(--gridSize); }
@@ -1429,6 +1433,6 @@
   .block[data-kind~="m-children-span-full"] > * { width: 100%; min-width: 100%; max-width: 100%; }
 
   /* Visibility */
-  .block[data-kind~="m-hidden"] { display: none !important; }
+  .block[data-kind~="m-hidden"] { display: none; }
   .block[data-kind~="m-visibility-hidden"] { visibility: hidden; pointer-events: none; }
 }
