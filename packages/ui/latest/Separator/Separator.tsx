@@ -10,8 +10,7 @@ import styles from "./Separator.module.css";
 type OrientationValue = "horizontal" | "vertical";
 type OrientationValueAlias = "rows" | "columns";
 
-type SeparatorProps = {
-  className?: string;
+type SeparatorProps = Omit<React.HTMLAttributes<HTMLSpanElement>, "role"> & {
   orientation?: OrientationValue | OrientationValueAlias;
   margin?: true | false | "small";
   role?: string;

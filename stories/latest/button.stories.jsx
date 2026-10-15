@@ -489,6 +489,40 @@ export const IconGroups = {
   ),
 };
 
+export const LineHeight = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind="card">
+      <div style={ { display: "flex", flexDirection: "column", gap: "24px" } }>
+        <div>
+          <h4>Default (line-height: 24px)</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px", alignItems: "flex-start" } }>
+            <Button kind="primary"><Button.Label>Default line-height</Button.Label></Button>
+            <Button kind="secondary"><Button.Label>Default line-height</Button.Label></Button>
+            <Button kind="tertiary"><Button.Label>Default line-height</Button.Label></Button>
+          </div>
+        </div>
+        <div>
+          <h4>data-line-height=&quot;1&quot;</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px", alignItems: "flex-start" } }>
+            <Button kind="primary" data-line-height="1"><Button.Label>line-height: 1</Button.Label></Button>
+            <Button kind="secondary" data-line-height="1"><Button.Label>line-height: 1</Button.Label></Button>
+            <Button kind="tertiary" data-line-height="1"><Button.Label>line-height: 1</Button.Label></Button>
+          </div>
+        </div>
+        <div>
+          <h4>data-line-height=&quot;inherit&quot;</h4>
+          <div style={ { display: "flex", flexDirection: "row", gap: "12px", alignItems: "flex-start" } }>
+            <Button kind="primary" data-line-height="inherit"><Button.Label>line-height: inherit</Button.Label></Button>
+            <Button kind="secondary" data-line-height="inherit"><Button.Label>line-height: inherit</Button.Label></Button>
+            <Button kind="tertiary" data-line-height="inherit"><Button.Label>line-height: inherit</Button.Label></Button>
+          </div>
+        </div>
+      </div>
+    </Cover>
+  ),
+};
+
 export const Tooltips = {
   tags: ["!dev"],
   render: () => (

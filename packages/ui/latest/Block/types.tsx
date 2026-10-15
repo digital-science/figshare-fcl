@@ -112,7 +112,7 @@ type SpecialSpan = "span-tab-panel";
 type Border = "bd-rounded" | "bd-w-1" | "bd-w-2" | "bd-w-3" | "bd-primary" | "bd-rounded-primary" | "bd-collapse";
 
 /* Background */
-type Background = "bg-primary" | "bg-secondary";
+type Background = "bg-primary" | "bg-secondary" | "bg-secondary-alt";
 
 /* Skeleton */
 type Skeleton = "skeleton";

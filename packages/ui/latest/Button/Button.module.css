@@ -83,6 +83,14 @@
   &[data-clickable="false"] {
     pointer-events: none;
   }
+
+  &[data-line-height="1"] {
+    line-height: 1;
+  }
+
+  &[data-line-height="inherit"] {
+    line-height: inherit;
+  }
 }
 
 .button[data-inline="true"] {
@@ -104,6 +112,15 @@
 }
 
 .button[data-inline="slim-flexible"] {
+  display: inline-flex;
+
+  min-height: auto;
+
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.button[data-inline="slim-flexible-icon"] {
   display: inline-flex;
 
   min-height: auto;

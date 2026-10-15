@@ -79,6 +79,34 @@ export const CustomHTMLTags = {
   ),
 };
 
+export const BackgroundVariants = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind={"card"}>
+      <div style={ { display: "flex", flexDirection: "column", gap: "24px", padding: "16px" } }>
+        <div>
+          <h4>bg-primary</h4>
+          <Block kind="bg-primary p-3 bd-rounded" style={ { border: "1px solid #e0e0e0" } }>
+            Primary background
+          </Block>
+        </div>
+        <div>
+          <h4>bg-secondary</h4>
+          <Block kind="bg-secondary p-3 bd-rounded">
+            Secondary background
+          </Block>
+        </div>
+        <div>
+          <h4>bg-secondary-alt</h4>
+          <Block kind="bg-secondary-alt p-3 bd-rounded" style={ { color: "#fff" } }>
+            Secondary alt background (dark)
+          </Block>
+        </div>
+      </div>
+    </Cover>
+  ),
+};
+
 export const BlockWithMark = {
   tags: ["!dev"],
   render: () => (

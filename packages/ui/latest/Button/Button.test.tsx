@@ -63,9 +63,9 @@ describe("Button", () => {
     scope.props.href = "/some-path";
     scope.run();
 
-    const link = screen.getByRole("button", { name: "Click me" });
+    const link = screen.getByRole("link", { name: "Click me" });
     expect(link.tagName).toBe("A");
-    expect(link).toHaveAttribute("role", "button");
+    expect(link).toHaveAttribute("role", "link");
     expect(link).toHaveAttribute("data-scope", "link");
     expect(link).toHaveAttribute("href", "/some-path");
 

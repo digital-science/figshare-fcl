@@ -56,7 +56,7 @@ export const Button = React.forwardRef(({
         LinkTag = Link.External;
       }
 
-      return { Tag: LinkTag, propsByTag: { role: "button", "data-scope": "link" } };
+      return { Tag: LinkTag, propsByTag: { role: "link", "data-scope": "link" } };
     }
 
     return { Tag: "button" as const, propsByTag: { type: "button" as const } };
