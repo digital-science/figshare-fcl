@@ -55,7 +55,7 @@ All modifiers support responsive prefixes: no prefix (default), `t-` (tablet, <=
 
 `row` `row-reverse` `column` `column-reverse`
 
-These set `display: flex`, `flex-direction`, and `flex: 1`.
+These set `display: flex` and `flex-direction`. To use `inline-flex` with a direction, combine with `flex-inline` — it will override the direction's `display: flex` since its CSS rule has higher source order.
 
 ### Flex control
 

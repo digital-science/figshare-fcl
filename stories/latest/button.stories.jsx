@@ -399,10 +399,10 @@ export const InteractiveIcons = {
             <Button kind="secondary" em="low" span="full" justify="between">
               <Button.Label>Item with multiple actions</Button.Label>
               <Button.IconGroup interactive={true}>
-                <Button.InteractiveIcon tooltip="Copy" onClick={() => alert("Copy")}>
+                <Button.InteractiveIcon ownColor={true} tooltip="Copy" onClick={() => alert("Copy")}>
                   <Copy />
                 </Button.InteractiveIcon>
-                <Button.InteractiveIcon tooltip="Edit" onClick={() => alert("Edit")}>
+                <Button.InteractiveIcon ownColor={true} tooltip="Edit" onClick={() => alert("Edit")}>
                   <Edit />
                 </Button.InteractiveIcon>
                 <Button.InteractiveIcon tooltip="Delete" onClick={() => alert("Delete")}>
@@ -417,7 +417,7 @@ export const InteractiveIcons = {
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
             <Button kind="secondary" em="low">
               <Button.Label>Action</Button.Label>
-              <Button.InteractiveIcon onClick={() => alert("Eye clicked")}>
+              <Button.InteractiveIcon aria-label="View" onClick={() => alert("Eye clicked")}>
                 <Eye />
               </Button.InteractiveIcon>
             </Button>

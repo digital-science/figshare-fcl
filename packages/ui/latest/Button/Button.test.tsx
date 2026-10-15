@@ -582,12 +582,14 @@ describe("ButtonIconGroup", () => {
     teardown();
   });
 
-  it("sets data-interactive on the group container when interactive is true", () => {
+  it("wraps children in icon slots when interactive is true", () => {
     const scope = setup();
     scope.props.interactive = true;
     scope.run();
 
-    expect(scope.wrapper.container.querySelector("[data-part=\"button-icon-group\"]")).toHaveAttribute("data-interactive", "true");
+    const group = scope.wrapper.container.querySelector("[data-part=\"button-icon-group\"]");
+    const slots = group.querySelectorAll("[data-part=\"button-icon-group-icon-slot\"]");
+    expect(slots.length).toBeGreaterThan(0);
 
     teardown();
   });

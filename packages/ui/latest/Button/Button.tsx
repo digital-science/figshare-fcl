@@ -161,7 +161,7 @@ export function ButtonIcon({ children, asChild = false, blend = false, size = "m
 
 ButtonIcon.displayName = "ButtonIcon";
 
-export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ...props }: ButtonInteractiveIconProps) {
+export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ownColor, ...props }: ButtonInteractiveIconProps) {
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -170,13 +170,13 @@ export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, .
     onKeyDown?.(event);
   }, [onClick, onKeyDown]);
 
-  const interactionProps = { tabIndex: 0, role: "button", "data-interactive": true, "aria-hidden": false, onClick, onKeyDown: handleKeyDown };
+  const interactionProps = { tabIndex: 0, role: "button", "data-interactive": true, "aria-hidden": false, "data-own-color": ownColor, onClick, onKeyDown: handleKeyDown };
 
   if (tooltip) {
     return (
       <Tooltip strategy="absolute" placement="top">
-        <TooltipTrigger asChild={true}>
-          <ButtonIcon {...interactionProps} {...props} asChild={false}>{children}</ButtonIcon>
+        <TooltipTrigger data-is-tooltip-trigger={true} asChild={false}>
+          <ButtonIcon blend={true} {...props} {...interactionProps} asChild={false}>{children}</ButtonIcon>
         </TooltipTrigger>
         <TooltipContent>
           {tooltip}
@@ -185,7 +185,7 @@ export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, .
     );
   }
 
-  return (<ButtonIcon {...interactionProps} {...props}>{children}</ButtonIcon>);
+  return (<ButtonIcon {...props} {...interactionProps} asChild={false}>{children}</ButtonIcon>);
 }
 
 ButtonInteractiveIcon.displayName = "ButtonInteractiveIcon";

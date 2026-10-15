@@ -291,7 +291,7 @@ import { Edit, Copy, Delete, Eye } from "@digital-science/figshare-fcl/icons/rea
 // Without tooltip
 <Button kind="secondary" em="low">
   <Button.Label>Action</Button.Label>
-  <Button.InteractiveIcon onClick={() => {}}>
+  <Button.InteractiveIcon aria-label="View" onClick={() => {}}>
     <Eye />
   </Button.InteractiveIcon>
 </Button>
@@ -321,13 +321,13 @@ import { Eye, Download, Edit, Copy, Delete, Checkmark } from "@digital-science/f
 <Button kind="secondary" em="low" span="full" justify="between">
   <Button.Label>File.pdf</Button.Label>
   <Button.IconGroup interactive={true}>
-    <Button.InteractiveIcon tooltip="Preview" onClick={() => {}}>
+    <Button.InteractiveIcon ownColor={true} tooltip="Preview" onClick={() => {}}>
       <Eye />
     </Button.InteractiveIcon>
-    <Button.InteractiveIcon tooltip="Download" onClick={() => {}}>
+    <Button.InteractiveIcon ownColor={true} tooltip="Download" onClick={() => {}}>
       <Download />
     </Button.InteractiveIcon>
-    <Button.InteractiveIcon tooltip="Delete" onClick={() => {}}>
+    <Button.InteractiveIcon ownColor={true} tooltip="Delete" onClick={() => {}}>
       <Delete />
     </Button.InteractiveIcon>
   </Button.IconGroup>

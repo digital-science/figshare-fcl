@@ -3,6 +3,10 @@
 type Size = "1/2" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10";
 type SizeWithZero = "0" | Size;
 
+/* Size scale for width/height families (no fractional values) */
+type SizeInt = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10";
+type SizeIntWithZero = "0" | SizeInt;
+
 /* Responsive prefix: default (none), tablet (t-), mobile (m-) */
 type Prefix = "" | "t-" | "m-";
 
@@ -81,22 +85,22 @@ type Margin = MarginAll | MarginX | MarginY | MarginBottom | MarginTop | MarginR
 type SpanKeyword = "content" | "max-content" | "min-content" | "auto" | "full";
 
 /* Span (width) */
-type Span = `${Prefix}span-${SpanKeyword | SizeWithZero | "20" | "26" | "30" | "60"}`;
+type Span = `${Prefix}span-${SpanKeyword | SizeIntWithZero | "20" | "26" | "30" | "60"}`;
 
 /* Vspan (height) */
-type Vspan = `${Prefix}vspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+type Vspan = `${Prefix}vspan-${SpanKeyword | SizeIntWithZero | "20" | "30"}`;
 
 /* Minspan (min-width) */
-type Minspan = `${Prefix}minspan-${SpanKeyword | SizeWithZero | "30"}`;
+type Minspan = `${Prefix}minspan-${SpanKeyword | SizeIntWithZero | "30"}`;
 
 /* Maxspan (max-width) */
-type Maxspan = `${Prefix}maxspan-${SpanKeyword | SizeWithZero}`;
+type Maxspan = `${Prefix}maxspan-${SpanKeyword | SizeIntWithZero}`;
 
 /* Minvspan (min-height) */
-type Minvspan = `${Prefix}minvspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+type Minvspan = `${Prefix}minvspan-${SpanKeyword | SizeIntWithZero | "20" | "30"}`;
 
 /* Maxvspan (max-height) */
-type Maxvspan = `${Prefix}maxvspan-${SpanKeyword | SizeWithZero | "20" | "30"}`;
+type Maxvspan = `${Prefix}maxvspan-${SpanKeyword | SizeIntWithZero | "20" | "30"}`;
 
 /* Children span */
 type ChildrenSpan = `${Prefix}children-span-full`;
