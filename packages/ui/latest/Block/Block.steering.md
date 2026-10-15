@@ -139,6 +139,8 @@ All sizing modifiers accept numeric sizes (`0`-`10`, plus `20`, `26`, `30`, `60`
 
 Special: `children-span-full` forces all direct children to `width: 100%`.
 
+**`span-content` vs `span-content maxspan-content`:** `span-content` alone sets `width: fit-content`, which locks the element to its content width and prevents flex shrinking. If the element needs to size to its content but still shrink when space is tight (e.g. in a flex row at small viewports), combine both: `span-content maxspan-content`. This sets `width: fit-content; max-width: fit-content` — the element sizes naturally but the `max-width` constraint allows flex to compress it below its content width. This matches the behaviour of the legacy `span-fit-content` token.
+
 ### Border
 
 `bd-rounded` `bd-w-1` `bd-w-2` `bd-w-3` `bd-primary` `bd-rounded-primary` `bd-collapse`
@@ -333,7 +335,7 @@ The legacy CSS rules will be removed once all usages are migrated.
 | `border-collapsible` | `bd-collapse` |
 | `background-primary` | `bg-primary` |
 | `background-secondary` | `bg-secondary` |
-| `span-fit-content` | `span-content` |
+| `span-fit-content` | `span-content maxspan-content` |
 | `span-tablet-full` | `t-span-full` |
 | `span-mobile-full` | `m-span-full` |
 | `children-span-tablet-full` | `t-children-span-full` |
