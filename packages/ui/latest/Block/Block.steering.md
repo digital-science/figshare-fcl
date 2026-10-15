@@ -145,7 +145,7 @@ Special: `children-span-full` forces all direct children to `width: 100%`.
 
 ### Background
 
-`bg-primary` `bg-secondary`
+`bg-primary` `bg-secondary` `bg-secondary-alt`
 
 ### Visibility
 

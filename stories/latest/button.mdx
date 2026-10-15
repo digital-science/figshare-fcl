@@ -13,6 +13,7 @@ import { Cover } from "../story-utils/Cover";
 - [Props](#props-table)
 - [Sub-Components](#sub-components)
 - [Examples](#examples)
+- [Line Height](#line-height)
 - [Interactive Icons](#interactive-icons)
 - [Icon Groups](#icon-groups)
 - [Anchor Links](#anchor-links)
@@ -231,6 +232,29 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 <p>This is a paragraph with a <Button kind="primary" inline="slim"><Button.Label>slim primary button</Button.Label></Button> in the text.</p>
 
 <p>This is a paragraph with a <Button kind="secondary" inline="slim"><Button.Label>slim secondary button</Button.Label></Button> in the text.</p>
+```
+
+### Line Height
+
+The `data-line-height` attribute controls the button's line-height. Use `"1"` for a tight line-height or `"inherit"` to inherit from the parent.
+
+<Canvas of={ButtonStories.LineHeight} />
+
+```jsx
+// Default line-height (24px)
+<Button kind="primary">
+  <Button.Label>Default</Button.Label>
+</Button>
+
+// Tight line-height (1)
+<Button kind="primary" data-line-height="1">
+  <Button.Label>Tight</Button.Label>
+</Button>
+
+// Inherited line-height
+<Button kind="primary" data-line-height="inherit">
+  <Button.Label>Inherit</Button.Label>
+</Button>
 ```
 
 ### Loading States

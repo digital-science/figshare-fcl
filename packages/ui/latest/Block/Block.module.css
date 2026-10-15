@@ -365,6 +365,7 @@
 /* Background modifiers */
 .block[data-kind~="bg-primary"] { background: var(--Background-Primary, #fff); }
 .block[data-kind~="bg-secondary"] { background: var(--Background-Secondary, #f5f5f5); }
+.block[data-kind~="bg-secondary-alt"] { background: var(--Background-Secondary-Alt, #464646); }
 
 /* Skeleton block */
 .block[data-kind~="skeleton"] {

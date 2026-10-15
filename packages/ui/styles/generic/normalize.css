@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-deprecated */
 * {
   box-sizing: border-box;
 
@@ -82,7 +83,6 @@ pre {
   position: absolute !important;
 
   overflow: hidden !important;
-  /* stylelint-disable-next-line property-no-deprecated */
   clip: rect(0, 0, 0, 0) !important;
 
   width: 1px !important;
@@ -93,4 +93,81 @@ pre {
   white-space: nowrap !important;
 
   border: 0 !important;
+}
+
+[data-visually-hidden="true"] {
+  position: absolute !important;
+
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
+
+  border: 0 !important;
+}
+
+/* Display hidden modifiers */
+*[data-display-hidden="true"] {
+  display: none !important;
+}
+
+*[data-display-hidden~="desktop"] {
+  display: none !important;
+}
+
+/* Tablet responsive modifiers */
+@media screen and (max-width: 1024px) {
+  *[data-visually-hidden~="tablet"] {
+    position: absolute !important;
+
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+  }
+
+  *[data-display-hidden="tablet"] {
+    display: none !important;
+  }
+
+  *[data-display-hidden="desktop"] {
+    display: revert !important;
+  }
+}
+
+/*
+  Mobile responsive modifiers
+*/
+@media screen and (max-width: 600px) {
+  *[data-visually-hidden="mobile"] {
+    position: absolute !important;
+
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+  }
+
+  *[data-display-hidden="mobile"] {
+    display: none !important;
+  }
 }
