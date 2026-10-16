@@ -116,8 +116,10 @@ pre {
   display: none !important;
 }
 
-*[data-display-hidden~="desktop"] {
-  display: none !important;
+@media screen and (min-width: 1025px) {
+  *[data-display-hidden~="desktop"] {
+    display: none !important;
+  }
 }
 
 /* Tablet responsive modifiers */
@@ -140,10 +142,6 @@ pre {
 
   *[data-display-hidden="tablet"] {
     display: none !important;
-  }
-
-  *[data-display-hidden="desktop"] {
-    display: revert !important;
   }
 }
 

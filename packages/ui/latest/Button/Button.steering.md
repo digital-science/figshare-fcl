@@ -119,6 +119,24 @@ The `inline` prop controls how the button sits in text flow:
 
 The legacy button package (`packages/ui/button/`) exports three class components — `Button`, `GenericButton`, and `IconButton` — all built on top of `GenericButton`'s base, which itself extends a `Base` component that handles `<button>` vs `<a>` rendering, disabled state, touch events, and tooltip positioning via `react-popper`. The new `/latest/Button` replaces all of them with a single functional component.
 
+### `innerRef` → `ref`
+
+All old button components accept `innerRef` (via the `Base` component or `withRef` HOC) for getting a reference to the underlying DOM element. The new Button uses standard React `ref` forwarding. When replacing old buttons, change `innerRef` to `ref`. Be aware of contexts where `innerRef` is passed by a parent component — for example, `ListElementDropdown` and similar dropdown/popover components pass `innerRef` to their toggle renderer function. These call sites need to be updated to pass `ref` instead.
+
+```jsx
+// Old — toggle renderer receiving innerRef
+<ListElementDropdown toggle={({ innerRef, ...props }) => (
+  <GenericButton innerRef={innerRef} {...props}>Options</GenericButton>
+)} />
+
+// New — use ref
+<ListElementDropdown toggle={({ ref, ...props }) => (
+  <Button ref={ref} span="content" kind="tertiary" em="low" {...props}>
+    <Button.Label>Options</Button.Label>
+  </Button>
+)} />
+```
+
 ### Theme mapping reference
 
 The old components use a `theme` (or `variant`) prop. Map them to `kind` + `em` as follows:

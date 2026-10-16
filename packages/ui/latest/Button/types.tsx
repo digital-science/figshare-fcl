@@ -8,7 +8,7 @@ type ButtonSpan = "full" | "fit" | "fit-content" | "icon" | "narrow" | "button" 
 
 type ButtonJustify = "between" | "start" | "end";
 
-type ButtonInline = boolean | "text" | "slim" | "slim-flexible";
+type ButtonInline = boolean | "text" | "slim" | "slim-flexible" | "slim-flexible-icon";
 
 export type ButtonProps = {
   children: React.ReactNode;

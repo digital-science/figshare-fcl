@@ -163,13 +163,13 @@ const LEGACY_MAP: Record<string, string> = {
   "background-secondary": "bg-secondary",
 
   // Span
-  "span-fit-content": "span-content",
+  "span-fit-content": "span-content maxspan-content",
   "span-tablet-full": "t-span-full",
   "span-tablet-auto": "t-span-auto",
-  "span-tablet-fit-content": "t-span-content",
+  "span-tablet-fit-content": "t-span-content t-maxspan-content",
   "span-mobile-full": "m-span-full",
   "span-mobile-auto": "m-span-auto",
-  "span-mobile-fit-content": "m-span-content",
+  "span-mobile-fit-content": "m-span-content m-maxspan-content",
 
   // Children span
   "children-span-tablet-full": "t-children-span-full",
