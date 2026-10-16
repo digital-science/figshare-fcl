@@ -239,6 +239,25 @@ describe("Button", () => {
     cleanup();
   });
 
+  it("does not set data-gap attribute when gap prop is not provided", () => {
+    const scope = setup();
+    scope.run();
+
+    expect(screen.getByRole("button")).not.toHaveAttribute("data-gap");
+
+    teardown();
+  });
+
+  it("sets data-gap attribute when gap prop is provided", () => {
+    const scope = setup();
+    scope.props.gap = "small";
+    scope.run();
+
+    expect(screen.getByRole("button")).toHaveAttribute("data-gap", "small");
+
+    teardown();
+  });
+
   it("passes additional props to the underlying element", () => {
     const scope = setup();
     scope.props["data-testid"] = "extra-btn";

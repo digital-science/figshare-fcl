@@ -58,7 +58,7 @@ type AlertCloseProps = {
   [key: string]: unknown;
 };
 
-type AlertComponent = React.FC<AlertProps> & {
+type AlertComponent = React.ForwardRefExoticComponent<AlertProps & React.RefAttributes<HTMLDivElement>> & {
   Icon: React.FC<AlertIconProps>;
   Title: React.FC<AlertTitleProps>;
   Description: React.FC<AlertDescriptionProps>;
@@ -66,7 +66,7 @@ type AlertComponent = React.FC<AlertProps> & {
 };
 
 
-export const Alert: AlertComponent = ({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }: AlertProps) => {
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }, ref) => {
   const className = classnames(styles.alert, providedClassName);
   const wrap = computeWrap(title, message);
   // Determine if the right side padding should be applied based on the padded and persistent props.
@@ -75,7 +75,7 @@ export const Alert: AlertComponent = ({ id = "alert", type, title, message, pers
   const showRightSidePadding = padded && persistent;
 
   return (
-    <div aria-live="polite" className={className} data-alert-type={type} data-alert-variant={variant} data-padded={showRightSidePadding} role="alert" {...props}>
+    <div ref={ref} aria-live="polite" className={className} data-alert-type={type} data-alert-variant={variant} data-padded={showRightSidePadding} role="alert" {...props}>
       <div role="presentation" data-part="alert-icon-margin" aria-hidden="true" data-wrap-type={wrap}>
         <Alert.Icon type={type} />
       </div>
@@ -91,7 +91,7 @@ export const Alert: AlertComponent = ({ id = "alert", type, title, message, pers
       </div>
     </div>
   );
-};
+}) as AlertComponent;
 
 Alert.displayName = "Alert";
 

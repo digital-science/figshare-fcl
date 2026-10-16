@@ -10,6 +10,7 @@ The `Button` is a unified interactive control that renders as a `<button>` or `<
 | `em` | `"high"` \| `"low"` \| `"success"` \| `"danger"` | `"high"` | Emphasis level — controls color intensity and contrast |
 | `span` | `"full"` \| `"fit"` \| `"fit-content"` \| `"icon"` \| `"narrow"` \| `"button"` \| `"content"` | — | Width behavior |
 | `justify` | `"between"` \| `"start"` \| `"end"` | — | Content justification |
+| `gap` | `"medium"` \| `"small"` | — | Gap between button children (icon, label). Default is 12px. `"medium"` = `2 * gridSize`, `"small"` = `1 * gridSize`. Only set when explicitly needed. |
 | `inline` | `boolean` \| `"text"` \| `"slim"` \| `"slim-flexible"` | `false` | Inline display mode |
 | `disabled` | `boolean` | `false` | Disabled state (uses `aria-disabled`) |
 | `loading` | `boolean` \| `ReactNode` | `false` | Loading state — `true` shows a spinner, or provide custom loading content |
