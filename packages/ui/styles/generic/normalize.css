@@ -140,7 +140,7 @@ pre {
     border: 0 !important;
   }
 
-  *[data-display-hidden="tablet"] {
+  *[data-display-hidden~="tablet"] {
     display: none !important;
   }
 }
@@ -149,7 +149,7 @@ pre {
   Mobile responsive modifiers
 */
 @media screen and (max-width: 600px) {
-  *[data-visually-hidden="mobile"] {
+  *[data-visually-hidden~="mobile"] {
     position: absolute !important;
 
     overflow: hidden !important;
@@ -165,7 +165,7 @@ pre {
     border: 0 !important;
   }
 
-  *[data-display-hidden="mobile"] {
+  *[data-display-hidden~="mobile"] {
     display: none !important;
   }
 }

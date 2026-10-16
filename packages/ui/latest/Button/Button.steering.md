@@ -51,7 +51,7 @@ When the Button receives an `href`, it renders an anchor tag. By default this is
 
 ```jsx
 // In your app entry point (e.g. App.tsx or index.tsx)
-import { bindLinkComponent } from "@digital-science/figshare-fcl/ui/latest/Button/anchor";
+import { bindLinkComponent } from "@digital-science/figshare-fcl/latest/Button/anchor";
 import { Link } from "react-router-dom";
 
 bindLinkComponent({ component: Link });
