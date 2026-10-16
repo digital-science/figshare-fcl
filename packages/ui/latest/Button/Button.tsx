@@ -124,7 +124,7 @@ export const Button = React.forwardRef(({
 
 Button.displayName = "Button";
 
-export function ButtonLabel({ children, wrap = false, hidden = false, ...props }: ButtonLabelProps) {
+export function ButtonLabel({ children, wrap = false, hidden = false, decoration, ...props }: ButtonLabelProps) {
   const ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
@@ -134,7 +134,7 @@ export function ButtonLabel({ children, wrap = false, hidden = false, ...props }
   }, [children]);
 
   return (
-    <span ref={ref} data-part="button-label" data-wrap={wrap} data-aria-only={hidden} {...props}>
+    <span ref={ref} data-part="button-label" data-wrap={wrap} data-aria-only={hidden} {...(decoration !== undefined && { "data-text-decoration": decoration })} {...props}>
       {children}
     </span>
   );

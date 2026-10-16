@@ -292,6 +292,22 @@ The following legacy tokens are supported through a facade layer (`useBlockKind`
 
 The legacy CSS rules will be removed once all usages are migrated.
 
+### Breaking change: no default `width: 100%`
+
+The new Block base styling does **not** include `width: 100%` — unlike the legacy `.block` which had it by default. This means that when upgrading or replacing old Block usages, elements that previously stretched to fill their container may shrink to content width.
+
+To mitigate this, add `span-full` to the `kind` string on any Block that needs to remain full-width:
+
+```jsx
+// Old — implicitly full width
+<Block kind="column gap-2">...</Block>
+
+// New — explicitly full width where needed
+<Block kind="column gap-2 span-full">...</Block>
+```
+
+Not every Block needs `span-full` — flex children that use `fit` or `grow` will size correctly without it. Only add it when the Block is expected to stretch to its container width and doesn't have another sizing mechanism.
+
 ### Migration reference
 
 | Legacy token | New equivalent |

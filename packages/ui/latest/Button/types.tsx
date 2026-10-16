@@ -36,10 +36,14 @@ export type ButtonProps = {
 
 type ButtonLabelWrap = boolean | "ellipsis" | "wrap" | "nowrap" | "wrap-all";
 
+type ButtonLabelDecoration = "underline" | "none";
+
 export type ButtonLabelProps = {
   children: React.ReactNode;
   /** Whether to wrap the label text. */
   wrap?: ButtonLabelWrap;
+  /** Text decoration for the label. Use "underline" for inline link-like buttons that should appear underlined even when not hovered. */
+  decoration?: ButtonLabelDecoration;
   hidden?: boolean;
   [key: string]: unknown;
 }

@@ -289,7 +289,7 @@ import { Button } from "@digital-science/figshare-fcl/latest/Button";
 import { Edit, Copy, Delete, Eye } from "@digital-science/figshare-fcl/icons/react";
 
 // Single interactive icon with tooltip
-<Button kind="secondary" em="low" span="full" justify="between">
+<Button kind="secondary" em="low" span="full" justify="between" inline="slim">
   <Button.Label>Item with actions</Button.Label>
   <Button.InteractiveIcon tooltip="Edit this item" onClick={() => {}}>
     <Edit />
@@ -313,7 +313,7 @@ import { Edit, Copy, Delete, Eye } from "@digital-science/figshare-fcl/icons/rea
 </Button>
 
 // Without tooltip
-<Button kind="secondary" em="low">
+<Button kind="secondary" em="low" inline="slim">
   <Button.Label>Action</Button.Label>
   <Button.InteractiveIcon aria-label="View" onClick={() => {}}>
     <Eye />

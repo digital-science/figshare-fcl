@@ -732,6 +732,8 @@
     height: 38px;
     max-height: 38px;
 
+    vertical-align: middle;
+
     & > * {
       position: absolute;
       top: 50%;
