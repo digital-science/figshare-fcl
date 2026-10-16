@@ -385,7 +385,7 @@ export const InteractiveIcons = {
           <h4>ButtonInteractiveIcon</h4>
           <p>An icon that acts as an independent interactive element inside a button. Supports tooltips and keyboard interaction.</p>
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
-            <Button kind="secondary" em="low" span="full" justify="between">
+            <Button kind="secondary" em="low" span="full" justify="between" inline="slim">
               <Button.Label>Item with actions</Button.Label>
               <Button.InteractiveIcon tooltip="Edit this item" onClick={() => alert("Edit clicked")}>
                 <Edit />
@@ -415,7 +415,7 @@ export const InteractiveIcons = {
         <div>
           <h4>Interactive Icon without Tooltip</h4>
           <div style={ { display: "flex", flexDirection: "row", gap: "12px" } }>
-            <Button kind="secondary" em="low">
+            <Button kind="secondary" em="low" inline="slim">
               <Button.Label>Action</Button.Label>
               <Button.InteractiveIcon aria-label="View" onClick={() => alert("Eye clicked")}>
                 <Eye />
