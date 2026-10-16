@@ -8,6 +8,8 @@ type ButtonSpan = "full" | "fit" | "fit-content" | "icon" | "narrow" | "button" 
 
 type ButtonJustify = "between" | "start" | "end";
 
+type ButtonGap = "medium" | "small";
+
 type ButtonInline = boolean | "text" | "slim" | "slim-flexible" | "slim-flexible-icon";
 
 export type ButtonProps = {
@@ -22,6 +24,8 @@ export type ButtonProps = {
   span?: ButtonSpan;
   /** The justification of the button content. */
   justify?: ButtonJustify;
+  /** The gap between button children (icon, label, etc.). */
+  gap?: ButtonGap;
   inline?: ButtonInline;
   loading?: boolean | React.ReactNode;
   href?: string;

@@ -31,6 +31,8 @@ module.exports = {
     "\\.css$": require.resolve("identity-obj-proxy"),
     "file-loader!*": "<rootDir>/scripts/tests/fileTransformer.cjs",
     "@digital-science/figshare-fcl/(.*)": "@digital-science/figshare-fcl/$1",
+    "^react$": "<rootDir>/node_modules/react",
+    "^react-dom$": "<rootDir>/node_modules/react-dom",
   },
   testEnvironment: "jsdom",
 };

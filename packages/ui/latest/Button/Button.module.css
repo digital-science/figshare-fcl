@@ -80,6 +80,14 @@
     justify-content: flex-end;
   }
 
+  &[data-gap="small"] {
+    gap: var(--gridSize);
+  }
+
+  &[data-gap="medium"] {
+    gap: calc(2 * var(--gridSize));
+  }
+
   &[data-clickable="false"] {
     pointer-events: none;
   }

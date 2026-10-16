@@ -29,6 +29,7 @@ export const Button = React.forwardRef(({
   loading = false,
   span,
   justify,
+  gap,
   tooltip,
   tooltipOptions = {},
   tooltipContentProps = {},
@@ -86,6 +87,7 @@ export const Button = React.forwardRef(({
             data-span={span}
             data-justify={justify}
             data-inline={inline}
+            {...(gap !== undefined && { "data-gap": gap })}
             data-part="button"
             onClick={onClickHandler}
             {...propsByTag}
@@ -112,6 +114,7 @@ export const Button = React.forwardRef(({
       data-span={span}
       data-justify={justify}
       data-inline={inline}
+      {...(gap !== undefined && { "data-gap": gap })}
       data-part="button"
       onClick={onClickHandler}
       {...propsByTag}
