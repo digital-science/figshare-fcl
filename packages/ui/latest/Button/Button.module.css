@@ -697,6 +697,19 @@
   text-decoration: none;
 }
 
+/*
+  text-decoration on a child span cannot cancel an ancestor's decoration.
+  Apply the opt-out at the button level so tertiary link underlines are removed
+  when a label explicitly sets decoration="none".
+*/
+.button:has([data-part="button-label"][data-text-decoration="none"]) {
+  text-decoration: none !important;
+}
+
+.button:has([data-part="button-label"][data-text-decoration="underline"]) {
+  text-decoration: underline;
+}
+
 .button [data-part="button-icon"],
 .button [data-part="button-icon-slot"] {
   position: relative;

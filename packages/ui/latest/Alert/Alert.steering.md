@@ -67,7 +67,7 @@ The new Alert is a mostly direct replacement. Key differences:
 |-----|-----|
 | `variant` (`"error"` \| `"success"` \| `"warning"` \| `"info"`) | `type` (same values plus `"notice"`) |
 | `children` is always a render function `({ onClose }) => ...` | `title`, `message` for text; `children` for right-side controls. `children` can optionally be a render function `({ type, onClose }) => ...` |
-| `forwardedRef` (via `withRef` HOC) | Standard `ref` (no HOC needed) |
+| `forwardedRef` (via `withRef` HOC) | Not supported — the new Alert is a plain function component without ref forwarding. If you need a ref to the alert DOM node, wrap it in a `<div ref={ref}>` or use a callback ref on a parent. |
 | `onClose` shows a close button if defined | `persistent={false}` shows the close button; `onClose` receives `{ id, event }` |
 | No icon — content was fully custom | Auto-renders a type-appropriate icon |
 | No title/message split — single render function | Structured `title` + `message` props |
