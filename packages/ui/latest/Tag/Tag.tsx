@@ -12,11 +12,12 @@ type TagProps = {
   className?: string;
 };
 
-type TagComponent = React.FC<TagProps> & { colors: typeof TAG_COLORS };
+type TagComponent = React.ForwardRefExoticComponent<TagProps & React.RefAttributes<HTMLDivElement>> & { colors: typeof TAG_COLORS };
 
-export const Tag: TagComponent = ({ children, pill, color, className }: TagProps) => {
+export const Tag = React.forwardRef<HTMLDivElement, TagProps>(({ children, pill, color, className }, ref) => {
   return (
     <div
+      ref={ref}
       data-part="tag"
       data-color={color}
       className={classnames(styles.tag, { [styles.pill]: pill }, className)}
@@ -26,7 +27,7 @@ export const Tag: TagComponent = ({ children, pill, color, className }: TagProps
       </span>
     </div>
   );
-};
+}) as TagComponent;
 
 Tag.displayName = "Tag";
 

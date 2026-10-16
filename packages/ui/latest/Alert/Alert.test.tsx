@@ -27,8 +27,18 @@ describe("Alert", () => {
     cleanup();
   }
 
-  it("sets data-padded based on padded prop independently of persistent prop", () => {
+  it("sets data-padded to false when padded is true but persistent is false", () => {
     const scope = setup({ padded: true, persistent: false });
+    scope.run();
+
+    const alert = scope.wrapper.container.querySelector("[role='alert']");
+    expect(alert).toHaveAttribute("data-padded", "false");
+
+    teardown();
+  });
+
+  it("sets data-padded to true when both padded and persistent are true", () => {
+    const scope = setup({ padded: true, persistent: true });
     scope.run();
 
     const alert = scope.wrapper.container.querySelector("[role='alert']");
@@ -59,6 +69,17 @@ describe("Alert", () => {
     expect(onClose).toHaveBeenCalledWith(expect.objectContaining({ id: "alert-123" }));
 
     teardown();
+  });
+
+  it("forwards ref to the root div element", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(<Alert ref={ref} type="error" message="test" />);
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe("DIV");
+    expect(ref.current).toHaveAttribute("role", "alert");
+
+    cleanup();
   });
 
   it("passes updated id to onClose callback after id prop changes", async() => {
