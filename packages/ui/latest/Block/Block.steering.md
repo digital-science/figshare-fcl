@@ -142,7 +142,7 @@ All sizing modifiers accept numeric sizes (`0`-`10`, plus `20`, `26`, `30`, `60`
 
 Special: `children-span-full` forces all direct children to `width: 100%`.
 
-**`span-content` vs `span-content maxspan-content`:** `span-content` alone sets `width: fit-content`, which locks the element to its content width and prevents flex shrinking. If the element needs to size to its content but still shrink when space is tight (e.g. in a flex row at small viewports), combine both: `span-content maxspan-content`. This sets `width: fit-content; max-width: fit-content` — the element sizes naturally but the `max-width` constraint allows flex to compress it below its content width. This matches the behaviour of the legacy `span-fit-content` token.
+**`span-content` vs `span-content maxspan-content`:** `span-content` sets `width: fit-content`, sizing the element to its content. On its own this works well, but flex items have an automatic minimum width equal to their content size, which can prevent them from shrinking below that size in tight layouts. Adding `maxspan-content` (`max-width: fit-content`) caps the element at its content width while allowing flex to compress it when space is constrained. For unbreakable content that still overflows, also add `minspan-0` to reset `min-width` to zero, or use wrapping/overflow handling on the content. This combination (`span-content maxspan-content`) matches the behaviour of the legacy `span-fit-content` token and is what the runtime hook produces for that legacy token.
 
 ### Border
 
