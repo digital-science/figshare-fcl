@@ -66,7 +66,7 @@ type AlertComponent = React.ForwardRefExoticComponent<AlertProps & React.RefAttr
 };
 
 
-export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }, ref) => {
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }: AlertProps, ref) => {
   const className = classnames(styles.alert, providedClassName);
   const wrap = computeWrap(title, message);
   // Determine if the right side padding should be applied based on the padded and persistent props.
