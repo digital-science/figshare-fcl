@@ -28,16 +28,13 @@ RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
 
 FROM ${registry}/figshare/ubuntu24.04:nginx AS deployment
 
-# The nginx image runs as www-data (non-root, so it listens on 8081, not 80); switch to
-# root only to replace its config, then back at the end.
-USER root
 COPY --from=development /app/build /app
 
 RUN rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 RUN echo "" > /etc/nginx/modules-enabled/modules.conf
 RUN cat <<EOF > /etc/nginx/sites-enabled/default.conf
 server {
-    listen 8081 default_server;
+    listen 80 default_server;
     server_name _;
 
     error_log /dev/stdout info;
@@ -49,8 +46,4 @@ server {
 }
 EOF
 
-# nginx -t runs as root here (access.log is a symlink to /dev/stdout, which www-data cannot
-# open during a build) and may create /var/lib/nginx temp dirs, so hand them back.
-RUN nginx -t && chown -R www-data:www-data /var/lib/nginx
-
-USER www-data
+RUN nginx -t
