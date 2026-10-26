@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import { compact } from "../../utils/compact";
+import { Block } from "../Block";
 import { Alert } from "../Alert";
 import type { AlertMessage, StackType } from "../Alerts/types";
 
@@ -14,7 +15,8 @@ export type AlertsListProps = {
   alerts?: AlertMessage[];
   className?: string;
   isFixed?: boolean;
-  margin?: boolean;
+  kind?: string;
+  showIfEmpty?: boolean;
   stackType?: StackType;
   onDismiss?: (alert: any) => void;
   [key: string]: unknown;
@@ -25,25 +27,30 @@ export type AlertsListProps = {
   Contained alerts can be provided manually through children
   Or predefined in a list of alert message configs used to render Alert instances
 */
-export function AlertsList({ channel = "global-alerts", children, alerts = [], className, isFixed = false, onDismiss, margin = false, stackType = "single", ...props }: AlertsListProps) {
+export function AlertsList({ channel = "global-alerts", children, alerts = [], className, isFixed = false, kind: externalKind = "", onDismiss, showIfEmpty = false, stackType = "single", ...props }: AlertsListProps) {
   const kind = React.useMemo(() => compact([
+    "column",
     isFixed ? "fixed" : "",
-    margin ? "margin" : "",
-  ], compact.filters.falsy).join(" "), [isFixed, margin]);
+    externalKind,
+  ], compact.filters.falsy).join(" "), [isFixed, externalKind]);
 
   return (
-    <div
+    <Block
       className={classnames(styles.alerts, className)}
+      kind={kind}
+      role="status"
+      aria-live="polite"
+      aria-relevant="additions removals"
       data-scope="alerts"
       data-part="list"
       data-stack-type={stackType}
-      data-kind={kind}
       data-channel={channel}
       data-empty={alerts.length === 0}
+      data-show-empty={showIfEmpty}
       {...props}
     >
       {children ? children : alerts.map((message, index) => renderAlert(message, index, onDismiss))}
-    </div>
+    </Block>
   );
 }
 
@@ -81,7 +88,8 @@ AlertsList.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   isFixed: PropTypes.bool,
-  margin: PropTypes.bool,
+  kind: PropTypes.string,
+  showIfEmpty: PropTypes.bool,
   stackType: PropTypes.oneOf(["single", "list", "stack"] as const),
   onDismiss: PropTypes.func,
 };

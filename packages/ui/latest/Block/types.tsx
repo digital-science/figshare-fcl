@@ -7,8 +7,8 @@ type SizeWithZero = "0" | Size;
 type SizeInt = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10";
 type SizeIntWithZero = "0" | SizeInt;
 
-/* Responsive prefix: default (none), tablet (t-), mobile (m-) */
-type Prefix = "" | "t-" | "m-";
+/* Responsive prefix: default (none), tablet (t-), mobile (m-), magnified (mg-) */
+type Prefix = "" | "t-" | "m-" | "mg-";
 
 /* Positioning */
 type Position = `${Prefix}${"relative" | "absolute" | "fixed" | "sticky" | "static"}`;

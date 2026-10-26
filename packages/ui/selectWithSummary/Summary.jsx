@@ -78,7 +78,7 @@ export const Summary = React.forwardRef(({
     }
 
     return (
-      <Button className={styles.retry} kind="secondary" span="content" onClick={action}>
+      <Button className={styles.retry} kind="tertiary" em="high" span="content" onClick={action}>
         {message}
       </Button>
     );

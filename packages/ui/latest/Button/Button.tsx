@@ -164,18 +164,33 @@ export function ButtonIcon({ children, asChild = false, blend = false, size = "m
 
 ButtonIcon.displayName = "ButtonIcon";
 
-export function ButtonInteractiveIcon({ children, tooltip, onClick, onKeyDown, ownColor, ...props }: ButtonInteractiveIconProps) {
+export function ButtonInteractiveIcon({ children, disabled = false, tooltip, onClick, onKeyDown, ownColor, ...props }: ButtonInteractiveIconProps) {
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (disabled) { return; }
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       onClick?.(event);
     }
     onKeyDown?.(event);
-  }, [onClick, onKeyDown]);
+  }, [disabled, onClick, onKeyDown]);
 
-  const interactionProps = { tabIndex: 0, role: "button", "data-interactive": true, "aria-hidden": false, "data-own-color": ownColor, onClick, onKeyDown: handleKeyDown };
+  const handleClick = useCallback((event: React.MouseEvent) => {
+    if (disabled) { return; }
+    onClick?.(event);
+  }, [disabled, onClick]);
 
-  if (tooltip) {
+  const interactionProps = {
+    tabIndex: disabled ? -1 : 0,
+    role: "button",
+    "aria-disabled": disabled || undefined,
+    "data-interactive": true,
+    "aria-hidden": false,
+    "data-own-color": ownColor,
+    onClick: handleClick,
+    onKeyDown: handleKeyDown,
+  };
+
+  if (tooltip && !disabled) {
     return (
       <Tooltip strategy="absolute" placement="top">
         <TooltipTrigger data-is-tooltip-trigger={true} asChild={false}>

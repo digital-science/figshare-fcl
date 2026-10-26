@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { Component, createRef } from "react";
 
 import FigshareLoader from "../icons/figshare/logo.jsx";
-import { Button } from "../button";
+import { Button } from "../latest/Button";
 import { Dropdown } from "../dropdown";
 import withRef from "../helpers/withRef.jsx";
 
@@ -26,6 +26,7 @@ export class Select extends Component {
     forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     iconSize: PropTypes.string,
     id: PropTypes.string,
+    name: PropTypes.string,
     loading: PropTypes.bool,
     loadingErrorMessage: PropTypes.string,
     multiple: PropTypes.bool,
@@ -50,7 +51,8 @@ export class Select extends Component {
     size: PropTypes.oneOf(["S", "M", "L"]),
     triggerClassName: PropTypes.string,
     value: PropTypes.any,
-    variant: PropTypes.oneOf(["icon", "primary", "publish", "secondary", "link", "lightLink", "inline"]),
+    em: PropTypes.string,
+    kind: PropTypes.string,
     onChange: PropTypes.func,
     onClear: PropTypes.func,
     onLoadMore: PropTypes.func,
@@ -69,6 +71,7 @@ export class Select extends Component {
     forwardedRef: () => undefined,
     iconSize: "small",
     id: "",
+    name: undefined,
     loading: false,
     loadingErrorMessage: undefined,
     multiple: false,
@@ -85,7 +88,8 @@ export class Select extends Component {
     size: "M",
     triggerClassName: undefined,
     value: undefined,
-    variant: "secondary",
+    em: "low",
+    kind: "input",
     onChange: () => undefined,
     onLoadMore: () => undefined,
     onSearch: undefined,
@@ -133,11 +137,13 @@ export class Select extends Component {
       size,
       triggerClassName,
       value,
-      variant,
+      em,
+      kind,
       onLoadMore,
       placement,
       onClear,
       id,
+      name,
       iconSize,
       required,
     } = this.props;
@@ -158,9 +164,12 @@ export class Select extends Component {
 
     const selectClassName = [style.select, className, { [style.visible]: isVisible }];
 
+    const fieldName = name || id;
+
     return (
       <Context.Provider value={context}>
         <div ref={forwardedRef} className={classnames(selectClassName)} {...props}>
+          {fieldName && <input type="hidden" name={fieldName} value={serializeValue(value)} />}
           <Trigger
             aria-required={required}
             ariaLabel={ariaLabel}
@@ -171,7 +180,8 @@ export class Select extends Component {
             id={id}
             renderChipArea={renderChipArea}
             setTriggerRef={this.setTriggerRef}
-            variant={variant}
+            em={em}
+            kind={kind}
             onClear={onClear}
           >
             {this.triggerValue}
@@ -223,8 +233,8 @@ export class Select extends Component {
     }
 
     return (
-      <Button className={style.retry} onClick={action}>
-        {message}
+      <Button className={style.retry} kind="tertiary" em="high" span="content" onClick={action}>
+        <Button.Label>{message}</Button.Label>
       </Button>
     );
   }
@@ -346,6 +356,18 @@ export class Select extends Component {
 
     return selected.name;
   }
+}
+
+export function serializeValue(value) {
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(String).join(",");
+  }
+
+  return String(value);
 }
 
 const exported = withRef(Select);

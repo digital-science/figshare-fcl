@@ -16,7 +16,8 @@ describe("Trigger component", () => {
     children: "Select",
     ariaLabel: "Select",
     id: "test-id",
-    variant: "secondary",
+    kind: "secondary",
+    em: "low",
   };
 
   it("should render without crashing", () => {

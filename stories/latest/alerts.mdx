@@ -67,3 +67,15 @@ popAlert("my-alerts-channel", "alert-id");
 ### Persistent Alerts
 
 <Canvas of={AlertsStories.PersistentAlerts} />
+
+### Show If Empty
+
+Use `showIfEmpty` to keep the alerts container visible even when there are no alerts. This is useful when the container has padding or styling that should remain visible as a placeholder area.
+
+<Canvas of={AlertsStories.ShowIfEmpty} />
+
+### With Padding Modifiers
+
+The `AlertsList` uses `Block` internally, so you can pass Block `kind` modifiers (e.g. `px-4`, `p-3`, `py-2`) to control padding on the alerts container.
+
+<Canvas of={AlertsStories.WithPaddingModifiers} />

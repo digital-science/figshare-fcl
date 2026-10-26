@@ -2,7 +2,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { Component, createRef } from "react";
 
-import { Button } from "../../button";
+import { Button } from "../../latest/Button";
 import Checkmark from "../../input/checkbox/components/checkmark.jsx";
 import Context from "../context.js";
 
@@ -109,22 +109,25 @@ export class Option extends Component {
 
     return (
       <div ref={this.optionRef} className={style.optionWrap}>
-        <span className={style.hidden}>{children}</span>
+        <span className={style.hidden} aria-hidden="true">{children}</span>
         <Button
           ref={forwardedRef}
-          className={
-            classnames(optionClassName)
-          }
+          className={classnames(optionClassName)}
           disabled={disabled}
-          theme="tertiary"
-          value={typeof value === "string" ? value : value[optionValue]?.toString?.()}
-          variant="inline"
+          kind="tertiary"
+          em="low"
+          span="full"
+          justify="start"
+          role="option"
+          aria-selected={!!selected}
+          aria-disabled={disabled}
+          data-value={typeof value === "string" ? value : value[optionValue]?.toString?.()}
           onClick={this.onClick}
           onKeyDown={this.onKeyDown}
           {...props}
         >
           {this.renderCheckmark(isMultiSelect, allValues)}
-          <span>{children}</span>
+          <Button.Label>{children}</Button.Label>
         </Button>
       </div>
     );

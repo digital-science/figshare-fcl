@@ -768,6 +768,12 @@
     }
 
 
+    &[aria-disabled="true"] {
+      pointer-events: none;
+
+      opacity: 0.4;
+    }
+
     &[data-own-color="true"] {
       color: var(--button-fill, currentColor);
       fill: var(--button-fill, currentColor);

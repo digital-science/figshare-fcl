@@ -7,22 +7,12 @@ import ChevronDownSmall from "../../icons/chevron/down/small";
 import ChevronDownLarge from "../../icons/chevron/down/large";
 import Cancel from "../../icons/cancel/medium.jsx";
 import { Toggle } from "../../dropdown";
-import { Button } from "../../button";
+import { Button } from "../../latest/Button";
 import withRef from "../../helpers/withRef.jsx";
 import Context from "../context.js";
 
 import style from "./Trigger.module.css";
 
-
-const variants = {
-  secondary: {},
-  inline: {
-    trigger: style["trigger-inline"],
-    text: style["text-inline"],
-    icon: style["caret-inline"],
-    arrow: ChevronDown,
-  },
-};
 
 const Icons = {
   small: ChevronDownSmall,
@@ -35,24 +25,28 @@ export class Trigger extends Component {
     children: PropTypes.node.isRequired,
     ariaLabel: PropTypes.string,
     className: PropTypes.string,
+    disabled: PropTypes.bool,
+    em: PropTypes.string,
     error: PropTypes.bool,
     iconSize: PropTypes.string,
     id: PropTypes.string,
+    kind: PropTypes.string,
     renderChipArea: PropTypes.func,
     setTriggerRef: PropTypes.any,
-    variant: PropTypes.oneOf(Object.keys(variants)),
     onClear: PropTypes.func,
   }
 
   static defaultProps = {
     ariaLabel: undefined,
     className: undefined,
+    disabled: false,
+    em: "low",
     error: false,
     id: "",
     iconSize: "small",
+    kind: "input",
     renderChipArea: undefined,
     setTriggerRef: null,
-    variant: "secondary",
     onClear: undefined,
   }
 
@@ -71,10 +65,12 @@ export class Trigger extends Component {
       ariaLabel,
       children,
       className,
+      em,
       error,
+      kind,
+      disabled,
       renderChipArea,
       setTriggerRef,
-      variant,
       onClear,
       iconSize,
       ...buttonProps
@@ -84,20 +80,17 @@ export class Trigger extends Component {
     const classNames = [
       style.trigger,
       { [style.error]: error },
-      variants[variant].trigger,
       className,
     ];
 
-    const Icon = variants[variant].arrow || Icons[iconSize];
-    const carretClassName = [
+    const Icon = Icons[iconSize] || ChevronDown;
+    const caretClassName = [
       style.caret,
-      variants[variant].icon,
       {
         [style["caret-small"]]: size === "S" || iconSize === "small",
         [style["caret-medium"]]: size === "M" || iconSize === "medium",
         [style["caret-large"]]: size === "L" || iconSize === "large",
       },
-      className,
     ];
 
     return (
@@ -106,31 +99,33 @@ export class Trigger extends Component {
           {renderChipArea?.()}
           <Button
             aria-label={ariaLabel}
+            kind={kind}
+            em={em}
+            span="full"
+            justify="between"
+            disabled={disabled}
             data-id="select-trigger-btn"
-            size={size}
-            variant={variant}
             onClick={onToggle}
             {...buttonProps}
             className={classnames(classNames)}
           >
-            <span className={classnames(style.text, variants[variant].text)}>{children}</span>
-            {onClear && (
-              <Button
-                {...props}
-                className={classnames(style.tooltipButton, style.clear)}
-                tooltip="Clear selection"
-                onClick={this.onClear}
-              >
-                <Cancel className={style.icon} />
-              </Button>
-            )}
-            <Button
-              className={style.tooltipButton}
-              tooltip="Show options"
-              {...props}
-            >
-              <Icon className={classnames(carretClassName)} />
-            </Button>
+            <Button.Label wrap="ellipsis">{children}</Button.Label>
+            <Button.IconGroup interactive={true}>
+              {onClear && (
+                <Button.InteractiveIcon
+                  className={classnames(style.clear)}
+                  tooltip="Clear selection"
+                  blend={false}
+                  disabled={disabled}
+                  onClick={this.onClear}
+                >
+                  <Cancel />
+                </Button.InteractiveIcon>
+              )}
+              <Button.InteractiveIcon tooltip="Show options" blend={false} disabled={disabled} onClick={onToggle}>
+                <Icon className={classnames(caretClassName)} />
+              </Button.InteractiveIcon>
+            </Button.IconGroup>
           </Button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { createPortal } from "react-dom";
 
 import { Menu } from "../../dropdown";
 import { SearchInput } from "../../latest/SearchInput";
@@ -72,7 +73,7 @@ export class Content extends Component {
       },
     ];
 
-    return (
+    const dropdown = (
       <div
         ref={this.setContainerRef(ref)}
         className={classnames(containerClassName)}
@@ -81,6 +82,8 @@ export class Content extends Component {
         {this.renderSearch()}
         <div
           key={`${isVisible}-${this.state.search?.length > 0}`}
+          role="listbox"
+          aria-multiselectable={this.context.multiple || undefined}
           className={classnames(contentClassName)}
           onScroll={this.onScroll}
         >
@@ -88,6 +91,8 @@ export class Content extends Component {
         </div>
       </div>
     );
+
+    return createPortal(dropdown, document.body);
   }
 
   renderSearch = () => {

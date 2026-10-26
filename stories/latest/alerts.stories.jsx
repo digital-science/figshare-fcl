@@ -203,3 +203,71 @@ export const PersistentAlerts = {
     </Cover>
   ),
 };
+
+export const ShowIfEmpty = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind={"card"}>
+      {() => (
+        <ValueProvider initialValue="show-empty-alerts">
+          {(channel) => (
+            <div style={ { display: "flex", flexDirection: "column", gap: "12px" } }>
+              <div style={ { display: "flex", flexDirection: "row", gap: "8px" } }>
+                <Button em="low" kind="secondary" onClick={() => pushAlert({ channel, type: "info", content: "Alert inside a visible empty container", persistent: true })}>
+                  Add Alert
+                </Button>
+                <Button em="low" kind="secondary" onClick={() => clearAlerts(channel)}>
+                  Clear All
+                </Button>
+              </div>
+              <div style={ { display: "flex", flexDirection: "column", gap: "8px" } }>
+                <p style={ { fontSize: "12px", color: "#666", margin: 0 } }>
+                  <code>showIfEmpty=true</code> — container stays visible with its padding even when empty:
+                </p>
+                <div style={ { border: "1px dashed #ccc" } }>
+                  <Alerts id={channel} kind="p-3" showIfEmpty={true} />
+                </div>
+                <p style={ { fontSize: "12px", color: "#666", margin: 0 } }>
+                  <code>showIfEmpty=false</code> (default) — container collapses when empty:
+                </p>
+                <div style={ { border: "1px dashed #ccc" } }>
+                  <Alerts id={`${channel}-hidden`} kind="p-3" />
+                </div>
+              </div>
+            </div>
+          )}
+        </ValueProvider>
+      )}
+    </Cover>
+  ),
+};
+
+export const WithPaddingModifiers = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind={"card"}>
+      {() => (
+        <ValueProvider initialValue="padded-alerts">
+          {(channel) => (
+            <div style={ { display: "flex", flexDirection: "column", gap: "12px" } }>
+              <div style={ { display: "flex", flexDirection: "row", gap: "8px" } }>
+                <Button em="low" kind="secondary" onClick={() => pushAlert({ channel, type: "info", content: "Alert with padded container", persistent: true })}>
+                  Add Alert
+                </Button>
+                <Button em="low" kind="secondary" onClick={() => clearAlerts(channel)}>
+                  Clear All
+                </Button>
+              </div>
+              <div style={ { border: "1px dashed #ccc", minHeight: "80px" } }>
+                <Alerts id={channel} kind="px-4" />
+              </div>
+              <p style={ { fontSize: "12px", color: "#666" } }>
+                {"The alerts container above uses kind=\"px-4\" to add horizontal padding via Block modifiers. The dashed border shows the container bounds."}
+              </p>
+            </div>
+          )}
+        </ValueProvider>
+      )}
+    </Cover>
+  ),
+};

@@ -41,7 +41,7 @@ The `kind` string is set as a `data-kind` attribute. CSS uses `[data-kind~="toke
 
 ## Modifier reference
 
-All modifiers support responsive prefixes: no prefix (default), `t-` (tablet, <= 1024px), `m-` (mobile, <= 600px). For example `kind="row t-column m-column gap-2 m-gap-1"` creates a row layout that switches to column on tablet and mobile, with gap shrinking on mobile.
+All modifiers support responsive prefixes: no prefix (default), `t-` (tablet, <= 1024px), `m-` (mobile, <= 600px), `mg-` (magnified, <= 320px). For example `kind="row t-column m-column gap-2 m-gap-1"` creates a row layout that switches to column on tablet and mobile, with gap shrinking on mobile. Order matters: defaults first, then `t-`, then `m-`, then `mg-`.
 
 ### Positioning
 
@@ -247,15 +247,16 @@ Special: `children-span-full` forces all direct children to `width: 100%`.
 
 ## Responsive design
 
-Modifiers are applied at three breakpoints using prefixes:
+Modifiers are applied at four breakpoints using prefixes:
 
 | Prefix | Breakpoint | Meaning |
 |--------|-----------|---------|
 | _(none)_ | All screens | Default styles |
 | `t-` | `<= 1024px` | Tablet and below |
 | `m-` | `<= 600px` | Mobile only |
+| `mg-` | `<= 320px` | Magnified / very small screens |
 
-Tablet modifiers also apply to mobile unless a mobile modifier overrides them. This means you only need `m-` prefixes when mobile behavior differs from tablet.
+Tablet modifiers also apply to mobile and magnified unless a more specific modifier overrides them. This means you only need `m-` or `mg-` prefixes when behavior differs from the broader breakpoint.
 
 ### Token ordering
 
@@ -263,13 +264,14 @@ Tablet modifiers also apply to mobile unless a mobile modifier overrides them. T
 
 1. Default modifiers first (no prefix)
 2. Tablet modifiers (`t-`) second
-3. Mobile modifiers (`m-`) last
+3. Mobile modifiers (`m-`) third
+4. Magnified modifiers (`mg-`) last
 
 This ensures that responsive overrides are applied correctly via CSS specificity and source order.
 
 ```jsx
-// Correct: defaults, then tablet, then mobile
-<Block kind="row gap-3 p-4 span-8 t-column t-gap-2 t-span-full m-gap-1 m-p-2" />
+// Correct: defaults, then tablet, then mobile, then magnified
+<Block kind="row gap-3 p-4 span-8 t-column t-gap-2 t-span-full m-gap-1 m-p-2 mg-p-1" />
 
 // Wrong: mixed ordering
 <Block kind="row t-column gap-3 m-gap-1 p-4 t-gap-2" />

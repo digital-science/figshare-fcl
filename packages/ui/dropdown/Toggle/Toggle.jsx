@@ -15,6 +15,7 @@ const DropdownToggle = ({ children, ...props }) => {
     props: {
       ref: toggleRef,
       "aria-expanded": !!isVisible,
+      "aria-haspopup": "listbox",
       role: "combobox",
     },
     ...props,
