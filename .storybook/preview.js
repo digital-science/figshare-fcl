@@ -9,7 +9,7 @@ export const parameters = {
     panelPosition: "right",
     storySort: {
       method: "alphabetical",
-      order: ["Global Styles", "Layout", "UI", "Components", "Icons", "Utils"],
+      order: ["Global Styles", "Layout", "UI", ["latest", "*"], "Components", "Icons", "Utils"],
     },
   },
 

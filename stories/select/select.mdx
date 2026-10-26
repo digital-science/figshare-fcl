@@ -12,30 +12,19 @@ import * as SelectStories from "./select.stories.jsx";
 - [Examples](#examples)
 
 ## Overview
-Basic Select component.
-
+Basic Select component. Uses `latest/Button` for the trigger and options. The trigger `kind` and `em` props map directly to Button's API.
 
 <Canvas of={SelectStories.Overview} />
-
 
 The component can be imported from `@digital-science/figshare-fcl/Select`.
 
 ```jsx
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-
 import { Select, Option } from "@digital-science/figshare-fcl/Select";
 
-const SelectExample = () => {
-  return(
-    <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-    <Select loading={true}>
-      <Option value={1}>One</Option>
-      <Option value={2}>Two</Option>
-    </Select>
-    </div>
-  );
- }
+<Select value={value} onChange={setValue}>
+  <Option value="one">One</Option>
+  <Option value="two">Two</Option>
+</Select>
 ```
 
 ## Props
@@ -43,5 +32,25 @@ const SelectExample = () => {
 <ArgTypes of={Select} />
 
 ## Examples
+
+### Kind and Em Variants
+
+The trigger button style is controlled via `kind` and `em` props, matching the Button component API. Default is `kind="input"` `em="low"`.
+
+<Canvas of={SelectStories.KindAndEmVariants} />
+
+### Disabled Select
+
+<Canvas of={SelectStories.DisabledSelect} />
+
+### Disabled Options
+
+Individual options can be disabled in both single and multi-select modes.
+
+<Canvas of={SelectStories.DisabledOptions} />
+
+### More Examples
+
+Loading, error, searchable, multiple, and size variants.
 
 <Canvas of={SelectStories.Examples} />

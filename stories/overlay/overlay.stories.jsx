@@ -146,3 +146,30 @@ export const Examples = {
     </Cover>
   ),
 };
+
+export const HeaderWithChildren = {
+  tags: ["!dev"],
+  render: () => {
+    const [opened, setOpened] = useState(false);
+
+    return (
+      <Cover kind={"card"}>
+        <Button onClick={() => setOpened(true)}>Open Overlay with Header Children</Button>
+        <Overlay isVisible={opened} onClose={() => setOpened(false)}>
+          <OverlayHeader title="Upload Settings" description="Configure your upload preferences">
+            <div style={ { display: "flex", gap: "8px", paddingTop: "12px", alignItems: "center" } }>
+              <span style={ { fontSize: "14px", color: "#666" } }>Status:</span>
+              <span style={ { fontSize: "14px", fontWeight: "bold", color: "#2e7d32" } }>Ready</span>
+            </div>
+          </OverlayHeader>
+          <OverlayContent>
+            <p>The OverlayHeader above renders custom children content below the title and description.</p>
+          </OverlayContent>
+          <OverlayFooter>
+            <Button theme="primary" onClick={() => setOpened(false)}>Close</Button>
+          </OverlayFooter>
+        </Overlay>
+      </Cover>
+    );
+  },
+};

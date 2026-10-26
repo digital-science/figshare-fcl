@@ -1,5 +1,5 @@
 import { Meta, ArgTypes, Canvas } from "@storybook/addon-docs/blocks";
-import { DataGrid, DataGridHeader, DataGridSubheader, DataGridContent, DataGridRow } from "@digital-science/figshare-fcl/latest/DataGrid";
+import { DataGrid } from "@digital-science/figshare-fcl/latest/DataGrid";
 import * as DataGridStories from "./datagrid.stories.jsx";
 
 <Meta of={DataGridStories} />
@@ -14,107 +14,103 @@ import * as DataGridStories from "./datagrid.stories.jsx";
 
 ## Overview
 
-A flexible data grid layout component with support for headers, subheaders, content areas, and rows. Perfect for displaying structured data in a tabular format.
+A flexible data grid layout component built with flex instead of semantic `<table>` elements. Uses a compound component pattern with `DataGrid.Header`, `DataGrid.Subheader`, `DataGrid.Content`, `DataGrid.Row`, and `DataGrid.Cell`. All styling is driven by `data-*` attributes — no class toggling needed.
 
 <Canvas of={DataGridStories.Overview} />
 
 ```jsx
-import { DataGrid, DataGridHeader, DataGridSubheader, DataGridContent, DataGridRow } from "@digital-science/figshare-fcl/latest/DataGrid";
+import { DataGrid } from "@digital-science/figshare-fcl/latest/DataGrid";
 
-export default function DataGridOverview() {
-  return (
-    <DataGrid>
-      <DataGridHeader>
-        <DataGridRow style={{ fontWeight: "bold", padding: "12px" }}>
-          <div style={{ flex: 1 }}>Name</div>
-          <div style={{ flex: 1 }}>Status</div>
-          <div style={{ flex: 1 }}>Date</div>
-        </DataGridRow>
-      </DataGridHeader>
-      <DataGridContent>
-        <DataGridRow style={{ padding: "12px" }}>
-          <div style={{ flex: 1 }}>Item 1</div>
-          <div style={{ flex: 1 }}>Active</div>
-          <div style={{ flex: 1 }}>2024-01-15</div>
-        </DataGridRow>
-        <DataGridRow style={{ padding: "12px" }}>
-          <div style={{ flex: 1 }}>Item 2</div>
-          <div style={{ flex: 1 }}>Pending</div>
-          <div style={{ flex: 1 }}>2024-01-14</div>
-        </DataGridRow>
-      </DataGridContent>
-    </DataGrid>
-  );
-}
+<DataGrid>
+  <DataGrid.Header>
+    <DataGrid.Subheader>Name</DataGrid.Subheader>
+    <DataGrid.Subheader>Status</DataGrid.Subheader>
+    <DataGrid.Subheader>Date</DataGrid.Subheader>
+  </DataGrid.Header>
+  <DataGrid.Content>
+    <DataGrid.Row>
+      <DataGrid.Cell>Item 1</DataGrid.Cell>
+      <DataGrid.Cell>Active</DataGrid.Cell>
+      <DataGrid.Cell>2024-01-15</DataGrid.Cell>
+    </DataGrid.Row>
+  </DataGrid.Content>
+</DataGrid>
 ```
 
 The component can be imported from `@digital-science/figshare-fcl/latest`.
 
 ## Sub-Components
 
-The DataGrid component exports several sub-components:
-
-- **DataGridHeader** - Header section container
-- **DataGridSubheader** - Optional subheader section
-- **DataGridContent** - Main content area
-- **DataGridRow** - Individual row container
+- **DataGrid.Header** — Header row container with tertiary background
+- **DataGrid.Subheader** — Header cell (also usable as a standalone info row, e.g. "Showing 1-50 of 150")
+- **DataGrid.Content** — Body container that holds rows
+- **DataGrid.Row** — Individual row with top border separator
+- **DataGrid.Cell** — Individual cell — flex column by default
 
 ## Examples
 
 ### Basic DataGrid
 
+Uses `data-size` on cells/subheaders to control column widths.
+
 <Canvas of={DataGridStories.BasicDataGrid} />
 
-```jsx
-import { DataGrid, DataGridHeader, DataGridContent, DataGridRow } from "@digital-science/figshare-fcl/latest/DataGrid";
+### Cell Sizing
 
-<DataGrid>
-  <DataGridHeader>
-    <DataGridRow style={{ fontWeight: "bold", padding: "12px" }}>
-      <div style={{ flex: 1 }}>ID</div>
-      <div style={{ flex: 2 }}>Title</div>
-      <div style={{ flex: 1 }}>Status</div>
-    </DataGridRow>
-  </DataGridHeader>
-  <DataGridContent>
-    <DataGridRow style={{ padding: "12px" }}>
-      <div style={{ flex: 1 }}>1</div>
-      <div style={{ flex: 2 }}>Research Paper</div>
-      <div style={{ flex: 1 }}>Published</div>
-    </DataGridRow>
-    <DataGridRow style={{ padding: "12px" }}>
-      <div style={{ flex: 1 }}>2</div>
-      <div style={{ flex: 2 }}>Dataset Analysis</div>
-      <div style={{ flex: 1 }}>In Review</div>
-    </DataGridRow>
-  </DataGridContent>
-</DataGrid>
-```
+All `data-size` values side by side: `s`, `s2`, `m`, `grow`, `shrink`, `normal`.
+
+<Canvas of={DataGridStories.CellSizing} />
+
+### Cell Layout
+
+Use `data-cell-layout` to control content alignment and direction within cells. Values can be combined with space separation (e.g. `"center row"`).
+
+<Canvas of={DataGridStories.CellLayout} />
+
+### Text Alignment
+
+Use `data-align` for simple text alignment (`left`, `center`, `right`).
+
+<Canvas of={DataGridStories.TextAlignment} />
+
+### Density Modes
+
+Set `data-cell-padding` on the `DataGrid` container to control cell density. This adjusts CSS variables `--cell-width-padding` and `--cell-height-padding` that all cells inherit.
+
+<Canvas of={DataGridStories.DensityModes} />
+
+### Hover and Striped
+
+Set `data-hover="true"` for row hover highlights, or `data-striped="true"` for alternating row backgrounds. Both can be combined.
+
+<Canvas of={DataGridStories.HoverAndStriped} />
+
+### Text Wrapping and Truncation
+
+Use `data-wrap="word"` for word wrapping or `data-truncate="true"` for single-line ellipsis.
+
+<Canvas of={DataGridStories.TextWrappingAndTruncation} />
+
+### Root Rows
+
+Use `data-root-row="true"` on rows to highlight them as group headers in hierarchical/tree tables.
+
+<Canvas of={DataGridStories.RootRows} />
+
+### Selected Cells
+
+Use `data-selected="true"` on cells to apply bold text.
+
+<Canvas of={DataGridStories.SelectedCells} />
+
+### No Border
+
+Use `data-border="none"` on the container to remove the outer border and border-radius.
+
+<Canvas of={DataGridStories.NoBorder} />
 
 ### DataGrid with Subheader
 
+`DataGrid.Subheader` can be used as a standalone info row between the header and content.
+
 <Canvas of={DataGridStories.DataGridWithSubheader} />
-
-```jsx
-import { DataGrid, DataGridHeader, DataGridSubheader, DataGridContent, DataGridRow } from "@digital-science/figshare-fcl/latest/DataGrid";
-
-<DataGrid>
-  <DataGridHeader>
-    <DataGridRow style={{ fontWeight: "bold", padding: "12px" }}>
-      <div>Name</div>
-      <div>Type</div>
-    </DataGridRow>
-  </DataGridHeader>
-  <DataGridSubheader>
-    <DataGridRow style={{ padding: "8px 12px", fontSize: "12px" }}>
-      <div>Showing results</div>
-    </DataGridRow>
-  </DataGridSubheader>
-  <DataGridContent>
-    <DataGridRow style={{ padding: "12px" }}>
-      <div>Item 1</div>
-      <div>Type A</div>
-    </DataGridRow>
-  </DataGridContent>
-</DataGrid>
-```

@@ -11,13 +11,14 @@ export type AlertsProps = {
   className?: string;
   initial?: AlertMessage[];
   isFixed?: boolean;
-  margin?: boolean;
+  kind?: string;
+  showIfEmpty?: boolean;
   stackType?: StackType;
   onDismiss?: (alert: any, channel: string) => void;
   [key: string]: unknown;
 };
 
-export function Alerts({ id: componentChannel = "global-alerts", className, initial = [], isFixed = false, onDismiss, margin = false, stackType = "single", ...props }: AlertsProps) {
+export function Alerts({ id: componentChannel = "global-alerts", className, initial = [], isFixed = false, onDismiss, showIfEmpty = false, stackType = "single", ...props }: AlertsProps) {
   const [messages, setMessages] = React.useState(initial);
   const tickets = React.useRef<TicketEntry[]>([]);
 
@@ -116,7 +117,7 @@ export function Alerts({ id: componentChannel = "global-alerts", className, init
       className={className}
       stackType={stackType}
       isFixed={isFixed}
-      margin={margin}
+      showIfEmpty={showIfEmpty}
       onDismiss={onDismissAlert}
       {...props}
     />

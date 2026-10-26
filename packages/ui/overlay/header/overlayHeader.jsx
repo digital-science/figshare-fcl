@@ -29,6 +29,10 @@ export default class OverlayHeader extends Component {
      */
     description: PropTypes.node,
     /**
+     Optional additional content to render in the header.
+     */
+    children: PropTypes.node,
+    /**
      Set this to `true` if you render `OverlayHeader` inside an `OverlayContent` component.
      It will remove top and side paddings, and appropriately fit as a child of that component.
      Useful in some cases where we want the OverlayHeader to scroll with the `Content`.
@@ -52,6 +56,7 @@ export default class OverlayHeader extends Component {
 
   static defaultProps = {
     backBtnFn: undefined,
+    children: undefined,
     className: undefined,
     description: undefined,
     isPartOfContent: false,
@@ -63,7 +68,7 @@ export default class OverlayHeader extends Component {
   state = { firstFocusIn: true }
 
   render() {
-    const { backBtnFn, className, isPartOfContent, description, title, onClose, onGoBack, ...props } = this.props;
+    const { backBtnFn, children, className, isPartOfContent, description, title, onClose, onGoBack, ...props } = this.props;
     const { firstFocusIn } = this.state;
     const overlayId = this.context?.id ?? 0;
     const isForConfirmationOverlay = CONFIRMATION_OVERLAYS.includes(this.context?.background);
@@ -106,6 +111,7 @@ export default class OverlayHeader extends Component {
           <div>
             <h1 className={styles.title} id={ariaTitle}>{title}</h1>
             {description && <p className={styles.description} id={ariaDescription}>{description}</p>}
+            {children}
           </div>
         </div>
       </div>

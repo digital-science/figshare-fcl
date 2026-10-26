@@ -35,7 +35,8 @@ export const SelectWithSummary = React.forwardRef(({
   summaryPreselectedValues = [],
   triggerClassName,
   value,
-  variant = "secondary",
+  em = "low",
+  kind = "input",
   onChange = () => undefined,
   onLoadMore = () => undefined,
   onLoadMoreSummary = () => undefined,
@@ -112,7 +113,7 @@ export const SelectWithSummary = React.forwardRef(({
   }, [touchedValues, options, summaryPreselectedValues, onChange]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Select
         {...restProps}
         ref={ref}
@@ -136,7 +137,8 @@ export const SelectWithSummary = React.forwardRef(({
         size={size}
         triggerClassName={triggerClassName}
         value={value}
-        variant={variant}
+        em={em}
+        kind={kind}
         onChange={handleChange}
         onLoadMore={onLoadMore}
         onSearch={onSearch}
@@ -207,7 +209,8 @@ SelectWithSummary.propTypes = {
   summaryPreselectedValues: PropTypes.array,
   triggerClassName: PropTypes.string,
   value: PropTypes.any,
-  variant: PropTypes.oneOf(["icon", "primary", "publish", "secondary", "link", "lightLink", "inline"]),
+  em: PropTypes.string,
+  kind: PropTypes.string,
   onChange: PropTypes.func,
   onLoadMore: PropTypes.func,
   onLoadMoreSummary: PropTypes.func,
@@ -241,7 +244,8 @@ SelectWithSummary.defaultProps = {
   summaryPreselectedValues: [],
   triggerClassName: undefined,
   value: undefined,
-  variant: "secondary",
+  em: "low",
+  kind: "input",
   onChange: () => undefined,
   onLoadMore: () => undefined,
   onLoadMoreSummary: () => undefined,

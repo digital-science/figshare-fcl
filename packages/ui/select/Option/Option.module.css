@@ -3,56 +3,38 @@
 }
 
 .option {
-  position: relative;
+  min-height: calc(8 * var(--gridSize));
+}
 
-  display: flex;
-  flex-direction: row;
+.option[data-kind="tertiary"][data-em="low"] {
+  --button-color: var(--color-typography-primary);
+  --button-background-color: transparent;
+  --button-border-color: transparent;
 
-  width: 100%;
-  height: calc(8 * var(--gridSize));
-  justify-content: flex-start;
-  align-items: center;
-
-  padding: calc(2 * var(--gridSize)) calc(3 * var(--gridSize));
-
-  color: var(--color-typography-primary);
-  flex-shrink: 0;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-
-    color: var(--color-typography-primary);
+  &:hover, &:focus {
+    --button-color: var(--color-typography-primary);
+    --button-background-color: var(--color-layout-secondary-background);
+    --button-border-color: transparent;
   }
 
-  &:focus-visible,
-  &:focus-within,
-  &:focus {
-    appearance: none;
+  &:focus-visible {
+    --button-color: var(--color-typography-primary);
+    --button-background-color: var(--color-layout-secondary-background);
+    --button-border-color: transparent;
 
-    padding: calc(2 * var(--gridSize) - 2px)  calc(3 * var(--gridSize) - 2px);
+    outline: 2px solid #1e1e1e;
+    outline-offset: -2px;
 
-    text-decoration: none;
-
-    border: 2px solid var(--color-border-active);
-    outline: none;
-    background: none;
-    box-shadow: none;
+    box-shadow: none !important;
   }
+}
 
-  &:hover {
-    background-color: var(--color-layout-secondary-background);
-  }
+.disabled {
+  pointer-events: none;
 }
 
 .selected {
   font-weight: 700;
-
-  color: var(--color-typography-primary);
-}
-
-.disabled {
-  color: var(--color-typography-disabled);
 }
 
 .small {
@@ -61,32 +43,18 @@
 }
 
 .checkbox {
-  flex-shrink: 0;
-
   position: relative;
 
   width: calc(6 * var(--gridSize));
   height: calc(6 * var(--gridSize));
+
+  flex-shrink: 0;
   fill: var(--color-icon-primary) !important;
 }
 
-.option span {
-  overflow: hidden;
-
-  text-align: left;
-  white-space: normal;
-  overflow-wrap: normal;
-  flex: 1;
-}
-
-.ellipsis span {
+.ellipsis [data-part="label"] {
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-/* stylelint-disable-next-line a11y/no-display-none */
-.option > span:first-child {
-  display: none !important;
 }
 
 .hidden {
@@ -98,7 +66,6 @@
 }
 
 .longTextOption {
-  height: auto;
   min-height: calc(6 * var(--gridSize));
 }
 

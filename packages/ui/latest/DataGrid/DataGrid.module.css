@@ -1,4 +1,7 @@
 .datagrid {
+  --cell-width-padding: calc(3 * var(--gridSize));
+  --cell-height-padding: calc(2 * var(--gridSize));
+
   display: flex;
   flex-direction: column;
 
@@ -8,6 +11,37 @@
   align-items: flex-start;
   flex: 1 0 0;
   align-self: stretch;
+}
+
+/* Density modifiers — set on the datagrid container */
+.datagrid[data-cell-padding="dense"] {
+  --cell-height-padding: var(--gridSize);
+}
+
+.datagrid[data-cell-padding="compact"] {
+  --cell-width-padding: calc(2 * var(--gridSize));
+  --cell-height-padding: var(--gridSize);
+}
+
+.datagrid[data-cell-padding="none"] {
+  --cell-width-padding: 0;
+  --cell-height-padding: 0;
+}
+
+/* Border modifiers */
+.datagrid[data-border="none"] {
+  border: none;
+  border-radius: 0;
+}
+
+/* Hover modifier — set on the datagrid container to enable row hover */
+.datagrid[data-hover="true"] .row:hover {
+  background-color: var(--Layout-background-Secondary, #f4f4f4);
+}
+
+/* Striped modifier — alternating row backgrounds */
+.datagrid[data-striped="true"] .content > .row:nth-child(even) {
+  background-color: var(--Layout-background-Tertiary, #f8f8f8);
 }
 
 .header {
@@ -25,7 +59,7 @@
 
 .subheader,
 .cell {
-  padding: 12px 18px;
+  padding: var(--cell-height-padding) var(--cell-width-padding);
 }
 
 .subheader {
@@ -83,6 +117,9 @@
 
   display: flex;
   flex-direction: column;
+
+  min-width: 0;
+
   justify-content: center;
   align-items: flex-start;
   gap: calc(0.5 * var(--gridSize));
@@ -165,4 +202,58 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+}
+
+.subheader[data-cell-layout="flex-start"],
+.cell[data-cell-layout="flex-start"] {
+  display: flex;
+
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subheader[data-cell-layout~="row"],
+.cell[data-cell-layout~="row"] {
+  flex-direction: row;
+}
+
+/* Text truncation — single-line ellipsis */
+.subheader[data-truncate="true"],
+.cell[data-truncate="true"] {
+  display: block;
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Text alignment */
+.subheader[data-align="left"],
+.cell[data-align="left"] {
+  text-align: left;
+}
+
+.subheader[data-align="center"],
+.cell[data-align="center"] {
+  text-align: center;
+}
+
+.subheader[data-align="right"],
+.cell[data-align="right"] {
+  text-align: right;
+}
+
+/* Root row — emphasized row for tree/hierarchy tables */
+.row[data-root-row="true"] {
+  font-weight: bold;
+
+  background-color: var(--Layout-background-Tertiary, #f8f8f8);
+}
+
+/* Sticky header */
+.header[data-sticky="true"] {
+  position: sticky;
+  z-index: 1;
+  top: 0;
 }

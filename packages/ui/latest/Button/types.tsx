@@ -76,6 +76,8 @@ export type ButtonIconProps = {
 
 export type ButtonInteractiveIconProps = {
   children?: React.ReactNode;
+  /** Whether the interactive icon is disabled. */
+  disabled?: boolean;
   /** The interactive icon tooltip content. */
   tooltip?: React.ReactNode;
   /** The function to call when the interactive icon is clicked. */
