@@ -168,8 +168,8 @@ export class Select extends Component {
 
     return (
       <Context.Provider value={context}>
-        <div ref={forwardedRef} className={classnames(selectClassName)} {...props}>
-          {fieldName && <input type="hidden" name={fieldName} value={serializeValue(value)} />}
+        <div ref={forwardedRef} className={classnames(selectClassName)} {...props} {...(disabled && { onKeyDown: undefined })}>
+          {fieldName && <input type="hidden" name={fieldName} value={serializeValue(value)} disabled={disabled} />}
           <Trigger
             aria-required={required}
             ariaLabel={ariaLabel}

@@ -52,11 +52,6 @@
   fill: var(--color-icon-primary) !important;
 }
 
-.ellipsis [data-part="label"] {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .hidden {
   position: fixed;
 

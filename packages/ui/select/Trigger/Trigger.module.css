@@ -10,7 +10,7 @@
 }
 
 .trigger.error {
-  border-color: var(--color-border-error);
+  --button-border-color: var(--color-border-error);
 }
 
 .caret {

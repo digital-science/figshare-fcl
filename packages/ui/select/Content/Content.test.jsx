@@ -27,25 +27,25 @@ describe("<Select.Content />", () => {
   }
 
   it("does not render search input when searchable is false", async() => {
-    const { container } = renderContent({ searchable: false, searchPlaceholder: "Search..." });
+    const { baseElement } = renderContent({ searchable: false, searchPlaceholder: "Search..." });
     await act(wait);
-    expect(container.querySelector("input")).not.toBeInTheDocument();
+    expect(baseElement.querySelector("input")).not.toBeInTheDocument();
     teardown();
   });
 
   it("renders search input when searchable is true", async() => {
-    const { container } = renderContent({ searchable: true, searchPlaceholder: "Search..." });
+    const { baseElement } = renderContent({ searchable: true, searchPlaceholder: "Search..." });
     await act(wait);
-    expect(container.querySelector("input")).toBeInTheDocument();
+    expect(baseElement.querySelector("input")).toBeInTheDocument();
     teardown();
   });
 
   it("calls context onSearch when search input changes", async() => {
     const onSearch = jest.fn();
-    const { container } = renderContent({ searchable: true, searchPlaceholder: "Search...", onSearch });
+    const { baseElement } = renderContent({ searchable: true, searchPlaceholder: "Search...", onSearch });
     await act(wait);
 
-    fireEvent.change(container.querySelector("input"), { target: { value: "test" } });
+    fireEvent.change(baseElement.querySelector("input"), { target: { value: "test" } });
     expect(onSearch).toHaveBeenCalledWith("test");
     teardown();
   });
@@ -57,7 +57,7 @@ describe("<Select.Content />", () => {
         return { focus };
       }),
     };
-    const { container } = renderContent({
+    const { baseElement } = renderContent({
       searchable: true,
       searchPlaceholder: "Search...",
       triggerRef,
@@ -65,7 +65,7 @@ describe("<Select.Content />", () => {
     });
     await act(wait);
 
-    fireEvent.keyDown(container.querySelector("input"), { key: "Escape" });
+    fireEvent.keyDown(baseElement.querySelector("input"), { key: "Escape" });
     expect(triggerRef.querySelector).toHaveBeenCalledWith("[data-id=\"select-trigger-btn\"]");
     expect(focus).toHaveBeenCalled();
     teardown();
@@ -73,30 +73,30 @@ describe("<Select.Content />", () => {
 
   it("does not call onLoadMore when error is true", async() => {
     const onLoadMore = jest.fn();
-    const { container } = renderContent({ searchable: false }, { error: true, onLoadMore });
+    const { baseElement } = renderContent({ searchable: false }, { error: true, onLoadMore });
     await act(wait);
 
-    fireEvent.scroll(container.querySelector(".content"));
+    fireEvent.scroll(baseElement.querySelector(".content"));
     expect(onLoadMore).not.toHaveBeenCalled();
     teardown();
   });
 
   it("does not call onLoadMore when loading is true", async() => {
     const onLoadMore = jest.fn();
-    const { container } = renderContent({ searchable: false }, { loading: true, onLoadMore });
+    const { baseElement } = renderContent({ searchable: false }, { loading: true, onLoadMore });
     await act(wait);
 
-    fireEvent.scroll(container.querySelector(".content"));
+    fireEvent.scroll(baseElement.querySelector(".content"));
     expect(onLoadMore).not.toHaveBeenCalled();
     teardown();
   });
 
   it("calls onLoadMore when scrolled to bottom without error or loading", async() => {
     const onLoadMore = jest.fn();
-    const { container } = renderContent({ searchable: false }, { onLoadMore });
+    const { baseElement } = renderContent({ searchable: false }, { onLoadMore });
     await act(wait);
 
-    fireEvent.scroll(container.querySelector(".content"));
+    fireEvent.scroll(baseElement.querySelector(".content"));
     expect(onLoadMore).toHaveBeenCalled();
     teardown();
   });

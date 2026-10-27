@@ -98,7 +98,7 @@ export class Trigger extends Component {
         <div ref={setTriggerRef}>
           {renderChipArea?.()}
           <Button
-            aria-label={ariaLabel}
+            aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
             kind={kind}
             em={em}
             span="full"

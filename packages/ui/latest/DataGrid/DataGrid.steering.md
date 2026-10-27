@@ -137,7 +137,7 @@ DataGrid renders plain `div` elements — it does not produce semantic table mar
 
 ```jsx
 <DataGrid role="table">
-  <DataGrid.Header role="rowgroup">
+  <DataGrid.Header role="row">
     <DataGrid.Subheader role="columnheader">Name</DataGrid.Subheader>
   </DataGrid.Header>
   <DataGrid.Content role="rowgroup">

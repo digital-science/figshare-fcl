@@ -92,7 +92,13 @@ export class Content extends Component {
       </div>
     );
 
-    return createPortal(dropdown, document.body);
+    if (typeof document === "undefined") {
+      return dropdown;
+    }
+
+    const portalTarget = this.context.triggerRef?.closest?.("[role=\"dialog\"]") || document.body;
+
+    return createPortal(dropdown, portalTarget);
   }
 
   renderSearch = () => {
