@@ -10,6 +10,17 @@ import Context from "../context";
 import style from "./Content.module.css";
 
 
+const sameWidth = {
+  name: "sameWidth",
+  enabled: true,
+  phase: "beforeWrite",
+  requires: ["computeStyles"],
+  fn({ state }) {
+    state.styles.popper.minWidth = `${state.rects.reference.width}px`;
+  },
+};
+
+
 export class Content extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -44,8 +55,10 @@ export class Content extends Component {
   render() {
     const { placement, popperModifiers } = this.props;
 
+    const modifiers = [sameWidth, ...popperModifiers];
+
     return (
-      <Menu modifiers={popperModifiers} placement={placement}>
+      <Menu modifiers={modifiers} placement={placement}>
         {this.renderContent}
       </Menu>
     );
