@@ -95,7 +95,7 @@ export class Option extends Component {
 
     let selected = false;
     if (isMultiSelect) {
-      selected = (allValues ?? []).find((selectedVal) => selectedVal === value);
+      selected = (allValues ?? []).includes(value);
     } else {
       selected = JSON.stringify(Object(allValues)) === JSON.stringify(Object(value));
     }
@@ -127,7 +127,7 @@ export class Option extends Component {
           {...props}
         >
           {this.renderCheckmark(isMultiSelect, allValues)}
-          <Button.Label>{children}</Button.Label>
+          <Button.Label wrap={hasEllipsis ? "ellipsis" : "wrap"}>{children}</Button.Label>
         </Button>
       </div>
     );

@@ -50,7 +50,7 @@ describe("<Select />", () => {
 
   it("calls onChange with the selected value on option click", async() => {
     const onChange = jest.fn();
-    const { container } = render(
+    const { baseElement } = render(
       <Select onChange={onChange}>
         <Option value="1">Option 1</Option>
         <Option value="2">Option 2</Option>
@@ -58,7 +58,7 @@ describe("<Select />", () => {
     );
     await act(wait);
 
-    const optionBtns = container.querySelectorAll("button.option");
+    const optionBtns = baseElement.querySelectorAll("button.option");
     fireEvent.click(optionBtns[0]);
     await act(wait);
     expect(onChange).toHaveBeenCalledWith("1");
@@ -82,17 +82,17 @@ describe("<Select />", () => {
   });
 
   it("shows loading state", async() => {
-    const { container } = render(<Select loading={true} />);
+    const { container, baseElement } = render(<Select loading={true} />);
     await act(wait);
 
     fireEvent.click(container.querySelector("[data-id='select-trigger-btn']"));
     await act(wait);
-    expect(container.querySelector(".loading")).toBeInTheDocument();
+    expect(baseElement.querySelector(".loading")).toBeInTheDocument();
     teardown();
   });
 
   it("shows error message", async() => {
-    const { container } = render(
+    const { container, baseElement } = render(
       <Select loadingErrorMessage="Something went wrong">
         <Option value="1">Option 1</Option>
       </Select>
@@ -101,19 +101,19 @@ describe("<Select />", () => {
 
     fireEvent.click(container.querySelector("[data-id='select-trigger-btn']"));
     await act(wait);
-    expect(container.querySelector(".error")).toBeInTheDocument();
-    expect(container.querySelector(".error").textContent).toContain("Something went wrong");
+    expect(baseElement.querySelector(".error")).toBeInTheDocument();
+    expect(baseElement.querySelector(".error").textContent).toContain("Something went wrong");
     teardown();
   });
 
   it("renders search input when searchable", async() => {
-    const { container } = render(
+    const { baseElement } = render(
       <Select searchable={true}>
         <Option value="1">Option 1</Option>
       </Select>
     );
     await act(wait);
-    expect(container.querySelector("input[type='text']")).toBeInTheDocument();
+    expect(baseElement.querySelector("input[type='text']")).toBeInTheDocument();
     teardown();
   });
 

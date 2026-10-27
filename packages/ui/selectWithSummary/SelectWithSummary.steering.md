@@ -13,7 +13,7 @@ Use SelectWithSummary when users need to:
 ## Structure
 
 ```jsx
-import { SelectWithSummary } from "@digital-science/figshare-fcl/selectWithSummary";
+import SelectWithSummary from "@digital-science/figshare-fcl/selectWithSummary";
 
 <SelectWithSummary
   options={[

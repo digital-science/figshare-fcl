@@ -34,14 +34,15 @@
   border-radius: 0;
 }
 
-/* Hover modifier — set on the datagrid container to enable row hover */
-.datagrid[data-hover="true"] .row:hover {
-  background-color: var(--Layout-background-Secondary, #f4f4f4);
-}
-
 /* Striped modifier — alternating row backgrounds */
 .datagrid[data-striped="true"] .content > .row:nth-child(even) {
   background-color: var(--Layout-background-Tertiary, #f8f8f8);
+}
+
+/* Hover modifier — set on the datagrid container to enable row hover.
+   Placed after striped with matching specificity so hover wins on even rows. */
+.datagrid[data-hover="true"] .content > .row:hover {
+  background-color: var(--Layout-background-Secondary, #f4f4f4);
 }
 
 .header {
@@ -204,13 +205,20 @@
   justify-content: space-between;
 }
 
-.subheader[data-cell-layout="flex-start"],
-.cell[data-cell-layout="flex-start"] {
+.subheader[data-cell-layout="flex-start"] {
   display: flex;
 
   width: 100%;
   align-items: center;
   justify-content: flex-start;
+}
+
+.cell[data-cell-layout="flex-start"] {
+  display: flex;
+
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .subheader[data-cell-layout~="row"],
@@ -228,20 +236,30 @@
   text-overflow: ellipsis;
 }
 
-/* Text alignment */
+/* Text alignment — flex properties for flex items, text-align for inline/block content */
 .subheader[data-align="left"],
 .cell[data-align="left"] {
   text-align: left;
 }
 
-.subheader[data-align="center"],
-.cell[data-align="center"] {
+.subheader[data-align="center"] {
   text-align: center;
+  justify-content: center;
 }
 
-.subheader[data-align="right"],
+.cell[data-align="center"] {
+  text-align: center;
+  align-items: center;
+}
+
+.subheader[data-align="right"] {
+  text-align: right;
+  justify-content: flex-end;
+}
+
 .cell[data-align="right"] {
   text-align: right;
+  align-items: flex-end;
 }
 
 /* Root row — emphasized row for tree/hierarchy tables */
