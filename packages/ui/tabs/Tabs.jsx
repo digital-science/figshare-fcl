@@ -1,7 +1,6 @@
 import React, { useState, useRef, useMemo, useContext, createContext, useCallback, Children, useEffect } from "react";
 import { array, any, bool, func, string, number, node, oneOfType } from "prop-types";
 import classnames from "classnames";
-import { Button } from "@digital-science/figshare-fcl/button";
 import RenderSwitch from "@digital-science/figshare-fcl/renderSwitch";
 import { useControllableState } from "@digital-science/figshare-fcl/helpers/useControllableState";
 import {
@@ -13,6 +12,7 @@ import {
   FloatingFocusManager,
 } from "@floating-ui/react";
 
+import { Button } from "../latest/Button";
 import More from "../icons/react/More";
 import useEventListener from "../helpers/useEventListener";
 import { debounce } from "../helpers/utils/debounce";
@@ -198,13 +198,15 @@ export function TabOverflow({ elements }) {
       data-scope="tabs"
     >
       <Button
+        ref={refs.setReference}
         className={styles.tabOverflowButton}
-        innerRef={refs.setReference}
-        theme="secondaryAlt"
+        em="low"
+        kind="secondary"
+        span="icon"
         tooltip="View additional tabs"
         {...getReferenceProps()}
       >
-        <More />
+        <Button.Icon><More /></Button.Icon>
       </Button>
       {isOpen && (
         <FloatingFocusManager context={context} returnFocus={true}>
@@ -238,10 +240,12 @@ export function TabOverflow({ elements }) {
                     data-active={isActive}
                     data-value={el.props.value}
                     style={ {} }
-                    theme="tertiaryAlt"
+                    em="low"
+                    kind="tertiary"
+                    span="content"
                     onClick={onClickWithClose}
                   >
-                    {el.props.children}
+                    <Button.Label>{el.props.children}</Button.Label>
                   </Button>
                 </li>
               );

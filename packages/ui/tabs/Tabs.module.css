@@ -111,7 +111,7 @@
 }
 
 .tabOverflowButton {
-  max-width: calc(6 * var(--gridSize));
+  min-width: calc(6 * var(--gridSize) + 2px);
   margin: var(--gridSize);
   padding: 0;
 

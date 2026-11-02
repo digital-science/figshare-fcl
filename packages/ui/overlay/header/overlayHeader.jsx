@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-import { IconButton } from "../../button";
+import { Button } from "../../latest/Button";
 import ArrowLeftMedium from "../../icons/arrow/left/medium";
 import Cancel from "../../icons/cancel/large";
 import { OverlayContext } from "../overlay";
@@ -84,30 +84,32 @@ export default class OverlayHeader extends Component {
           [styles.confirmation]: isForConfirmationOverlay,
         }, className)}
       >
-        <IconButton
-          Icon={Cancel}
-          className={styles.iconBtn}
-          size="M"
-          theme="tertiary"
+        <Button
+          aria-label="Close"
+          em="high"
+          kind="tertiary"
+          span="icon"
+          tooltip={firstFocusIn ? undefined : "Close"}
           onBlur={this.onFirstFocus}
           onClick={onClose ?? this.context.onClose}
           onMouseEnter={this.onFirstFocus}
         >
-          {firstFocusIn ? undefined : "Close"}
-        </IconButton>
+          <Button.Icon><Cancel /></Button.Icon>
+        </Button>
         <div className={styles.headerInfo}>
           {onGoBackFn && (
-            <IconButton
-              Icon={ArrowLeftMedium}
-              className={styles.iconBtn}
-              size="M"
-              theme="tertiary"
+            <Button
+              aria-label="Go back"
+              em="high"
+              kind="tertiary"
+              span="icon"
+              tooltip={firstFocusIn ? undefined : "Go back"}
               onBlur={this.onFirstFocus}
               onClick={onGoBackFn}
               onMouseEnter={this.onFirstFocus}
             >
-              {firstFocusIn ? undefined : "Go back"}
-            </IconButton>)}
+              <Button.Icon><ArrowLeftMedium /></Button.Icon>
+            </Button>)}
           <div>
             <h1 className={styles.title} id={ariaTitle}>{title}</h1>
             {description && <p className={styles.description} id={ariaDescription}>{description}</p>}

@@ -2,7 +2,7 @@ import React from "react";
 import { string, bool, array, func } from "prop-types";
 import classnames from "classnames";
 
-import { IconButton } from "../button";
+import { Button } from "../latest/Button";
 import Alert from "../alert";
 import Info from "../icons/react/InfoCircle";
 import Warning from "../icons/react/Warning";
@@ -170,14 +170,17 @@ export class Alerts extends React.PureComponent {
 
     if (!persistent) {
       return (
-        <IconButton
-          Icon={Close}
+        <Button
           aria-label="Close"
           className={styles.alertClose}
           data-control-id="form-alert-close-button"
-          theme="tertiary"
+          em="high"
+          kind="tertiary"
+          span="icon"
           onClick={this.onHideAlert(alert)}
-        />);
+        >
+          <Button.Icon><Close /></Button.Icon>
+        </Button>);
     }
 
     return null;

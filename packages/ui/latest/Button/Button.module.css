@@ -3,6 +3,8 @@
   --button-fill: currentcolor;
   --button-background-color: transparent;
   --button-border-color: transparent;
+  --button-min-width: calc(6 * var(--gridSize));
+  --button-min-height: calc(6 * var(--gridSize));
 
   font-size: 16px;
   font-weight: 400;
@@ -13,10 +15,10 @@
 
   box-sizing: border-box;
   max-width: 100%;
-  min-height: 38px;
+  min-height: var(--button-min-height);
 
   max-height: fit-content;
-  padding: 6px 12px;
+  padding: 5px 11px;
 
   cursor: pointer;
   white-space: nowrap;
@@ -66,6 +68,8 @@
 
   &[data-span="icon"] {
     --button-fill: currentcolor !important;
+  
+    max-width: var(--button-min-width);
   }
 
   &[data-justify="between"] {
@@ -99,6 +103,11 @@
   &[data-line-height="inherit"] {
     line-height: inherit;
   }
+}
+
+
+.button[data-inline="false"] {
+  min-width: var(--button-min-width);
 }
 
 .button[data-inline="true"] {
@@ -147,14 +156,9 @@
   padding-left: 0;
 }
 
-.button[data-span="fit-content"],
-.button[data-span="icon"] {
-  max-width: fit-content;
-}
-
 .button[data-span="button"],
 .button[data-span="narrow"] {
-  min-width: calc(6 * var(--gridSize));
+  min-width: var(--button-min-width);
   max-width: auto;
 }
 
@@ -264,7 +268,7 @@
   --button-border-color: var(--Border-Primary, #ddd);
   --button-background-color: var(--Button-Secondary-BG-Default, #fff);
 
-  min-height: 38px;
+  min-height: var(--button-min-height);
 
   &:hover,
   &:focus,
@@ -749,9 +753,9 @@
   }
 
   &[data-interactive="true"] {
-    width: 38px;
-    height: 38px;
-    max-height: 38px;
+    width: var(--button-min-width);
+    height: var(--button-min-height);
+    max-height: var(--button-min-height);
 
     vertical-align: middle;
 

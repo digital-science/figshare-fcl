@@ -164,7 +164,7 @@ export function ButtonIcon({ children, asChild = false, blend = false, size = "m
 
 ButtonIcon.displayName = "ButtonIcon";
 
-export function ButtonInteractiveIcon({ children, disabled = false, tooltip, onClick, onKeyDown, ownColor, ...props }: ButtonInteractiveIconProps) {
+export function ButtonInteractiveIcon({ children, disabled = false, tooltip, onClick, onKeyDown, ownColor = false, ...props }: ButtonInteractiveIconProps) {
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (disabled) { return; }
     if (event.key === "Enter" || event.key === " ") {

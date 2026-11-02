@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import { IconButton } from "../../button";
+import { Button } from "../../latest/Button";
 
 import { sizes, iconSizes } from "./constants";
 import styles from "./index.module.css";
@@ -131,16 +131,18 @@ export default class SearchInput extends PureComponent {
           onFocus={this.onFocus}
         />
         {this.renderClearIcon()}
-        <IconButton
-          Icon={SubmitIcon}
+        <Button
+          aria-label="Search"
           data-search-url={`/search?q=${value}`}
-          size={size}
+          em="high"
+          kind="tertiary"
+          span="icon"
           tabIndex={searchButtonType === "button" ? -1 : undefined}
-          theme="tertiary"
+          tooltip={searchButtonType === "button" ? undefined : "Search"}
           type={searchButtonType}
         >
-          {searchButtonType === "button" ? "" : "Search"}
-        </IconButton>
+          <Button.Icon><SubmitIcon /></Button.Icon>
+        </Button>
       </form>
     );
   }
@@ -154,9 +156,9 @@ export default class SearchInput extends PureComponent {
     }
 
     return (
-      <IconButton Icon={ClearIcon} size={size} theme="tertiary" onClick={this.onClear}>
-        Clear search
-      </IconButton>
+      <Button em="high" kind="tertiary" span="icon" tooltip="Clear search" onClick={this.onClear}>
+        <Button.Icon><ClearIcon /></Button.Icon>
+      </Button>
     );
   }
 

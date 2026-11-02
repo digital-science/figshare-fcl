@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { Button } from "@digital-science/figshare-fcl/button";
 
+import { Button } from "../../../latest/Button";
 import { findEntityType } from "../../utils";
 
 import styles from "./index.module.css";
@@ -73,15 +73,17 @@ class LinkModal extends Component {
           />
           <div className={styles.buttonsContainer}>
             {this.renderRemoveButton(hasLinkEntity)}
-            <Button className={styles.buttonCancel} onClick={onCancelLinkAddition}>
-              Cancel
+            <Button className={styles.buttonCancel} em="high" kind="primary" onClick={onCancelLinkAddition}>
+              <Button.Label>Cancel</Button.Label>
             </Button>
             <Button
               className={classnames(styles.buttonSave, { [styles.focusBtn]: !hasMinimumLength })}
               disabled={!hasMinimumLength}
+              em="high"
+              kind="primary"
               onClick={onConfirmLink}
             >
-              Save
+              <Button.Label>Save</Button.Label>
             </Button>
           </div>
         </div>
@@ -97,8 +99,9 @@ class LinkModal extends Component {
     }
 
     return (
-      <Button className={styles.buttonOpenLink} href={urlValue} target="_blank">
-        <OpenLinkIcon className={styles.icon} /> Open link
+      <Button className={styles.buttonOpenLink} em="high" href={urlValue} kind="primary" target="_blank">
+        <Button.Icon><OpenLinkIcon className={styles.icon} /></Button.Icon>
+        <Button.Label>Open link</Button.Label>
       </Button>
     );
   }
@@ -111,8 +114,9 @@ class LinkModal extends Component {
     }
 
     return (
-      <Button className={styles.buttonUnlink} onClick={onRemoveLink}>
-        <UnlinkIcon className="icon" /> Unlink
+      <Button className={styles.buttonUnlink} em="high" kind="primary" onClick={onRemoveLink}>
+        <Button.Icon><UnlinkIcon className="icon" /></Button.Icon>
+        <Button.Label>Unlink</Button.Label>
       </Button>
     );
   }

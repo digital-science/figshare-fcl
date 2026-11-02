@@ -28,7 +28,7 @@ describe("<PasswordStrength />", () => {
     );
 
     expect(container.querySelector("[class*='header']")).toBeInTheDocument();
-    expect(container.querySelectorAll("[class*='rule']")).toHaveLength(3);
+    expect(container.querySelectorAll("li[class~='rule']")).toHaveLength(3);
     expect(container.querySelectorAll("[aria-label='Dot Icon']")).toHaveLength(3);
 
     teardown();
@@ -44,7 +44,7 @@ describe("<PasswordStrength />", () => {
     );
 
     expect(container.querySelector("[class*='header']")).toBeInTheDocument();
-    expect(container.querySelectorAll("[class*='rule']")).toHaveLength(3);
+    expect(container.querySelectorAll("li[class~='rule']")).toHaveLength(3);
     expect(container.querySelectorAll("[aria-label='Dot Icon']")).toHaveLength(2);
     expect(container.querySelectorAll("[aria-label='Checkmark icon']")).toHaveLength(1);
 
@@ -62,7 +62,7 @@ describe("<PasswordStrength />", () => {
     );
 
     expect(container.querySelector("[class*='header']")).toBeInTheDocument();
-    expect(container.querySelectorAll("[class*='rule']")).toHaveLength(3);
+    expect(container.querySelectorAll("li[class~='rule']")).toHaveLength(3);
     expect(container.querySelectorAll("[aria-label='Checkmark icon']")).toHaveLength(1);
     expect(container.querySelectorAll("[aria-label='Warning icon']")).toHaveLength(2);
 
@@ -86,7 +86,7 @@ describe("<PasswordStrength />", () => {
 
     expect(container.querySelector("[class*='header']")).toBeInTheDocument();
     expect(container.querySelector("[class*='success']")).toHaveTextContent("Your password is secure");
-    expect(container.querySelectorAll("[class*='rule']")).toHaveLength(3);
+    expect(container.querySelectorAll("li[class~='rule']")).toHaveLength(3);
     expect(container.querySelectorAll("[aria-label='Checkmark icon']")).toHaveLength(3);
 
     teardown();

@@ -86,7 +86,7 @@ export default function Feed({
         return;
       }
 
-      const scroll = node.scrollTop || node.scrollY;
+      const scroll = node.scrollTop ?? node.scrollY;
 
       const { offsetHeight: height, scrollHeight } = node;
 

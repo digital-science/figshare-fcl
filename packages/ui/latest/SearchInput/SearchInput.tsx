@@ -27,7 +27,7 @@ type SearchInputProps = {
   onSubmit?: (event: PacketOrEventLikeObject) => void;
   onClear?: (event: PacketOrEventLikeObject) => void;
   kind?: "default" | "underline";
-} & Record<string, unknown>;
+} & Record<string, any>;
 
 /*
   A SearchInput implementation that does not rely on form element, which means it can be used independently
