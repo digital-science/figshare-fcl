@@ -399,10 +399,10 @@ export const InteractiveIcons = {
             <Button kind="secondary" em="low" span="full" justify="between">
               <Button.Label>Item with multiple actions</Button.Label>
               <Button.IconGroup interactive={true}>
-                <Button.InteractiveIcon ownColor={true} tooltip="Copy" onClick={() => alert("Copy")}>
+                <Button.InteractiveIcon tooltip="Copy" onClick={() => alert("Copy")}>
                   <Copy />
                 </Button.InteractiveIcon>
-                <Button.InteractiveIcon ownColor={true} tooltip="Edit" onClick={() => alert("Edit")}>
+                <Button.InteractiveIcon tooltip="Edit" onClick={() => alert("Edit")}>
                   <Edit />
                 </Button.InteractiveIcon>
                 <Button.InteractiveIcon tooltip="Delete" onClick={() => alert("Delete")}>

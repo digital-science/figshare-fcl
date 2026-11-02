@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import EyeVisible from "../../icons/eye/visible/small";
 import EyeInvisible from "../../icons/eye/invisible/small";
-import { IconButton } from "../../button";
+import { Button } from "../../latest/Button";
 import TextInput from "../../input/text";
 
 
@@ -57,15 +57,16 @@ export default class Password extends Component {
 
     return (
       <TextInput {...props} type={type}>
-        <IconButton
-          Icon={Icon}
+        <Button
           disabled={disabled}
-          size="S"
-          theme="tertiary"
+          em="high"
+          kind="tertiary"
+          span="icon"
+          tooltip={tooltip}
           onClick={this.onToggleVisibility}
         >
-          {tooltip}
-        </IconButton>
+          <Button.Icon><Icon /></Button.Icon>
+        </Button>
       </TextInput>
     );
   }

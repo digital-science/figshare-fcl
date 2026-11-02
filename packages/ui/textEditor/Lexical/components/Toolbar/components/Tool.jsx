@@ -1,28 +1,30 @@
 import React, { Fragment } from "react";
 import { string, bool, node, func, any } from "prop-types";
 
-import { IconButton } from "../../../../../button";
+import { Button } from "../../../../../latest/Button";
 
 import styles from "./Tool.module.css";
 
 
-export function Tool({ active, disabled, label, type, group, icon, onToolSelect }) {
+export function Tool({ active, disabled, label, type, group, icon: Icon, onToolSelect }) {
 
   return (
-    <IconButton
+    <Button
       key={type}
-      Icon={icon}
       aria-label={label}
       className={styles.tool}
       data-tool-active={active}
       data-tool-group={group}
       data-tool-type={type}
       disabled={disabled}
-      theme="primary"
+      em="high"
+      kind="tertiary"
+      span="icon"
+      tooltip={label}
       onClick={onToolSelect}
     >
-      {label}
-    </IconButton>
+      <Button.Icon><Icon /></Button.Icon>
+    </Button>
   );
 }
 

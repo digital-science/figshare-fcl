@@ -101,13 +101,13 @@ describe("<OverlayHeader />", () => {
     teardown();
   });
 
-  it("should show tooltip text on close button after blur", () => {
+  it("should label the close button with its tooltip text after blur", () => {
     const { container } = render(
       <OverlayHeader description="Description" title="Title" onClose={jest.fn()} />
     );
     const button = container.querySelector("button");
     fireEvent.blur(button);
-    expect(button.textContent).toContain("Close");
+    expect(button).toHaveAttribute("aria-label", "Close");
     teardown();
   });
 });

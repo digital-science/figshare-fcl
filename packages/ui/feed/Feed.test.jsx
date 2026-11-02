@@ -286,8 +286,9 @@ describe("<Feed />", () => {
     const onScroll = jest.fn();
     const onBottomReached = jest.fn();
 
+    // scrollHeight - (scrollTop + offsetHeight + 1) <= scrollThreshold(0)
     const scrollContainer = {
-      scrollTop: 50,
+      scrollTop: 99,
       offsetHeight: 50,
       scrollHeight: 150,
       addEventListener: (event, handler) => {
@@ -316,22 +317,20 @@ describe("<Feed />", () => {
     const onScroll = jest.fn();
     const onTopReached = jest.fn();
 
-    let currentScroll = 50;
+    let scrollHandler = jest.fn();
     const scrollContainer = {
-      get scrollTop() {
-        return currentScroll;
-      },
+      scrollTop: 50,
       offsetHeight: 50,
       scrollHeight: 150,
       addEventListener: (event, handler) => {
         if (event === "scroll") {
-          handler({ target: scrollContainer });
+          scrollHandler = handler;
         }
       },
       removeEventListener: () => undefined,
     };
 
-    const { rerender } = render(
+    render(
       <Feed
         component="div"
         values={testValues}
@@ -341,17 +340,10 @@ describe("<Feed />", () => {
       />
     );
 
-    // Scroll up to trigger onTopReached
-    currentScroll = 0;
-    rerender(
-      <Feed
-        component="div"
-        values={testValues}
-        scrollContainer={scrollContainer}
-        onScroll={onScroll}
-        onTopReached={onTopReached}
-      />
-    );
+    // Establish a scrolled position, then scroll back up to the top
+    scrollHandler({ target: scrollContainer });
+    scrollContainer.scrollTop = 0;
+    scrollHandler({ target: scrollContainer });
 
     expect(onScroll).toHaveBeenCalled();
     expect(onTopReached).toHaveBeenCalled();

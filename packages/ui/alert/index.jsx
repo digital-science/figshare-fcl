@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import withRef from "../helpers/withRef";
 import Cancel from "../icons/cancel/medium";
-import { Button } from "../button";
+import { Button } from "../latest/Button";
 
 import styles from "./index.module.css";
 
@@ -58,8 +58,8 @@ class Alert extends Component {
     }
 
     return (
-      <Button aria-label="Close" className={styles.close} onClick={onClose}>
-        <Cancel className={styles.closeIcon} />
+      <Button aria-label="Close" className={styles.close} em="high" kind="tertiary" span="icon" onClick={onClose}>
+        <Button.Icon><Cancel className={styles.closeIcon} /></Button.Icon>
       </Button>
     );
   }

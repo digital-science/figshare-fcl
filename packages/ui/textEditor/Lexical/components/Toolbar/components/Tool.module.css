@@ -3,7 +3,8 @@
 
   display: flex;
 
-  width: calc(var(--gridSize) * 5);
+  width: calc(var(--gridSize) * 5) !important;
+  min-width: calc(var(--gridSize) * 5) !important;
   height: calc(var(--gridSize) * 6);
   margin: 0;
 

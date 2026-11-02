@@ -3,13 +3,14 @@ import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { useCallback, useContext, useEffect, useState } from "react";
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Button } from "@digital-science/figshare-fcl/button";
 import { OverlayContent, OverlayFooter, OverlayHeader } from "@digital-science/figshare-fcl/overlay";
 import { OverlayContext } from "@digital-science/figshare-fcl/overlay/overlay";
 import Input from "@digital-science/figshare-fcl/input";
 import GoToLinkLarge from "@digital-science/figshare-fcl/icons/goToLink/large";
 import LinkUnlinked from "@digital-science/figshare-fcl/icons/link/unlinked";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+
+import { Button } from "../../../../latest/Button";
 
 import { getSelectedNode, sanitizeUrl, makeURLAbsolute } from "./utils";
 import styles from "./LinkEditor.module.css";
@@ -124,40 +125,43 @@ export function LinkEditor({ onClose }) {
               onKeyDown={monitorInputInteraction}
             />
             <Button
-              Icon={GoToLinkLarge}
               className={styles.linkButton}
               disabled={!isEditMode}
+              em="low"
               href={makeURLAbsolute(editedLinkUrl || linkUrl)}
               id="open-link-button"
+              kind="secondary"
               target="_blank"
-              theme="secondaryAlt"
             >
-              Open link
+              <Button.Icon><GoToLinkLarge /></Button.Icon>
+              <Button.Label>Open link</Button.Label>
             </Button>
           </div>
         </div>
       </OverlayContent>
       <OverlayFooter className={styles.buttonsContainer}>
         <Button
-          Icon={LinkUnlinked}
           disabled={!isEditMode}
+          em="high"
           id="unlink-button"
-          theme="tertiary"
+          kind="tertiary"
           onClick={onUnlink}
         >
-          Unlink
+          <Button.Icon><LinkUnlinked /></Button.Icon>
+          <Button.Label>Unlink</Button.Label>
         </Button>
         <div className={styles.buttons}>
-          <Button id="cancel-button" theme="secondaryAlt" onClick={onCancel}>
-            Cancel
+          <Button em="low" id="cancel-button" kind="secondary" onClick={onCancel}>
+            <Button.Label>Cancel</Button.Label>
           </Button>
           <Button
             className={styles.saveButton}
             disabled={!hasMinimumLength}
-            theme="primary"
+            em="high"
+            kind="primary"
             onClick={onSave}
           >
-            {confirmationText}
+            <Button.Label>{confirmationText}</Button.Label>
           </Button>
         </div>
       </OverlayFooter>

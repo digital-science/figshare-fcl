@@ -12,7 +12,7 @@ const SvgSearch = (props) => (
     alt={props.title}
     {...props}
   >
-    <g clipPath="url(#clip0_12864_33417)">
+    <g>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
