@@ -199,6 +199,7 @@ export function TabOverflow({ elements }) {
     >
       <Button
         ref={refs.setReference}
+        aria-label="View additional tabs"
         className={styles.tabOverflowButton}
         em="low"
         kind="secondary"
@@ -241,8 +242,9 @@ export function TabOverflow({ elements }) {
                     data-value={el.props.value}
                     style={ {} }
                     em="low"
+                    justify="start"
                     kind="tertiary"
-                    span="content"
+                    span="full"
                     onClick={onClickWithClose}
                   >
                     <Button.Label>{el.props.children}</Button.Label>

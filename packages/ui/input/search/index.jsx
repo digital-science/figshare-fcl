@@ -134,7 +134,7 @@ export default class SearchInput extends PureComponent {
         <Button
           aria-label="Search"
           data-search-url={`/search?q=${value}`}
-          em="high"
+          em="low"
           kind="tertiary"
           span="icon"
           tabIndex={searchButtonType === "button" ? -1 : undefined}
@@ -156,7 +156,7 @@ export default class SearchInput extends PureComponent {
     }
 
     return (
-      <Button em="high" kind="tertiary" span="icon" tooltip="Clear search" onClick={this.onClear}>
+      <Button aria-label="Clear search" em="low" kind="tertiary" span="icon" tooltip="Clear search" onClick={this.onClear}>
         <Button.Icon><ClearIcon /></Button.Icon>
       </Button>
     );

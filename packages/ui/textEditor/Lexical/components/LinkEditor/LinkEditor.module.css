@@ -28,6 +28,10 @@
 }
 
 .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   @media (max-width: 443px) {
     display: flex;
     flex-direction: column;
@@ -53,12 +57,4 @@
   display: grid;
   grid-template-columns: auto max-content;
   gap: var(--gridSize);
-}
-
-.linkButton {
-  max-height: calc(6 * var(--gridSize));
-}
-
-.linkButton > span {
-  height: calc(6 * var(--gridSize));
 }

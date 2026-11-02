@@ -156,6 +156,10 @@
   padding-left: 0;
 }
 
+.button[data-span="fit-content"] {
+  max-width: fit-content;
+}
+
 .button[data-span="button"],
 .button[data-span="narrow"] {
   min-width: var(--button-min-width);

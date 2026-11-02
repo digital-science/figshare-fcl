@@ -125,7 +125,6 @@ export function LinkEditor({ onClose }) {
               onKeyDown={monitorInputInteraction}
             />
             <Button
-              className={styles.linkButton}
               disabled={!isEditMode}
               em="low"
               href={makeURLAbsolute(editedLinkUrl || linkUrl)}
@@ -155,6 +154,7 @@ export function LinkEditor({ onClose }) {
             <Button.Label>Cancel</Button.Label>
           </Button>
           <Button
+            aria-label={confirmationText}
             className={styles.saveButton}
             disabled={!hasMinimumLength}
             em="high"
