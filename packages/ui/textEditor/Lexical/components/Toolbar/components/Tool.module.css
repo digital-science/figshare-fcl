@@ -24,9 +24,14 @@
   background: none;
 }
 
-.tool[data-tool-active="true"],
-.tool:active {
-  background-color: var(--color-layout-secondary-background);
+/* Button sets its background from --button-background-color (!important), so override the variable,
+   with enough specificity to beat the tertiary hover/focus/active rules */
+.tool[data-part="button"][data-kind="tertiary"][data-tool-active="true"],
+.tool[data-part="button"][data-kind="tertiary"]:active,
+.tool[data-part="button"][data-kind="tertiary"][data-tool-active="true"]:hover,
+.tool[data-part="button"][data-kind="tertiary"][data-tool-active="true"]:focus,
+.tool[data-part="button"][data-kind="tertiary"][data-tool-active="true"]:focus-visible {
+  --button-background-color: var(--color-layout-secondary-background);
 }
 
 .tool > svg {

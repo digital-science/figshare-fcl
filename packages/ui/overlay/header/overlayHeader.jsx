@@ -89,7 +89,8 @@ export default class OverlayHeader extends Component {
           em="high"
           kind="tertiary"
           span="icon"
-          tooltip={firstFocusIn ? undefined : "Close"}
+          tooltip="Close"
+          tooltipOptions={firstFocusIn ? { open: false } : undefined}
           onBlur={this.onFirstFocus}
           onClick={onClose ?? this.context.onClose}
           onMouseEnter={this.onFirstFocus}
@@ -103,7 +104,8 @@ export default class OverlayHeader extends Component {
               em="high"
               kind="tertiary"
               span="icon"
-              tooltip={firstFocusIn ? undefined : "Go back"}
+              tooltip="Go back"
+              tooltipOptions={firstFocusIn ? { open: false } : undefined}
               onBlur={this.onFirstFocus}
               onClick={onGoBackFn}
               onMouseEnter={this.onFirstFocus}

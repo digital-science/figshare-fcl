@@ -58,6 +58,7 @@ export default class Password extends Component {
     return (
       <TextInput {...props} type={type}>
         <Button
+          aria-label={tooltip}
           disabled={disabled}
           em="high"
           kind="tertiary"

@@ -23,19 +23,17 @@ Users can mark portions or the whole content as paragraphs, headings or emphasis
 The component can be imported from:
 
 ```jsx
-import Editor from "@digital-science/figshare-fcl/textEditor";
+import Editor from "@digital-science/figshare-fcl/textEditor/Lexical";
 
-class MyTextEditor extends React.Component {
-  render() {
-    return (
-      const [text, setText] = useState("<b>Initial text or markup</b>");
-      return <Editor onChange={(e) => {
-        setText(e.target.value);
-      }} value={text} />;
-    );
-  }
+function MyTextEditor() {
+  const [text, setText] = useState("<b>Initial text or markup</b>");
+
+  return <Editor value={text} onChange={(e) => setText(e.target.value)} />;
 }
 ```
+
+The editor only reads `value` when it mounts. To replace the content from outside (for example a "Reset" button),
+remount it by changing its `key`.
 
 ## Props Table
 
