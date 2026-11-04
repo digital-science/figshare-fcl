@@ -124,3 +124,13 @@
     max-height: 100%;
   }
 }
+
+/*
+  reflow (400% zoom, 320x256): with a tall header or stacked footer buttons the content shrinks to nothing
+  and the footer leaves the screen, so the whole box scrolls instead.
+ */
+@media (max-height: 300px) {
+  .overlayBox {
+    overflow-y: auto;
+  }
+}
