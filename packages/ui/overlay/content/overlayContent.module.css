@@ -18,3 +18,12 @@
     padding: calc(4 * var(--gridSize)) calc(4 * var(--gridSize)) 0;
   }
 }
+
+@media (max-height: 300px) {
+  .content {
+    overflow-x: clip;
+    overflow-y: visible;
+
+    flex: none;
+  }
+}

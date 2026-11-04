@@ -6,6 +6,7 @@
 
   box-sizing: border-box;
   width: calc(60 * var(--gridSize));
+  max-width: 100%;
 
   height: calc(6 * var(--gridSize));
   justify-content: space-between;

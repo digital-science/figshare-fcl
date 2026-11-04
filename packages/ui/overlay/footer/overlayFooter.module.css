@@ -58,3 +58,9 @@
 .footer.singleControl {
   justify-content: flex-end;
 }
+
+@media (max-height: 300px) {
+  .footer {
+    flex: none;
+  }
+}
