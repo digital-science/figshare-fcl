@@ -17,7 +17,6 @@ node_modules/
 # npm local settings
 .npmrc
 .yarnrc
-.nvmrc
 
 
 # Yarn Integrity file
