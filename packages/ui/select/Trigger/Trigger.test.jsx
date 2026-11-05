@@ -31,4 +31,31 @@ describe("Trigger component", () => {
     expect(container.firstChild).toBeInTheDocument();
     teardown();
   });
+
+  function renderTrigger(props) {
+    return render(
+      <DropdownContext.Provider value={ { isVisible: false, onToggle: jest.fn(), toggleRef: { current: null } } }>
+        <SelectContext.Provider value={ { size: "M" } }>
+          <Trigger {...defaultProps} {...props} />
+        </SelectContext.Provider>
+      </DropdownContext.Provider>
+    );
+  }
+
+  it("should only render the caret slot when onClear is not provided", () => {
+    const { container } = renderTrigger();
+
+    const slots = container.querySelectorAll("[data-part=\"button-icon-group-icon-slot\"]");
+    expect(slots).toHaveLength(1);
+    expect(slots[0]).not.toBeEmptyDOMElement();
+    teardown();
+  });
+
+  it("should render the clear and caret slots when onClear is provided", () => {
+    const { container } = renderTrigger({ onClear: jest.fn() });
+
+    const slots = container.querySelectorAll("[data-part=\"button-icon-group-icon-slot\"]");
+    expect(slots).toHaveLength(2);
+    teardown();
+  });
 });

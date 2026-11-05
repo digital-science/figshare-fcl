@@ -612,6 +612,24 @@ describe("ButtonIconGroup", () => {
 
     teardown();
   });
+
+  it("does not render an empty icon slot for falsy children when interactive is true", () => {
+    const scope = setup();
+    scope.props.interactive = true;
+    scope.props.children = [
+      undefined,
+      null,
+      false,
+      <span key="b" data-testid="icon-b" />,
+    ];
+    scope.run();
+
+    const slots = scope.wrapper.container.querySelectorAll("[data-part=\"button-icon-group-icon-slot\"]");
+    expect(slots).toHaveLength(1);
+    expect(slots[0]).toContainElement(screen.getByTestId("icon-b"));
+
+    teardown();
+  });
 });
 
 
