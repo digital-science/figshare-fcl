@@ -33,6 +33,7 @@ export class Trigger extends Component {
     kind: PropTypes.string,
     renderChipArea: PropTypes.func,
     setTriggerRef: PropTypes.any,
+    span: PropTypes.oneOf(["content", "full"]),
     onClear: PropTypes.func,
   }
 
@@ -47,6 +48,7 @@ export class Trigger extends Component {
     kind: "input",
     renderChipArea: undefined,
     setTriggerRef: null,
+    span: "full",
     onClear: undefined,
   }
 
@@ -71,6 +73,7 @@ export class Trigger extends Component {
       disabled,
       renderChipArea,
       setTriggerRef,
+      span,
       onClear,
       iconSize,
       ...buttonProps
@@ -101,7 +104,7 @@ export class Trigger extends Component {
             aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
             kind={kind}
             em={em}
-            span="full"
+            span={span}
             justify="between"
             disabled={disabled}
             data-id="select-trigger-btn"

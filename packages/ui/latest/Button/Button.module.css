@@ -152,6 +152,9 @@
 
 .button[data-span="content"] {
   max-width: fit-content;
+}
+
+.button[data-span="content"][data-kind="tertiary"] {
   padding-right: 0;
   padding-left: 0;
 }

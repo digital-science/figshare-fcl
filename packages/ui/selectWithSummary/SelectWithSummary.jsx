@@ -29,6 +29,7 @@ export const SelectWithSummary = React.forwardRef(({
   searchPlaceholder = "Search...",
   searchable = false,
   size = "M",
+  span = "full",
   summaryClassName,
   summaryErrorMessage,
   summaryItemClassName,
@@ -135,6 +136,7 @@ export const SelectWithSummary = React.forwardRef(({
         searchPlaceholder={searchPlaceholder}
         searchable={searchable}
         size={size}
+        span={span}
         triggerClassName={triggerClassName}
         value={value}
         em={em}
@@ -203,6 +205,7 @@ SelectWithSummary.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchable: PropTypes.bool,
   size: PropTypes.oneOf(["S", "M", "L"]),
+  span: PropTypes.oneOf(["content", "full"]),
   summaryClassName: PropTypes.string,
   summaryErrorMessage: PropTypes.string,
   summaryItemClassName: PropTypes.string,
@@ -238,6 +241,7 @@ SelectWithSummary.defaultProps = {
   searchPlaceholder: "Search...",
   searchable: false,
   size: "M",
+  span: "full",
   summaryClassName: undefined,
   summaryErrorMessage: undefined,
   summaryItemClassName: undefined,

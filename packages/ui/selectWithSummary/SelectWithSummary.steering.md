@@ -30,7 +30,7 @@ import SelectWithSummary from "@digital-science/figshare-fcl/selectWithSummary";
 
 ### SelectWithSummary
 
-Inherits all Select props (`kind`, `em`, `disabled`, `error`, `searchable`, `placeholder`, `size`, etc.) plus:
+Inherits all Select props (`kind`, `em`, `disabled`, `error`, `searchable`, `placeholder`, `size`, `span`, etc.) plus:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

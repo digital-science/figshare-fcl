@@ -37,6 +37,7 @@ import Select, { Option } from "@digital-science/figshare-fcl/select";
 | `searchPlaceholder` | `string` | `"Search..."` | Search input placeholder |
 | `placeholder` | `string` | `"Select an option"` | Trigger placeholder text |
 | `size` | `"S" \| "M" \| "L"` | `"M"` | Size variant (affects icon size) |
+| `span` | `"content" \| "full"` | `"full"` | Trigger button width: fit content or fill container |
 | `iconSize` | `string` | `"small"` | Chevron icon size |
 | `placement` | Popper placement | `"bottom-start"` | Dropdown position |
 | `retry` | `{ message, action }` | — | Retry button for error state |
