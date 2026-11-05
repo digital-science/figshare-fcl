@@ -278,6 +278,12 @@ export class Select extends Component {
     // react-17 propagation fix
     _?.stopPropagation?.();
 
+    // Focus can be on any element inside the dropdown (e.g. the search clear button), which is hidden
+    // on close, so focus would be lost to <body>. Give it back to the trigger before that happens.
+    if (!isVisible && _?.key === "Escape" && this.content?.containerNode?.contains(document.activeElement)) {
+      this.triggerRef?.querySelector("[data-id=\"select-trigger-btn\"]")?.focus?.();
+    }
+
     this.setState({ isVisible }, () => {
       this.props.onToggle(this.state.isVisible);
     });

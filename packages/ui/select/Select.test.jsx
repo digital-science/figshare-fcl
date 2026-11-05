@@ -143,4 +143,30 @@ describe("<Select />", () => {
     expect(btn.textContent).toContain("Option 2");
     teardown();
   });
+
+  it("gives focus back to the trigger when Escape is pressed on the search clear button", async() => {
+    const { container, baseElement } = render(
+      <Select searchable={true}>
+        <Option value="1">Option 1</Option>
+      </Select>
+    );
+    await act(wait);
+
+    const trigger = container.querySelector("[data-id='select-trigger-btn']");
+    fireEvent.click(trigger);
+    await act(wait);
+
+    fireEvent.change(baseElement.querySelector("input[type='text']"), { target: { value: "opt" } });
+    await act(wait);
+
+    const clearButton = baseElement.querySelector("[data-part='search-input-clear-button']");
+    clearButton.focus();
+    expect(clearButton).toHaveFocus();
+
+    fireEvent.keyDown(clearButton, { key: "Escape" });
+    await act(wait);
+
+    expect(trigger).toHaveFocus();
+    teardown();
+  });
 });

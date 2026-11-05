@@ -137,7 +137,12 @@ export class Content extends Component {
     );
   }
 
-  setContainerRef = (fwRef) => (node) => fwRef(node);
+  containerNode = null;
+
+  setContainerRef = (fwRef) => (node) => {
+    this.containerNode = node;
+    fwRef(node);
+  };
 
   onKeyDown = (ev) => {
     const { triggerRef } = this.context;
