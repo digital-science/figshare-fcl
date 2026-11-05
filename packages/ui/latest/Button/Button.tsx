@@ -212,9 +212,11 @@ ButtonInteractiveIcon.displayName = "ButtonInteractiveIcon";
 // provides some styling and separation from the button label
 export function ButtonIconGroup({ children, interactive = false, ...props }: ButtonIconGroupProps) {
 
-  const content = React.Children.map(children, (child) => {
+  // toArray drops null/undefined/boolean children (e.g. `{onClear && <Icon />}`),
+  // so they do not end up as an empty icon slot
+  const content = React.Children.toArray(children).map((child, index) => {
     if (interactive) {
-      return (<span data-part="button-icon-group-icon-slot">{child}</span>);
+      return (<span key={React.isValidElement(child) && child.key !== null ? child.key : index} data-part="button-icon-group-icon-slot">{child}</span>);
     }
 
     return child;
