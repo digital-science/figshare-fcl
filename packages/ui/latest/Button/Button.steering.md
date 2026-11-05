@@ -103,7 +103,7 @@ The `span` prop controls button width behavior. The default (no `span`) gives a 
 
 ### Content span for link-like buttons
 
-`span="content"` removes horizontal padding and constrains width to content, making the button behave like a text link. This is the correct span for replacing `GenericButton` and text-only links.
+`span="content"` constrains width to content. On `kind="tertiary"` it also removes horizontal padding, making the button behave like a text link; other kinds keep their padding. This is the correct span for replacing `GenericButton` and text-only links.
 
 ## Inline display
 

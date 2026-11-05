@@ -232,6 +232,30 @@ export const Examples = {
           </ValueProvider>
         </div>
         <div style={ { display: "flex", flexDirection: "column", gap: "5px" } }>
+          <b>Clearable (onClear)</b>
+          <ValueProvider initialValue="Option 2">
+            {(value, setValue) => (
+              <Select value={value} onChange={setValue} onClear={() => setValue(undefined)}>
+                {options.slice(0, 5).map((option) => (
+                  <Option key={option} value={option}>{option}</Option>
+                ))}
+              </Select>
+            )}
+          </ValueProvider>
+        </div>
+        <div style={ { display: "flex", flexDirection: "column", gap: "5px" } }>
+          <b>Span content</b>
+          <ValueProvider initialValue={undefined}>
+            {(value, setValue) => (
+              <Select span="content" value={value} onChange={setValue}>
+                {options.slice(0, 5).map((option) => (
+                  <Option key={option} value={option}>{option}</Option>
+                ))}
+              </Select>
+            )}
+          </ValueProvider>
+        </div>
+        <div style={ { display: "flex", flexDirection: "column", gap: "5px" } }>
           <b>Small</b>
           <ValueProvider initialValue={undefined}>
             {(value, setValue) => (

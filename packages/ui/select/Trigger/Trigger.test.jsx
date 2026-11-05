@@ -58,4 +58,18 @@ describe("Trigger component", () => {
     expect(slots).toHaveLength(2);
     teardown();
   });
+
+  it("should render the button with span full by default", () => {
+    const { container } = renderTrigger();
+
+    expect(container.querySelector("[data-id=\"select-trigger-btn\"]")).toHaveAttribute("data-span", "full");
+    teardown();
+  });
+
+  it("should pass the span prop to the button", () => {
+    const { container } = renderTrigger({ span: "content" });
+
+    expect(container.querySelector("[data-id=\"select-trigger-btn\"]")).toHaveAttribute("data-span", "content");
+    teardown();
+  });
 });

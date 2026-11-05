@@ -49,6 +49,7 @@ export class Select extends Component {
     searchPlaceholder: PropTypes.string,
     searchable: PropTypes.bool,
     size: PropTypes.oneOf(["S", "M", "L"]),
+    span: PropTypes.oneOf(["content", "full"]),
     triggerClassName: PropTypes.string,
     value: PropTypes.any,
     em: PropTypes.string,
@@ -86,6 +87,7 @@ export class Select extends Component {
     searchPlaceholder: "Search...",
     searchable: false,
     size: "M",
+    span: "full",
     triggerClassName: undefined,
     value: undefined,
     em: "low",
@@ -135,6 +137,7 @@ export class Select extends Component {
       searchPlaceholder,
       searchable,
       size,
+      span,
       triggerClassName,
       value,
       em,
@@ -182,6 +185,7 @@ export class Select extends Component {
             setTriggerRef={this.setTriggerRef}
             em={em}
             kind={kind}
+            span={span}
             onClear={onClear}
           >
             {this.triggerValue}
