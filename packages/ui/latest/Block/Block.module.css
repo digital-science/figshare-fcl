@@ -535,7 +535,7 @@
 }
 
 /* Special span */
-.block[data-kind~="span-tab-panel"] { max-width: 780px; }
+.block[data-kind~="span-tab-panel"] { max-width: min(780px, 100%); }
 
 /* Special modifiers (visibility, others) */
 .block[data-kind~="hidden"] { display: none; }

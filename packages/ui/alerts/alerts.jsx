@@ -174,7 +174,7 @@ export class Alerts extends React.PureComponent {
           aria-label="Close"
           className={styles.alertClose}
           data-control-id="form-alert-close-button"
-          em="high"
+          em="low"
           kind="tertiary"
           span="icon"
           onClick={this.onHideAlert(alert)}

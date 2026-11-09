@@ -1,3 +1,6 @@
 .editorOverlay {
+  /* Keeps the box tall enough for its content so no scrollbar shows. max-height still wins at low viewport heights (reflow). */
+  min-height: calc(60 * var(--gridSize));
+
   border-radius: var(--gridSize);
 }

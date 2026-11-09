@@ -35,10 +35,14 @@
 }
 
 .close {
+  /* Pin to the top-right corner instead of centering vertically */
+  align-self: flex-start;
+
   width: calc(6 * var(--gridSize));
   height: calc(6 * var(--gridSize));
 
-  margin-right: calc(3 * var(--gridSize));
+  margin-top: calc(0.5 * var(--gridSize));
+  margin-right: calc(1.5 * var(--gridSize));
 }
 
 .closeIcon {

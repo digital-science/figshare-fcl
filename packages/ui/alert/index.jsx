@@ -58,7 +58,7 @@ class Alert extends Component {
     }
 
     return (
-      <Button aria-label="Close" className={styles.close} em="high" kind="tertiary" span="icon" onClick={onClose}>
+      <Button aria-label="Close" className={styles.close} em="low" kind="tertiary" span="icon" onClick={onClose}>
         <Button.Icon><Cancel className={styles.closeIcon} /></Button.Icon>
       </Button>
     );
