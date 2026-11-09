@@ -189,11 +189,17 @@ div.alert {
 }
 
 .alertClose {
+  /* Button enforces a 6 * gridSize minimum size, which pushed the icon below the title row */
+  --button-min-width: calc(3 * var(--gridSize));
+  --button-min-height: calc(3 * var(--gridSize));
+
   width: calc(3 * var(--gridSize));
   height: calc(3 * var(--gridSize));
-  margin-top: calc(0.5 * var(--gridSize));
+  margin-top: 0;
   margin-right: 0;
   margin-left: auto;
+  padding: 0;
+  align-self: flex-start;
 }
 
 .alertHeader {
