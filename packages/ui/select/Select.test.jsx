@@ -169,4 +169,39 @@ describe("<Select />", () => {
     expect(trigger).toHaveFocus();
     teardown();
   });
+
+  it("cycles Tab through search and options, and Escape closes", async() => {
+    const { container, baseElement } = render(
+      <Select searchable={true}>
+        <Option value="1">Option 1</Option>
+        <Option value="2">Option 2</Option>
+      </Select>
+    );
+    await act(wait);
+
+    const trigger = container.querySelector("[data-id='select-trigger-btn']");
+    expect(container.querySelector("[data-id='select-trigger-btn'] [data-interactive]")).toHaveAttribute("tabindex", "-1");
+
+    fireEvent.click(trigger);
+    await act(wait);
+
+    const input = baseElement.querySelector("input[type='text']");
+    const options = baseElement.querySelectorAll("[role='option']");
+    input.focus();
+
+    fireEvent.keyDown(input, { key: "Tab" });
+    expect(options[0]).toHaveFocus();
+    fireEvent.keyDown(options[0], { key: "Tab" });
+    expect(options[1]).toHaveFocus();
+    fireEvent.keyDown(options[1], { key: "Tab" });
+    expect(input).toHaveFocus();
+    fireEvent.keyDown(input, { key: "Tab", shiftKey: true });
+    expect(options[1]).toHaveFocus();
+
+    fireEvent.keyDown(options[1], { key: "Escape" });
+    await act(wait);
+    expect(trigger).toHaveFocus();
+    expect(baseElement.querySelector("[role='listbox']").parentElement.className).not.toMatch(/visible/);
+    teardown();
+  });
 });

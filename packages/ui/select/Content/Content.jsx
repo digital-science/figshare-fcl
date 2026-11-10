@@ -90,6 +90,8 @@ export class Content extends Component {
       <div
         ref={this.setContainerRef(ref)}
         className={classnames(containerClassName)}
+        data-scope="select"
+        data-part="select-content"
         {...contentProps}
       >
         {this.renderSearch()}
@@ -98,6 +100,8 @@ export class Content extends Component {
           role="listbox"
           aria-multiselectable={this.context.multiple || undefined}
           className={classnames(contentClassName)}
+          data-scope="select"
+          data-part="select-options"
           onScroll={this.onScroll}
         >
           {this.props.children}

@@ -108,6 +108,7 @@ export class Trigger extends Component {
             justify="between"
             disabled={disabled}
             data-id="select-trigger-btn"
+            data-control="select"
             onClick={onToggle}
             {...buttonProps}
             className={classnames(classNames)}
@@ -125,7 +126,7 @@ export class Trigger extends Component {
                   <Cancel />
                 </Button.InteractiveIcon>
               )}
-              <Button.InteractiveIcon tooltip="Show options" blend={false} disabled={disabled} onClick={onToggle}>
+              <Button.InteractiveIcon tooltip="Show options" blend={false} disabled={disabled} tabIndex={-1} onClick={onToggle}>
                 <Icon className={classnames(caretClassName)} />
               </Button.InteractiveIcon>
             </Button.IconGroup>
