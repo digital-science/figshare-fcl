@@ -3,7 +3,7 @@
     Keeps the box tall enough for its content so no scrollbar shows.
     min-height beats max-height, so clamp it to the overlay's own viewport-based cap to keep reflow working.
    */
-  min-height: min(calc(60 * var(--gridSize)), calc(100% - 84px));
+  min-height: min(calc(62 * var(--gridSize)), calc(100% - 84px));
 
   border-radius: var(--gridSize);
 }

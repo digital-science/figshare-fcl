@@ -171,7 +171,7 @@ export class Select extends Component {
 
     return (
       <Context.Provider value={context}>
-        <div ref={forwardedRef} className={classnames(selectClassName)} {...props} {...(disabled && { onKeyDown: undefined })}>
+        <div ref={forwardedRef} className={classnames(selectClassName)} {...props} onKeyDown={disabled ? undefined : this.onKeyDown(props.onKeyDown)}>
           {fieldName && <input type="hidden" name={fieldName} value={serializeValue(value)} disabled={disabled} />}
           <Trigger
             aria-required={required}
@@ -261,6 +261,30 @@ export class Select extends Component {
 
   setTriggerRef = (node) => this.triggerRef = node;
 
+  // Tab cycles through the focusable elements of the open content (search, options) instead of closing it
+  onKeyDown = (dropdownKeyDown) => (event) => {
+    const container = this.content?.containerNode;
+
+    if (event.key === "Tab" && this.state.isVisible && container) {
+      const items = Array.from(container.querySelectorAll("input, button")).
+        filter((node) => !node.disabled && node.getAttribute("tabindex") !== "-1");
+      const fromTrigger = !!this.triggerRef?.contains?.(event.target);
+
+      if (items.length && (container.contains(event.target) || (fromTrigger && !event.shiftKey))) {
+        const index = items.indexOf(event.target);
+        const offset = event.shiftKey ? -1 : 1;
+        const next = index === -1 ? items[0] : items[(index + offset + items.length) % items.length];
+
+        event.preventDefault();
+        next.focus();
+
+        return;
+      }
+    }
+
+    dropdownKeyDown?.(event);
+  }
+
   onSearch = (search) => {
     if (this.props.onSearch) {
       this.setState({ search: undefined }, () => {
@@ -278,9 +302,10 @@ export class Select extends Component {
     // react-17 propagation fix
     _?.stopPropagation?.();
 
-    // Focus can be on any element inside the dropdown (e.g. the search clear button), which is hidden
-    // on close, so focus would be lost to <body>. Give it back to the trigger before that happens.
-    if (!isVisible && _?.key === "Escape" && this.content?.containerNode?.contains(document.activeElement)) {
+    // Focus can be on any element inside the dropdown (e.g. the search input or clear button), which is hidden
+    // on close, so focus would be lost to <body>. Give it back to the trigger before that happens
+    // (on Tab the browser then moves focus on from the trigger).
+    if (!isVisible && (_?.key === "Escape" || _?.key === "Tab") && this.content?.containerNode?.contains(document.activeElement)) {
       this.triggerRef?.querySelector("[data-id=\"select-trigger-btn\"]")?.focus?.();
     }
 

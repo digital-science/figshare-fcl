@@ -80,6 +80,8 @@ export type ButtonInteractiveIconProps = {
   disabled?: boolean;
   /** The interactive icon tooltip content. */
   tooltip?: React.ReactNode;
+  /** Overrides the tab index (defaults to 0). Use -1 when a parent already provides the keyboard stop. */
+  tabIndex?: number;
   /** The function to call when the interactive icon is clicked. */
   onClick?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
   /** The function to call when a key is pressed while the interactive icon is focused. */
