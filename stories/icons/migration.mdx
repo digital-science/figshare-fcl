@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import legacyMap from "../../packages/ui/icons/legacy-map.json";
+
+<Meta title="Icons/Migration" parameters={{ viewMode: "docs", previewTabs: { canvas: { hidden: true } } }} />
+
+# Migrating from the legacy icons
+---
+
+The old per-size icons (`icons/<name>/<small|medium|large>`) are deprecated. Use `icons/react` (components) or `icons/svg` (files) instead:
+one icon per concept, sized with CSS, coloured with `currentColor`. See `packages/ui/icons/icons.steering.md` for the full guide.
+
+```jsx
+// before
+import CancelLarge from "@digital-science/figshare-fcl/icons/cancel/large";
+<CancelLarge className={styles.icon} />
+
+// after
+import { Close } from "@digital-science/figshare-fcl/icons/react";
+<Close style={{ width: 18 }} />
+```
+
+## Legacy → new
+
+<table>
+  <thead>
+    <tr><th>Legacy import (<code>icons/…</code>)</th><th>React component (<code>icons/react</code>)</th><th>SVG (<code>icons/svg</code>)</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    {legacyMap.map((row) => (
+      <tr key={row.legacy}>
+        <td><code>{row.legacy}</code></td>
+        <td><code>{row.component}</code></td><td><code>{row.icon}.svg</code></td>
+        <td>{row.note || ""}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

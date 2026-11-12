@@ -140,19 +140,58 @@ All old button components accept `innerRef` (via the `Base` component or `withRe
 
 ### Theme mapping reference
 
-The old components use a `theme` (or `variant`) prop. Map them to `kind` + `em` as follows:
+The mapping is chosen by **visual equivalence** (background, border, label color, icon fill, and hover/click states), not by theme name. The three legacy components do **not** share one mapping: the same theme name looks different on `Button` and on `IconButton`. Use the table for the component you are replacing.
 
-| Old theme/variant | New `kind` | New `em` | Notes |
-|-------------------|-----------|----------|-------|
-| `primary` | `"primary"` | `"high"` | Branded filled button |
-| `primaryAlt` | `"primary"` | `"success"` | Green filled button (old primaryAlt used green tones) |
-| `secondary` | `"secondary"` | `"high"` | Bordered, branded text |
-| `secondaryAlt` | `"secondary"` | `"low"` | Bordered, gray/dark text |
-| `tertiary` | `"tertiary"` | `"high"` | No background, branded text |
-| `tertiaryAlt` | `"tertiary"` | `"low"` | No background, dark/black text |
-| `inverted` | `"inverted"` | `"high"` | White text for dark backgrounds |
+#### Legacy defaults (when no `theme` is passed)
 
-**Rule of thumb:** if the old theme name ends in `Alt`, use `em="low"`. Otherwise use `em="high"`.
+| Old component | Default theme | New equivalent |
+|---------------|---------------|----------------|
+| `Button` | `secondary` | `kind="secondary" em="high"` |
+| `IconButton` | `primary` | `kind="tertiary" em="high" span="icon"` (**not** a filled button, see below) |
+| `GenericButton` | none (unstyled, inherits the global `a, button` rule: branded text, transparent background, no padding, underline on hover) | `kind="tertiary" em="high" span="content"` |
+
+An unthemed old `Button` is therefore `kind="secondary"`. Do not default to `primary`.
+
+#### Old `Button` themes
+
+Colors are the light-theme values of the legacy `--color-button-*` tokens and the new `Button.module.css` fallbacks.
+
+| Old theme | New `kind` | New `em` | Visual comparison |
+|-----------|-----------|----------|-------------------|
+| `primary` | `"primary"` | `"high"` | Exact. White on `#a60845`; hover `#7a183e`; click `#63233c`. |
+| `primaryAlt` | `"primary"` | `"success"` | Exact. White on `#2a6347`; hover `#25573e`; click `#1f4a35`. |
+| `secondary` | `"secondary"` | `"high"` | Same background `#fff`, border `#ddd`, label `#a60845`, same hover/click fills. Idle icon fill differs: old `#8d8d8d`, new `#464646`. |
+| `secondaryAlt` | `"secondary"` | `"low"` | Exact. Label `#464646`, icon `#8d8d8d`, border `#ddd`, background `#fff`. |
+| `tertiary` | `"tertiary"` | `"high"` + `span="content"` | Exact. Label `#a60845`, icon `#8d8d8d`, transparent, underline on hover, no horizontal padding. |
+| `tertiaryAlt` | `"tertiary"` | `"low"` + `span="content"` | Same shape and icon `#8d8d8d`. Label is `#252525` instead of `#464646` (slightly darker). |
+| `inverted` | `"inverted"` | `"high"` | Same. White label and icon on transparent; hover `#f5f5f5` becomes `#fff`. |
+
+For old `Button`, the rule of thumb holds: a theme name ending in `Alt` means `em="low"` (or `em="success"` for `primaryAlt`), otherwise `em="high"`.
+
+#### Old `IconButton` themes
+
+The old `IconButton` has a **transparent background and no border in every theme**; only the icon color changes (and it changes to `#7a183e` on hover, `#63233c` on click, except the `Alt` themes). It is *not* a filled or bordered button, so do not map its theme name onto the `Button` table above. The nearest new equivalent is a transparent `tertiary`/`inverted` button with `span="icon"` (which also sets the icon fill to the text color):
+
+| Old theme | Old icon color (hover / click) | New `kind` | New `em` | Visual comparison |
+|-----------|-------------------------------|-----------|----------|-------------------|
+| `primary` (default) | `#a60845` (`#7a183e` / `#63233c`) | `"tertiary"` | `"high"` | Exact. |
+| `tertiary` | `#8d8d8d` (`#7a183e` / `#63233c`) | `"tertiary"` | `"low"` | Exact. |
+| `secondary` | `#525252` (`#7a183e` / `#63233c`) | `"tertiary"` | `"low"` | Nearest. Hover/click match; idle icon is lighter (`#8d8d8d` instead of `#525252`). |
+| `primaryAlt` | `#e9e9e9` (`#fff`) | `"inverted"` | `"high"` | Nearest. For dark backgrounds; idle icon `#fff` instead of `#e9e9e9`. |
+| `secondaryAlt` | `#fff` (`#e9e9e9`) | `"inverted"` | `"high"` | Nearest. For dark backgrounds. |
+
+Use `kind="primary"` or `kind="secondary"` on an icon-only button only when a filled or bordered icon button is intentionally wanted; that is a visual change from the old `IconButton`.
+
+#### Old `GenericButton`
+
+`GenericButton` accepts no `theme`; any `theme`/`variant` passed to it is ignored and the button renders unstyled. Map it by how it looked in context:
+
+| Old look | New `kind` | New `em` |
+|----------|-----------|----------|
+| Default (inherited global link/button style, branded text) | `"tertiary"` | `"high"` (+ `span="content"`) |
+| Custom CSS made the text black/gray | `"tertiary"` | `"low"` (+ `span="content"`) |
+| Icon-only content (e.g. a close icon, no text) | `"tertiary"` | `"low"` or `"high"` by icon color, with `span="icon"` |
+| White text on a dark background | `"inverted"` | `"high"` |
 
 ### Replacing `GenericButton`
 
@@ -188,27 +227,27 @@ Old `GenericButton` props that change in the new component:
 The old `IconButton` is an icon-only button (`Icon` prop required, `children` become tooltip content). It has a fixed size of `6 * gridSize` (38px), expanding to `8 * gridSize` on mobile. It supports themes: `primary`, `primaryAlt`, `secondary`, `secondaryAlt`, `tertiary`.
 
 ```jsx
-// Before
-<IconButton theme="secondary" Icon={SearchIcon} onClick={handler}>
+// Before (default theme is "primary": transparent background, magenta icon)
+<IconButton Icon={SearchIcon} onClick={handler}>
   Search items
 </IconButton>
 
 // After
-<Button span="icon" kind="secondary" em="high" tooltip="Search items" onClick={handler}>
+<Button span="icon" kind="tertiary" em="high" tooltip="Search items" aria-label="Search items" onClick={handler}>
   <Button.Icon><SearchIcon /></Button.Icon>
 </Button>
 ```
 
 Key mapping rules:
 - `span="icon"` is required — it constrains width and syncs icon fill with text color.
-- The `children` (text) of the old `IconButton` become the `tooltip` prop on the new Button.
+- Pick `kind`/`em` from the **Old `IconButton` themes** table above. Do not copy the theme name into `kind`: the old `IconButton` is never filled or bordered, so `theme="secondary"` is `kind="tertiary" em="low"`, not `kind="secondary"`.
+- The `children` (text) of the old `IconButton` become the `tooltip` prop on the new Button; also set `aria-label` to the same text.
 - The `Icon` prop gets instantiated and wrapped in `<Button.Icon>`: `Icon={SearchIcon}` becomes `<Button.Icon><SearchIcon /></Button.Icon>`.
-- Use `em="low"` if the old theme/variant contained "Alt" (e.g. `secondaryAlt`, `primaryAlt`); otherwise `em="high"`.
 - `span="icon"` should be used **exclusively** for buttons replacing `IconButton` — do not use it on buttons that also have visible text labels.
 
 ### Replacing old `Button`
 
-The old `Button` extends `GenericButton` with themes (`primary`, `primaryAlt`, `secondary`, `secondaryAlt`, `tertiary`, `tertiaryAlt`, `inverted`), sizes (`S`, `M`, `L`), and an optional `Icon` prop with `iconPlacement` (`"left"` or `"right"`).
+The old `Button` extends `GenericButton` with themes (`primary`, `primaryAlt`, `secondary`, `secondaryAlt`, `tertiary`, `tertiaryAlt`, `inverted`), sizes (`S`, `M`, `L`), and an optional `Icon` prop with `iconPlacement` (`"left"` or `"right"`). **When no `theme` is passed the old default is `secondary`**, so an unthemed old `Button` becomes `kind="secondary" em="high"`.
 
 ```jsx
 // Before

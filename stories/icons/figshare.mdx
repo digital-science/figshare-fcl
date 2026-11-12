@@ -1,164 +1,56 @@
 import * as FigshareStories from "./figshare.stories.jsx";
 
-
 import { Meta, Canvas } from "@storybook/addon-docs/blocks";
-
-export const Container = (props) => {
-  const style = {
-    display: "flex",
-    margin: "48px",
-    maxWidth: "700px",
-    flexDirection: "column",
-    justifyContent: "space-between"
-  }
-  return <div {...props} style={style} />;
-};
 
 <Meta of={FigshareStories} />
 
 # Figshare and Media
 ---
 
-A set of icons to represent the figshare logo, social media, or third parties related to dataset repositories.
+The figshare logo, plus third-party and social brand icons. All of them have a `viewBox` and take their size from CSS (`width`/`height`/`font-size`);
+everything except the brand-colour `FigshareLogo` follows `currentColor`.
 
-## Banner
+## Logo
+
+Source files are in `icons/svg/figshare/`, components in `icons/react/figshare/`.
+
+- `FigshareLogo`: brand colours. Supports `animate` (loading pulse) and `grayscale`.
+- `FigshareLogoMono`: single colour, follows `currentColor`.
+- `FigshareWordmark`: the "figshare" text, `currentColor`.
+- `FigshareLogoFull`: logo and wordmark side by side, `currentColor`.
 
 <Canvas of={FigshareStories.Banner} />
 
-
 ```jsx
-import FigshareLogo from "@digital-science/figshare-fcl/icons/figshare/logo";
-import FigshareText from "@digital-science/figshare-fcl/icons/figshare/text";
-import FigshareFullLogo from "@digital-science/figshare-fcl/icons/figshare/index";
+import { FigshareLogo, FigshareLogoMono, FigshareWordmark } from "@digital-science/figshare-fcl/icons/react";
 
-<div 
-  style={{
-    display: "flex",
-    margin: "48px",
-    maxWidth: "700px",
-    flexDirection: "column",
-    justifyContent: "space-between"
-  }}
->
-  <FigshareLogo animate={false} grayscale={false} />
-  <br />
-  <FigshareText />
-  <br />
-  <FigshareFullLogo />
-</div>
+<FigshareLogo animate style={{ height: 60, width: "auto" }} />
+<FigshareLogoMono style={{ height: 60, width: "auto", color: "#55636d" }} />
+<FigshareWordmark style={{ height: 60, width: "auto" }} />
 ```
 
-## Bitbucket
+## Integrations
 
-<Canvas of={FigshareStories.BitbucketStory} />
+Bitbucket, FTP, GitHub and GitLab are now single-colour. Colour them with `color`.
 
-
-```jsx
-import Bitbucket from "@digital-science/figshare-fcl/icons/bitbucket/index";
-
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <Bitbucket style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-</div>
-```
-
-## FTP
-
-<Canvas of={FigshareStories.FTPStory} />
-
+<Canvas of={FigshareStories.Integrations} />
 
 ```jsx
-import FTP from "@digital-science/figshare-fcl/icons/ftpIntegration/index";
+import { Bitbucket, FtpIntegration, Github, Gitlab, Orcid, OrcidSolid, Rss } from "@digital-science/figshare-fcl/icons/react";
 
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <FTP style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-</div>
+<Github style={{ width: 48, height: 48 }} />
+<Orcid style={{ height: 36, width: "auto" }} />   {/* ORCID wordmark */}
+<OrcidSolid style={{ width: 48, height: 48 }} />   {/* ORCID iD badge */}
 ```
 
-## GitHub
+## Social media
 
-<Canvas of={FigshareStories.GitHubStory} />
-
-
-```jsx
-import GitHub from "@digital-science/figshare-fcl/icons/github/index";
-
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <GitHub style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-</div>
-```
-
-## GitLab
-
-<Canvas of={FigshareStories.GitLabStory} />
-
-
-```jsx
-import GitLab from "@digital-science/figshare-fcl/icons/gitlab/index";
-
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <GitLab style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-</div>
-```
-
-## OrcID
-
-<Canvas of={FigshareStories.OrcID} />
-
-
-```jsx
-import Orcid from "@digital-science/figshare-fcl/icons/orcid/index";
-import OrcidSmall from "@digital-science/figshare-fcl/icons/orcid/small";
-
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <Orcid style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-  <OrcidSmall style={ { width: "48px", height: "48px", margin: "0 24px" } } />
-</div>
-```
-
-## Rss
-
-<Canvas of={FigshareStories.RssStory} />
-
-
-```jsx
-import Rss from "@digital-science/figshare-fcl/icons/rss/index";
-
-<div style={{ display: "flex", margin: "48px", maxWidth: "700px", alignItems: "center" }}>
-  <Rss fill="#ee802f" style={ { width: "24px", height: "24px", margin: "0 24px" } } />
-</div>
-```
-
-## Social Media
-
+`Twitter` replaces both `twitter` and `twitter_inverted`. Pick the colour with `color`.
 
 <Canvas of={FigshareStories.SocialMedia} />
 
-
 ```jsx
-import Facebook from "@digital-science/figshare-fcl/icons/socialMedia/facebook";
-import Linkedin from "@digital-science/figshare-fcl/icons/socialMedia/linkedin";
-import Twitter from "@digital-science/figshare-fcl/icons/socialMedia/twitter";
-import TwitterInverted from "@digital-science/figshare-fcl/icons/socialMedia/twitter_inverted";
-import Vimeo from "@digital-science/figshare-fcl/icons/socialMedia/vimeo";
+import { Facebook, Bluesky, Linkedin, Twitter, Vimeo } from "@digital-science/figshare-fcl/icons/react";
 
-
-const iconStyle = {
-  width: "30px",
-  height: "30px",
-  margin: "0 24px",
-};
-
-<div style={{
-    display: "flex",
-    margin: "48px",
-    maxWidth: "700px",
-    alignItems: "center",
-  }}
->
-  <Facebook fill="#4267B2" style={iconStyle} />
-  <Linkedin fill="#0072b1" style={iconStyle} />
-  <Twitter fill="#1DA1F2" style={iconStyle} />
-  <TwitterInverted fill="#1DA1F2" style={iconStyle} />
-  <Vimeo fill="#1AB7EA" style={iconStyle} />
-</div>
+<Facebook color="#4267B2" style={{ width: 30, height: 30 }} />
 ```

@@ -1,185 +1,24 @@
-
 import * as ItemTypeStories from "./index.stories.jsx";
 
 import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 
 <Meta of={ItemTypeStories} />
 
-# Generic
+# Item type
 ---
 
-An icon set used to visually represent article item types.
+Icons that represent article item types. Source files are in `icons/svg/item-type/`, components in `icons/react/item-type/`.
+Each is a 40×24 badge with the glyph cut out of it, so the badge takes `currentColor` and the glyph shows whatever is behind it.
 
-## Preprint
-
-<Canvas of={ItemTypeStories.Preprint} />
+<Canvas of={ItemTypeStories.Gallery} />
 
 ```jsx
-import ItemTypePreprint from "@digital-science/figshare-fcl/icons/itemType/preprint";
+import { ItemTypeDataset, ItemTypePreprint } from "@digital-science/figshare-fcl/icons/react";
 
-<ItemTypePreprint/>
-```
----
-## Book
+// or straight from the folder
+import { Dataset, Preprint } from "@digital-science/figshare-fcl/icons/react/item-type";
 
-<Canvas of={ItemTypeStories.Book} />
-
-```jsx
-import ItemTypeBook from "@digital-science/figshare-fcl/icons/itemType/book";
-
-<ItemTypeBook/>
+<ItemTypeDataset color="var(--color-icon-secondary)" style={{ height: 24, width: "auto" }} />
 ```
 
----
-## Software
-
-<Canvas of={ItemTypeStories.Software} />
-
-```jsx
-import ItemTypeSoftware from "@digital-science/figshare-fcl/icons/itemType/software";
-
-<ItemTypeSoftware/>
-```
-
----
-## Paper
-
-<Canvas of={ItemTypeStories.Paper} />
-
-```jsx
-import ItemTypePaper from "@digital-science/figshare-fcl/icons/itemType/paper";
-
-<ItemTypePaper/>
-```
-
----
-## Metadata
-
-<Canvas of={ItemTypeStories.Metadata} />
-
-```jsx
-import ItemTypeMetadata from "@digital-science/figshare-fcl/icons/itemType/metadata";
-
-<ItemTypeMetadata/>
-```
-
----
-## Thesis
-
-<Canvas of={ItemTypeStories.Thesis} />
-
-```jsx
-import ItemTypeThesis from "@digital-science/figshare-fcl/icons/itemType/thesis";
-
-<ItemTypeThesis/>
-```
----
-## Poster
-
-<Canvas of={ItemTypeStories.Poster} />
-
-```jsx
-import ItemTypePoster from "@digital-science/figshare-fcl/icons/itemType/poster";
-
-<ItemTypePoster/>
-```
-
----
-## Dataset
-
-<Canvas of={ItemTypeStories.Dataset} />
-
-```jsx
-import ItemTypeDataset from "@digital-science/figshare-fcl/icons/itemType/dataset";
-
-<ItemTypeDataset/>
-```
-
----
-## Media
-
-<Canvas of={ItemTypeStories.Media} />
-
-```jsx
-import ItemTypeMedia from "@digital-science/figshare-fcl/icons/itemType/media";
-
-<ItemTypeMedia/>
-```
-
----
-## Figure
-
-<Canvas of={ItemTypeStories.Figure} />
-
-```jsx
-import ItemTypeFigure from "@digital-science/figshare-fcl/icons/itemType/figure";
-
-<ItemTypeFigure/>
-```
-
----
-## Presentation
-
-<Canvas of={ItemTypeStories.Presentation} />
-
-```jsx
-import ItemTypePresentation from "@digital-science/figshare-fcl/icons/itemType/presentation";
-
-<ItemTypePresentation/>
-```
-
----
-## OnlineResource
-
-<Canvas of={ItemTypeStories.OnlineResource} />
-
-```jsx
-import ItemTypeOnlineResource from "@digital-science/figshare-fcl/icons/itemType/onlineResource";
-
-<ItemTypeOnlineResource/>
-```
-
----
-## Workflow
-
-<Canvas of={ItemTypeStories.Workflow} />
-
-```jsx
-import ItemTypeWorkflow from "@digital-science/figshare-fcl/icons/itemType/workflow";
-
-<ItemTypeWorkflow/>
-```
-
----
-## Performance
-
-<Canvas of={ItemTypeStories.Performance} />
-
-```jsx
-import ItemTypePerformance from "@digital-science/figshare-fcl/icons/itemType/performance";
-
-<ItemTypePerformance/>
-```
-
----
-## Collection
-
-<Canvas of={ItemTypeStories.Collection} />
-
-```jsx
-import ItemTypeCollection from "@digital-science/figshare-fcl/icons/itemType/collection";
-
-<ItemTypeCollection/>
-```
-
----
-## Project
-
-<Canvas of={ItemTypeStories.Project} />
-
-```jsx
-import ItemTypeProject from "@digital-science/figshare-fcl/icons/itemType/project";
-
-<ItemTypeProject/>
-```
----
+Available: Book, Collection, Dataset, Figure, Media, Metadata, OnlineResource, Paper, Performance, Poster, Preprint, Presentation, Project, Software, Thesis, Workflow.
