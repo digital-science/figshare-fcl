@@ -1,0 +1,35 @@
+import * as React from "react";
+import { memo } from "react";
+import { oneOfType, bool, string, number } from "prop-types";
+const SvgCloudUpload = (props) => (
+  <svg
+    fill={props.color}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="-2.12 -6.12 28.24 28.24"
+    focusable={false}
+    aria-hidden={true}
+    role="img"
+    alt={props.title}
+    {...props}
+  >
+    <path
+      d="M19.35 6.04C18.67 2.59 15.64 0 12 0C9.11 0 6.6 1.64 5.35 4.04C2.34 4.36 0 6.91 0 10C0 13.31 2.69 16 6 16H19C21.76 16 24 13.76 24 11C24 8.36 21.95 6.22 19.35 6.04ZM19 14H6C3.79 14 2 12.21 2 10C2 7.95 3.53 6.24 5.56 6.03L6.63 5.92L7.13 4.97C8.08 3.14 9.94 2 12 2C14.62 2 16.88 3.86 17.39 6.43L17.69 7.93L19.22 8.04C20.78 8.14 22 9.45 22 11C22 12.65 20.65 14 19 14ZM8 9H10.55V12H13.45V9H16L12 5L8 9Z"
+      fill={props.color}
+    />
+  </svg>
+);
+SvgCloudUpload.propTypes = {
+  color: string,
+  height: oneOfType([string, number]),
+  title: string,
+  width: oneOfType([string, number]),
+};
+SvgCloudUpload.defaultProps = {
+  color: "currentColor",
+  height: undefined,
+  width: "1em",
+  title: "Icon",
+};
+SvgCloudUpload.displayName = "SvgCloudUpload";
+const Memo = memo(SvgCloudUpload);
+export default Memo;

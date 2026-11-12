@@ -1,0 +1,1552 @@
+[
+  {
+    "legacy": "angle/up",
+    "icon": "angle-up",
+    "component": "AngleUp",
+    "note": "ADDED; same drawing as legacy (smaller than chevron-large)"
+  },
+  {
+    "legacy": "arrow/up/small",
+    "icon": "arrow-up",
+    "component": "ArrowUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/up/medium",
+    "icon": "arrow-up",
+    "component": "ArrowUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/up/large",
+    "icon": "arrow-up",
+    "component": "ArrowUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "caret/up/small",
+    "icon": "caret-up",
+    "component": "CaretUp"
+  },
+  {
+    "legacy": "caret/up/medium",
+    "icon": "caret-large-up",
+    "component": "CaretLargeUp"
+  },
+  {
+    "legacy": "chevron/up/small",
+    "icon": "chevron-up",
+    "component": "ChevronUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chevron/up/medium",
+    "icon": "chevron-up",
+    "component": "ChevronUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/up/small",
+    "icon": "double-chevron-up",
+    "component": "DoubleChevronUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/up/medium",
+    "icon": "double-chevron-up",
+    "component": "DoubleChevronUp",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "angle/down",
+    "icon": "angle-down",
+    "component": "AngleDown",
+    "note": "ADDED; same drawing as legacy (smaller than chevron-large)"
+  },
+  {
+    "legacy": "arrow/down/small",
+    "icon": "arrow-down",
+    "component": "ArrowDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/down/medium",
+    "icon": "arrow-down",
+    "component": "ArrowDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/down/large",
+    "icon": "arrow-down",
+    "component": "ArrowDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "caret/down/small",
+    "icon": "caret-down",
+    "component": "CaretDown"
+  },
+  {
+    "legacy": "caret/down/medium",
+    "icon": "caret-large-down",
+    "component": "CaretLargeDown"
+  },
+  {
+    "legacy": "chevron/down/small",
+    "icon": "chevron-down",
+    "component": "ChevronDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chevron/down/medium",
+    "icon": "chevron-down",
+    "component": "ChevronDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/down/small",
+    "icon": "double-chevron-down",
+    "component": "DoubleChevronDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/down/medium",
+    "icon": "double-chevron-down",
+    "component": "DoubleChevronDown",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "angle/left",
+    "icon": "angle-left",
+    "component": "AngleLeft",
+    "note": "ADDED; same drawing as legacy (smaller than chevron-large)"
+  },
+  {
+    "legacy": "arrow/left/small",
+    "icon": "arrow-left",
+    "component": "ArrowLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/left/medium",
+    "icon": "arrow-left",
+    "component": "ArrowLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/left/large",
+    "icon": "arrow-left",
+    "component": "ArrowLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "caret/left/small",
+    "icon": "caret-left",
+    "component": "CaretLeft"
+  },
+  {
+    "legacy": "caret/left/medium",
+    "icon": "caret-large-left",
+    "component": "CaretLargeLeft"
+  },
+  {
+    "legacy": "chevron/left/small",
+    "icon": "chevron-left",
+    "component": "ChevronLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chevron/left/medium",
+    "icon": "chevron-left",
+    "component": "ChevronLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/left/small",
+    "icon": "double-chevron-left",
+    "component": "DoubleChevronLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/left/medium",
+    "icon": "double-chevron-left",
+    "component": "DoubleChevronLeft",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "angle/right",
+    "icon": "angle-right",
+    "component": "AngleRight",
+    "note": "ADDED; same drawing as legacy (smaller than chevron-large)"
+  },
+  {
+    "legacy": "arrow/right/small",
+    "icon": "arrow-right",
+    "component": "ArrowRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/right/medium",
+    "icon": "arrow-right",
+    "component": "ArrowRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "arrow/right/large",
+    "icon": "arrow-right",
+    "component": "ArrowRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "caret/right/small",
+    "icon": "caret-right",
+    "component": "CaretRight"
+  },
+  {
+    "legacy": "caret/right/medium",
+    "icon": "caret-large-right",
+    "component": "CaretLargeRight"
+  },
+  {
+    "legacy": "chevron/right/small",
+    "icon": "chevron-right",
+    "component": "ChevronRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chevron/right/medium",
+    "icon": "chevron-right",
+    "component": "ChevronRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/right/small",
+    "icon": "double-chevron-right",
+    "component": "DoubleChevronRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "doubleChevron/right/medium",
+    "icon": "double-chevron-right",
+    "component": "DoubleChevronRight",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chevron/down/large",
+    "icon": "chevron-large-down",
+    "component": "ChevronLargeDown"
+  },
+  {
+    "legacy": "barcode/small",
+    "icon": "barcode",
+    "component": "Barcode",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "barcode/medium",
+    "icon": "barcode",
+    "component": "Barcode",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "barcode/large",
+    "icon": "barcode",
+    "component": "Barcode",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "calendar/index",
+    "icon": "calendar",
+    "component": "Calendar"
+  },
+  {
+    "legacy": "cancel/small",
+    "icon": "close",
+    "component": "Close",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "cancel/medium",
+    "icon": "close",
+    "component": "Close",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "cancel/large",
+    "icon": "close",
+    "component": "Close",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "chain/linked",
+    "icon": "link",
+    "component": "Link"
+  },
+  {
+    "legacy": "chain/unlinked",
+    "icon": "link-broken",
+    "component": "LinkBroken"
+  },
+  {
+    "legacy": "link/linked",
+    "icon": "link",
+    "component": "Link"
+  },
+  {
+    "legacy": "link/unlinked",
+    "icon": "link-broken-2",
+    "component": "LinkBroken2"
+  },
+  {
+    "legacy": "checkBox/checked",
+    "icon": "checkbox-checked",
+    "component": "CheckboxChecked"
+  },
+  {
+    "legacy": "checkBox/mixed",
+    "icon": "checkbox-indeterminate",
+    "component": "CheckboxIndeterminate"
+  },
+  {
+    "legacy": "checkBox/unchecked",
+    "icon": "checkbox-default",
+    "component": "CheckboxDefault"
+  },
+  {
+    "legacy": "indeterminate/index",
+    "icon": "checkbox-indeterminate",
+    "component": "CheckboxIndeterminate"
+  },
+  {
+    "legacy": "checkMark/small",
+    "icon": "checkmark",
+    "component": "Checkmark",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "checkMark/medium",
+    "icon": "checkmark",
+    "component": "Checkmark",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "checkMark/large",
+    "icon": "checkmark",
+    "component": "Checkmark",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "collapse/small",
+    "icon": "chevron-collapse",
+    "component": "ChevronCollapse",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "expand/small",
+    "icon": "chevron-expand",
+    "component": "ChevronExpand",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "collapse/medium",
+    "icon": "chevron-collapse",
+    "component": "ChevronCollapse",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "expand/medium",
+    "icon": "chevron-expand",
+    "component": "ChevronExpand",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "collapse/large",
+    "icon": "chevron-collapse",
+    "component": "ChevronCollapse",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "expand/large",
+    "icon": "chevron-expand",
+    "component": "ChevronExpand",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "collapseTo/left",
+    "icon": "collapse-to-left",
+    "component": "CollapseToLeft"
+  },
+  {
+    "legacy": "collapseTo/right",
+    "icon": "collapse-to-right",
+    "component": "CollapseToRight"
+  },
+  {
+    "legacy": "expandTo/left",
+    "icon": "expand-to-left",
+    "component": "ExpandToLeft"
+  },
+  {
+    "legacy": "expandTo/right",
+    "icon": "expand-to-right",
+    "component": "ExpandToRight"
+  },
+  {
+    "legacy": "collection/small",
+    "icon": "collection",
+    "component": "Collection",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "collection/medium",
+    "icon": "collection",
+    "component": "Collection",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "collection/large",
+    "icon": "collection",
+    "component": "Collection",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "comments/index",
+    "icon": "comment",
+    "component": "Comment"
+  },
+  {
+    "legacy": "delete/small",
+    "icon": "delete",
+    "component": "Delete",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "delete/medium",
+    "icon": "delete",
+    "component": "Delete",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "delete/large",
+    "icon": "delete",
+    "component": "Delete",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "directory/index",
+    "icon": "folder-regular",
+    "component": "FolderRegular"
+  },
+  {
+    "legacy": "document/small",
+    "icon": "document-2",
+    "component": "Document2",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "document/medium",
+    "icon": "document-2",
+    "component": "Document2",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "document/large",
+    "icon": "document-2",
+    "component": "Document2",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "dot/index",
+    "icon": "circle-solid",
+    "component": "CircleSolid",
+    "note": "scale via size/CSS"
+  },
+  {
+    "legacy": "download/index",
+    "icon": "download",
+    "component": "Download"
+  },
+  {
+    "legacy": "downloadLock/index",
+    "icon": "download-lock",
+    "component": "DownloadLock"
+  },
+  {
+    "legacy": "dragAndDrop/index",
+    "icon": "drag-drop",
+    "component": "DragDrop"
+  },
+  {
+    "legacy": "duplicate/index",
+    "icon": "copy",
+    "component": "Copy"
+  },
+  {
+    "legacy": "earth/public/small",
+    "icon": "earth",
+    "component": "Earth"
+  },
+  {
+    "legacy": "earth/public/medium",
+    "icon": "earth",
+    "component": "Earth"
+  },
+  {
+    "legacy": "earth/public/large",
+    "icon": "earth",
+    "component": "Earth"
+  },
+  {
+    "legacy": "earth/private/small",
+    "icon": "earth-slash",
+    "component": "EarthSlash"
+  },
+  {
+    "legacy": "earth/private/medium",
+    "icon": "earth-slash",
+    "component": "EarthSlash"
+  },
+  {
+    "legacy": "edit/small",
+    "icon": "edit",
+    "component": "Edit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "edit/medium",
+    "icon": "edit",
+    "component": "Edit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "edit/large",
+    "icon": "edit",
+    "component": "Edit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "editor/bold",
+    "icon": "text-editor-bold",
+    "component": "TextEditorBold"
+  },
+  {
+    "legacy": "editor/bulletList",
+    "icon": "text-editor-bullet",
+    "component": "TextEditorBullet"
+  },
+  {
+    "legacy": "editor/clearFormatting",
+    "icon": "text-editor-clear-format",
+    "component": "TextEditorClearFormat"
+  },
+  {
+    "legacy": "editor/h2",
+    "icon": "text-editor-h2",
+    "component": "TextEditorH2"
+  },
+  {
+    "legacy": "editor/h3",
+    "icon": "text-editor-h3",
+    "component": "TextEditorH3"
+  },
+  {
+    "legacy": "editor/h4",
+    "icon": "text-editor-h4",
+    "component": "TextEditorH4"
+  },
+  {
+    "legacy": "editor/italic",
+    "icon": "text-editor-italic",
+    "component": "TextEditorItalic"
+  },
+  {
+    "legacy": "editor/link",
+    "icon": "link",
+    "component": "Link"
+  },
+  {
+    "legacy": "editor/numberedList",
+    "icon": "text-editor-numeric",
+    "component": "TextEditorNumeric"
+  },
+  {
+    "legacy": "editor/paragraph",
+    "icon": "text-editor-p",
+    "component": "TextEditorP"
+  },
+  {
+    "legacy": "editor/redo",
+    "icon": "redo",
+    "component": "Redo"
+  },
+  {
+    "legacy": "editor/strikethrough",
+    "icon": "text-editor-strikethrough",
+    "component": "TextEditorStrikethrough"
+  },
+  {
+    "legacy": "editor/subscript",
+    "icon": "text-editor-subscript",
+    "component": "TextEditorSubscript"
+  },
+  {
+    "legacy": "editor/superscript",
+    "icon": "text-editor-superscript",
+    "component": "TextEditorSuperscript"
+  },
+  {
+    "legacy": "editor/underline",
+    "icon": "text-editor-underline",
+    "component": "TextEditorUnderline"
+  },
+  {
+    "legacy": "editor/undo",
+    "icon": "undo",
+    "component": "Undo"
+  },
+  {
+    "legacy": "editor/paste",
+    "icon": "text-editor-paste",
+    "component": "TextEditorPaste",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "editor/resize",
+    "icon": "text-editor-resize",
+    "component": "TextEditorResize",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "email/small",
+    "icon": "email",
+    "component": "Email",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "email/large",
+    "icon": "email",
+    "component": "Email",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "eye/visible/small",
+    "icon": "eye",
+    "component": "Eye"
+  },
+  {
+    "legacy": "eye/visible/medium",
+    "icon": "eye",
+    "component": "Eye"
+  },
+  {
+    "legacy": "eye/invisible/small",
+    "icon": "eye-slash",
+    "component": "EyeSlash"
+  },
+  {
+    "legacy": "eye/invisible/medium",
+    "icon": "eye-slash",
+    "component": "EyeSlash"
+  },
+  {
+    "legacy": "figshare/logo",
+    "icon": "figshare/logo",
+    "component": "FigshareLogo",
+    "note": "ADDED (also figshare/logo-mono)"
+  },
+  {
+    "legacy": "figshare/text",
+    "icon": "figshare/wordmark",
+    "component": "FigshareWordmark",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "figshare/index",
+    "icon": "figshare/logo-full",
+    "component": "FigshareLogoFull",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "file/small",
+    "icon": "file-regular",
+    "component": "FileRegular",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "file/medium",
+    "icon": "file-regular",
+    "component": "FileRegular",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "file/large",
+    "icon": "file-regular",
+    "component": "FileRegular",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "fileWithText/index",
+    "icon": "file-lines-regular",
+    "component": "FileLinesRegular"
+  },
+  {
+    "legacy": "filters/show/small",
+    "icon": "filter",
+    "component": "Filter",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "filters/hide/small",
+    "icon": "filter-slash",
+    "component": "FilterSlash",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "filters/show/large",
+    "icon": "filter",
+    "component": "Filter",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "filters/hide/large",
+    "icon": "filter-slash",
+    "component": "FilterSlash",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "fitToScreen/index",
+    "icon": "fit-to-screen",
+    "component": "FitToScreen"
+  },
+  {
+    "legacy": "fontSize/larger",
+    "icon": "font-size-larger",
+    "component": "FontSizeLarger",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "fontSize/smaller",
+    "icon": "font-size-smaller",
+    "component": "FontSizeSmaller",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "ftp/index",
+    "icon": "ftp",
+    "component": "Ftp"
+  },
+  {
+    "legacy": "ftpIntegration/index",
+    "icon": "ftp-integration",
+    "component": "FtpIntegration",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "fullscreen/enter",
+    "icon": "expand-screen",
+    "component": "ExpandScreen"
+  },
+  {
+    "legacy": "fullscreen/exit",
+    "icon": "collapse-screen",
+    "component": "CollapseScreen"
+  },
+  {
+    "legacy": "bitbucket/index",
+    "icon": "bitbucket",
+    "component": "Bitbucket",
+    "note": "ADDED (mono)"
+  },
+  {
+    "legacy": "github/index",
+    "icon": "github",
+    "component": "Github",
+    "note": "ADDED (mono)"
+  },
+  {
+    "legacy": "gitlab/index",
+    "icon": "gitlab",
+    "component": "Gitlab",
+    "note": "ADDED (mono)"
+  },
+  {
+    "legacy": "goToLink/small",
+    "icon": "go-to-link",
+    "component": "GoToLink"
+  },
+  {
+    "legacy": "goToLink/large",
+    "icon": "go-to-link",
+    "component": "GoToLink"
+  },
+  {
+    "legacy": "histogram/index",
+    "icon": "histogram",
+    "component": "Histogram"
+  },
+  {
+    "legacy": "home/small",
+    "icon": "home",
+    "component": "Home",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "home/medium",
+    "icon": "home",
+    "component": "Home",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "home/large",
+    "icon": "home",
+    "component": "Home",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "info/small",
+    "icon": "info-circle",
+    "component": "InfoCircle"
+  },
+  {
+    "legacy": "info/medium",
+    "icon": "info-circle",
+    "component": "InfoCircle"
+  },
+  {
+    "legacy": "institution/small",
+    "icon": "building",
+    "component": "Building",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "institution/medium",
+    "icon": "building",
+    "component": "Building",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "institution/large",
+    "icon": "building",
+    "component": "Building",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "itemType/book",
+    "icon": "item-type/book",
+    "component": "ItemTypeBook",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/collection",
+    "icon": "item-type/collection",
+    "component": "ItemTypeCollection",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/dataset",
+    "icon": "item-type/dataset",
+    "component": "ItemTypeDataset",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/figure",
+    "icon": "item-type/figure",
+    "component": "ItemTypeFigure",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/media",
+    "icon": "item-type/media",
+    "component": "ItemTypeMedia",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/metadata",
+    "icon": "item-type/metadata",
+    "component": "ItemTypeMetadata",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/onlineResource",
+    "icon": "item-type/online-resource",
+    "component": "ItemTypeOnlineResource",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/paper",
+    "icon": "item-type/paper",
+    "component": "ItemTypePaper",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/performance",
+    "icon": "item-type/performance",
+    "component": "ItemTypePerformance",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/poster",
+    "icon": "item-type/poster",
+    "component": "ItemTypePoster",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/preprint",
+    "icon": "item-type/preprint",
+    "component": "ItemTypePreprint",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/presentation",
+    "icon": "item-type/presentation",
+    "component": "ItemTypePresentation",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/project",
+    "icon": "item-type/project",
+    "component": "ItemTypeProject",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/software",
+    "icon": "item-type/software",
+    "component": "ItemTypeSoftware",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/thesis",
+    "icon": "item-type/thesis",
+    "component": "ItemTypeThesis",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "itemType/workflow",
+    "icon": "item-type/workflow",
+    "component": "ItemTypeWorkflow",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "jump/back",
+    "icon": "jump-back",
+    "component": "JumpBack"
+  },
+  {
+    "legacy": "jump/forward",
+    "icon": "jump-forward",
+    "component": "JumpForward"
+  },
+  {
+    "legacy": "list/small",
+    "icon": "bullet-list",
+    "component": "BulletList"
+  },
+  {
+    "legacy": "list/large",
+    "icon": "bullet-list",
+    "component": "BulletList"
+  },
+  {
+    "legacy": "viewType/list/small",
+    "icon": "bullet-list",
+    "component": "BulletList"
+  },
+  {
+    "legacy": "viewType/list/large",
+    "icon": "bullet-list",
+    "component": "BulletList"
+  },
+  {
+    "legacy": "viewType/thumbnail/small",
+    "icon": "grid-9",
+    "component": "Grid9"
+  },
+  {
+    "legacy": "viewType/thumbnail/large",
+    "icon": "grid-9",
+    "component": "Grid9"
+  },
+  {
+    "legacy": "viewType/file/small",
+    "icon": "rectangle",
+    "component": "Rectangle"
+  },
+  {
+    "legacy": "viewType/file/large",
+    "icon": "rectangle",
+    "component": "Rectangle"
+  },
+  {
+    "legacy": "locationPin/index",
+    "icon": "location-pin",
+    "component": "LocationPin"
+  },
+  {
+    "legacy": "lock/small",
+    "icon": "lock",
+    "component": "Lock",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "lockedFiles/small",
+    "icon": "documents-locked",
+    "component": "DocumentsLocked",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "menu/small",
+    "icon": "menu",
+    "component": "Menu",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "minus/small",
+    "icon": "minus",
+    "component": "Minus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "note/small",
+    "icon": "note-edit",
+    "component": "NoteEdit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "plus/small",
+    "icon": "plus",
+    "component": "Plus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "project/small",
+    "icon": "folder",
+    "component": "Folder",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "quote/small",
+    "icon": "text-editor-quote",
+    "component": "TextEditorQuote",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "search/small",
+    "icon": "search",
+    "component": "Search",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "settings/small",
+    "icon": "settings",
+    "component": "Settings",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "splitDocument/small",
+    "icon": "document-xml-split",
+    "component": "DocumentXmlSplit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "user/small",
+    "icon": "user",
+    "component": "User",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "users/small",
+    "icon": "users",
+    "component": "Users",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "xml/small",
+    "icon": "document-xml",
+    "component": "DocumentXml",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "lock/medium",
+    "icon": "lock",
+    "component": "Lock",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "lockedFiles/medium",
+    "icon": "documents-locked",
+    "component": "DocumentsLocked",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "minus/medium",
+    "icon": "minus",
+    "component": "Minus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "note/medium",
+    "icon": "note-edit",
+    "component": "NoteEdit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "plus/medium",
+    "icon": "plus",
+    "component": "Plus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "project/medium",
+    "icon": "folder",
+    "component": "Folder",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "quote/medium",
+    "icon": "text-editor-quote",
+    "component": "TextEditorQuote",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "search/medium",
+    "icon": "search",
+    "component": "Search",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "settings/medium",
+    "icon": "settings",
+    "component": "Settings",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "splitDocument/medium",
+    "icon": "document-xml-split",
+    "component": "DocumentXmlSplit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "user/medium",
+    "icon": "user",
+    "component": "User",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "users/medium",
+    "icon": "users",
+    "component": "Users",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "xml/medium",
+    "icon": "document-xml",
+    "component": "DocumentXml",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "lock/large",
+    "icon": "lock",
+    "component": "Lock",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "lockedFiles/large",
+    "icon": "documents-locked",
+    "component": "DocumentsLocked",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "menu/large",
+    "icon": "menu",
+    "component": "Menu",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "minus/large",
+    "icon": "minus",
+    "component": "Minus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "note/large",
+    "icon": "note-edit",
+    "component": "NoteEdit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "plus/large",
+    "icon": "plus",
+    "component": "Plus",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "project/large",
+    "icon": "folder",
+    "component": "Folder",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "quote/large",
+    "icon": "text-editor-quote",
+    "component": "TextEditorQuote",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "search/large",
+    "icon": "search",
+    "component": "Search",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "settings/large",
+    "icon": "settings",
+    "component": "Settings",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "splitDocument/large",
+    "icon": "document-xml-split",
+    "component": "DocumentXmlSplit",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "user/large",
+    "icon": "user",
+    "component": "User",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "users/large",
+    "icon": "users",
+    "component": "Users",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "xml/large",
+    "icon": "document-xml",
+    "component": "DocumentXml",
+    "note": "sizes collapsed"
+  },
+  {
+    "legacy": "moreOptions/index",
+    "icon": "more",
+    "component": "More"
+  },
+  {
+    "legacy": "notification/active",
+    "icon": "bell-notification",
+    "component": "BellNotification"
+  },
+  {
+    "legacy": "notification/inactive",
+    "icon": "bell",
+    "component": "Bell"
+  },
+  {
+    "legacy": "orcid/index",
+    "icon": "orcid",
+    "component": "Orcid",
+    "note": "ADDED (mono)"
+  },
+  {
+    "legacy": "orcid/small",
+    "icon": "orcid-solid",
+    "component": "OrcidSolid"
+  },
+  {
+    "legacy": "papers/index",
+    "icon": "documents",
+    "component": "Documents"
+  },
+  {
+    "legacy": "pause/small",
+    "icon": "pause",
+    "component": "Pause"
+  },
+  {
+    "legacy": "pause/large",
+    "icon": "pause",
+    "component": "Pause"
+  },
+  {
+    "legacy": "play/small",
+    "icon": "play",
+    "component": "Play"
+  },
+  {
+    "legacy": "play/large",
+    "icon": "play",
+    "component": "Play"
+  },
+  {
+    "legacy": "picture/index",
+    "icon": "file-image-regular",
+    "component": "FileImageRegular"
+  },
+  {
+    "legacy": "presentation/checkMark",
+    "icon": "presentation/check-mark",
+    "component": "PresentationCheckMark",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/collection",
+    "icon": "presentation/collection",
+    "component": "PresentationCollection",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/embedCode",
+    "icon": "presentation/embed-code",
+    "component": "PresentationEmbedCode",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/embedTitle",
+    "icon": "presentation/embed-title",
+    "component": "PresentationEmbedTitle",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/envelopeError",
+    "icon": "presentation/envelope-error",
+    "component": "PresentationEnvelopeError",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/envelopeSuccess",
+    "icon": "presentation/envelope-success",
+    "component": "PresentationEnvelopeSuccess",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/exclamation",
+    "icon": "presentation/exclamation",
+    "component": "PresentationExclamation",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/ftp",
+    "icon": "presentation/ftp",
+    "component": "PresentationFtp",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/note",
+    "icon": "presentation/note",
+    "component": "PresentationNote",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/project",
+    "icon": "presentation/project",
+    "component": "PresentationProject",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/publications",
+    "icon": "presentation/publications",
+    "component": "PresentationPublications",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/quote",
+    "icon": "presentation/quote",
+    "component": "PresentationQuote",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "presentation/ribbon",
+    "icon": "presentation/ribbon",
+    "component": "PresentationRibbon",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "question/index",
+    "icon": "question",
+    "component": "Question"
+  },
+  {
+    "legacy": "radio/checked",
+    "icon": "radio-checked",
+    "component": "RadioChecked"
+  },
+  {
+    "legacy": "radio/unchecked",
+    "icon": "radio-default",
+    "component": "RadioDefault"
+  },
+  {
+    "legacy": "replay/small",
+    "icon": "replay",
+    "component": "Replay"
+  },
+  {
+    "legacy": "replay/medium",
+    "icon": "replay",
+    "component": "Replay"
+  },
+  {
+    "legacy": "retry/small",
+    "icon": "retry",
+    "component": "Retry"
+  },
+  {
+    "legacy": "retry/medium",
+    "icon": "retry",
+    "component": "Retry"
+  },
+  {
+    "legacy": "rss/index",
+    "icon": "rss",
+    "component": "Rss"
+  },
+  {
+    "legacy": "share/small",
+    "icon": "share",
+    "component": "Share"
+  },
+  {
+    "legacy": "share/large",
+    "icon": "share",
+    "component": "Share"
+  },
+  {
+    "legacy": "socialMedia/bluesky",
+    "icon": "bluesky",
+    "component": "Bluesky",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "socialMedia/facebook",
+    "icon": "facebook",
+    "component": "Facebook"
+  },
+  {
+    "legacy": "socialMedia/linkedin",
+    "icon": "linkedin",
+    "component": "Linkedin",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "socialMedia/twitter",
+    "icon": "twitter",
+    "component": "Twitter"
+  },
+  {
+    "legacy": "socialMedia/twitter_inverted",
+    "icon": "twitter",
+    "component": "Twitter",
+    "note": "invert with CSS"
+  },
+  {
+    "legacy": "socialMedia/vimeo",
+    "icon": "vimeo",
+    "component": "Vimeo"
+  },
+  {
+    "legacy": "sort/up",
+    "icon": "arrow-up-sort",
+    "component": "ArrowUpSort"
+  },
+  {
+    "legacy": "sort/down",
+    "icon": "arrow-down-sort",
+    "component": "ArrowDownSort"
+  },
+  {
+    "legacy": "spinner/spinner",
+    "icon": "loader",
+    "component": "Loader"
+  },
+  {
+    "legacy": "statistics/index",
+    "icon": "stats",
+    "component": "Stats"
+  },
+  {
+    "legacy": "timer/index",
+    "icon": "timer",
+    "component": "Timer"
+  },
+  {
+    "legacy": "undo/small",
+    "icon": "undo",
+    "component": "Undo"
+  },
+  {
+    "legacy": "undo/medium",
+    "icon": "undo",
+    "component": "Undo"
+  },
+  {
+    "legacy": "upload/index",
+    "icon": "upload",
+    "component": "Upload",
+    "note": "ADDED"
+  },
+  {
+    "legacy": "volume/high",
+    "icon": "audio-high",
+    "component": "AudioHigh"
+  },
+  {
+    "legacy": "volume/low",
+    "icon": "audio-low",
+    "component": "AudioLow"
+  },
+  {
+    "legacy": "volume/medium",
+    "icon": "audio-medium",
+    "component": "AudioMedium"
+  },
+  {
+    "legacy": "volume/mute",
+    "icon": "audio-mute",
+    "component": "AudioMute"
+  },
+  {
+    "legacy": "warning/small",
+    "icon": "warning",
+    "component": "Warning"
+  },
+  {
+    "legacy": "warning/medium",
+    "icon": "warning",
+    "component": "Warning"
+  },
+  {
+    "legacy": "zoom/in",
+    "icon": "zoom-in",
+    "component": "ZoomIn"
+  },
+  {
+    "legacy": "zoom/out",
+    "icon": "zoom-out",
+    "component": "ZoomOut"
+  },
+  {
+    "legacy": "(textEditor/components/linkModal/open-link-icon)",
+    "icon": "go-to-link",
+    "component": "GoToLink",
+    "note": "inline svg, hard-coded #8D8D8D"
+  },
+  {
+    "legacy": "(textEditor/components/linkModal/unlink-icon)",
+    "icon": "link-broken",
+    "component": "LinkBroken",
+    "note": "inline svg, hard-coded #8D8D8D"
+  },
+  {
+    "legacy": "(input/date/icons/left.svg)",
+    "icon": "chevron-left",
+    "component": "ChevronLeft",
+    "note": "hard-coded #A60845"
+  },
+  {
+    "legacy": "(input/date/icons/right.svg)",
+    "icon": "chevron-right",
+    "component": "ChevronRight",
+    "note": "hard-coded #A60845"
+  }
+]

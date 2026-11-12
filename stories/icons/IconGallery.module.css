@@ -1,0 +1,80 @@
+.gallery {
+  --icon-size: 28px;
+}
+
+.search {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.grid li {
+  /* only lay out and paint cells that are on screen */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 96px;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 88px;
+  padding: 12px 6px 8px;
+
+  cursor: pointer;
+
+  color: inherit;
+  border: 1px solid rgba(38, 85, 115, 0.15);
+  border-radius: 4px;
+  background: transparent;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cell:hover,
+.cell:focus-visible {
+  border-color: currentcolor;
+}
+
+.glyph {
+  display: flex;
+
+  height: var(--icon-size);
+  align-items: center;
+
+  /* icons blend: they take currentColor from here */
+  color: var(--color-icon-secondary, #566471);
+}
+
+.glyph svg {
+  width: auto;
+  max-width: 96px;
+  height: var(--icon-size);
+}
+
+.name {
+  font-size: 11px;
+
+  overflow: hidden;
+
+  max-width: 100%;
+
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -39,7 +39,6 @@ export const SearchInput = React.forwardRef<HTMLDivElement, SearchInputProps>(
   ({ id, value: providedValue, setValue: providedSetValue, defaultValue = "", onChange, onSubmit, onClear, kind, ...rest }, ref) => {
     const [value, setValue] = useControllableState({ value: providedValue, setValue: providedSetValue, defaultValue });
     const generatedId = useUniqueId();
-    const inputRef = React.useRef<any>(null);
     const inputId = id || generatedId;
     const { name: fieldName = inputId, onKeyDown } = rest as any;
 
@@ -64,8 +63,9 @@ export const SearchInput = React.forwardRef<HTMLDivElement, SearchInputProps>(
       onSubmit?.(clearEvent);
 
       // After clearing the input, we want to focus it so that the user can immediately start typing a new search query if they wish
-      inputRef?.current?.focus?.();
-    }, [onChange, onSubmit, onClear, fieldName]);
+      // TextInput is a class component, so a ref on it resolves to the instance rather than the <input>; look the input up by id.
+      document.getElementById(inputId)?.focus();
+    }, [onChange, onSubmit, onClear, fieldName, inputId]);
 
     const onSubmitHandler = React.useCallback(() => {
       onSubmit?.(asPacketOrEventLikeObject(value, fieldName));
@@ -77,7 +77,6 @@ export const SearchInput = React.forwardRef<HTMLDivElement, SearchInputProps>(
         Search
         </label>
         <TextInput
-          ref={inputRef}
           id={inputId}
           data-part="search-input-field"
           placeholder="Search"

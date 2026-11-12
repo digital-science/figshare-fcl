@@ -1,6 +1,0 @@
-.icon {
-  width: calc(6 * var(--gridSize));
-  height: calc(6 * var(--gridSize));
-
-  fill: var(--color-icon-secondary);
-}
