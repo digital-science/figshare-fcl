@@ -11,6 +11,13 @@ const SVGS = import.meta.glob("../../packages/ui/icons/svg/**/*.svg", {
   eager: true,
 });
 
+// These folders have per-icon default colours (and a `blend` prop) that only the React components apply,
+// so the gallery renders the components for them instead of the raw svg.
+const COMPONENTS = import.meta.glob("../../packages/ui/icons/react/{presentation,item-type}/[A-Z]*.jsx", {
+  import: "default",
+  eager: true,
+});
+
 const SUBFOLDER_PREFIX = { "item-type": "ItemType", presentation: "Presentation", figshare: "Figshare" };
 
 const pascal = (s) => s.split(/[-/ ]+/).filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).
@@ -21,10 +28,14 @@ const ICONS = Object.entries(SVGS).
     const rel = file.split("/icons/svg/")[1].replace(/\.svg$/, "");
     const [folder, base] = rel.includes("/") ? rel.split("/") : ["", rel];
 
+    const name = pascal(folder ? `${SUBFOLDER_PREFIX[folder] || pascal(folder)}-${base}` : base);
+    const componentKey = Object.keys(COMPONENTS).find((key) => key.endsWith(`/react/${folder}/${name.slice((SUBFOLDER_PREFIX[folder] || "").length)}.jsx`));
+
     return {
       folder,
       rel,
-      name: pascal(folder ? `${SUBFOLDER_PREFIX[folder] || pascal(folder)}-${base}` : base),
+      name,
+      Component: componentKey ? COMPONENTS[componentKey] : undefined,
       // the svg files ship with fixed width/height; the gallery sizes them with CSS instead
       markup: markup.replace(/<svg([^>]*?)\swidth="[^"]*"\s+height="[^"]*"/, "<svg$1"),
     };
@@ -68,7 +79,11 @@ export function IconGallery({ folder, size, search }) {
         {icons.map((icon) => (
           <li key={icon.rel}>
             <button className={styles.cell} title={`${icon.rel}.svg`} type="button" onClick={() => copy(icon)}>
-              <span dangerouslySetInnerHTML={ { __html: icon.markup } } aria-hidden="true" className={styles.glyph} />
+              {icon.Component ? (
+                <span aria-hidden="true" className={styles.glyph}><icon.Component /></span>
+              ) : (
+                <span dangerouslySetInnerHTML={ { __html: icon.markup } } aria-hidden="true" className={styles.glyph} />
+              )}
               <span className={styles.name}>{copied === icon.rel ? "Import copied" : icon.name}</span>
             </button>
           </li>

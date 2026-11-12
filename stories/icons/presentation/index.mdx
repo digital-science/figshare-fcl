@@ -8,7 +8,7 @@ import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 # Presentation
 ---
 
-Large single-colour illustrations for empty states, confirmations and onboarding, from projects to individual publications or simple quotations. Source files are in `icons/svg/presentation/`, components in `icons/react/presentation/`.
+Large illustrations for empty states, confirmations and onboarding, from projects to individual publications or simple quotations. Source files are in `icons/svg/presentation/`, components in `icons/react/presentation/`.
 
 <Canvas of={PresentationStories.Presentation} />
 ```jsx
@@ -16,5 +16,7 @@ import { PresentationQuote, PresentationEnvelopeSuccess } from "@digital-science
 
 <PresentationQuote color="var(--color-icon-secondary)" style={{ height: 80, width: "auto" }} />
 ```
+
+By default the icons keep their original colours (`#8D8D8D`, or two-tone for `EmbedCode`, `EmbedTitle`, `EnvelopeError` and `EnvelopeSuccess`). Pass `blend` to render in `currentColor`, or override with `color` and `secondaryColor`.
 
 Available: CheckMark, Collection, EmbedCode, EmbedTitle, EnvelopeError, EnvelopeSuccess, Exclamation, Ftp, Note, Project, Publications, Quote, Ribbon.

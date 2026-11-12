@@ -76,6 +76,30 @@ export const SocialMedia = {
   ),
 };
 
+const SOCIAL = [
+  { name: "Facebook", Icon: Facebook, color: "#4267B2" },
+  { name: "Bluesky", Icon: Bluesky, color: "#0085ff" },
+  { name: "Linkedin", Icon: Linkedin, color: "#0072b1" },
+  { name: "Twitter", Icon: Twitter, color: "#000" },
+  { name: "Vimeo", Icon: Vimeo, color: "#1AB7EA" },
+];
+
+// Inverted = the colours swapped: the badge is white and the brand colour moves to the background behind it.
+export const SocialMediaInverted = {
+  tags: ["!dev"],
+  render: () => (
+    <Cover kind="story">
+      <div style={row}>
+        {SOCIAL.map(({ name, Icon, color }) => (
+          <div key={name} style={ { background: color, padding: 12, borderRadius: 8, display: "flex" } }>
+            <Icon color="#fff" style={ { width: 30, height: 30 } } />
+          </div>
+        ))}
+      </div>
+    </Cover>
+  ),
+};
+
 export const AllFigshare = {
   tags: ["!dev"],
   render: () => (

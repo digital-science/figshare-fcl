@@ -40,4 +40,23 @@ describe("icons/react", () => {
     expect(root).toContain('aria-hidden="true"');
     expect(root).not.toMatch(/ (width|height)="\d+"/);
   });
+
+  describe("blend", () => {
+    const fills = (el) => [...renderToStaticMarkup(el).matchAll(/fill="([^"]+)"/g)].map((m) => m[1]);
+
+    it("keeps the original colours by default", () => {
+      expect(fills(<Icons.PresentationQuote />)).toEqual(["#8D8D8D", "#8D8D8D"]);
+      expect(new Set(fills(<Icons.PresentationEnvelopeError />))).toEqual(new Set(["#DDD", "#A60845"]));
+      expect(fills(<Icons.ItemTypeDataset />)[0]).toContain("--color-icon-secondary");
+    });
+
+    it("uses currentColor for every layer with blend", () => {
+      ["PresentationQuote", "PresentationEnvelopeError", "ItemTypeDataset"].forEach((name) => {
+        const Icon = Icons[name];
+
+        expect(new Set(fills(<Icon blend />))).toEqual(new Set(["currentColor"]));
+        expect(renderToStaticMarkup(<Icon blend />)).not.toContain("blend");
+      });
+    });
+  });
 });
