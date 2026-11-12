@@ -1,6 +1,6 @@
 {
   "name": "@digital-science/figshare-fcl",
-  "version": "1.8.7",
+  "version": "1.9.0",
   "description": "figshare UI components",
   "publishConfig": {
     "access": "public",
