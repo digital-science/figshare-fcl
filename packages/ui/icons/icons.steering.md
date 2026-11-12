@@ -53,7 +53,7 @@ Wide icons (`item-type`, `presentation`, `orcid`, `figshare/*`) are not square: 
 
 ## Special sets
 
-**item-type** (`svg/item-type`, `react/item-type`): `book, collection, dataset, figure, media, metadata, online-resource, paper, performance, poster, preprint, presentation, project, software, thesis, workflow`. Each is a rounded 40×24 badge with the glyph cut out, so the badge takes `currentColor`. Use `IconSlot kind="item-type"` for the standard slot size and colours.
+**item-type** (`svg/item-type`, `react/item-type`): `book, collection, dataset, figure, media, metadata, online-resource, paper, performance, poster, preprint, presentation, project, software, thesis, workflow`. Each is a rounded 40×24 badge with the glyph cut out, so the badge defaults to `var(--color-icon-secondary, #525252)`; pass `blend` to use `currentColor` instead. Use `IconSlot kind="item-type"` for the standard slot size and colours.
 
 **figshare** (`svg/figshare`, `react/figshare`):
 
@@ -66,7 +66,7 @@ Wide icons (`item-type`, `presentation`, `orcid`, `figshare/*`) are not square: 
 
 `fig-spiral` is a separate, smaller brand-colour spiral on the 18 grid.
 
-**presentation**: large single-colour illustrations (empty states, confirmations). The old versions had a fixed grey (`#8D8D8D`, `#DDD`, `#5FBDBB` for the success envelope); the new ones follow `currentColor`, so set the colour where they're used.
+**presentation**: large illustrations (empty states, confirmations). By default they keep their original colours: `#8D8D8D` for most, and two-tone for `EmbedCode` and `EmbedTitle` (`color` `#525252`, `secondaryColor` `#DDD`), `EnvelopeError` (`#DDD` / `#A60845`) and `EnvelopeSuccess` (`#5FBDBB` / `#DDD`). Pass `blend` to render every layer in `currentColor` instead, so the icon follows the surrounding text colour. `color` and `secondaryColor` override either tone.
 
 **angle** (`angle-up|down|left|right`): the legacy `angle/*` drawing, kept because `website-v3` uses `angle/left` and `angle/right` for paging buttons and breadcrumb separators. It is lighter and smaller than `chevron-large-*` at the same size. Prefer `angle-*` for breadcrumb separators and `chevron-*` elsewhere in new work.
 

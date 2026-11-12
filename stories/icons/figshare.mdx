@@ -54,3 +54,15 @@ import { Facebook, Bluesky, Linkedin, Twitter, Vimeo } from "@digital-science/fi
 
 <Facebook color="#4267B2" style={{ width: 30, height: 30 }} />
 ```
+
+### Inverted
+
+There is no separate inverted component. The icons are a filled badge with the glyph cut out, so swapping the colours means a white badge (`color="#fff"`) on a background in the brand colour. Use this on dark or coloured surfaces such as the footer.
+
+<Canvas of={FigshareStories.SocialMediaInverted} />
+
+```jsx
+<div style={{ background: "#4267B2", padding: 12, borderRadius: 8, display: "flex" }}>
+  <Facebook color="#fff" style={{ width: 30, height: 30 }} />
+</div>
+```
