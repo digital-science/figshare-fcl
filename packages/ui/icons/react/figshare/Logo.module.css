@@ -19,13 +19,13 @@
 }
 
 .animate .group { opacity: 1; }
+.animate .group :global { animation: 0.8s figshareLogoOpacityPulse infinite linear; }
 
 @media screen and (prefers-reduced-motion: reduce) {
   .animate .group :global {
     animation: none;
   }
 }
-.animate .group :global { animation: 0.8s figshareLogoOpacityPulse infinite linear; }
 
 .animate .layer1 { animation-delay: 0s; }
 .animate .layer2 { animation-delay: 0.04s; }

@@ -52,11 +52,11 @@ export function IconGallery({ folder, size, search }) {
     [folder, needle],
   );
 
-  const copy = (icon) => {
+  const copy = async(icon) => {
     const snippet = `import { ${icon.name} } from "@digital-science/figshare-fcl/icons/react";`;
 
     try {
-      navigator.clipboard.writeText(snippet);
+      await navigator.clipboard.writeText(snippet);
       setCopied(icon.rel);
     } catch (e) {
       setCopied(null);
