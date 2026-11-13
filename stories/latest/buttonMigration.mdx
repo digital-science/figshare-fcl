@@ -1,0 +1,43 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as MigrationStories from "./buttonMigration.stories.jsx";
+
+<Meta of={MigrationStories} />
+
+# Button migration
+
+---
+
+Side by side examples of the legacy `button` package (`Button`, `IconButton`, `GenericButton`) next to the `latest/Button` that replaces it. Each row is one old usage on the left, the mapped replacement on the right, and the mapping rule underneath. The mapping follows `packages/ui/latest/Button/Button.steering.md`, including the cases where the old default is not the obvious one.
+
+- Old `Button` with no `theme` is `secondary`, not `primary`.
+- Old `IconButton` is never filled or bordered. Its themes map to a transparent `tertiary` or `inverted` button with `span="icon"`.
+- Old `GenericButton` ignores `theme`; it maps by how it looked in context.
+- Button text always goes in `<Button.Label>`, and icons in `<Button.Icon>`.
+
+Rows that need a dark background (`inverted` mappings) are shown on one.
+
+## Overview
+
+The three defaults.
+
+<Canvas of={MigrationStories.Overview} />
+
+## Button themes
+
+<Canvas of={MigrationStories.ButtonThemes} />
+
+## Button states, icons and sizes
+
+<Canvas of={MigrationStories.ButtonStatesAndOptions} />
+
+## IconButton themes
+
+<Canvas of={MigrationStories.IconButtonThemes} />
+
+## GenericButton looks
+
+<Canvas of={MigrationStories.GenericButtonLooks} />
+
+## Inline links
+
+<Canvas of={MigrationStories.InlineLinks} />
