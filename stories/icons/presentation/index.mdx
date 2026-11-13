@@ -8,35 +8,15 @@ import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 # Presentation
 ---
 
-An icon set for "presentation" related items. Icons for items ranging from projects, to individual publications, or simple quotations. 
+Large illustrations for empty states, confirmations and onboarding, from projects to individual publications or simple quotations. Source files are in `icons/svg/presentation/`, components in `icons/react/presentation/`.
 
 <Canvas of={PresentationStories.Presentation} />
 ```jsx
-import Quote from "@digital-science/figshare-fcl/icons/presentation/quote";
-import Project from "@digital-science/figshare-fcl/icons/presentation/project";
-import Collection from "@digital-science/figshare-fcl/icons/presentation/collection";
-import Exclamation from "@digital-science/figshare-fcl/icons/presentation/exclamation";
-import CheckMark from "@digital-science/figshare-fcl/icons/presentation/checkMark";
-import Note from "@digital-science/figshare-fcl/icons/presentation/note";
-import FTP from "@digital-science/figshare-fcl/icons/presentation/ftp";
-import EnvelopeSuccess from "@digital-science/figshare-fcl/icons/presentation/envelopeSuccess";
-import EnvelopeError from "@digital-science/figshare-fcl/icons/presentation/envelopeError";
-import EmbedCode from "@digital-science/figshare-fcl/icons/presentation/embedCode";
-import EmbedTitle from "@digital-science/figshare-fcl/icons/presentation/embedTitle";
-import Ribbon from "@digital-science/figshare-fcl/icons/presentation/ribbon";
-import Publications from "@digital-science/figshare-fcl/icons/presentation/publications";
+import { PresentationQuote, PresentationEnvelopeSuccess } from "@digital-science/figshare-fcl/icons/react";
 
-<Quote />
-<Project />
-<Collection />
-<Exclamation />
-<CheckMark />
-<Note />
-<FTP />
-<EnvelopeSuccess />
-<EnvelopeError />
-<EmbedCode />
-<EmbedTitle />
-<Ribbon />
-<Publications />
+<PresentationQuote color="var(--color-icon-secondary)" style={{ height: 80, width: "auto" }} />
 ```
+
+By default the icons keep their original colours (`#8D8D8D`, or two-tone for `EmbedCode`, `EmbedTitle`, `EnvelopeError` and `EnvelopeSuccess`). Pass `blend` to render in `currentColor`, or override with `color` and `secondaryColor`.
+
+Available: CheckMark, Collection, EmbedCode, EmbedTitle, EnvelopeError, EnvelopeSuccess, Exclamation, Ftp, Note, Project, Publications, Quote, Ribbon.

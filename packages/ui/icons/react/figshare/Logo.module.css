@@ -1,0 +1,49 @@
+.logo {
+  height: 1em;
+}
+
+.color1 { fill: #aec709; }
+.color2 { fill: #c6454f; }
+.color3 { fill: #55636d; }
+.color4 { fill: #68c0b9; }
+
+.grayscale .color1 { fill: #666; }
+.grayscale .color2 { fill: #999; }
+.grayscale .color3 { fill: #ccc; }
+.grayscale .color4 { fill: #333; }
+
+@keyframes :global(figshareLogoOpacityPulse) {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate .group { opacity: 1; }
+.animate .group :global { animation: 0.8s figshareLogoOpacityPulse infinite linear; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .animate .group :global {
+    animation: none;
+  }
+}
+
+.animate .layer1 { animation-delay: 0s; }
+.animate .layer2 { animation-delay: 0.04s; }
+.animate .layer3 { animation-delay: 0.08s; }
+.animate .layer4 { animation-delay: 0.12s; }
+.animate .layer5 { animation-delay: 0.16s; }
+.animate .layer6 { animation-delay: 0.2s; }
+.animate .layer7 { animation-delay: 0.24s; }
+.animate .layer8 { animation-delay: 0.28s; }
+.animate .layer9 { animation-delay: 0.32s; }
+.animate .layer10 { animation-delay: 0.36s; }
+.animate .layer11 { animation-delay: 0.4s; }
+.animate .layer12 { animation-delay: 0.44s; }
+.animate .layer13 { animation-delay: 0.48s; }
+.animate .layer14 { animation-delay: 0.52s; }
+.animate .layer15 { animation-delay: 0.56s; }
+.animate .layer16 { animation-delay: 0.6s; }
+.animate .layer17 { animation-delay: 0.64s; }
+.animate .layer18 { animation-delay: 0.68s; }
+.animate .layer19 { animation-delay: 0.72s; }
+.animate .layer20 { animation-delay: 0.76s; }

@@ -146,6 +146,8 @@ describe("SearchInput", () => {
       expect(scope.wrapper.container.querySelector("[data-part=\"search-input-clear-button\"]")).not.toBeInTheDocument();
     });
 
+    expect(screen.getByRole("textbox")).toHaveFocus();
+
     teardown();
   });
 

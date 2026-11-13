@@ -1,0 +1,16 @@
+export { default as Book } from "./Book";
+export { default as Collection } from "./Collection";
+export { default as Dataset } from "./Dataset";
+export { default as Figure } from "./Figure";
+export { default as Media } from "./Media";
+export { default as Metadata } from "./Metadata";
+export { default as OnlineResource } from "./OnlineResource";
+export { default as Paper } from "./Paper";
+export { default as Performance } from "./Performance";
+export { default as Poster } from "./Poster";
+export { default as Preprint } from "./Preprint";
+export { default as Presentation } from "./Presentation";
+export { default as Project } from "./Project";
+export { default as Software } from "./Software";
+export { default as Thesis } from "./Thesis";
+export { default as Workflow } from "./Workflow";
