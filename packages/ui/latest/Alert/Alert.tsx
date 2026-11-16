@@ -23,6 +23,7 @@ type AlertClosePayload = {
 
 type AlertProps = {
   id?: string;
+  channel?: string;
   type: AlertType;
   title?: React.ReactNode;
   message?: React.ReactNode;
@@ -53,6 +54,7 @@ type AlertDescriptionProps = {
 
 type AlertCloseProps = {
   id?: string;
+  channel?: string;
   onClose?: (payload: AlertClosePayload) => void;
   wrapType?: WrapType;
   [key: string]: unknown;
@@ -66,7 +68,7 @@ type AlertComponent = React.ForwardRefExoticComponent<AlertProps & React.RefAttr
 };
 
 
-export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert", type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }: AlertProps, ref) => {
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert", channel, type, title, message, persistent = true, className: providedClassName, children, padded = true, variant = "translucent", onClose, ...props }: AlertProps, ref) => {
   const className = classnames(styles.alert, providedClassName);
   const wrap = computeWrap(title, message);
   // Determine if the right side padding should be applied based on the padded and persistent props.
@@ -75,7 +77,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert
   const showRightSidePadding = padded && persistent;
 
   return (
-    <div ref={ref} aria-live="polite" className={className} data-alert-type={type} data-alert-variant={variant} data-padded={showRightSidePadding} role="alert" {...props}>
+    <div ref={ref} aria-live="polite" className={className} data-alert-type={type} data-alert-variant={variant} data-padded={showRightSidePadding} data-control-id={channel ? `${channel}-alert` : undefined} role="alert" {...props}>
       <div role="presentation" data-part="alert-icon-margin" aria-hidden="true" data-wrap-type={wrap}>
         <Alert.Icon type={type} />
       </div>
@@ -86,7 +88,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert
         </div>
         <div data-part="alert-right-content">
           {children && <>{typeof children === "function" ? children({ type, onClose, ...props }) : children}</>}
-          {!persistent && <AlertClose id={id} wrapType={wrap} onClose={onClose} />}
+          {!persistent && <AlertClose id={id} channel={channel} wrapType={wrap} onClose={onClose} />}
         </div>
       </div>
     </div>
@@ -157,7 +159,7 @@ function AlertDescription({ children, ...props }: AlertDescriptionProps) {
 
 AlertDescription.displayName = "AlertDescription";
 
-function AlertClose({ id = "alert", onClose, wrapType = "none", ...props }: AlertCloseProps) {
+function AlertClose({ id = "alert", channel, onClose, wrapType = "none", ...props }: AlertCloseProps) {
   const handleOnClose = React.useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     onClose?.({ id, event });
@@ -165,7 +167,7 @@ function AlertClose({ id = "alert", onClose, wrapType = "none", ...props }: Aler
 
   return (
     <div data-part="alert-close" data-wrap-type={wrapType} {...props}>
-      <Button data-part="alert-close-button" em="low" kind="tertiary" span="icon" onClick={handleOnClose} {...props}>
+      <Button data-part="alert-close-button" data-control-id={channel ? `${channel}-alert-close` : undefined} em="low" kind="tertiary" span="icon" onClick={handleOnClose} {...props}>
         <Button.Icon ><CloseSvg /></Button.Icon>
       </Button>
     </div>
