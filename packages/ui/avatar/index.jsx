@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useMemo, useState } from "react";
-import { string, object } from "prop-types";
+import { bool, string, object } from "prop-types";
 import classnames from "classnames";
 
 import styles from "./index.module.css";
@@ -10,9 +10,11 @@ const BLANK_IMAGE = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABA
 export const Avatar = forwardRef(function Avatar(props, ref) {
   const {
     className,
+    decorative = false,
     firstName = "", lastName = "",
     imageProps = {}, initialsProps = {},
     url: givenUrl,
+    ...rest
   } = props;
   const [state, setState] = useState({ browser: false, loaded: false, error: false, url: givenUrl });
   const { browser, loaded, error, url } = state;
@@ -33,10 +35,12 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
 
     return `${a}${b}`;
   }, [firstName, lastName]);
-  const initialsAriaHidden = (loaded && !error) || undefined;
+  // When decorative (the name is already conveyed elsewhere) or unnamed, the avatar is hidden from assistive tech.
+  const hasName = !decorative && !!fullName;
+  const initialsAriaHidden = !hasName || (loaded && !error) || undefined;
 
   const src = !browser || error ? BLANK_IMAGE : url;
-  const imageAriaHidden = !loaded || error || undefined;
+  const imageAriaHidden = !hasName || !loaded || error || undefined;
   const onImageLoad = useCallback(() => setState((prev) => {
     return { ...prev, loaded: true };
   }), [setState]);
@@ -46,22 +50,22 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
 
   return (
     <div
+      {...rest}
       ref={ref}
       className={classnames(styles.avatar, className)}
     >
       <div
         aria-hidden={initialsAriaHidden}
-        aria-label={fullName}
+        aria-label={hasName ? fullName : undefined}
         className={styles.initials}
-        role="img"
-        title={fullName}
+        role={hasName ? "img" : undefined}
         {...initialsProps}
       >
         {initialsStr}
       </div>
       {!error &&
       <img
-        alt={fullName}
+        alt={hasName ? fullName : ""}
         aria-hidden={imageAriaHidden}
         className={styles.image}
         src={src}
@@ -77,6 +81,10 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
 
 Avatar.propTypes = {
   className: string,
+  /**
+    Hides the avatar from assistive technology. Use when the user's name is already provided by adjacent text or a label.
+   */
+  decorative: bool,
   firstName: string,
   imageProps: object,
   initialsProps: object,
@@ -86,6 +94,7 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
   className: undefined,
+  decorative: false,
   firstName: "",
   imageProps: {},
   initialsProps: {},
