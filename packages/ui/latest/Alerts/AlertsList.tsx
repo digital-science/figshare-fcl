@@ -49,16 +49,17 @@ export function AlertsList({ channel = "global-alerts", children, alerts = [], c
       data-show-empty={showIfEmpty}
       {...props}
     >
-      {children ? children : alerts.map((message, index) => renderAlert(message, index, onDismiss))}
+      {children ? children : alerts.map((message, index) => renderAlert(message, index, onDismiss, channel))}
     </Block>
   );
 }
 
-export function renderAlert(message: AlertMessage, index: number, onClose?: (alert: any) => void) {
+export function renderAlert(message: AlertMessage, index: number, onClose?: (alert: any) => void, channel?: string) {
   return (
     <Alert
       key={message.id}
       id={message.id}
+      channel={channel}
       data-alert-index={index}
       style={ { "--alert-index": index } as React.CSSProperties }
       title={message.title}
