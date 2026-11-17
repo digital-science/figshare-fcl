@@ -120,6 +120,55 @@
   right: -2px;
 }
 
+@media screen and (max-width: 600px) {
+  /* Keep the icon on the first line instead of vertically centering it */
+  .alert [data-part="alert-icon-margin"][data-wrap-type] {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  /*
+   * Flatten the content wrappers and lay the alert out as a grid: the icon and
+   * message share the first row, and any action children span both columns
+   * below so they get the full width. An absolutely positioned close button
+   * adds no row, so it leaves no empty gap behind when it is the only child.
+   */
+  .alert {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .alert [data-part="alert-content"],
+  .alert [data-part="alert-right-content"] {
+    display: contents;
+  }
+
+  /* Leave room for the close button pinned to the top right */
+  .alert [data-part="alert-left-content"] {
+    align-self: stretch;
+
+    padding-right: calc(4 * var(--gridSize));
+  }
+
+  .alert [data-part="alert-right-content"] > :not([data-part="alert-close"]) {
+    grid-column: 1 / -1;
+  }
+
+  .alert [data-part="alert-close"] {
+    position: absolute;
+    top: calc(1 * var(--gridSize));
+    right: calc(1 * var(--gridSize));
+
+    width: auto;
+    height: auto;
+  }
+
+  .alert [data-part="alert-close-button"] {
+    position: static;
+  }
+}
+
 .alert[data-alert-type="notice"] {
   --background-color: var(--Layout-background-Secondary, #f5f5f5);
   --border-color: var(--Layout-background-Secondary, #f5f5f5);
