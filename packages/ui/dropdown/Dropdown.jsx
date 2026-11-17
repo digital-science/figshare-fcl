@@ -151,8 +151,21 @@ export default class Dropdown extends Component {
         }
 
         break;
-      case "Escape":
       case "Tab":
+        if (isVisible && this.isDisclosure()) {
+          // Let focus move naturally between the toggle and the revealed links,
+          // closing only once it has left the disclosure.
+          setTimeout(this.closeIfFocusLeft, 0);
+
+          break;
+        }
+
+        if (isVisible) {
+          this.onToggle(event, { isVisible: false });
+        }
+
+        break;
+      case "Escape":
         if (isVisible) {
           this.onToggle(event, { isVisible: false });
         }
@@ -160,6 +173,28 @@ export default class Dropdown extends Component {
         break;
       default:
     }
+  }
+
+  // Disclosure toggles are plain buttons, the combobox pattern sets role="combobox".
+  isDisclosure() {
+    const { toggleNode } = this.state.context;
+
+    return !!toggleNode && toggleNode.getAttribute("role") !== "combobox";
+  }
+
+  closeIfFocusLeft = () => {
+    const { menuNode, toggleNode } = this.state.context;
+    const { activeElement } = document;
+
+    if (!this.props.isVisible) {
+      return;
+    }
+
+    if ((menuNode && menuNode.contains(activeElement)) || (toggleNode && toggleNode.contains(activeElement))) {
+      return;
+    }
+
+    this.onToggle(null, { isVisible: false });
   }
 
   focusSelectableNeighbour(target, offset) {

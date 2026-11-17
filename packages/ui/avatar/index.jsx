@@ -40,7 +40,7 @@ export const Avatar = forwardRef(function Avatar(props, ref) {
   const initialsAriaHidden = !hasName || (loaded && !error) || undefined;
 
   const src = !browser || error ? BLANK_IMAGE : url;
-  const imageAriaHidden = !hasName || !loaded || error || undefined;
+  const imageAriaHidden = !loaded || error || undefined;
   const onImageLoad = useCallback(() => setState((prev) => {
     return { ...prev, loaded: true };
   }), [setState]);
