@@ -85,6 +85,11 @@
   align-self: center;
 }
 
+/* Transparent on desktop so children stay direct flex items of the right content */
+.alert [data-part="alert-children"] {
+  display: contents;
+}
+
 .alert [data-part="alert-title"] {
   font-size: inherit;
   font-weight: bold;
@@ -151,8 +156,15 @@
     padding-right: calc(4 * var(--gridSize));
   }
 
-  .alert [data-part="alert-right-content"] > :not([data-part="alert-close"]) {
+  /* A real element, so plain-text children span both columns too */
+  .alert [data-part="alert-children"] {
+    display: grid;
     grid-column: 1 / -1;
+  }
+
+  /* A render function can return nothing, which must not add a row */
+  .alert [data-part="alert-children"]:empty {
+    display: none;
   }
 
   .alert [data-part="alert-close"] {

@@ -87,7 +87,11 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ id = "alert
           {message && <Alert.Description>{message}</Alert.Description>}
         </div>
         <div data-part="alert-right-content">
-          {children && <>{typeof children === "function" ? children({ type, onClose, ...props }) : children}</>}
+          {children && (
+            <div data-part="alert-children">
+              {typeof children === "function" ? children({ type, onClose, ...props }) : children}
+            </div>
+          )}
           {!persistent && <AlertClose id={id} channel={channel} wrapType={wrap} onClose={onClose} />}
         </div>
       </div>
